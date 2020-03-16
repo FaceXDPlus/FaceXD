@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F6F95AD241FD362008D6BE7 /* XDFaceParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95AC241FD362008D6BE7 /* XDFaceParameter.m */; };
 		4F91747223E1EFA60065D31D /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747123E1EFA60065D31D /* AppDelegate.mm */; };
 		4F91747823E1EFA60065D31D /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747723E1EFA60065D31D /* ViewController.mm */; };
 		4F91747B23E1EFA60065D31D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F91747923E1EFA60065D31D /* Main.storyboard */; };
@@ -25,7 +26,7 @@
 		4FDBA28D23E9895A003F40F1 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28C23E9895A003F40F1 /* CoreMedia.framework */; };
 		4FDBA28F23E9920C003F40F1 /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28E23E9920C003F40F1 /* ARKit.framework */; };
 		4FDBA29123E99A4F003F40F1 /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA29023E99A4F003F40F1 /* SceneKit.framework */; };
-		4FDBA29523E9AEF8003F40F1 /* MPControlValueLinear.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDBA29323E9AEF8003F40F1 /* MPControlValueLinear.m */; };
+		4FDBA29523E9AEF8003F40F1 /* XDControlValueLinear.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDBA29323E9AEF8003F40F1 /* XDControlValueLinear.m */; };
 		5200CF05241241A200A0FDA0 /* Pods_FaceXD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1456E1CC021CD518305051FC /* Pods_FaceXD.framework */; };
 		520D0E8D240D0F66002453EF /* ACubismMotion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0DE6240D0F64002453EF /* ACubismMotion.cpp */; };
 		520D0E8F240D0F66002453EF /* CubismDefaultParameterId.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0DE8240D0F64002453EF /* CubismDefaultParameterId.cpp */; };
@@ -69,6 +70,8 @@
 
 /* Begin PBXFileReference section */
 		1456E1CC021CD518305051FC /* Pods_FaceXD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FaceXD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F6F95AB241FD362008D6BE7 /* XDFaceParameter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDFaceParameter.h; sourceTree = "<group>"; };
+		4F6F95AC241FD362008D6BE7 /* XDFaceParameter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDFaceParameter.m; sourceTree = "<group>"; };
 		4F91746D23E1EFA60065D31D /* FaceXD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceXD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F91747023E1EFA60065D31D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F91747123E1EFA60065D31D /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -98,9 +101,9 @@
 		4FDBA28C23E9895A003F40F1 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		4FDBA28E23E9920C003F40F1 /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
 		4FDBA29023E99A4F003F40F1 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
-		4FDBA29223E9AEF8003F40F1 /* MPControlValueLinear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPControlValueLinear.h; sourceTree = "<group>"; };
-		4FDBA29323E9AEF8003F40F1 /* MPControlValueLinear.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPControlValueLinear.m; sourceTree = "<group>"; };
-		4FDBA29423E9AEF8003F40F1 /* MPControlValueProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPControlValueProtocol.h; sourceTree = "<group>"; };
+		4FDBA29223E9AEF8003F40F1 /* XDControlValueLinear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDControlValueLinear.h; sourceTree = "<group>"; };
+		4FDBA29323E9AEF8003F40F1 /* XDControlValueLinear.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDControlValueLinear.m; sourceTree = "<group>"; };
+		4FDBA29423E9AEF8003F40F1 /* XDControlValueProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDControlValueProtocol.h; sourceTree = "<group>"; };
 		520D0DE6240D0F64002453EF /* ACubismMotion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ACubismMotion.cpp; path = SDK/Framework/src/Motion/ACubismMotion.cpp; sourceTree = "<group>"; };
 		520D0DE7240D0F64002453EF /* CubismPose.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismPose.cpp; path = SDK/Framework/src/Effect/CubismPose.cpp; sourceTree = "<group>"; };
 		520D0DE8240D0F64002453EF /* CubismDefaultParameterId.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismDefaultParameterId.cpp; path = SDK/Framework/src/CubismDefaultParameterId.cpp; sourceTree = "<group>"; };
@@ -256,6 +259,8 @@
 		4F6F95A8241FD232008D6BE7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4F6F95AB241FD362008D6BE7 /* XDFaceParameter.h */,
+				4F6F95AC241FD362008D6BE7 /* XDFaceParameter.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -343,9 +348,9 @@
 		4FDBA28223E95E06003F40F1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				4FDBA29223E9AEF8003F40F1 /* MPControlValueLinear.h */,
-				4FDBA29323E9AEF8003F40F1 /* MPControlValueLinear.m */,
-				4FDBA29423E9AEF8003F40F1 /* MPControlValueProtocol.h */,
+				4FDBA29223E9AEF8003F40F1 /* XDControlValueLinear.h */,
+				4FDBA29323E9AEF8003F40F1 /* XDControlValueLinear.m */,
+				4FDBA29423E9AEF8003F40F1 /* XDControlValueProtocol.h */,
 				4FDBA28323E95E14003F40F1 /* stb_image.h */,
 			);
 			path = Utils;
@@ -593,6 +598,7 @@
 		4F91746523E1EFA60065D31D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = XD;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = hakura;
 				TargetAttributes = {
@@ -711,7 +717,7 @@
 				520D0E9E240D0F66002453EF /* CubismExpressionMotion.cpp in Sources */,
 				520D0EB6240D0F66002453EF /* CubismMotionJson.cpp in Sources */,
 				520D0ED1240D0F66002453EF /* CubismJson.cpp in Sources */,
-				4FDBA29523E9AEF8003F40F1 /* MPControlValueLinear.m in Sources */,
+				4FDBA29523E9AEF8003F40F1 /* XDControlValueLinear.m in Sources */,
 				520D0ED8240D0F66002453EF /* CubismPhysics.cpp in Sources */,
 				520D0ECB240D0F66002453EF /* CubismUserModel.cpp in Sources */,
 				520D0E96240D0F66002453EF /* CubismMatrix44.cpp in Sources */,
@@ -724,6 +730,7 @@
 				4F91748323E1EFA70065D31D /* main.m in Sources */,
 				520D0EC7240D0F66002453EF /* CubismOffscreenSurface_OpenGLES2.cpp in Sources */,
 				520D0ECC240D0F66002453EF /* CubismBreath.cpp in Sources */,
+				4F6F95AD241FD362008D6BE7 /* XDFaceParameter.m in Sources */,
 				520D0E94240D0F66002453EF /* CubismTargetPoint.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

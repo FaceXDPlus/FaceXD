@@ -3,7 +3,7 @@
 #import <OpenGLES/EAGL.h>
 #import <OpenGLES/ES2/gl.h>
 #import <Vision/Vision.h>
-#import "MPControlValueLinear.h"
+#import "XDControlValueLinear.h"
 
 #import "CubismModelMatrix.hpp"
 #import "ViewController.h"
@@ -64,8 +64,8 @@
 @property (nonatomic, strong) SCNNode *leftEyeNode;
 @property (nonatomic, strong) SCNNode *rightEyeNode;
 
-@property (nonatomic, strong) MPControlValueLinear *eyeLinearX;
-@property (nonatomic, strong) MPControlValueLinear *eyeLinearY;
+@property (nonatomic, strong) XDControlValueLinear *eyeLinearX;
+@property (nonatomic, strong) XDControlValueLinear *eyeLinearY;
 
 @end
 
@@ -109,11 +109,11 @@
         self.haru = [[LAppModel alloc] initWithName:@"Hiyori"];
         [self.haru loadAsset];
         self.expressionCount = self.haru.expressionName.count;
-        self.eyeLinearX = [[MPControlValueLinear alloc] initWithOutputMax:[self.haru paramMaxValue:LAppParamEyeBallX].doubleValue
+        self.eyeLinearX = [[XDControlValueLinear alloc] initWithOutputMax:[self.haru paramMaxValue:LAppParamEyeBallX].doubleValue
                                                                outputMin:[self.haru paramMinValue:LAppParamEyeBallX].doubleValue
                                                                 inputMax:45
                                                                 inputMin:-45];
-        self.eyeLinearY = [[MPControlValueLinear alloc] initWithOutputMax:[self.haru paramMaxValue:LAppParamEyeBallY].doubleValue
+        self.eyeLinearY = [[XDControlValueLinear alloc] initWithOutputMax:[self.haru paramMaxValue:LAppParamEyeBallY].doubleValue
                                                                 outputMin:[self.haru paramMinValue:LAppParamEyeBallY].doubleValue
                                                                  inputMax:45
                                                                  inputMin:-45];
