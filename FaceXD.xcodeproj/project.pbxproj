@@ -253,6 +253,36 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		4F6F95A8241FD232008D6BE7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4F6F95A9241FD23A008D6BE7 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				4F6F95AA241FD251008D6BE7 /* Live2D */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		4F6F95AA241FD251008D6BE7 /* Live2D */ = {
+			isa = PBXGroup;
+			children = (
+				4F9175CE23E1FA1B0065D31D /* LAppAllocator.h */,
+				4F9175CD23E1FA1B0065D31D /* LAppAllocator.mm */,
+				4F9176B223E2981E0065D31D /* LAppBundle.h */,
+				4F9176B323E2981E0065D31D /* LAppBundle.m */,
+				4F9176B623E299A40065D31D /* LAppModel.h */,
+				4F9176B723E299A40065D31D /* LAppModel.mm */,
+				4F91788523E2C2880065D31D /* LAppOpenGLManager.h */,
+				4F91788623E2C2880065D31D /* LAppOpenGLManager.mm */,
+			);
+			path = Live2D;
+			sourceTree = "<group>";
+		};
 		4F91746423E1EFA60065D31D = {
 			isa = PBXGroup;
 			children = (
@@ -276,15 +306,9 @@
 		4F91746F23E1EFA60065D31D /* FaceXD */ = {
 			isa = PBXGroup;
 			children = (
+				4F6F95A9241FD23A008D6BE7 /* Service */,
+				4F6F95A8241FD232008D6BE7 /* Model */,
 				4FDBA28223E95E06003F40F1 /* Utils */,
-				4F9175CE23E1FA1B0065D31D /* LAppAllocator.h */,
-				4F9175CD23E1FA1B0065D31D /* LAppAllocator.mm */,
-				4F9176B223E2981E0065D31D /* LAppBundle.h */,
-				4F9176B323E2981E0065D31D /* LAppBundle.m */,
-				4F9176B623E299A40065D31D /* LAppModel.h */,
-				4F9176B723E299A40065D31D /* LAppModel.mm */,
-				4F91788523E2C2880065D31D /* LAppOpenGLManager.h */,
-				4F91788623E2C2880065D31D /* LAppOpenGLManager.mm */,
 				4F91747023E1EFA60065D31D /* AppDelegate.h */,
 				4F91747123E1EFA60065D31D /* AppDelegate.mm */,
 				4F91747623E1EFA60065D31D /* ViewController.h */,
