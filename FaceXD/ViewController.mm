@@ -35,6 +35,7 @@
 @property (nonatomic, strong) GCDAsyncSocket *socket;
 @property (weak, nonatomic) IBOutlet UISwitch *advancedSwitch;
 @property (weak, nonatomic) IBOutlet ARSCNView *sceneView;
+@property (weak, nonatomic) IBOutlet UISwitch *alignmentSwitch;
 
 @property (nonatomic) GLKView *glView;
 @property (nonatomic, strong) LAppModel *haru;
@@ -104,8 +105,6 @@
     
     
     [self loadConfig];
-    
-    [self setupARSession];
 }
 
 - (void)loadConfig {
@@ -132,7 +131,12 @@
     }
     self.useSocketSwitch.on = [accountDefaults boolForKey: @"useSocketSwitch"];
     self.advancedSwitch.on = [accountDefaults boolForKey: @"advancedSwitch"];
-    
+    NSNumber *alignmentNumber = [accountDefaults objectForKey:@"cameraAlignment"];
+    if (alignmentNumber == nil) {
+        alignmentNumber = @(YES);
+        [accountDefaults setObject:alignmentNumber forKey:@"cameraAlignment"];
+    }
+    self.alignmentSwitch.on = alignmentNumber.boolValue;
     //self.sceneView.showsStatistics = YES;
     self.sceneView.autoenablesDefaultLighting = YES;
     self.sceneView.debugOptions = SCNDebugOptionNone;
@@ -145,7 +149,7 @@
 - (void)setupARSession {
     self.arSession = [[ARSession alloc] init];
     ARFaceTrackingConfiguration *faceTracking = [[ARFaceTrackingConfiguration alloc] init];
-    faceTracking.worldAlignment = ARWorldAlignmentGravity;
+    faceTracking.worldAlignment = self.alignmentSwitch.on ? ARWorldAlignmentCamera : ARWorldAlignmentGravity;
     self.arSession.delegate = self;
     [self.arSession runWithConfiguration:faceTracking];
     self.sceneView.session = self.arSession;
@@ -187,6 +191,7 @@
     if(self.Switch.on == 0){
         self.faceCaptureStatusLabel.text = @"未开始";
     }else{
+        [self setupARSession];
         self.faceCaptureStatusLabel.text = @"捕捉中";
     }
 }
@@ -399,6 +404,13 @@
     [sender resignFirstResponder];
 }
 
+- (IBAction)handleAlignmentSwitchChange:(id)sender {
+    [self handleResetButton:nil];
+    NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
+    [accountDefaults setObject:self.alignmentSwitch.on ? @(YES) : @(NO) forKey: @"cameraAlignment"];
+    [accountDefaults synchronize];
+    [sender resignFirstResponder];
+}
 
 #pragma mark - Delegate
 #pragma mark - ARSCNViewDelegate
