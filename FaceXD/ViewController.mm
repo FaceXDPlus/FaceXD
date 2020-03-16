@@ -3,7 +3,9 @@
 #import <OpenGLES/EAGL.h>
 #import <OpenGLES/ES2/gl.h>
 #import <Vision/Vision.h>
-#import "XDControlValueLinear.h"
+
+#import "XDModelParameter.h"
+#import "XDDefaultModelParameterConfiguration.h"
 
 #import "CubismModelMatrix.hpp"
 #import "ViewController.h"
@@ -34,25 +36,6 @@
 @property (weak, nonatomic) IBOutlet UISwitch *advancedSwitch;
 @property (weak, nonatomic) IBOutlet ARSCNView *sceneView;
 
-@property (nonatomic, assign) CGFloat headYaw;
-@property (nonatomic, assign) CGFloat headPitch;
-@property (nonatomic, assign) CGFloat headRoll;
-@property (nonatomic, assign) CGFloat mouthOpenY;
-@property (nonatomic, assign) CGFloat mouthForm;
-@property (nonatomic, assign) CGFloat eyeLOpen;
-@property (nonatomic, assign) CGFloat eyeROpen;
-@property (nonatomic, assign) CGFloat eyeBrowYL;
-@property (nonatomic, assign) CGFloat eyeBrowYR;
-@property (nonatomic, assign) CGFloat eyeBrowAngleL;
-@property (nonatomic, assign) CGFloat eyeBrowAngleR;
-@property (nonatomic, assign) CGFloat eyeX;
-@property (nonatomic, assign) CGFloat eyeY;
-@property (nonatomic, assign) CGFloat bodyX;
-@property (nonatomic, assign) CGFloat bodyY;
-@property (nonatomic, assign) CGFloat bodyAngleX;
-@property (nonatomic, assign) CGFloat bodyAngleY;
-@property (nonatomic, assign) CGFloat bodyAngleZ;
-
 @property (nonatomic) GLKView *glView;
 @property (nonatomic, strong) LAppModel *haru;
 @property (nonatomic, assign) CGSize screenSize;
@@ -64,9 +47,8 @@
 @property (nonatomic, strong) SCNNode *leftEyeNode;
 @property (nonatomic, strong) SCNNode *rightEyeNode;
 
-@property (nonatomic, strong) XDControlValueLinear *eyeLinearX;
-@property (nonatomic, strong) XDControlValueLinear *eyeLinearY;
 
+@property (nonatomic, strong) XDModelParameterConfigration *parameterConfiguration;
 @end
 
 @implementation ViewController
@@ -96,6 +78,14 @@
     return _rightEyeNode;
 }
 
+- (XDModelParameterConfigration *)parameterConfiguration {
+    
+    if (_parameterConfiguration == nil) {
+        _parameterConfiguration = [[XDDefaultModelParameterConfiguration alloc] initWithModel:self.haru];
+    }
+    return _parameterConfiguration;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -109,14 +99,6 @@
         self.haru = [[LAppModel alloc] initWithName:@"Hiyori"];
         [self.haru loadAsset];
         self.expressionCount = self.haru.expressionName.count;
-        self.eyeLinearX = [[XDControlValueLinear alloc] initWithOutputMax:[self.haru paramMaxValue:LAppParamEyeBallX].doubleValue
-                                                               outputMin:[self.haru paramMinValue:LAppParamEyeBallX].doubleValue
-                                                                inputMax:45
-                                                                inputMin:-45];
-        self.eyeLinearY = [[XDControlValueLinear alloc] initWithOutputMax:[self.haru paramMaxValue:LAppParamEyeBallY].doubleValue
-                                                                outputMin:[self.haru paramMinValue:LAppParamEyeBallY].doubleValue
-                                                                 inputMax:45
-                                                                 inputMin:-45];
         [self.haru startBreath];
     });
     
@@ -163,7 +145,7 @@
 - (void)setupARSession {
     self.arSession = [[ARSession alloc] init];
     ARFaceTrackingConfiguration *faceTracking = [[ARFaceTrackingConfiguration alloc] init];
-    faceTracking.worldAlignment = ARWorldAlignmentCamera;
+    faceTracking.worldAlignment = ARWorldAlignmentGravity;
     self.arSession.delegate = self;
     [self.arSession runWithConfiguration:faceTracking];
     self.sceneView.session = self.arSession;
@@ -175,22 +157,7 @@
     glClear(GL_COLOR_BUFFER_BIT);
     [self.haru setMVPMatrixWithSize:self.screenSize];
     [self.haru onUpdateWithParameterUpdate:^{
-        [self.haru setParam:LAppParamAngleX forValue:@(self.headYaw)];
-        [self.haru setParam:LAppParamAngleY forValue:@(self.headPitch)];
-        [self.haru setParam:LAppParamAngleZ forValue:@(self.headRoll)];
-        [self.haru setParam:LAppParamMouthOpenY forValue:@(self.mouthOpenY)];
-        [self.haru setParam:LAppParamMouthForm forValue:@(self.mouthForm)];
-        [self.haru setParam:LAppParamEyeLOpen forValue:@(self.eyeLOpen)];
-        [self.haru setParam:LAppParamEyeROpen forValue:@(self.eyeROpen)];
-        [self.haru setParam:LAppParamEyeBrowLOpen forValue:@(self.eyeBrowYL)];
-        [self.haru setParam:LAppParamEyeBrowROpen forValue:@(self.eyeBrowYR)];
-        [self.haru setParam:LAppParamEyeBrowLAngle forValue:@(self.eyeBrowAngleL)];
-        [self.haru setParam:LAppParamEyeBrowRAngle forValue:@(self.eyeBrowAngleR)];
-        [self.haru setParam:LAppParamEyeBallX forValue:@(self.eyeX)];
-        [self.haru setParam:LAppParamEyeBallY forValue:@(self.eyeY)];
-        [self.haru setParam:LAppParamBodyAngleX forValue:@(self.bodyAngleX)];
-        [self.haru setParam:LAppParamBodyAngleY forValue:@(self.bodyAngleY)];
-        [self.haru setParam:LAppParamBodyAngleZ forValue:@(self.bodyAngleZ)];
+        [self.parameterConfiguration commit];
     }];
     glClearColor(0, 1, 0, 1);
 }
@@ -211,17 +178,7 @@
     self.Switch.on = 0;
     NSString *data = @"Json化提交数据";
     self.LabelJson.text = data;
-    self.headPitch = 0;
-    self.headYaw = 0;
-    self.headRoll = 0;
-    self.bodyAngleX = 0;
-    self.bodyAngleY = 0;
-    self.bodyAngleZ = 0;
-    self.eyeLOpen = 0;
-    self.eyeROpen = 0;
-    self.eyeX = 0;
-    self.eyeY = 0;
-    self.mouthOpenY = 0;
+    [self.parameterConfiguration reset];
     self.faceCaptureStatusLabel.text = @"未开始";
     self.timeStampLabel.text = @"运行时间戳";
 }
@@ -462,8 +419,8 @@
         if (faceAnchor) {
             UInt64 recordTime = [[NSDate date] timeIntervalSince1970]*1000;
 
-            NSString*timeString = [NSString stringWithFormat:@"%llu", recordTime];
-            NSString*lastTimeString = [NSString stringWithFormat:@"%llu", lastRecordTime];
+            NSString *timeString = [NSString stringWithFormat:@"%llu", recordTime];
+            NSString *lastTimeString = [NSString stringWithFormat:@"%llu", lastRecordTime];
             
             if(self.fpsSwitch.on == 1){
                 if((recordTime - lastRecordTime) < timeInOneFps){
@@ -483,57 +440,17 @@
                 self.rightEyeNode.simdTransform = faceAnchor.rightEyeTransform;
             }
             
-            self.headPitch = -(180 / M_PI) * self.faceNode.eulerAngles.x;
-            self.headYaw = (180 / M_PI) * self.faceNode.eulerAngles.y;
-            self.headRoll = -(180 / M_PI) * self.faceNode.eulerAngles.z + 90.0;
-            self.bodyAngleX = self.headYaw / 4;
-            self.bodyAngleY = self.headPitch / 2;
-            self.bodyAngleZ = self.headRoll / 2;
             
-            self.eyeLOpen = 1 - faceAnchor.blendShapes[ARBlendShapeLocationEyeBlinkLeft].floatValue * 1.3;
-            self.eyeROpen = 1 - faceAnchor.blendShapes[ARBlendShapeLocationEyeBlinkRight].floatValue * 1.3;
-            self.eyeX = [self.eyeLinearX calc:(180 / M_PI) * self.leftEyeNode.eulerAngles.y];
-            self.eyeY = - [self.eyeLinearY calc:(180 / M_PI) * self.leftEyeNode.eulerAngles.x];
-            self.mouthOpenY = faceAnchor.blendShapes[ARBlendShapeLocationJawOpen].floatValue * 1.8;
-            
-            CGFloat innerUp = faceAnchor.blendShapes[ARBlendShapeLocationBrowInnerUp].floatValue;
-            CGFloat outerUpL = faceAnchor.blendShapes[ARBlendShapeLocationBrowOuterUpLeft].floatValue;
-            CGFloat outerUpR = faceAnchor.blendShapes[ARBlendShapeLocationBrowOuterUpRight].floatValue;
-            CGFloat downL = faceAnchor.blendShapes[ARBlendShapeLocationBrowDownLeft].floatValue;
-            CGFloat downR = faceAnchor.blendShapes[ARBlendShapeLocationBrowDownRight].floatValue;
-            self.eyeBrowYL = (innerUp + outerUpL) / 2;
-            self.eyeBrowYR = (innerUp + outerUpR) / 2;
-            self.eyeBrowAngleL = 17*(innerUp - outerUpL) - downL - 2.5;
-            self.eyeBrowAngleR = 17*(innerUp - outerUpR) - downR - 2.5;
-            CGFloat mouthFunnel = faceAnchor.blendShapes[ARBlendShapeLocationMouthFunnel].floatValue;
-            CGFloat mouthLeft = faceAnchor.blendShapes[ARBlendShapeLocationMouthFrownLeft].floatValue;
-            CGFloat mouthRight = faceAnchor.blendShapes[ARBlendShapeLocationMouthFrownRight].floatValue;
-            CGFloat mouthSmileLeft = faceAnchor.blendShapes[ARBlendShapeLocationMouthSmileLeft].floatValue;
-            CGFloat mouthSmileRight = faceAnchor.blendShapes[ARBlendShapeLocationMouthSmileRight].floatValue;
-            CGFloat mouthForm = 0 - (mouthLeft - mouthSmileLeft + mouthRight - mouthSmileRight) / 2 * 8 - 1 / 3;
-            if(mouthForm < 0){
-                mouthForm = mouthForm - mouthFunnel;
+            if ([self.parameterConfiguration isKindOfClass:[XDDefaultModelParameterConfiguration class]]) {
+                [self.parameterConfiguration setValue:@(self.arSession.configuration.worldAlignment) forKey:@"worldAlignment"];
             }
-            self.mouthForm = mouthForm;
-            NSDictionary *param = @{
-                            @"headPitch"       : [NSString stringWithFormat: @"%.5lf", self.headPitch],
-                            @"headYaw"         : [NSString stringWithFormat: @"%.5lf", self.headYaw],
-                            @"headRoll"        : [NSString stringWithFormat: @"%.5lf", self.headRoll],
-                            @"bodyAngleX"      : [NSString stringWithFormat: @"%.5lf", self.bodyAngleX],
-                            @"bodyAngleY"      : [NSString stringWithFormat: @"%.5lf", self.bodyAngleY],
-                            @"bodyAngleZ"      : [NSString stringWithFormat: @"%.5lf", self.bodyAngleZ],
-                            @"eyeLOpen"        : [NSString stringWithFormat: @"%.5lf", self.eyeLOpen],
-                            @"eyeROpen"        : [NSString stringWithFormat: @"%.5lf", self.eyeROpen],
-                            @"eyeBrowYL"       : [NSString stringWithFormat: @"%.5lf", self.eyeBrowYL],
-                            @"eyeBrowYR"       : [NSString stringWithFormat: @"%.5lf", self.eyeBrowYR],
-                            @"eyeBrowAngleL"   : [NSString stringWithFormat: @"%.5lf", self.eyeBrowAngleL],
-                            @"eyeBrowAngleR"   : [NSString stringWithFormat: @"%.5lf", self.eyeBrowAngleR],
-                            @"eyeX"            : [NSString stringWithFormat: @"%.5lf", self.eyeX],
-                            @"eyeY"            : [NSString stringWithFormat: @"%.5lf", self.eyeY],
-                            @"mouthOpenY"      : [NSString stringWithFormat: @"%.5lf", self.mouthOpenY],
-                            @"mouthForm"       : [NSString stringWithFormat: @"%.5lf", self.mouthForm],
-                            @"timeStamp"       : timeString,
-            };
+            [self.parameterConfiguration updateParameterWithFaceAnchor:faceAnchor
+                                                              faceNode:self.faceNode
+                                                           leftEyeNode:self.leftEyeNode
+                                                          rightEyeNode:self.rightEyeNode];
+            self.parameterConfiguration.parameter.timestamp = timeString;
+            
+            NSDictionary *param = [self.parameterConfiguration.parameter parameterValueDictionary];
             if(self.advancedSwitch.on == 1){
                 param = faceAnchor.blendShapes;
             }
