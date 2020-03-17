@@ -1,0 +1,16 @@
+"startupLog"        = "APP Version: %@ b%@";
+"jsonData"          = "Json data";
+"waiting"           = "Waiting";
+"capturing"         = "Capturing";
+"stopped"           = "Stopped";
+"started"           = "Started";
+"illegalAddress"    = "Illegal address!\nSample:\nAddress: 127.0.0.1\nPort: 8040";
+"errorTitle"        = "Error";
+"errorOK"           = "OK";
+"socketConnected"   = "Connected: %@---%d";
+"socketDisonnected" = "Socket Disconnected: %@";
+"socketReceived"    = "Received Tag = %ld : %ld 长度的数据";
+"socketSent"        = "%ld Sent";
+"60FPSLabel"        = "New %@";
+"30FPSLabel"        = "%@ | %@";
+"timeStamp"         = "Time Stamp";

@@ -16,9 +16,9 @@
 #import "GCDAsyncSocket.h"
 
 @interface ViewController () <ARSessionDelegate,ARSCNViewDelegate,GCDAsyncSocketDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *LabelJson;
-@property (weak, nonatomic) IBOutlet UISwitch *Switch;
-@property (weak, nonatomic) IBOutlet UIButton *ResetButton;
+@property (weak, nonatomic) IBOutlet UILabel *labelJson;
+@property (weak, nonatomic) IBOutlet UISwitch *captureSwitch;
+@property (weak, nonatomic) IBOutlet UIButton *resetButton;
 @property (weak, nonatomic) IBOutlet UISwitch *startSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *timeStampLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *submitSwitch;
@@ -29,7 +29,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *submitSocketPort;
 @property (weak, nonatomic) IBOutlet UISwitch *startSubmitSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *useSocketSwitch;
-@property (weak, nonatomic) IBOutlet UISwitch *JsonSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *jsonSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *cameraSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *appVersionLabel;
 @property (nonatomic, strong) GCDAsyncSocket *socket;
@@ -38,7 +38,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *alignmentSwitch;
 
 @property (nonatomic) GLKView *glView;
-@property (nonatomic, strong) LAppModel *haru;
+@property (nonatomic, strong) LAppModel *hiyori;
 @property (nonatomic, assign) CGSize screenSize;
 @property (nonatomic, assign) NSInteger expressionCount;
 
@@ -82,7 +82,7 @@
 - (XDModelParameterConfigration *)parameterConfiguration {
     
     if (_parameterConfiguration == nil) {
-        _parameterConfiguration = [[XDDefaultModelParameterConfiguration alloc] initWithModel:self.haru];
+        _parameterConfiguration = [[XDDefaultModelParameterConfiguration alloc] initWithModel:self.hiyori];
     }
     return _parameterConfiguration;
 }
@@ -97,10 +97,10 @@
     
     [self.glView setContext:LAppGLContext];
     LAppGLContextAction(^{
-        self.haru = [[LAppModel alloc] initWithName:@"Hiyori"];
-        [self.haru loadAsset];
-        self.expressionCount = self.haru.expressionName.count;
-        [self.haru startBreath];
+        self.hiyori = [[LAppModel alloc] initWithName:@"Hiyori"];
+        [self.hiyori loadAsset];
+        self.expressionCount = self.hiyori.expressionName.count;
+        [self.hiyori startBreath];
     });
     
     
@@ -111,7 +111,7 @@
     NSString *Version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     NSString *Build   = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     self.appVersionLabel.text = [NSString stringWithFormat:@"%@ b%@", Version, Build];
-    NSLog(@"APP对外展示的版本号为：%@ b%@", Version, Build);
+    NSLog(NSLocalizedString(@"startupLog", nil) , Version, Build);
     
     NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
     if([accountDefaults objectForKey: @"submitAddress"] == nil){
@@ -125,9 +125,9 @@
     self.submitCaptureAddress.text = [accountDefaults objectForKey: @"submitAddress"];
     self.submitSocketPort.text = [accountDefaults objectForKey: @"submitSocketPort"];
     self.fpsSwitch.on = [accountDefaults boolForKey: @"fpsSwitch"];
-    self.JsonSwitch.on = [accountDefaults boolForKey: @"JsonSwitch"];
-    if(self.JsonSwitch.on == 1){
-        self.LabelJson.hidden = 0;
+    self.jsonSwitch.on = [accountDefaults boolForKey: @"jsonSwitch"];
+    if(self.jsonSwitch.on == 1){
+        self.labelJson.hidden = 0;
     }
     self.useSocketSwitch.on = [accountDefaults boolForKey: @"useSocketSwitch"];
     self.advancedSwitch.on = [accountDefaults boolForKey: @"advancedSwitch"];
@@ -159,10 +159,12 @@
     [LAppOpenGLManagerInstance updateTime];
     
     glClear(GL_COLOR_BUFFER_BIT);
-    [self.haru setMVPMatrixWithSize:self.screenSize];
-    [self.haru onUpdateWithParameterUpdate:^{
+
+    [self.hiyori setMVPMatrixWithSize:self.screenSize];
+    [self.hiyori onUpdateWithParameterUpdate:^{
         [self.parameterConfiguration commit];
     }];
+
     glClearColor(0, 1, 0, 1);
 }
 
@@ -173,26 +175,26 @@
     if (index == self.expressionCount) {
         index = 0;
     }
-    [self.haru startExpressionWithName:self.haru.expressionName[index]];
+    [self.hiyori startExpressionWithName:self.hiyori.expressionName[index]];
 }
 
 #pragma mark - Action
 
 - (IBAction)handleResetButton:(id)sender {
-    self.Switch.on = 0;
-    NSString *data = @"Json化提交数据";
-    self.LabelJson.text = data;
+    self.captureSwitch.on = 0;
+    self.labelJson.text = NSLocalizedString(@"jsonData", nil);
     [self.parameterConfiguration reset];
-    self.faceCaptureStatusLabel.text = @"未开始";
-    self.timeStampLabel.text = @"运行时间戳";
+    self.faceCaptureStatusLabel.text = NSLocalizedString(@"waiting", nil);
+    self.submitStatusLabel.text = NSLocalizedString(@"stopped", nil);
+    self.timeStampLabel.text = NSLocalizedString(@"timeStamp", nil);
 }
 
 - (IBAction)handleFaceCaptureSwitch:(id)sender {
-    if(self.Switch.on == 0){
-        self.faceCaptureStatusLabel.text = @"未开始";
+    if(self.captureSwitch.on == 0){
+        self.faceCaptureStatusLabel.text = NSLocalizedString(@"waiting", nil);
     }else{
         [self setupARSession];
-        self.faceCaptureStatusLabel.text = @"捕捉中";
+        self.faceCaptureStatusLabel.text = NSLocalizedString(@"capturing", nil);
     }
 }
 
@@ -202,7 +204,7 @@
             [self.socket disconnect];
             self.socket = nil;
         }
-        self.submitStatusLabel.text = @"未提交";
+        self.submitStatusLabel.text = NSLocalizedString(@"stopped", nil);
         self.useSocketSwitch.enabled = 1;
         socketTag = 0;
         [UIApplication sharedApplication].idleTimerDisabled = NO;
@@ -225,7 +227,7 @@
                 [self.socket connectToHost:self.submitCaptureAddress.text onPort:[self.submitSocketPort.text intValue] withTimeout:5 error:&error];
                 if (error) {
                     [self alertError:error.localizedDescription];
-                    self.submitStatusLabel.text = @"未提交";
+                    self.submitStatusLabel.text = NSLocalizedString(@"stopped", nil);
                     self.submitSwitch.on = 0;
                     self.submitSwitch.enabled = 1;
                     socketTag = 0;
@@ -233,8 +235,8 @@
                     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                 }
             }else{
-                [self alertError:@"提交地址错误！请使用正确的格式提交！\n示范推流地址：127.0.0.1\n示范推流端口：8040"];
-                self.submitStatusLabel.text = @"未提交";
+                [self alertError: NSLocalizedString(@"illegalAddress", nil)];
+                self.submitStatusLabel.text = NSLocalizedString(@"stopped", nil);
                 self.submitSwitch.on = 0;
                 self.submitSwitch.enabled = 1;
                 socketTag = 0;
@@ -248,7 +250,7 @@
                 self.socket = nil;
             }
             socketTag = 0;
-            self.submitStatusLabel.text = @"提交中";
+            self.submitStatusLabel.text = NSLocalizedString(@"started", nil);
             [UIApplication sharedApplication].idleTimerDisabled =YES;
             [UIApplication sharedApplication].networkActivityIndicatorVisible =YES;
         }
@@ -257,12 +259,12 @@
 
 - (IBAction)handleJsonSwitch:(id)sender {
     NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
-    if(self.JsonSwitch.on == 0){
-        self.LabelJson.hidden = 1;
-        [accountDefaults setBool:NO forKey:@"JsonSwitch"];
+    if(self.jsonSwitch.on == 0){
+        self.labelJson.hidden = 1;
+        [accountDefaults setBool:NO forKey:@"jsonSwitch"];
     }else{
-        self.LabelJson.hidden = 0;
-        [accountDefaults setBool:YES forKey:@"JsonSwitch"];
+        self.labelJson.hidden = 0;
+        [accountDefaults setBool:YES forKey:@"jsonSwitch"];
     }
     [accountDefaults synchronize];
 }
@@ -311,10 +313,10 @@
 }
 
 - (void)alertError:(NSString*)data {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"错误"
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"errorTitle", nil)
                                                                        message:data
                                                                 preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"errorOK", nil) style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * action) {
                                                                   //响应事件
                                                                   //NSLog(@"action = %@", action);
@@ -325,11 +327,11 @@
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(nonnull NSString *)host port:(uint16_t)port{
-    NSLog(@"连接成功 : %@---%d",host,port);
+    NSLog(NSLocalizedString(@"socketConnected", nil), host, port);
     dispatch_async(dispatch_get_main_queue(), ^{
         self.useSocketSwitch.enabled = 0;
         self.submitSwitch.enabled = 1;
-        self.submitStatusLabel.text = @"提交中";
+        self.submitStatusLabel.text = NSLocalizedString(@"started", nil);
         [UIApplication sharedApplication].idleTimerDisabled =YES;
         [UIApplication sharedApplication].networkActivityIndicatorVisible =YES;
     });
@@ -341,12 +343,12 @@
 
 // 连接断开
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err{
-    NSLog(@"断开 socket连接 原因:%@",err);
+    NSLog(NSLocalizedString(@"socketDisonnected", nil), err);
     socketTag = 0;
     if(err != nullptr){
         dispatch_async(dispatch_get_main_queue(), ^{
             [self alertError:err.localizedDescription];
-            self.submitStatusLabel.text = @"未提交";
+            self.submitStatusLabel.text = NSLocalizedString(@"stopped", nil);
             self.submitSwitch.on = 0;
             self.submitSwitch.enabled = 1;
             self.useSocketSwitch.enabled = 1;
@@ -358,7 +360,7 @@
 
 //已经接收服务器返回来的数据
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag{
-    NSLog(@"接收到tag = %ld : %ld 长度的数据",tag,data.length);
+    NSLog(NSLocalizedString(@"socketReceived", nil), tag, data.length);
     //连接成功或者收到消息，必须开始read，否则将无法收到消息
     //不read的话，缓存区将会被关闭
     // -1 表示无限时长 ， tag
@@ -367,7 +369,7 @@
 
 //消息发送成功 代理函数 向服务器 发送消息
 - (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag{
-    NSLog(@"%ld 发送数据成功",tag);
+    NSLog(NSLocalizedString(@"socketSent", nil),tag);
 }
 
 - (IBAction)handleFpsSwitch:(id)sender {
@@ -426,7 +428,7 @@
 }
 
 - (void)session:(ARSession *)session didUpdateAnchors:(NSArray<__kindof ARAnchor *> *)anchors {
-    if(self.Switch.on == 1){
+    if(self.captureSwitch.on == 1){
         ARFaceAnchor *faceAnchor = anchors.firstObject;
         if (faceAnchor) {
             UInt64 recordTime = [[NSDate date] timeIntervalSince1970]*1000;
@@ -440,10 +442,10 @@
                     return;
                 }else{
                     lastRecordTime = recordTime;
-                    self.timeStampLabel.text = [NSString stringWithFormat:@"旧%@新%@", lastTimeString, timeString];
+                    self.timeStampLabel.text = [NSString stringWithFormat:NSLocalizedString(@"30FPSLabel", nil), lastTimeString, timeString];
                 }
             }else{
-                self.timeStampLabel.text = [NSString stringWithFormat:@"新%@", timeString];
+                self.timeStampLabel.text = [NSString stringWithFormat:NSLocalizedString(@"60FPSLabel", nil), timeString];
             }
             
             self.faceNode.simdTransform = faceAnchor.transform;
@@ -451,7 +453,6 @@
                 self.leftEyeNode.simdTransform = faceAnchor.leftEyeTransform;
                 self.rightEyeNode.simdTransform = faceAnchor.rightEyeTransform;
             }
-            
             
             if ([self.parameterConfiguration isKindOfClass:[XDDefaultModelParameterConfiguration class]]) {
                 [self.parameterConfiguration setValue:@(self.arSession.configuration.worldAlignment) forKey:@"worldAlignment"];
@@ -478,7 +479,7 @@
                 [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
                 NSRange range2 = {0,mutStr.length};
                 [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
-                self.LabelJson.text = mutStr;
+                self.labelJson.text = mutStr;
                 if(self.startSubmitSwitch.on == 1){
                     if(self.useSocketSwitch.on == 0){
                         [self postJson:mutStr];
@@ -516,50 +517,6 @@
         socketTag += 1;
         [self.socket writeData:data withTimeout:-1 tag:socketTag];
     }
-}
-
-- (NSString *)dictionaryToJson:(NSDictionary *)dic
-{
-    NSError *error = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&error];
-    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-}
-
-- (IBAction)didClickConnectSocket:(id)sender {
-    // 创建socket
-    if (self.socket == nil)
-        // 并发队列，这个队列将影响delegate回调,但里面是同步函数！保证数据不混乱，一条一条来
-        // 这里最好是写自己并发队列
-        self.socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_global_queue(0, 0)];
-    // 连接socket
-    if (!self.socket.isConnected){
-        NSError *error;
-        [self.socket connectToHost:@"127.0.0.1" onPort:8040 withTimeout:-1 error:&error];
-        if (error) NSLog(@"%@",error);
-    }
-}
-
-- (IBAction)didClickSendAction:(id)sender {
-    
-    NSData *data = [@"发送的消息内容" dataUsingEncoding:NSUTF8StringEncoding];
-    [self.socket writeData:data withTimeout:-1 tag:10086];
-}
-
-- (IBAction)didClickReconnectAction:(id)sender {
-    // 创建socket
-    if (self.socket == nil)
-        self.socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_global_queue(0, 0)];
-    // 连接socket
-    if (!self.socket.isConnected){
-        NSError *error;
-        [self.socket connectToHost:@"127.0.0.1" onPort:8040 withTimeout:-1 error:&error];
-        if (error) NSLog(@"%@",error);
-    }
-}
-
-- (IBAction)didClickCloseAction:(id)sender {
-    [self.socket disconnect];
-    self.socket = nil;
 }
 
 @end

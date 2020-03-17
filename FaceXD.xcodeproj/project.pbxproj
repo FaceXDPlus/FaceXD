@@ -68,6 +68,7 @@
 		520D0ED9240D0F66002453EF /* CubismModelUserData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0E89240D0F66002453EF /* CubismModelUserData.cpp */; };
 		520D0EDB240D0F66002453EF /* CubismModelUserDataJson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0E8C240D0F66002453EF /* CubismModelUserDataJson.cpp */; };
 		520D1007240D16FA002453EF /* Live2DResource in Resources */ = {isa = PBXBuildFile; fileRef = 520D1006240D16FA002453EF /* Live2DResource */; };
+		52FB14A0241FE1A20069C308 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52FB14A2241FE1A20069C308 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,9 +84,7 @@
 		4F91747123E1EFA60065D31D /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		4F91747623E1EFA60065D31D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		4F91747723E1EFA60065D31D /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
-		4F91747A23E1EFA60065D31D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4F91747C23E1EFA70065D31D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4F91747F23E1EFA70065D31D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F91748123E1EFA70065D31D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F91748223E1EFA70065D31D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F9175A723E1F0E50065D31D /* libLive2DCubismCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLive2DCubismCore.a; path = "../SDK/Core/lib/ios/Debug-iphoneos/libLive2DCubismCore.a"; sourceTree = "<group>"; };
@@ -229,6 +228,12 @@
 		520D0E8A240D0F66002453EF /* CubismId.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CubismId.hpp; path = SDK/Framework/src/Id/CubismId.hpp; sourceTree = "<group>"; };
 		520D0E8C240D0F66002453EF /* CubismModelUserDataJson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismModelUserDataJson.cpp; path = SDK/Framework/src/Model/CubismModelUserDataJson.cpp; sourceTree = "<group>"; };
 		520D1006240D16FA002453EF /* Live2DResource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Live2DResource; sourceTree = "<group>"; };
+		52FB14A1241FE1A20069C308 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		52FB14A5241FE2550069C308 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		52FB14A6241FE2A20069C308 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main.storyboard"; sourceTree = "<group>"; };
+		52FB14AB241FE2FA0069C308 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
+		52FB14AC241FE30A0069C308 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
+		52FB14AD241FE3250069C308 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60E2D4B40E14AD36F50A176F /* Pods-FaceXD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FaceXD.debug.xcconfig"; path = "Target Support Files/Pods-FaceXD/Pods-FaceXD.debug.xcconfig"; sourceTree = "<group>"; };
 		E0933283FFA85BA645C67A58 /* Pods-FaceXD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FaceXD.release.xcconfig"; path = "Target Support Files/Pods-FaceXD/Pods-FaceXD.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -301,6 +306,7 @@
 		4F91746423E1EFA60065D31D = {
 			isa = PBXGroup;
 			children = (
+				52FB149D241FE1410069C308 /* Lang */,
 				520D1006240D16FA002453EF /* Live2DResource */,
 				520D0DE5240D0F43002453EF /* Live2DSDK */,
 				4F91746F23E1EFA60065D31D /* FaceXD */,
@@ -580,6 +586,14 @@
 			path = SDK/Framework/src/Physics;
 			sourceTree = "<group>";
 		};
+		52FB149D241FE1410069C308 /* Lang */ = {
+			isa = PBXGroup;
+			children = (
+				52FB14A2241FE1A20069C308 /* Localizable.strings */,
+			);
+			path = Lang;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -623,7 +637,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				"zh-Hans",
 			);
 			mainGroup = 4F91746423E1EFA60065D31D;
 			productRefGroup = 4F91746E23E1EFA60065D31D /* Products */;
@@ -640,6 +654,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52FB14A0241FE1A20069C308 /* Localizable.strings in Resources */,
 				520D1007240D16FA002453EF /* Live2DResource in Resources */,
 				4F91748023E1EFA70065D31D /* LaunchScreen.storyboard in Resources */,
 				4F91747D23E1EFA70065D31D /* Assets.xcassets in Resources */,
@@ -753,7 +768,8 @@
 		4F91747923E1EFA60065D31D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				4F91747A23E1EFA60065D31D /* Base */,
+				52FB14A6241FE2A20069C308 /* zh-Hans */,
+				52FB14AB241FE2FA0069C308 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -761,9 +777,19 @@
 		4F91747E23E1EFA70065D31D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				4F91747F23E1EFA70065D31D /* Base */,
+				52FB14AC241FE30A0069C308 /* zh-Hans */,
+				52FB14AD241FE3250069C308 /* en */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		52FB14A2241FE1A20069C308 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52FB14A1241FE1A20069C308 /* en */,
+				52FB14A5241FE2550069C308 /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -773,6 +799,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -835,6 +862,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -894,8 +922,8 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = C2JFNKPW64;
+				CURRENT_PROJECT_VERSION = 1;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/SDK/Core/include\"",
 					"\"$(SRCROOT)/SDK/Framework/src\"",
@@ -908,7 +936,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SDK/Core/lib/ios/$(CONFIGURATION)-$(PLATFORM_NAME)\"";
-				MARKETING_VERSION = 1.6.7;
+				MARKETING_VERSION = 1.6.9;
 				OTHER_CFLAGS = "-DCSM_TARGET_IPHONE_ES2";
 				OTHER_LDFLAGS = (
 					"-lLive2DCubismCore",
@@ -928,8 +956,8 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = C2JFNKPW64;
+				CURRENT_PROJECT_VERSION = 1;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/SDK/Core/include\"",
 					"\"$(SRCROOT)/SDK/Framework/src\"",
@@ -942,7 +970,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SDK/Core/lib/ios/$(CONFIGURATION)-$(PLATFORM_NAME)\"";
-				MARKETING_VERSION = 1.6.7;
+				MARKETING_VERSION = 1.6.9;
 				OTHER_CFLAGS = "-DCSM_TARGET_IPHONE_ES2";
 				OTHER_LDFLAGS = (
 					"-lLive2DCubismCore",
