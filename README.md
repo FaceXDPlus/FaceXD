@@ -9,6 +9,10 @@
 - [x] 使用ARKit追踪面部表情
 - [x] 发送数据到指定地址
 
+# 多语言支持
+- [x] 中文
+- [x] 英文
+
 # 感谢
 项目源代码来自:  
 https://github.com/CmST0us/Saki
