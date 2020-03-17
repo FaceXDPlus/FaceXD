@@ -62,7 +62,7 @@
         self.parameter.headYaw = @((180 / M_PI) * self.faceNode.eulerAngles.y);
         self.parameter.headRoll = @(-(180 / M_PI) * self.faceNode.eulerAngles.z + 90.0);
     } else if (self.worldAlignment == ARWorldAlignmentGravity) {
-        self.parameter.headPitch = @(-(180 / M_PI) * self.faceNode.eulerAngles.x * 1.3);
+        self.parameter.headPitch = @(-(180 / M_PI) * self.faceNode.eulerAngles.x) * 1.3;
         self.parameter.headYaw = @((180 / M_PI) * self.faceNode.eulerAngles.y);
         self.parameter.headRoll = @(-(180 / M_PI) * self.faceNode.eulerAngles.z);
     }
