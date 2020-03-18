@@ -97,6 +97,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (@available(iOS 13.0, *)) {
+        self.overrideUserInterfaceStyle = UIUserInterfaceStyleDark;
+    }
     self.submitCaptureAddress.delegate = self;
     self.submitSocketPort.delegate = self;
     
@@ -109,6 +112,7 @@
     });
     
     [self loadConfig];
+    
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -173,7 +177,7 @@
         [self.parameterConfiguration commit];
     }];
 
-    glClearColor(0, 1, 0, 1);
+    glClearColor(0, 0, 0, 1);
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
