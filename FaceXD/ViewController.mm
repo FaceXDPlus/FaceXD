@@ -212,6 +212,8 @@
     [self.parameterConfiguration reset];
     self.faceCaptureStatusLabel.text = NSLocalizedString(@"waiting", nil);
     self.submitStatusLabel.text = NSLocalizedString(@"stopped", nil);
+    self.submitSwitch.on = 0;
+    self.useSocketSwitch.enabled = 1;
     self.timeStampLabel.text = NSLocalizedString(@"timeStamp", nil);
 }
 
