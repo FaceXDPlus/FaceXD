@@ -110,17 +110,9 @@ public:
 
 - (void)setMVPMatrixWithSize:(CGSize)size {
     Csm::CubismMatrix44 projectionMatrix;
-    CGFloat radio = size.width / size.height;
-    CGFloat userScale = 1.8;
-    /// 基础坐标缩放
-    if (radio > 0) {
-        projectionMatrix.Scale(1 / radio * userScale, 1 * userScale);
-    } else {
-        projectionMatrix.Scale(1 * userScale, 1 / radio * userScale);
-    }
-    
-    /// 后期可作为可配置项处理
-    projectionMatrix.TranslateY(-0.3);
+    CGFloat radio = size.height / size.width;
+    projectionMatrix.Scale(size.height / size.width * radio, 1 * radio);
+    projectionMatrix.TranslateY(-0.4);
     projectionMatrix.MultiplyByMatrix(self.model->GetModelMatrix());
     self.model->GetRenderer<Csm::Rendering::CubismRenderer_OpenGLES2>()->SetMvpMatrix(&projectionMatrix);
 }

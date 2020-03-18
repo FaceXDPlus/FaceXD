@@ -101,19 +101,36 @@
     self.submitSocketPort.delegate = self;
     
     self.screenSize = [[UIScreen mainScreen] bounds].size;
+    
     [self.glView setContext:LAppGLContext];
     LAppGLContextAction(^{
         self.hiyori = [[LAppModel alloc] initWithName:@"Hiyori"];
         [self.hiyori loadAsset];
+    
+        //self.expressionCount = self.hiyori.expressionName.count;
         [self.hiyori startBreath];
     });
     
-    [self loadConfig];
     
+    [self loadConfig];    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarOrientationChange:)name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
-    self.screenSize = size;
+- (void)statusBarOrientationChange:(NSNotification *)notification{
+    //需要修复旋转模型错位的问题
+    /*UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationLandscapeRight){
+        NSLog(@"right");
+    }
+    if (orientation == UIInterfaceOrientationLandscapeLeft) {
+        NSLog(@"left");
+    }
+    if (orientation == UIInterfaceOrientationPortrait){
+        NSLog(@"1");
+    }
+    if (orientation == UIInterfaceOrientationPortraitUpsideDown){
+        NSLog(@"2");
+    }*/
 }
 
 - (void)loadConfig {
@@ -174,7 +191,7 @@
         [self.parameterConfiguration commit];
     }];
 
-    glClearColor(0, 0, 0, 1);
+    glClearColor(0, 1, 0, 1);
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
