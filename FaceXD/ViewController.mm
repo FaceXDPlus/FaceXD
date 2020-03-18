@@ -473,13 +473,11 @@
                 self.rightEyeNode.simdTransform = faceAnchor.rightEyeTransform;
             }
             
+            UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
             if ([self.parameterConfiguration isKindOfClass:[XDDefaultModelParameterConfiguration class]]) {
                 [self.parameterConfiguration setValue:@(self.arSession.configuration.worldAlignment) forKey:@"worldAlignment"];
-                [self.parameterConfiguration setValue:@([[UIApplication sharedApplication] statusBarOrientation]) forKey:@"orientation"];
+                [self.parameterConfiguration setValue:@(orientation) forKey:@"orientation"];
             }
-
-            //横屏，roll+-90
-            UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
             
             [self.parameterConfiguration updateParameterWithFaceAnchor:faceAnchor
                                                               faceNode:self.faceNode

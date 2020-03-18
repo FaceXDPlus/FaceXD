@@ -69,13 +69,13 @@
 
     switch (self.orientation) {
         case UIInterfaceOrientationLandscapeRight:
-            self.parameter.headRoll = self.parameter.headRoll - 90;
+            self.parameter.headRoll = @(self.parameter.headRoll.floatValue - 90);
             break;
         case UIInterfaceOrientationLandscapeLeft:
-            self.parameter.headRoll = - asin(self.faceAnchor.transform.columns[1].x) * 40;
+            self.parameter.headRoll = @(- asin(self.faceAnchor.transform.columns[1].x) * 40);
             break;
         case UIInterfaceOrientationPortraitUpsideDown:
-            self.parameter.headRoll = self.parameter.headRoll - 180;
+            self.parameter.headRoll = @(self.parameter.headRoll.floatValue - 180);
             break;
         default:
             break;
