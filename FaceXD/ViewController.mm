@@ -97,13 +97,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     self.submitCaptureAddress.delegate = self;
     self.submitSocketPort.delegate = self;
     
     if (@available(iOS 13.0, *)) {
         self.overrideUserInterfaceStyle = UIUserInterfaceStyleDark;
     }
+    
     self.screenSize = [[UIScreen mainScreen] bounds].size;
     [self.glView setContext:LAppGLContext];
     LAppGLContextAction(^{
