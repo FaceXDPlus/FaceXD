@@ -1,11 +1,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
 
-#import "MPControlValueProtocol.h"
+#import "XDControlValueProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MPControlValueLinear : NSObject<MPControlValueProtocol> {
+@interface XDControlValueLinear : NSObject<XDControlValueProtocol> {
     double _inputMax;
     double _inputMin;
     double _outputMax;
