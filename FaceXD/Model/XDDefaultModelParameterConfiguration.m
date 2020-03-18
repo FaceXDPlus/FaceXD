@@ -49,9 +49,9 @@
 
 #pragma mark - Public
 - (void)updateParameterWithFaceAnchor:(ARFaceAnchor *)anchor
-                         faceNode:(SCNNode *)faceNode
-                      leftEyeNode:(SCNNode *)leftEyeNode
-                     rightEyeNode:(SCNNode *)rightEyeNode {
+                             faceNode:(SCNNode *)faceNode
+                          leftEyeNode:(SCNNode *)leftEyeNode
+                         rightEyeNode:(SCNNode *)rightEyeNode {
     self.faceNode = faceNode;
     self.faceAnchor = anchor;
     self.leftEyeNode = leftEyeNode;
@@ -65,6 +65,20 @@
         self.parameter.headPitch = @(-(180 / M_PI) * self.faceNode.eulerAngles.x * 1.3);
         self.parameter.headYaw = @((180 / M_PI) * self.faceNode.eulerAngles.y);
         self.parameter.headRoll = @(-(180 / M_PI) * self.faceNode.eulerAngles.z);
+    }
+
+    switch (self.orientation) {
+        case UIInterfaceOrientationLandscapeRight:
+            self.parameter.headRoll = self.parameter.headRoll - 90;
+            break;
+        case UIInterfaceOrientationLandscapeLeft:
+            self.parameter.headRoll = - asin(self.faceAnchor.transform.columns[1].x) * 40;
+            break;
+        case UIInterfaceOrientationPortraitUpsideDown:
+            self.parameter.headRoll = self.parameter.headRoll - 180;
+            break;
+        default:
+            break;
     }
     
     self.parameter.bodyAngleX = @(self.parameter.headYaw.floatValue / 4);

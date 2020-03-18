@@ -120,7 +120,7 @@ public:
 - (void)loadAsset {
     [self loadModel];
     [self loadPose];
-    [self loadExpression];
+    //[self loadExpression];
     [self loadPhysics];
     [self createRender];
     [self loadTexture];

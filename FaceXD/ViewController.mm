@@ -99,12 +99,31 @@
     LAppGLContextAction(^{
         self.hiyori = [[LAppModel alloc] initWithName:@"Hiyori"];
         [self.hiyori loadAsset];
-        self.expressionCount = self.hiyori.expressionName.count;
+    
+        //self.expressionCount = self.hiyori.expressionName.count;
         [self.hiyori startBreath];
     });
     
     
-    [self loadConfig];
+    [self loadConfig];    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarOrientationChange:)name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+}
+
+- (void)statusBarOrientationChange:(NSNotification *)notification{
+    //需要修复旋转模型错位的问题
+    /*UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationLandscapeRight){
+        NSLog(@"right");
+    }
+    if (orientation == UIInterfaceOrientationLandscapeLeft) {
+        NSLog(@"left");
+    }
+    if (orientation == UIInterfaceOrientationPortrait){
+        NSLog(@"1");
+    }
+    if (orientation == UIInterfaceOrientationPortraitUpsideDown){
+        NSLog(@"2");
+    }*/
 }
 
 - (void)loadConfig {
@@ -169,13 +188,13 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    if (self.expressionCount == 0) return;
+    /*if (self.expressionCount == 0) return;
     static NSInteger index = 0;
     index += 1;
     if (index == self.expressionCount) {
         index = 0;
     }
-    [self.hiyori startExpressionWithName:self.hiyori.expressionName[index]];
+    [self.hiyori startExpressionWithName:self.hiyori.expressionName[index]];*/
 }
 
 #pragma mark - Action
@@ -456,7 +475,12 @@
             
             if ([self.parameterConfiguration isKindOfClass:[XDDefaultModelParameterConfiguration class]]) {
                 [self.parameterConfiguration setValue:@(self.arSession.configuration.worldAlignment) forKey:@"worldAlignment"];
+                [self.parameterConfiguration setValue:@([[UIApplication sharedApplication] statusBarOrientation]) forKey:@"orientation"];
             }
+
+            //横屏，roll+-90
+            UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+            
             [self.parameterConfiguration updateParameterWithFaceAnchor:faceAnchor
                                                               faceNode:self.faceNode
                                                            leftEyeNode:self.leftEyeNode
@@ -479,7 +503,10 @@
                 [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
                 NSRange range2 = {0,mutStr.length};
                 [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
-                self.labelJson.text = mutStr;
+                NSMutableString *mutStrShow = mutStr;
+                NSRange range3 = {0,mutStrShow.length};
+                [mutStrShow replaceOccurrencesOfString:@"," withString:@",\n" options:NSLiteralSearch range:range3];
+                self.labelJson.text = mutStrShow;
                 if(self.startSubmitSwitch.on == 1){
                     if(self.useSocketSwitch.on == 0){
                         [self postJson:mutStr];
@@ -513,7 +540,7 @@
         //NSData *lengthData = [[NSString stringWithFormat:@"[length=%ld]",size] dataUsingEncoding:NSUTF8StringEncoding];
         //NSMutableData *mData = [NSMutableData dataWithData:lengthData];
         //[mData appendData:data];
-        NSLog(@"%d", socketTag);
+        //NSLog(@"%d", socketTag);
         socketTag += 1;
         [self.socket writeData:data withTimeout:-1 tag:socketTag];
     }
