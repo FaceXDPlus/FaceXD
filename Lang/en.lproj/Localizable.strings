@@ -9,7 +9,7 @@
 "errorOK"           = "OK";
 "socketConnected"   = "Connected: %@---%d";
 "socketDisonnected" = "Socket Disconnected: %@";
-"socketReceived"    = "Received Tag = %ld : %ld 长度的数据";
+"socketReceived"    = "Received Tag = %ld : %ld";
 "socketSent"        = "%ld Sent";
 "60FPSLabel"        = "New %@";
 "30FPSLabel"        = "%@ | %@";
