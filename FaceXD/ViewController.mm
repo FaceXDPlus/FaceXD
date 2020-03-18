@@ -48,9 +48,11 @@
 @property (nonatomic, strong) SCNNode *leftEyeNode;
 @property (nonatomic, strong) SCNNode *rightEyeNode;
 
-
 @property (nonatomic, strong) XDModelParameterConfigration *parameterConfiguration;
 @property (nonatomic, strong) XDModelParameterConfigration *advanceParameterConfiguration;
+
+@property (nonatomic, strong) dispatch_queue_t networkQueue;
+@property (nonatomic, strong) dispatch_queue_t processJSONQueue;
 @end
 
 @implementation ViewController
@@ -97,6 +99,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.networkQueue = dispatch_queue_create("FaceXD::NetworkQueue", DISPATCH_QUEUE_SERIAL);
+    self.processJSONQueue = dispatch_queue_create("FaceXD::ProcessJSONQueue", DISPATCH_QUEUE_SERIAL);
     self.submitCaptureAddress.delegate = self;
     self.submitSocketPort.delegate = self;
     
@@ -492,30 +496,35 @@
             } else {
                 param = [self.parameterConfiguration.parameter parameterValueDictionary];
             }
-            NSError *parseError = nil;
-            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:param options:NSJSONWritingPrettyPrinted error:&parseError];
-            NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-            if (!jsonData) {
-                NSLog(@"%@",parseError);
-            }else{
-                NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
+        
+            dispatch_async(self.processJSONQueue, ^{
+                NSError *parseError = nil;
+                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:param options:NSJSONWritingPrettyPrinted error:&parseError];
+                NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+                if (!jsonData) {
+                    NSLog(@"%@",parseError);
+                }else{
+                    NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
 
-                NSRange range = {0,jsonString.length};
-                [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
-                NSRange range2 = {0,mutStr.length};
-                [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
-                NSMutableString *mutStrShow = mutStr;
-                NSRange range3 = {0,mutStrShow.length};
-                [mutStrShow replaceOccurrencesOfString:@"," withString:@",\n" options:NSLiteralSearch range:range3];
-                self.labelJson.text = mutStrShow;
-                if(self.startSubmitSwitch.on == 1){
-                    if(self.useSocketSwitch.on == 0){
-                        [self postJson:mutStr];
-                    }else{
-                        [self postSocket:mutStr];
-                    }
+                    NSRange range = {0,jsonString.length};
+                    [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
+                    NSRange range2 = {0,mutStr.length};
+                    [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
+                    NSMutableString *mutStrShow = mutStr;
+                    NSRange range3 = {0,mutStrShow.length};
+                    [mutStrShow replaceOccurrencesOfString:@"," withString:@",\n" options:NSLiteralSearch range:range3];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        self.labelJson.text = mutStrShow;
+                        if(self.startSubmitSwitch.on == 1){
+                            if(self.useSocketSwitch.on == 0){
+                                [self postJson:mutStr];
+                            }else{
+                                [self postSocket:mutStr];
+                            }
+                        }
+                    });
                 }
-            }
+            });
         }
     }
 }
