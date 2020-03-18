@@ -1,7 +1,7 @@
 #import <CoreGraphics/CoreGraphics.h>
-#import "MPControlValueLinear.h"
+#import "XDControlValueLinear.h"
 
-@implementation MPControlValueLinear
+@implementation XDControlValueLinear
 - (instancetype)initWithOutputMax:(double)outMax
                         outputMin:(double)outMin
                          inputMax:(double)inMax

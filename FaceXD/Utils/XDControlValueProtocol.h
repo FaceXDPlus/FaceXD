@@ -2,7 +2,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol MPControlValueProtocol <NSObject>
+@protocol XDControlValueProtocol <NSObject>
 - (double)calc:(double)x;
 @end
 

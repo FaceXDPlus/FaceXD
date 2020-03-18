@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F6F95AD241FD362008D6BE7 /* XDModelParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95AC241FD362008D6BE7 /* XDModelParameter.m */; };
+		4F6F95B0241FD85F008D6BE7 /* XDModelParameterConfigration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95AF241FD85F008D6BE7 /* XDModelParameterConfigration.m */; };
+		4F6F95B3241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95B2241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m */; };
+		4F6F95B6242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95B5242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m */; };
 		4F91747223E1EFA60065D31D /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747123E1EFA60065D31D /* AppDelegate.mm */; };
 		4F91747823E1EFA60065D31D /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747723E1EFA60065D31D /* ViewController.mm */; };
 		4F91747B23E1EFA60065D31D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F91747923E1EFA60065D31D /* Main.storyboard */; };
@@ -25,7 +29,7 @@
 		4FDBA28D23E9895A003F40F1 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28C23E9895A003F40F1 /* CoreMedia.framework */; };
 		4FDBA28F23E9920C003F40F1 /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28E23E9920C003F40F1 /* ARKit.framework */; };
 		4FDBA29123E99A4F003F40F1 /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA29023E99A4F003F40F1 /* SceneKit.framework */; };
-		4FDBA29523E9AEF8003F40F1 /* MPControlValueLinear.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDBA29323E9AEF8003F40F1 /* MPControlValueLinear.m */; };
+		4FDBA29523E9AEF8003F40F1 /* XDControlValueLinear.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDBA29323E9AEF8003F40F1 /* XDControlValueLinear.m */; };
 		5200CF05241241A200A0FDA0 /* Pods_FaceXD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1456E1CC021CD518305051FC /* Pods_FaceXD.framework */; };
 		520D0E8D240D0F66002453EF /* ACubismMotion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0DE6240D0F64002453EF /* ACubismMotion.cpp */; };
 		520D0E8F240D0F66002453EF /* CubismDefaultParameterId.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0DE8240D0F64002453EF /* CubismDefaultParameterId.cpp */; };
@@ -71,6 +75,14 @@
 
 /* Begin PBXFileReference section */
 		1456E1CC021CD518305051FC /* Pods_FaceXD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FaceXD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F6F95AB241FD362008D6BE7 /* XDModelParameter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDModelParameter.h; sourceTree = "<group>"; };
+		4F6F95AC241FD362008D6BE7 /* XDModelParameter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDModelParameter.m; sourceTree = "<group>"; };
+		4F6F95AE241FD85F008D6BE7 /* XDModelParameterConfigration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDModelParameterConfigration.h; sourceTree = "<group>"; };
+		4F6F95AF241FD85F008D6BE7 /* XDModelParameterConfigration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDModelParameterConfigration.m; sourceTree = "<group>"; };
+		4F6F95B1241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDefaultModelParameterConfiguration.h; sourceTree = "<group>"; };
+		4F6F95B2241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDDefaultModelParameterConfiguration.m; sourceTree = "<group>"; };
+		4F6F95B4242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDAdvanceModelParameterConfiguration.h; sourceTree = "<group>"; };
+		4F6F95B5242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDAdvanceModelParameterConfiguration.m; sourceTree = "<group>"; };
 		4F91746D23E1EFA60065D31D /* FaceXD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceXD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F91747023E1EFA60065D31D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F91747123E1EFA60065D31D /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -97,9 +109,9 @@
 		4FDBA28C23E9895A003F40F1 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		4FDBA28E23E9920C003F40F1 /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
 		4FDBA29023E99A4F003F40F1 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
-		4FDBA29223E9AEF8003F40F1 /* MPControlValueLinear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPControlValueLinear.h; sourceTree = "<group>"; };
-		4FDBA29323E9AEF8003F40F1 /* MPControlValueLinear.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPControlValueLinear.m; sourceTree = "<group>"; };
-		4FDBA29423E9AEF8003F40F1 /* MPControlValueProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPControlValueProtocol.h; sourceTree = "<group>"; };
+		4FDBA29223E9AEF8003F40F1 /* XDControlValueLinear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDControlValueLinear.h; sourceTree = "<group>"; };
+		4FDBA29323E9AEF8003F40F1 /* XDControlValueLinear.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDControlValueLinear.m; sourceTree = "<group>"; };
+		4FDBA29423E9AEF8003F40F1 /* XDControlValueProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDControlValueProtocol.h; sourceTree = "<group>"; };
 		520D0DE6240D0F64002453EF /* ACubismMotion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ACubismMotion.cpp; path = SDK/Framework/src/Motion/ACubismMotion.cpp; sourceTree = "<group>"; };
 		520D0DE7240D0F64002453EF /* CubismPose.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismPose.cpp; path = SDK/Framework/src/Effect/CubismPose.cpp; sourceTree = "<group>"; };
 		520D0DE8240D0F64002453EF /* CubismDefaultParameterId.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismDefaultParameterId.cpp; path = SDK/Framework/src/CubismDefaultParameterId.cpp; sourceTree = "<group>"; };
@@ -261,6 +273,44 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		4F6F95A8241FD232008D6BE7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4F6F95AB241FD362008D6BE7 /* XDModelParameter.h */,
+				4F6F95AC241FD362008D6BE7 /* XDModelParameter.m */,
+				4F6F95AE241FD85F008D6BE7 /* XDModelParameterConfigration.h */,
+				4F6F95AF241FD85F008D6BE7 /* XDModelParameterConfigration.m */,
+				4F6F95B1241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.h */,
+				4F6F95B2241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m */,
+				4F6F95B4242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.h */,
+				4F6F95B5242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4F6F95A9241FD23A008D6BE7 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				4F6F95AA241FD251008D6BE7 /* Live2D */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		4F6F95AA241FD251008D6BE7 /* Live2D */ = {
+			isa = PBXGroup;
+			children = (
+				4F9175CE23E1FA1B0065D31D /* LAppAllocator.h */,
+				4F9175CD23E1FA1B0065D31D /* LAppAllocator.mm */,
+				4F9176B223E2981E0065D31D /* LAppBundle.h */,
+				4F9176B323E2981E0065D31D /* LAppBundle.m */,
+				4F9176B623E299A40065D31D /* LAppModel.h */,
+				4F9176B723E299A40065D31D /* LAppModel.mm */,
+				4F91788523E2C2880065D31D /* LAppOpenGLManager.h */,
+				4F91788623E2C2880065D31D /* LAppOpenGLManager.mm */,
+			);
+			path = Live2D;
+			sourceTree = "<group>";
+		};
 		4F91746423E1EFA60065D31D = {
 			isa = PBXGroup;
 			children = (
@@ -285,15 +335,9 @@
 		4F91746F23E1EFA60065D31D /* FaceXD */ = {
 			isa = PBXGroup;
 			children = (
+				4F6F95A9241FD23A008D6BE7 /* Service */,
+				4F6F95A8241FD232008D6BE7 /* Model */,
 				4FDBA28223E95E06003F40F1 /* Utils */,
-				4F9175CE23E1FA1B0065D31D /* LAppAllocator.h */,
-				4F9175CD23E1FA1B0065D31D /* LAppAllocator.mm */,
-				4F9176B223E2981E0065D31D /* LAppBundle.h */,
-				4F9176B323E2981E0065D31D /* LAppBundle.m */,
-				4F9176B623E299A40065D31D /* LAppModel.h */,
-				4F9176B723E299A40065D31D /* LAppModel.mm */,
-				4F91788523E2C2880065D31D /* LAppOpenGLManager.h */,
-				4F91788623E2C2880065D31D /* LAppOpenGLManager.mm */,
 				4F91747023E1EFA60065D31D /* AppDelegate.h */,
 				4F91747123E1EFA60065D31D /* AppDelegate.mm */,
 				4F91747623E1EFA60065D31D /* ViewController.h */,
@@ -328,9 +372,9 @@
 		4FDBA28223E95E06003F40F1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				4FDBA29223E9AEF8003F40F1 /* MPControlValueLinear.h */,
-				4FDBA29323E9AEF8003F40F1 /* MPControlValueLinear.m */,
-				4FDBA29423E9AEF8003F40F1 /* MPControlValueProtocol.h */,
+				4FDBA29223E9AEF8003F40F1 /* XDControlValueLinear.h */,
+				4FDBA29323E9AEF8003F40F1 /* XDControlValueLinear.m */,
+				4FDBA29423E9AEF8003F40F1 /* XDControlValueProtocol.h */,
 				4FDBA28323E95E14003F40F1 /* stb_image.h */,
 			);
 			path = Utils;
@@ -587,6 +631,7 @@
 		4F91746523E1EFA60065D31D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = XD;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = hakura;
 				TargetAttributes = {
@@ -689,6 +734,7 @@
 				520D0ED7240D0F66002453EF /* CubismPhysicsJson.cpp in Sources */,
 				520D0EB4240D0F66002453EF /* CubismMotionQueueManager.cpp in Sources */,
 				520D0EA4240D0F66002453EF /* CubismMoc.cpp in Sources */,
+				4F6F95B6242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m in Sources */,
 				4F9176B823E299A40065D31D /* LAppModel.mm in Sources */,
 				520D0ED2240D0F66002453EF /* CubismString.cpp in Sources */,
 				520D0E93240D0F66002453EF /* CubismVector2.cpp in Sources */,
@@ -707,7 +753,7 @@
 				520D0E9E240D0F66002453EF /* CubismExpressionMotion.cpp in Sources */,
 				520D0EB6240D0F66002453EF /* CubismMotionJson.cpp in Sources */,
 				520D0ED1240D0F66002453EF /* CubismJson.cpp in Sources */,
-				4FDBA29523E9AEF8003F40F1 /* MPControlValueLinear.m in Sources */,
+				4FDBA29523E9AEF8003F40F1 /* XDControlValueLinear.m in Sources */,
 				520D0ED8240D0F66002453EF /* CubismPhysics.cpp in Sources */,
 				520D0ECB240D0F66002453EF /* CubismUserModel.cpp in Sources */,
 				520D0E96240D0F66002453EF /* CubismMatrix44.cpp in Sources */,
@@ -716,10 +762,13 @@
 				4F91747223E1EFA60065D31D /* AppDelegate.mm in Sources */,
 				520D0EB7240D0F66002453EF /* CubismMotionQueueEntry.cpp in Sources */,
 				520D0E95240D0F66002453EF /* CubismMath.cpp in Sources */,
+				4F6F95B0241FD85F008D6BE7 /* XDModelParameterConfigration.m in Sources */,
 				4F91788723E2C2880065D31D /* LAppOpenGLManager.mm in Sources */,
 				4F91748323E1EFA70065D31D /* main.m in Sources */,
 				520D0EC7240D0F66002453EF /* CubismOffscreenSurface_OpenGLES2.cpp in Sources */,
+				4F6F95B3241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m in Sources */,
 				520D0ECC240D0F66002453EF /* CubismBreath.cpp in Sources */,
+				4F6F95AD241FD362008D6BE7 /* XDModelParameter.m in Sources */,
 				520D0E94240D0F66002453EF /* CubismTargetPoint.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -895,6 +944,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = C2JFNKPW64;
+				CURRENT_PROJECT_VERSION = 1;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/SDK/Core/include\"",
 					"\"$(SRCROOT)/SDK/Framework/src\"",
@@ -929,6 +979,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = C2JFNKPW64;
+				CURRENT_PROJECT_VERSION = 1;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/SDK/Core/include\"",
 					"\"$(SRCROOT)/SDK/Framework/src\"",
