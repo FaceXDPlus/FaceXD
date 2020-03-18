@@ -6,7 +6,7 @@
 
 #import "XDModelParameter.h"
 #import "XDDefaultModelParameterConfiguration.h"
-
+#import "XDAdvanceModelParameterConfiguration.h"
 #import "CubismModelMatrix.hpp"
 #import "ViewController.h"
 #import "LAppModel.h"
@@ -50,6 +50,7 @@
 
 
 @property (nonatomic, strong) XDModelParameterConfigration *parameterConfiguration;
+@property (nonatomic, strong) XDModelParameterConfigration *advanceParameterConfiguration;
 @end
 
 @implementation ViewController
@@ -80,11 +81,17 @@
 }
 
 - (XDModelParameterConfigration *)parameterConfiguration {
-    
     if (_parameterConfiguration == nil) {
         _parameterConfiguration = [[XDDefaultModelParameterConfiguration alloc] initWithModel:self.hiyori];
     }
     return _parameterConfiguration;
+}
+
+- (XDModelParameterConfigration *)advanceParameterConfiguration {
+    if (_advanceParameterConfiguration == nil) {
+        _advanceParameterConfiguration = [[XDAdvanceModelParameterConfiguration alloc] initWithModel:self.hiyori];
+    }
+    return _advanceParameterConfiguration;
 }
 
 - (void)viewDidLoad {
@@ -478,16 +485,27 @@
                 [self.parameterConfiguration setValue:@(self.arSession.configuration.worldAlignment) forKey:@"worldAlignment"];
                 [self.parameterConfiguration setValue:@(orientation) forKey:@"orientation"];
             }
+            if ([self.advanceParameterConfiguration isKindOfClass:[XDAdvanceModelParameterConfiguration class]]) {
+                [self.advanceParameterConfiguration setValue:@(self.arSession.configuration.worldAlignment) forKey:@"worldAlignment"];
+                [self.advanceParameterConfiguration setValue:@(orientation) forKey:@"orientation"];
+            }
             
             [self.parameterConfiguration updateParameterWithFaceAnchor:faceAnchor
                                                               faceNode:self.faceNode
                                                            leftEyeNode:self.leftEyeNode
                                                           rightEyeNode:self.rightEyeNode];
+            [self.advanceParameterConfiguration updateParameterWithFaceAnchor:faceAnchor
+                                                                 faceNode:self.faceNode
+                                                              leftEyeNode:self.leftEyeNode
+                                                             rightEyeNode:self.rightEyeNode];
             self.parameterConfiguration.parameter.timestamp = timeString;
+            self.advanceParameterConfiguration.parameter.timestamp = timeString;
             
-            NSDictionary *param = [self.parameterConfiguration.parameter parameterValueDictionary];
+            NSDictionary *param = @{};
             if(self.advancedSwitch.on == 1){
-                param = faceAnchor.blendShapes;
+                param = [self.advanceParameterConfiguration.parameter parameterValueDictionary];
+            } else {
+                param = [self.parameterConfiguration.parameter parameterValueDictionary];
             }
             NSError *parseError = nil;
             NSData *jsonData = [NSJSONSerialization dataWithJSONObject:param options:NSJSONWritingPrettyPrinted error:&parseError];
