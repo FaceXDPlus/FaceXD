@@ -51,24 +51,27 @@
         self.parameter.headPitch = @(-(180 / M_PI) * faceNode.eulerAngles.x * 1.3);
         self.parameter.headYaw = @((180 / M_PI) * faceNode.eulerAngles.y);
         self.parameter.headRoll = @(-(180 / M_PI) * faceNode.eulerAngles.z + 90.0);
+        switch (self.orientation) {
+            case UIInterfaceOrientationLandscapeRight: {
+                self.parameter.headRoll = @(self.parameter.headRoll.floatValue - 90);
+            }
+                break;
+            case UIInterfaceOrientationLandscapeLeft: {
+                CGFloat headRoll = (M_PI - ABS(faceNode.eulerAngles.z)) * (faceNode.eulerAngles.z > 0 ? -1 : 1);
+                self.parameter.headRoll = @(-(180 / M_PI) * headRoll);
+            }
+                break;
+            case UIInterfaceOrientationPortraitUpsideDown: {
+                self.parameter.headRoll = @(self.parameter.headRoll.floatValue - 180);
+            }
+                break;
+            default:
+                break;
+        }
     } else if (self.worldAlignment == ARWorldAlignmentGravity) {
         self.parameter.headPitch = @(-(180 / M_PI) * faceNode.eulerAngles.x * 1.3);
         self.parameter.headYaw = @((180 / M_PI) * faceNode.eulerAngles.y);
         self.parameter.headRoll = @(-(180 / M_PI) * faceNode.eulerAngles.z);
-    }
-
-    switch (self.orientation) {
-        case UIInterfaceOrientationLandscapeRight:
-            self.parameter.headRoll = @(self.parameter.headRoll.floatValue - 90);
-            break;
-        case UIInterfaceOrientationLandscapeLeft:
-            self.parameter.headRoll = @(- asin(anchor.transform.columns[1].x) * 40);
-            break;
-        case UIInterfaceOrientationPortraitUpsideDown:
-            self.parameter.headRoll = @(self.parameter.headRoll.floatValue - 180);
-            break;
-        default:
-            break;
     }
     
     self.parameter.bodyAngleX = @(self.parameter.headYaw.floatValue / 4);
