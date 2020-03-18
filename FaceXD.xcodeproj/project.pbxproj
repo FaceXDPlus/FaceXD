@@ -944,7 +944,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = C2JFNKPW64;
-				CURRENT_PROJECT_VERSION = 1;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/SDK/Core/include\"",
 					"\"$(SRCROOT)/SDK/Framework/src\"",
@@ -979,7 +978,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = C2JFNKPW64;
-				CURRENT_PROJECT_VERSION = 1;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/SDK/Core/include\"",
 					"\"$(SRCROOT)/SDK/Framework/src\"",
