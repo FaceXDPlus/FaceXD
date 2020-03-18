@@ -202,6 +202,10 @@
     self.submitStatusLabel.text = NSLocalizedString(@"stopped", nil);
     self.submitSwitch.on = 0;
     self.useSocketSwitch.enabled = 1;
+    if (self.socket.isConnected){
+        [self.socket disconnect];
+        self.socket = nil;
+    }
     self.timeStampLabel.text = NSLocalizedString(@"timeStamp", nil);
 }
 
