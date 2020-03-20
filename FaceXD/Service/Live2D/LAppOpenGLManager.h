@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LAppOpenGLManager : NSObject
 @property (nonatomic, readonly) EAGLContext *glContext;
-@property (nonatomic, readonly) NSTimeInterval deltaTime;
+@property (nonatomic, readonly) CFTimeInterval deltaTime;
 + (instancetype)sharedInstance;
 
 - (void)setup;

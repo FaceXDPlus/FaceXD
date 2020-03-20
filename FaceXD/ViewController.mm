@@ -3,7 +3,7 @@
 #import <OpenGLES/EAGL.h>
 #import <OpenGLES/ES2/gl.h>
 #import <Vision/Vision.h>
-
+#import <QuartzCore/CABase.h>
 #import "XDModelParameter.h"
 #import "XDDefaultModelParameterConfiguration.h"
 #import "XDAdvanceModelParameterConfiguration.h"
@@ -34,7 +34,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *appVersionLabel;
 @property (nonatomic, strong) GCDAsyncSocket *socket;
 @property (weak, nonatomic) IBOutlet UISwitch *advancedSwitch;
-@property (weak, nonatomic) IBOutlet ARSCNView *sceneView;
 @property (weak, nonatomic) IBOutlet UISwitch *alignmentSwitch;
 
 @property (nonatomic) GLKView *glView;
@@ -42,7 +41,6 @@
 @property (nonatomic, assign) CGSize screenSize;
 @property (nonatomic, assign) NSInteger expressionCount;
 
-@property (nonatomic, strong) ARSCNView *arSCNView;
 @property (nonatomic, strong) ARSession *arSession;
 @property (nonatomic, strong) SCNNode *faceNode;
 @property (nonatomic, strong) SCNNode *leftEyeNode;
@@ -106,13 +104,13 @@
     
     self.screenSize = [[UIScreen mainScreen] bounds].size;
     
+    self.preferredFramesPerSecond = 60;
     [self.glView setContext:LAppGLContext];
     LAppGLContextAction(^{
         self.hiyori = [[LAppModel alloc] initWithName:@"Hiyori"];
         [self.hiyori loadAsset];
         [self.hiyori startBreath];
     });
-    
     
     [self loadConfig];
 }
@@ -151,35 +149,39 @@
         [accountDefaults setObject:alignmentNumber forKey:@"cameraAlignment"];
     }
     self.alignmentSwitch.on = alignmentNumber.boolValue;
-    //self.sceneView.showsStatistics = YES;
-    self.sceneView.autoenablesDefaultLighting = YES;
-    self.sceneView.debugOptions = SCNDebugOptionNone;
-    
-    SCNScene *scene = [SCNScene new];
-    self.sceneView.scene = scene;
-    self.sceneView.hidden = 1;
 }
 
 - (void)setupARSession {
     self.arSession = [[ARSession alloc] init];
     ARFaceTrackingConfiguration *faceTracking = [[ARFaceTrackingConfiguration alloc] init];
     faceTracking.worldAlignment = self.alignmentSwitch.on ? ARWorldAlignmentCamera : ARWorldAlignmentGravity;
+    
+    XDDefaultModelParameterConfiguration *c = (XDDefaultModelParameterConfiguration *)self.parameterConfiguration;
+    c.frameInterval = 1.0 / 30.0;
+    if (@available(iOS 11.3, *)) {
+        __block ARVideoFormat *format = nil;
+        [[ARFaceTrackingConfiguration supportedVideoFormats] enumerateObjectsUsingBlock:^(ARVideoFormat * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.framesPerSecond == 30 &&
+                fabs(obj.imageResolution.height - 720) < 1e-6) {
+                format = obj;
+            }
+        }];
+        if (format != nil) {
+            faceTracking.videoFormat = format;
+        }
+    }
     self.arSession.delegate = self;
     [self.arSession runWithConfiguration:faceTracking];
-    self.sceneView.session = self.arSession;
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
     [LAppOpenGLManagerInstance updateTime];
-    
     glClear(GL_COLOR_BUFFER_BIT);
-
     [self.hiyori setMVPMatrixWithSize:self.screenSize];
     [self.hiyori onUpdateWithParameterUpdate:^{
         [self.parameterConfiguration commit];
     }];
-
-    glClearColor(0, 0, 0, 1);
+    glClearColor(0, 0, 0, 0);
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -211,6 +213,7 @@
 
 - (IBAction)handleFaceCaptureSwitch:(id)sender {
     if(self.captureSwitch.on == 0){
+        [self.arSession pause];
         self.faceCaptureStatusLabel.text = NSLocalizedString(@"waiting", nil);
     }else{
         [self setupARSession];
@@ -301,9 +304,9 @@
 
 - (IBAction)handleCameraSwitch:(id)sender {
     if(self.cameraSwitch.on == 0){
-        self.sceneView.hidden = 1;
+
     }else{
-        self.sceneView.hidden = 0;
+
     }
 }
 
@@ -437,15 +440,6 @@
 #pragma mark - Delegate
 #pragma mark - ARSCNViewDelegate
 #pragma mark - ARSessionDelegate
-
-- (ARSCNView *)arSCNView{
-    if (!_arSCNView) {
-        _arSCNView = [[ARSCNView alloc] initWithFrame:self.view.bounds];
-        _arSCNView.delegate = self;
-        _arSCNView.session = self.arSession;
-    }
-    return _arSCNView;
-}
 
 - (void)session:(ARSession *)session didUpdateAnchors:(NSArray<__kindof ARAnchor *> *)anchors {
     if(self.captureSwitch.on == 1){
