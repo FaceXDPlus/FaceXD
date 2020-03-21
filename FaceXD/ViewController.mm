@@ -4,6 +4,7 @@
 #import <OpenGLES/ES2/gl.h>
 #import <Vision/Vision.h>
 #import <QuartzCore/CABase.h>
+#import <EKMetalKit/EKMetalKit.h>
 #import "XDModelParameter.h"
 #import "XDDefaultModelParameterConfiguration.h"
 #import "XDAdvanceModelParameterConfiguration.h"
@@ -36,6 +37,10 @@
 @property (weak, nonatomic) IBOutlet UISwitch *advancedSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *alignmentSwitch;
 
+@property (nonatomic, strong) EKMetalRenderLiveview *render;
+@property (nonatomic, strong) MTKView *liveview;
+@property (nonatomic, strong) CIContext *ciContext;
+
 @property (nonatomic) GLKView *glView;
 @property (nonatomic, strong) LAppModel *hiyori;
 @property (nonatomic, assign) CGSize screenSize;
@@ -54,6 +59,15 @@
 @end
 
 @implementation ViewController
+
+- (CIContext *)ciContext {
+    if (_ciContext == nil) {
+        _ciContext = [CIContext contextWithOptions:@{
+            kCIContextHighQualityDownsample: @(YES),
+        }];
+    }
+    return _ciContext;
+}
 
 - (GLKView *)glView {
     return (GLKView *)self.view;
@@ -103,6 +117,15 @@
     self.submitSocketPort.delegate = self;
     
     self.screenSize = [[UIScreen mainScreen] bounds].size;
+ 
+    EKMetalContext *context = [EKMetalContext defaultContext];
+    self.liveview = [[MTKView alloc] initWithFrame:CGRectZero device:context.device];
+    self.render = [[EKMetalRenderLiveview alloc] initWithContext:context metalView:self.liveview];
+    [self.render setupRenderWithError:nil];
+    
+    self.liveview.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.liveview];
+    [self layoutLiveview];
     
     self.preferredFramesPerSecond = 60;
     [self.glView setContext:LAppGLContext];
@@ -115,8 +138,26 @@
     [self loadConfig];
 }
 
+- (void)layoutLiveview {
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    CGFloat width = 149;
+    CGFloat height = 264;
+    [self.liveview removeConstraints:self.liveview.constraints];
+    if (orientation == UIInterfaceOrientationLandscapeLeft ||
+        orientation == UIInterfaceOrientationLandscapeRight) {
+        CGFloat t = width;
+        width = height;
+        height = t;
+    }
+    [self.liveview.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:-20].active = YES;
+    [self.liveview.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-20].active = YES;
+    [self.liveview.widthAnchor constraintEqualToConstant:width].active = YES;
+    [self.liveview.heightAnchor constraintEqualToConstant:height].active = YES;
+}
+
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     self.screenSize = size;
+    [self layoutLiveview];
 }
 
 - (void)loadConfig {
@@ -304,9 +345,9 @@
 
 - (IBAction)handleCameraSwitch:(id)sender {
     if(self.cameraSwitch.on == 0){
-
+        self.liveview.hidden = YES;
     }else{
-
+        self.liveview.hidden = NO;
     }
 }
 
@@ -440,6 +481,41 @@
 #pragma mark - Delegate
 #pragma mark - ARSCNViewDelegate
 #pragma mark - ARSessionDelegate
+
+- (void)session:(ARSession *)session didUpdateFrame:(ARFrame *)frame {
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    EKMetalRenderLiveviewRotation rotation = EKMetalRenderLiveviewRotationRight;
+    if (orientation == UIInterfaceOrientationPortrait) {
+        rotation = EKMetalRenderLiveviewRotationRight;
+    } else if (orientation == UIInterfaceOrientationLandscapeRight) {
+        rotation = EKMetalRenderLiveviewRotationNormal;
+    } else if (orientation == UIInterfaceOrientationLandscapeLeft) {
+        rotation = EKMetalRenderLiveviewRotationUpsideDown;
+    } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+        rotation = EKMetalRenderLiveviewRotationLeft;
+    }
+    CMVideoFormatDescriptionRef format = NULL;
+    CMVideoFormatDescriptionCreateForImageBuffer(kCFAllocatorDefault,
+                                                 frame.capturedImage,
+                                                 &format);
+    CMSampleTimingInfo timing;
+    timing.decodeTimeStamp = kCMTimeInvalid;
+    timing.presentationTimeStamp = kCMTimeInvalid;
+    timing.duration = kCMTimeInvalid;
+    CMSampleBufferRef sampleBuffer = NULL;
+    CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault,
+                                       frame.capturedImage,
+                                       true,
+                                       NULL,
+                                       NULL,
+                                       format,
+                                       &timing,
+                                       &sampleBuffer);
+    EKSampleBuffer *buffer = [[EKSampleBuffer alloc] initWithSampleBuffer:sampleBuffer freeWhenDone:YES];
+    self.render.orientation = rotation;
+    [self.render renderSampleBuffer:buffer];
+    CFRelease(format);
+}
 
 - (void)session:(ARSession *)session didUpdateAnchors:(NSArray<__kindof ARAnchor *> *)anchors {
     if(self.captureSwitch.on == 1){

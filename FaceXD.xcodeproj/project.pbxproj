@@ -11,6 +11,9 @@
 		4F6F95B0241FD85F008D6BE7 /* XDModelParameterConfigration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95AF241FD85F008D6BE7 /* XDModelParameterConfigration.m */; };
 		4F6F95B3241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95B2241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m */; };
 		4F6F95B6242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95B5242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m */; };
+		4F6F95BC24254029008D6BE7 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95BB24254029008D6BE7 /* MetalKit.framework */; };
+		4F6F95C92425D532008D6BE7 /* EKMetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95B724253D92008D6BE7 /* EKMetalKit.framework */; };
+		4F6F95CA2425D532008D6BE7 /* EKMetalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95B724253D92008D6BE7 /* EKMetalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4F91747223E1EFA60065D31D /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747123E1EFA60065D31D /* AppDelegate.mm */; };
 		4F91747823E1EFA60065D31D /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747723E1EFA60065D31D /* ViewController.mm */; };
 		4F91747B23E1EFA60065D31D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F91747923E1EFA60065D31D /* Main.storyboard */; };
@@ -73,6 +76,20 @@
 		52FB14A0241FE1A20069C308 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52FB14A2241FE1A20069C308 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4F6F95CB2425D533008D6BE7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4F6F95CA2425D532008D6BE7 /* EKMetalKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1456E1CC021CD518305051FC /* Pods_FaceXD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FaceXD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F6F95AB241FD362008D6BE7 /* XDModelParameter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDModelParameter.h; sourceTree = "<group>"; };
@@ -83,6 +100,9 @@
 		4F6F95B2241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDDefaultModelParameterConfiguration.m; sourceTree = "<group>"; };
 		4F6F95B4242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDAdvanceModelParameterConfiguration.h; sourceTree = "<group>"; };
 		4F6F95B5242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDAdvanceModelParameterConfiguration.m; sourceTree = "<group>"; };
+		4F6F95B724253D92008D6BE7 /* EKMetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EKMetalKit.framework; path = Vendor/EKMetalKit.framework; sourceTree = "<group>"; };
+		4F6F95BB24254029008D6BE7 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		4F6F95C524254B81008D6BE7 /* EKMetalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EKMetalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F91746D23E1EFA60065D31D /* FaceXD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceXD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F91747023E1EFA60065D31D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F91747123E1EFA60065D31D /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -251,12 +271,14 @@
 			files = (
 				4FDBA28D23E9895A003F40F1 /* CoreMedia.framework in Frameworks */,
 				4F9175AB23E1F26E0065D31D /* CoreGraphics.framework in Frameworks */,
+				4F6F95BC24254029008D6BE7 /* MetalKit.framework in Frameworks */,
 				5200CF05241241A200A0FDA0 /* Pods_FaceXD.framework in Frameworks */,
 				4F9175AE23E1F32B0065D31D /* libLive2DCubismCore.a in Frameworks */,
 				4FDBA28923E97222003F40F1 /* AVFoundation.framework in Frameworks */,
 				4FDBA29123E99A4F003F40F1 /* SceneKit.framework in Frameworks */,
 				4F9175AD23E1F2770065D31D /* GLKit.framework in Frameworks */,
 				4F9175A923E1F25E0065D31D /* OpenGLES.framework in Frameworks */,
+				4F6F95C92425D532008D6BE7 /* EKMetalKit.framework in Frameworks */,
 				4FDBA28F23E9920C003F40F1 /* ARKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,6 +376,9 @@
 		4F9175A623E1F0E40065D31D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4F6F95C524254B81008D6BE7 /* EKMetalKit.framework */,
+				4F6F95BB24254029008D6BE7 /* MetalKit.framework */,
+				4F6F95B724253D92008D6BE7 /* EKMetalKit.framework */,
 				4FDBA29023E99A4F003F40F1 /* SceneKit.framework */,
 				4FDBA28E23E9920C003F40F1 /* ARKit.framework */,
 				4FDBA28C23E9895A003F40F1 /* CoreMedia.framework */,
@@ -615,6 +640,7 @@
 				4F91746A23E1EFA60065D31D /* Frameworks */,
 				4F91746B23E1EFA60065D31D /* Resources */,
 				F664C47980BB0AB2788EEDF7 /* [CP] Embed Pods Frameworks */,
+				4F6F95CB2425D533008D6BE7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -944,6 +970,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = C2JFNKPW64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor",
+				);
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/SDK/Core/include\"",
 					"\"$(SRCROOT)/SDK/Framework/src\"",
@@ -978,6 +1008,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = C2JFNKPW64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor",
+				);
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/SDK/Core/include\"",
 					"\"$(SRCROOT)/SDK/Framework/src\"",
