@@ -5,6 +5,7 @@
 #import <Vision/Vision.h>
 #import <QuartzCore/CABase.h>
 #import <EKMetalKit/EKMetalKit.h>
+#import <KVOController/KVOController.h>
 #import "XDModelParameter.h"
 #import "XDDefaultModelParameterConfiguration.h"
 #import "XDAdvanceModelParameterConfiguration.h"
@@ -138,6 +139,10 @@
     [self loadConfig];
 }
 
+- (void)bindData {
+    
+}
+
 - (void)layoutLiveview {
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     CGFloat width = 149;
@@ -157,7 +162,9 @@
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     self.screenSize = size;
-    [self layoutLiveview];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self layoutLiveview];
+    });
 }
 
 - (void)loadConfig {
