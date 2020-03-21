@@ -18,7 +18,6 @@
 		4F6F95CE2425D9D9008D6BE7 /* KVOController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95CC2425D9D9008D6BE7 /* KVOController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4F91747223E1EFA60065D31D /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747123E1EFA60065D31D /* AppDelegate.mm */; };
 		4F91747823E1EFA60065D31D /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747723E1EFA60065D31D /* ViewController.mm */; };
-		4F91747B23E1EFA60065D31D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F91747923E1EFA60065D31D /* Main.storyboard */; };
 		4F91747D23E1EFA70065D31D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F91747C23E1EFA70065D31D /* Assets.xcassets */; };
 		4F91748023E1EFA70065D31D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F91747E23E1EFA70065D31D /* LaunchScreen.storyboard */; };
 		4F91748323E1EFA70065D31D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91748223E1EFA70065D31D /* main.m */; };
@@ -74,6 +73,7 @@
 		520D0ED9240D0F66002453EF /* CubismModelUserData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0E89240D0F66002453EF /* CubismModelUserData.cpp */; };
 		520D0EDB240D0F66002453EF /* CubismModelUserDataJson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0E8C240D0F66002453EF /* CubismModelUserDataJson.cpp */; };
 		520D1007240D16FA002453EF /* Live2DResource in Resources */ = {isa = PBXBuildFile; fileRef = 520D1006240D16FA002453EF /* Live2DResource */; };
+		529F9A8924263AFA009B2A88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 529F9A8824263AFA009B2A88 /* Main.storyboard */; };
 		52CCBA512420B993006E87EC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52FB14C3242095FF0069C308 /* InfoPlist.strings */; };
 		52FB14A0241FE1A20069C308 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52FB14A2241FE1A20069C308 /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -254,10 +254,9 @@
 		520D0E8A240D0F66002453EF /* CubismId.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CubismId.hpp; path = SDK/Framework/src/Id/CubismId.hpp; sourceTree = "<group>"; };
 		520D0E8C240D0F66002453EF /* CubismModelUserDataJson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismModelUserDataJson.cpp; path = SDK/Framework/src/Model/CubismModelUserDataJson.cpp; sourceTree = "<group>"; };
 		520D1006240D16FA002453EF /* Live2DResource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Live2DResource; sourceTree = "<group>"; };
+		529F9A8824263AFA009B2A88 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		52FB14A1241FE1A20069C308 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		52FB14A5241FE2550069C308 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		52FB14A6241FE2A20069C308 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main.storyboard"; sourceTree = "<group>"; };
-		52FB14AB241FE2FA0069C308 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		52FB14AC241FE30A0069C308 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		52FB14AD241FE3250069C308 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52FB14BF242095630069C308 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -368,7 +367,7 @@
 				4F91747123E1EFA60065D31D /* AppDelegate.mm */,
 				4F91747623E1EFA60065D31D /* ViewController.h */,
 				4F91747723E1EFA60065D31D /* ViewController.mm */,
-				4F91747923E1EFA60065D31D /* Main.storyboard */,
+				529F9A8824263AFA009B2A88 /* Main.storyboard */,
 				4F91747C23E1EFA70065D31D /* Assets.xcassets */,
 				4F91747E23E1EFA70065D31D /* LaunchScreen.storyboard */,
 				52FB14BF242095630069C308 /* Info.plist */,
@@ -696,9 +695,9 @@
 				52FB14A0241FE1A20069C308 /* Localizable.strings in Resources */,
 				52CCBA512420B993006E87EC /* InfoPlist.strings in Resources */,
 				520D1007240D16FA002453EF /* Live2DResource in Resources */,
+				529F9A8924263AFA009B2A88 /* Main.storyboard in Resources */,
 				4F91748023E1EFA70065D31D /* LaunchScreen.storyboard in Resources */,
 				4F91747D23E1EFA70065D31D /* Assets.xcassets in Resources */,
-				4F91747B23E1EFA60065D31D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,15 +805,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4F91747923E1EFA60065D31D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				52FB14A6241FE2A20069C308 /* zh-Hans */,
-				52FB14AB241FE2FA0069C308 /* en */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4F91747E23E1EFA70065D31D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
