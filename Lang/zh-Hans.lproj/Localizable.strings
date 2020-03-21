@@ -14,3 +14,6 @@
 "60FPSLabel"        = "新%@";
 "30FPSLabel"        = "旧%@ 新%@";
 "timeStamp"         = "运行时间戳";
+"xd_device_unsupport" = "当前设备不支持，请等待后续更新";
+"xd_error" = "错误";
+"xd_ok" = "好的";

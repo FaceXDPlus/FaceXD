@@ -14,3 +14,5 @@
 "60FPSLabel"        = "New %@";
 "30FPSLabel"        = "%@ | %@";
 "timeStamp"         = "Time Stamp";
+"xd_device_unsupport" = "Current device not support. Please wait for update.";
+"xd_error" = "Error";
