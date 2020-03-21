@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16095" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Z07-In-w9M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Z07-In-w9M">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16084.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -135,10 +135,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" allowsCameraControl="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WOg-5d-s5H">
-                                <rect key="frame" x="245" y="575" width="149" height="287"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                            </arscnView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="重置模型" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGl-Xo-pzx">
                                 <rect key="frame" x="20" y="527" width="70" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -244,7 +240,6 @@
                         <outlet property="fpsSwitch" destination="kru-UE-r0U" id="KY5-y9-MEc"/>
                         <outlet property="jsonSwitch" destination="0IA-pX-sDk" id="KOr-NC-Q3a"/>
                         <outlet property="resetButton" destination="UWU-ze-okg" id="Xwo-q4-Bc7"/>
-                        <outlet property="sceneView" destination="WOg-5d-s5H" id="t1t-aa-A1o"/>
                         <outlet property="startSubmitSwitch" destination="qpp-qe-rPS" id="WhM-nc-CiD"/>
                         <outlet property="startSwitch" destination="qpp-qe-rPS" id="YqF-pX-zhc"/>
                         <outlet property="submitCaptureAddress" destination="1wI-Vy-FPM" id="JMm-5Z-bCF"/>
