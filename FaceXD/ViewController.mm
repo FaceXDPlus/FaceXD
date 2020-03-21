@@ -39,6 +39,20 @@
 @property (weak, nonatomic) IBOutlet UISwitch *advancedSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *alignmentSwitch;
 
+@property (weak, nonatomic) IBOutlet UILabel *label_Socket;
+@property (weak, nonatomic) IBOutlet UILabel *label_PrintJson;
+@property (weak, nonatomic) IBOutlet UILabel *label_Capture;
+@property (weak, nonatomic) IBOutlet UILabel *label_Submit;
+@property (weak, nonatomic) IBOutlet UILabel *label_30FPS;
+@property (weak, nonatomic) IBOutlet UILabel *label_Camera;
+@property (weak, nonatomic) IBOutlet UILabel *label_Reset;
+@property (weak, nonatomic) IBOutlet UILabel *label_Version;
+@property (weak, nonatomic) IBOutlet UILabel *label_Advanced;
+@property (weak, nonatomic) IBOutlet UILabel *label_Relative;
+@property (weak, nonatomic) IBOutlet UILabel *label_PCAddress;
+@property (weak, nonatomic) IBOutlet UILabel *label_SocketPort;
+
+
 @property (nonatomic, strong) EKMetalRenderLiveview *render;
 @property (nonatomic, strong) MTKView *liveview;
 @property (nonatomic, strong) CIContext *ciContext;
@@ -206,6 +220,23 @@
         [accountDefaults setObject:alignmentNumber forKey:@"cameraAlignment"];
     }
     self.alignmentSwitch.on = alignmentNumber.boolValue;
+    
+    self.label_Socket.text     = NSLocalizedString(@"label_Socket", nil);
+    self.label_PrintJson.text  = NSLocalizedString(@"label_PrintJson", nil);
+    self.label_Capture.text    = NSLocalizedString(@"label_Capture", nil);
+    self.label_Submit.text     = NSLocalizedString(@"label_Submit", nil);
+    self.label_30FPS.text      = NSLocalizedString(@"label_30FPS", nil);
+    self.label_Camera.text     = NSLocalizedString(@"label_Camera", nil);
+    self.label_Reset.text      = NSLocalizedString(@"label_Reset", nil);
+    self.label_Version.text    = NSLocalizedString(@"label_Version", nil);
+    self.label_Advanced.text   = NSLocalizedString(@"label_Advanced", nil);
+    self.label_Relative.text   = NSLocalizedString(@"label_Relative", nil);
+    self.label_PCAddress.text  = NSLocalizedString(@"label_PCAddress", nil);
+    self.label_SocketPort.text = NSLocalizedString(@"label_SocketPort", nil);
+    self.faceCaptureStatusLabel.text = NSLocalizedString(@"waiting", nil);
+    self.submitStatusLabel.text = NSLocalizedString(@"stopped", nil);
+    self.timeStampLabel.text = NSLocalizedString(@"timeStamp", nil);
+    self.liveview.hidden = YES;
 }
 
 - (void)setupARSession {
@@ -393,10 +424,10 @@
 }
 
 - (void)alertError:(NSString*)data {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"errorTitle", nil)
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"xd_error", nil)
                                                                        message:data
                                                                 preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"errorOK", nil) style:UIAlertActionStyleDefault
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"xd_ok", nil) style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * action) {
                                                                   //响应事件
                                                                   //NSLog(@"action = %@", action);
