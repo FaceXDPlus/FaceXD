@@ -6,6 +6,7 @@
 #import <QuartzCore/CABase.h>
 #import <EKMetalKit/EKMetalKit.h>
 #import <KVOController/KVOController.h>
+#import <Masonry/Masonry.h>
 #import "XDModelParameter.h"
 #import "XDDefaultModelParameterConfiguration.h"
 #import "XDAdvanceModelParameterConfiguration.h"
@@ -124,7 +125,6 @@
     self.render = [[EKMetalRenderLiveview alloc] initWithContext:context metalView:self.liveview];
     [self.render setupRenderWithError:nil];
     
-    self.liveview.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.liveview];
     [self layoutLiveview];
     
@@ -145,19 +145,16 @@
 
 - (void)layoutLiveview {
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    CGFloat width = 149;
-    CGFloat height = 264;
-    [self.liveview removeConstraints:self.liveview.constraints];
-    if (orientation == UIInterfaceOrientationLandscapeLeft ||
-        orientation == UIInterfaceOrientationLandscapeRight) {
-        CGFloat t = width;
-        width = height;
-        height = t;
-    }
-    [self.liveview.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:-20].active = YES;
-    [self.liveview.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-20].active = YES;
-    [self.liveview.widthAnchor constraintEqualToConstant:width].active = YES;
-    [self.liveview.heightAnchor constraintEqualToConstant:height].active = YES;
+    [self.liveview mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.view).offset(-20);
+        make.bottom.mas_equalTo(self.view).offset(-20);
+        CGSize size = CGSizeMake(149, 254);
+        if (orientation == UIInterfaceOrientationLandscapeLeft ||
+            orientation == UIInterfaceOrientationLandscapeRight) {
+            size = CGSizeMake(254, 149);
+        }
+        make.size.mas_equalTo(size);
+    }];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
