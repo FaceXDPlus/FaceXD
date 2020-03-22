@@ -16,6 +16,15 @@
 		4F6F95CA2425D532008D6BE7 /* EKMetalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95B724253D92008D6BE7 /* EKMetalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4F6F95CD2425D9D9008D6BE7 /* KVOController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95CC2425D9D9008D6BE7 /* KVOController.framework */; };
 		4F6F95CE2425D9D9008D6BE7 /* KVOController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95CC2425D9D9008D6BE7 /* KVOController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4F90BD6824263DE80065A06C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F90BD6724263DE70065A06C /* Accelerate.framework */; };
+		4F90BD6B242668C40065A06C /* XDDlibCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F90BD6A242668C40065A06C /* XDDlibCaptureViewController.m */; };
+		4F90BD6E2427486D0065A06C /* libdlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95D924262CFF008D6BE7 /* libdlib.a */; };
+		4F90BD72242749D80065A06C /* CameraKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F90BD71242749D80065A06C /* CameraKit.framework */; };
+		4F90BD73242749D80065A06C /* CameraKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F90BD71242749D80065A06C /* CameraKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4F90BD7424275BE80065A06C /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95D624262839008D6BE7 /* opencv2.framework */; };
+		4F90BD7624275C270065A06C /* XDOpenCVWarpper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95D4242627BA008D6BE7 /* XDOpenCVWarpper.mm */; };
+		4F90BD7724275C2B0065A06C /* XDDlibWarpper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95D1242627AC008D6BE7 /* XDDlibWarpper.mm */; };
+		4F90BD7924275D600065A06C /* shape_predictor_68_face_landmarks.dat in Resources */ = {isa = PBXBuildFile; fileRef = 4F90BD7824275D600065A06C /* shape_predictor_68_face_landmarks.dat */; };
 		4F91747223E1EFA60065D31D /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747123E1EFA60065D31D /* AppDelegate.mm */; };
 		4F91747823E1EFA60065D31D /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747723E1EFA60065D31D /* ViewController.mm */; };
 		4F91747B23E1EFA60065D31D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F91747923E1EFA60065D31D /* Main.storyboard */; };
@@ -85,6 +94,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				4F90BD73242749D80065A06C /* CameraKit.framework in Embed Frameworks */,
 				4F6F95CA2425D532008D6BE7 /* EKMetalKit.framework in Embed Frameworks */,
 				4F6F95CE2425D9D9008D6BE7 /* KVOController.framework in Embed Frameworks */,
 			);
@@ -107,6 +117,17 @@
 		4F6F95BB24254029008D6BE7 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		4F6F95C524254B81008D6BE7 /* EKMetalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EKMetalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F6F95CC2425D9D9008D6BE7 /* KVOController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KVOController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F6F95D0242627AC008D6BE7 /* XDDlibWarpper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDlibWarpper.h; sourceTree = "<group>"; };
+		4F6F95D1242627AC008D6BE7 /* XDDlibWarpper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = XDDlibWarpper.mm; sourceTree = "<group>"; };
+		4F6F95D3242627BA008D6BE7 /* XDOpenCVWarpper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDOpenCVWarpper.h; sourceTree = "<group>"; };
+		4F6F95D4242627BA008D6BE7 /* XDOpenCVWarpper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = XDOpenCVWarpper.mm; sourceTree = "<group>"; };
+		4F6F95D624262839008D6BE7 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../Vendor/opencv2.framework; sourceTree = "<group>"; };
+		4F6F95D924262CFF008D6BE7 /* libdlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdlib.a; path = ../Vendor/lib/libdlib.a; sourceTree = "<group>"; };
+		4F90BD6724263DE70065A06C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		4F90BD69242668C40065A06C /* XDDlibCaptureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDlibCaptureViewController.h; sourceTree = "<group>"; };
+		4F90BD6A242668C40065A06C /* XDDlibCaptureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDDlibCaptureViewController.m; sourceTree = "<group>"; };
+		4F90BD71242749D80065A06C /* CameraKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CameraKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F90BD7824275D600065A06C /* shape_predictor_68_face_landmarks.dat */ = {isa = PBXFileReference; lastKnownFileType = file; name = shape_predictor_68_face_landmarks.dat; path = ../../../Cross_Project/libfacecapture/download/shape_predictor_68_face_landmarks.dat; sourceTree = "<group>"; };
 		4F91746D23E1EFA60065D31D /* FaceXD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceXD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F91747023E1EFA60065D31D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F91747123E1EFA60065D31D /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -273,12 +294,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FDBA28D23E9895A003F40F1 /* CoreMedia.framework in Frameworks */,
+				4F90BD6824263DE80065A06C /* Accelerate.framework in Frameworks */,
+				4F90BD6E2427486D0065A06C /* libdlib.a in Frameworks */,
 				4F9175AB23E1F26E0065D31D /* CoreGraphics.framework in Frameworks */,
 				4F6F95BC24254029008D6BE7 /* MetalKit.framework in Frameworks */,
 				4F6F95CD2425D9D9008D6BE7 /* KVOController.framework in Frameworks */,
 				5200CF05241241A200A0FDA0 /* Pods_FaceXD.framework in Frameworks */,
 				4F9175AE23E1F32B0065D31D /* libLive2DCubismCore.a in Frameworks */,
 				4FDBA28923E97222003F40F1 /* AVFoundation.framework in Frameworks */,
+				4F90BD72242749D80065A06C /* CameraKit.framework in Frameworks */,
+				4F90BD7424275BE80065A06C /* opencv2.framework in Frameworks */,
 				4FDBA29123E99A4F003F40F1 /* SceneKit.framework in Frameworks */,
 				4F9175AD23E1F2770065D31D /* GLKit.framework in Frameworks */,
 				4F9175A923E1F25E0065D31D /* OpenGLES.framework in Frameworks */,
@@ -317,6 +342,7 @@
 		4F6F95A9241FD23A008D6BE7 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				4F6F95CF24262762008D6BE7 /* FaceCapture */,
 				4F6F95AA241FD251008D6BE7 /* Live2D */,
 			);
 			path = Service;
@@ -335,6 +361,17 @@
 				4F91788623E2C2880065D31D /* LAppOpenGLManager.mm */,
 			);
 			path = Live2D;
+			sourceTree = "<group>";
+		};
+		4F6F95CF24262762008D6BE7 /* FaceCapture */ = {
+			isa = PBXGroup;
+			children = (
+				4F6F95D0242627AC008D6BE7 /* XDDlibWarpper.h */,
+				4F6F95D1242627AC008D6BE7 /* XDDlibWarpper.mm */,
+				4F6F95D3242627BA008D6BE7 /* XDOpenCVWarpper.h */,
+				4F6F95D4242627BA008D6BE7 /* XDOpenCVWarpper.mm */,
+			);
+			path = FaceCapture;
 			sourceTree = "<group>";
 		};
 		4F91746423E1EFA60065D31D = {
@@ -368,11 +405,14 @@
 				4F91747123E1EFA60065D31D /* AppDelegate.mm */,
 				4F91747623E1EFA60065D31D /* ViewController.h */,
 				4F91747723E1EFA60065D31D /* ViewController.mm */,
+				4F90BD69242668C40065A06C /* XDDlibCaptureViewController.h */,
+				4F90BD6A242668C40065A06C /* XDDlibCaptureViewController.m */,
 				4F91747923E1EFA60065D31D /* Main.storyboard */,
 				4F91747C23E1EFA70065D31D /* Assets.xcassets */,
 				4F91747E23E1EFA70065D31D /* LaunchScreen.storyboard */,
 				52FB14BF242095630069C308 /* Info.plist */,
 				4F91748223E1EFA70065D31D /* main.m */,
+				4F90BD7824275D600065A06C /* shape_predictor_68_face_landmarks.dat */,
 			);
 			path = FaceXD;
 			sourceTree = "<group>";
@@ -380,6 +420,10 @@
 		4F9175A623E1F0E40065D31D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4F90BD71242749D80065A06C /* CameraKit.framework */,
+				4F90BD6724263DE70065A06C /* Accelerate.framework */,
+				4F6F95D924262CFF008D6BE7 /* libdlib.a */,
+				4F6F95D624262839008D6BE7 /* opencv2.framework */,
 				4F6F95CC2425D9D9008D6BE7 /* KVOController.framework */,
 				4F6F95C524254B81008D6BE7 /* EKMetalKit.framework */,
 				4F6F95BB24254029008D6BE7 /* MetalKit.framework */,
@@ -693,6 +737,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F90BD7924275D600065A06C /* shape_predictor_68_face_landmarks.dat in Resources */,
 				52FB14A0241FE1A20069C308 /* Localizable.strings in Resources */,
 				52CCBA512420B993006E87EC /* InfoPlist.strings in Resources */,
 				520D1007240D16FA002453EF /* Live2DResource in Resources */,
@@ -769,6 +814,7 @@
 				520D0ED2240D0F66002453EF /* CubismString.cpp in Sources */,
 				520D0E93240D0F66002453EF /* CubismVector2.cpp in Sources */,
 				520D0E9F240D0F66002453EF /* CubismId.cpp in Sources */,
+				4F90BD6B242668C40065A06C /* XDDlibCaptureViewController.m in Sources */,
 				520D0E8D240D0F66002453EF /* ACubismMotion.cpp in Sources */,
 				520D0EAB240D0F66002453EF /* CubismPose.cpp in Sources */,
 				520D0EC4240D0F66002453EF /* CubismRenderer.cpp in Sources */,
@@ -780,6 +826,7 @@
 				520D0EC9240D0F66002453EF /* CubismMotionManager.cpp in Sources */,
 				4F9175CF23E1FA1B0065D31D /* LAppAllocator.mm in Sources */,
 				520D0EDB240D0F66002453EF /* CubismModelUserDataJson.cpp in Sources */,
+				4F90BD7624275C270065A06C /* XDOpenCVWarpper.mm in Sources */,
 				520D0E9E240D0F66002453EF /* CubismExpressionMotion.cpp in Sources */,
 				520D0EB6240D0F66002453EF /* CubismMotionJson.cpp in Sources */,
 				520D0ED1240D0F66002453EF /* CubismJson.cpp in Sources */,
@@ -789,6 +836,7 @@
 				520D0E96240D0F66002453EF /* CubismMatrix44.cpp in Sources */,
 				520D0EB2240D0F66002453EF /* CubismMotion.cpp in Sources */,
 				520D0E8F240D0F66002453EF /* CubismDefaultParameterId.cpp in Sources */,
+				4F90BD7724275C2B0065A06C /* XDDlibWarpper.mm in Sources */,
 				4F91747223E1EFA60065D31D /* AppDelegate.mm in Sources */,
 				520D0EB7240D0F66002453EF /* CubismMotionQueueEntry.cpp in Sources */,
 				520D0E95240D0F66002453EF /* CubismMath.cpp in Sources */,
@@ -977,11 +1025,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor",
+					"\"$(SRCROOT)/../Vendor\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/SDK/Core/include\"",
 					"\"$(SRCROOT)/SDK/Framework/src\"",
 					"$(inherited)",
+					"\"$(SRCROOT)/../Vendor/include\"",
 				);
 				INFOPLIST_FILE = FaceXD/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -989,12 +1039,17 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SDK/Core/lib/ios/$(CONFIGURATION)-$(PLATFORM_NAME)\"";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)/SDK/Core/lib/ios/$(CONFIGURATION)-$(PLATFORM_NAME)\"",
+					"\"$(SRCROOT)/../Vendor/lib\"",
+				);
 				MARKETING_VERSION = 1.7.4;
 				OTHER_CFLAGS = "-DCSM_TARGET_IPHONE_ES2";
+				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
 					"-lLive2DCubismCore",
 					"$(inherited)",
+					"-ldlib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hakura.FaceXD;
 				PRODUCT_NAME = FaceXD;
@@ -1015,11 +1070,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor",
+					"\"$(SRCROOT)/../Vendor\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/SDK/Core/include\"",
 					"\"$(SRCROOT)/SDK/Framework/src\"",
 					"$(inherited)",
+					"\"$(SRCROOT)/../Vendor/include\"",
 				);
 				INFOPLIST_FILE = FaceXD/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1027,12 +1084,17 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SDK/Core/lib/ios/$(CONFIGURATION)-$(PLATFORM_NAME)\"";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)/SDK/Core/lib/ios/$(CONFIGURATION)-$(PLATFORM_NAME)\"",
+					"\"$(SRCROOT)/../Vendor/lib\"",
+				);
 				MARKETING_VERSION = 1.7.4;
 				OTHER_CFLAGS = "-DCSM_TARGET_IPHONE_ES2";
+				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
 					"-lLive2DCubismCore",
 					"$(inherited)",
+					"-ldlib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hakura.FaceXD;
 				PRODUCT_NAME = FaceXD;

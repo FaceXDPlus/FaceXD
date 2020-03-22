@@ -15,7 +15,7 @@
 #import "LAppModel.h"
 #import "LAppBundle.h"
 #import "LAppOpenGLManager.h"
-
+#import "XDDlibCaptureViewController.h"
 #import "GCDAsyncSocket.h"
 
 @interface ViewController () <ARSessionDelegate,ARSCNViewDelegate,GCDAsyncSocketDelegate>
@@ -230,6 +230,9 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    XDDlibCaptureViewController *vc = [[XDDlibCaptureViewController alloc] init];
+    vc.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:vc animated:NO completion:nil];
     /*if (self.expressionCount == 0) return;
     static NSInteger index = 0;
     index += 1;
