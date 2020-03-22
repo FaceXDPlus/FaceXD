@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreVideo/CoreVideo.h>
 #import <dlib/image_processing/frontal_face_detector.h>
 #import <dlib/image_processing/shape_predictor.h>
 #import <dlib/opencv.h>
@@ -52,37 +51,15 @@ extern void UIImageToMat(const UIImage* image,
 }
 - (NSArray<NSValue *> *)predictorWithCVPixelBuffer:(CVPixelBufferRef)pixelBuffer
                                               rect:(CGRect)rect {
-    size_t width = CVPixelBufferGetWidth(pixelBuffer);
-    size_t height = CVPixelBufferGetHeight(pixelBuffer);
     CVPixelBufferLockBaseAddress(pixelBuffer,0);
-    char *baseBuffer = (char *)CVPixelBufferGetBaseAddress(pixelBuffer);
-    UIImage *image = [self imageFromPixelBuffer:pixelBuffer];
-    cv::Mat mat;
-    dlib::array2d<dlib::bgr_pixel> img;
-    UIImageToMat(image, mat);
-    // set_size expects rows, cols format
-    img.set_size(height, width);
+    void *baseAddress = CVPixelBufferGetBaseAddress(pixelBuffer);
+    int width = (int)CVPixelBufferGetWidth(pixelBuffer);
+    int height = (int)CVPixelBufferGetHeight(pixelBuffer);
 
-    // copy samplebuffer image data into dlib image format
-    img.reset();
-    long position = 0;
-    while (img.move_next()) {
-        dlib::bgr_pixel& pixel = img.element();
-
-        // assuming bgra format here
-        long bufferLocation = position * 4; //(row * width + column) * 4;
-        char b = baseBuffer[bufferLocation];
-        char g = baseBuffer[bufferLocation + 1];
-        char r = baseBuffer[bufferLocation + 2];
-        //        we do not need this
-        //        char a = baseBuffer[bufferLocation + 3];
-
-        dlib::bgr_pixel newpixel(b, g, r);
-        pixel = newpixel;
-
-        position++;
-    }
-    CVPixelBufferUnlockBaseAddress(pixelBuffer,0);
+    cv::Mat mat(height, width, CV_8UC4, baseAddress, 0);
+    cv::Mat bgrMat;
+    cv::cvtColor(mat, bgrMat, CV_BGRA2BGR);
+    dlib::cv_image<dlib::bgr_pixel> img(bgrMat);
     
     // convert the face bounds list to dlib format
     NSValue *value = [NSValue valueWithCGRect:rect];
@@ -101,10 +78,13 @@ extern void UIImageToMat(const UIImage* image,
         for (unsigned long k = 0; k < shape.num_parts(); k++) {
             dlib::point p = shape.part(k);
             CGPoint point = CGPointMake(p.x(), p.y());
+            cv::rectangle(mat, cv::Rect(point.x,point.y,4,4), cv::Scalar(255,0,0,255),-1);
             NSValue *v = [NSValue valueWithCGPoint:point];
             [array addObject:v];
         }
     }
+    
+    CVPixelBufferUnlockBaseAddress(pixelBuffer,0);
     return array;
 }
 
@@ -121,36 +101,6 @@ extern void UIImageToMat(const UIImage* image,
         myConvertedRects.push_back(dlibRect);
     }
     return myConvertedRects;
-}
-
-- (UIImage*)imageFromPixelBuffer:(CVPixelBufferRef)p
-{
-    CVImageBufferRef buffer;
-    buffer = p;
-    
-    CVPixelBufferLockBaseAddress(buffer, 0);
-    uint8_t *base;
-    size_t width, height, bytesPerRow;
-    base = (uint8_t *)CVPixelBufferGetBaseAddress(buffer);
-    width = CVPixelBufferGetWidth(buffer);
-    height = CVPixelBufferGetHeight(buffer);
-    bytesPerRow = CVPixelBufferGetBytesPerRow(buffer);
-    
-    CGColorSpaceRef colorSpace;
-    CGContextRef cgContext;
-    colorSpace = CGColorSpaceCreateDeviceRGB();
-    cgContext = CGBitmapContextCreate(base, width, height, 8, bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
-    CGColorSpaceRelease(colorSpace);
-    
-    CGImageRef cgImage;
-    UIImage *image;
-    cgImage = CGBitmapContextCreateImage(cgContext);
-    image = [UIImage imageWithCGImage:cgImage];
-    CGImageRelease(cgImage);
-    CGContextRelease(cgContext);
-    
-    CVPixelBufferUnlockBaseAddress(buffer, 0);
-    return image;
 }
 
 @end

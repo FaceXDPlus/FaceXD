@@ -88,6 +88,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection {
     CGRect videoInsetRect = self.render.videoInsetRect;
     CGRect faceBounds = self.currentMetadataObject.bounds;
+    CGRect faceBoundsInImage = [output transformedMetadataObjectForMetadataObject:self.currentMetadataObject connection:connection].bounds;
+    
     CGFloat tmp = faceBounds.origin.x;
     faceBounds.origin.x = faceBounds.origin.y;
     faceBounds.origin.y = tmp;
@@ -96,30 +98,18 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     faceBounds.size.height = faceBounds.size.width;
     faceBounds.size.width = tmp;
     
-    CGFloat extent = 30;
-    
-    faceBounds.origin.x = videoInsetRect.origin.x + faceBounds.origin.x * videoInsetRect.size.width - extent;
-    faceBounds.origin.y = videoInsetRect.origin.y + faceBounds.origin.y * videoInsetRect.size.height - extent;
+    faceBounds.origin.x = videoInsetRect.origin.x + faceBounds.origin.x * videoInsetRect.size.width;
+    faceBounds.origin.y = videoInsetRect.origin.y + faceBounds.origin.y * videoInsetRect.size.height;
     faceBounds.size.width *= videoInsetRect.size.width;
-    faceBounds.size.width += 2 * extent;
     faceBounds.size.height *= videoInsetRect.size.height;
-    faceBounds.size.height += 2 * extent;
     
     NSValue *rect = [NSValue valueWithCGRect:faceBounds];
     
     CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-    NSArray<NSValue *> *points = [self.predictor predictorWithCVPixelBuffer:pixelBuffer rect:faceBounds];
-    UIBezierPath *path = [UIBezierPath bezierPath];
-    [points enumerateObjectsUsingBlock:^(NSValue * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        CGPoint p = [obj CGPointValue];
-        UIBezierPath *pointPath = [UIBezierPath bezierPathWithArcCenter:p radius:2 startAngle:0 endAngle:M_PI * 2 clockwise:YES];
-        [path appendPath:pointPath];
-    }];
+    [self.predictor predictorWithCVPixelBuffer:pixelBuffer rect:faceBoundsInImage];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         self.faceRect.frame = [rect CGRectValue];
-        self.pointLayer.path = path.CGPath;
-        self.pointLayer.fillColor = [UIColor greenColor].CGColor;
     });
     
     CFRetain(sampleBuffer);
