@@ -52,6 +52,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_PCAddress;
 @property (weak, nonatomic) IBOutlet UILabel *label_SocketPort;
 
+@property (weak, nonatomic) IBOutlet UILabel *fpsIndicatorLabel;
+@property (nonatomic, assign) NSInteger frameCount;
+@property (nonatomic, strong) dispatch_source_t fpsTimer;
 
 @property (nonatomic, strong) EKMetalRenderLiveview *render;
 @property (nonatomic, strong) MTKView *liveview;
@@ -149,6 +152,14 @@
         [self.hiyori loadAsset];
         [self.hiyori startBreath];
     });
+    
+    self.fpsTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+    dispatch_source_set_timer(self.fpsTimer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0.1 * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(self.fpsTimer, ^{
+        self.fpsIndicatorLabel.text = @(self.frameCount).stringValue;
+        self.frameCount = 0;
+    });
+    dispatch_resume(self.fpsTimer);
     
     [self loadConfig];
 }
@@ -263,6 +274,7 @@
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
+    self.frameCount++;
     [LAppOpenGLManagerInstance updateTime];
     glClear(GL_COLOR_BUFFER_BIT);
     [self.hiyori setMVPMatrixWithSize:self.screenSize];
