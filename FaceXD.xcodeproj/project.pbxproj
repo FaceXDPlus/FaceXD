@@ -981,7 +981,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SDK/Core/lib/ios/$(CONFIGURATION)-$(PLATFORM_NAME)\"";
-				MARKETING_VERSION = 1.7.4;
+				MARKETING_VERSION = 1.7.8;
 				OTHER_CFLAGS = "-DCSM_TARGET_IPHONE_ES2";
 				OTHER_LDFLAGS = (
 					"-lLive2DCubismCore",
@@ -1020,7 +1020,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SDK/Core/lib/ios/$(CONFIGURATION)-$(PLATFORM_NAME)\"";
-				MARKETING_VERSION = 1.7.4;
+				MARKETING_VERSION = 1.7.8;
 				OTHER_CFLAGS = "-DCSM_TARGET_IPHONE_ES2";
 				OTHER_LDFLAGS = (
 					"-lLive2DCubismCore",
