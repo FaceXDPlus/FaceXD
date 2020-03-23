@@ -3,5 +3,6 @@ use_frameworks!
 target 'FaceXD' do
 
 pod 'CocoaAsyncSocket'
+pod 'Masonry'
 
 end

@@ -3,7 +3,10 @@
 #import <OpenGLES/EAGL.h>
 #import <OpenGLES/ES2/gl.h>
 #import <Vision/Vision.h>
-
+#import <QuartzCore/CABase.h>
+#import <EKMetalKit/EKMetalKit.h>
+#import <KVOController/KVOController.h>
+#import <Masonry/Masonry.h>
 #import "XDModelParameter.h"
 #import "XDDefaultModelParameterConfiguration.h"
 #import "XDAdvanceModelParameterConfiguration.h"
@@ -34,15 +37,34 @@
 @property (weak, nonatomic) IBOutlet UILabel *appVersionLabel;
 @property (nonatomic, strong) GCDAsyncSocket *socket;
 @property (weak, nonatomic) IBOutlet UISwitch *advancedSwitch;
-@property (weak, nonatomic) IBOutlet ARSCNView *sceneView;
 @property (weak, nonatomic) IBOutlet UISwitch *alignmentSwitch;
+
+@property (weak, nonatomic) IBOutlet UILabel *label_Socket;
+@property (weak, nonatomic) IBOutlet UILabel *label_PrintJson;
+@property (weak, nonatomic) IBOutlet UILabel *label_Capture;
+@property (weak, nonatomic) IBOutlet UILabel *label_Submit;
+@property (weak, nonatomic) IBOutlet UILabel *label_30FPS;
+@property (weak, nonatomic) IBOutlet UILabel *label_Camera;
+@property (weak, nonatomic) IBOutlet UILabel *label_Reset;
+@property (weak, nonatomic) IBOutlet UILabel *label_Version;
+@property (weak, nonatomic) IBOutlet UILabel *label_Advanced;
+@property (weak, nonatomic) IBOutlet UILabel *label_Relative;
+@property (weak, nonatomic) IBOutlet UILabel *label_PCAddress;
+@property (weak, nonatomic) IBOutlet UILabel *label_SocketPort;
+
+@property (weak, nonatomic) IBOutlet UILabel *fpsIndicatorLabel;
+@property (nonatomic, assign) NSInteger frameCount;
+@property (nonatomic, strong) dispatch_source_t fpsTimer;
+
+@property (nonatomic, strong) EKMetalRenderLiveview *render;
+@property (nonatomic, strong) MTKView *liveview;
+@property (nonatomic, strong) CIContext *ciContext;
 
 @property (nonatomic) GLKView *glView;
 @property (nonatomic, strong) LAppModel *hiyori;
 @property (nonatomic, assign) CGSize screenSize;
 @property (nonatomic, assign) NSInteger expressionCount;
 
-@property (nonatomic, strong) ARSCNView *arSCNView;
 @property (nonatomic, strong) ARSession *arSession;
 @property (nonatomic, strong) SCNNode *faceNode;
 @property (nonatomic, strong) SCNNode *leftEyeNode;
@@ -56,6 +78,15 @@
 @end
 
 @implementation ViewController
+
+- (CIContext *)ciContext {
+    if (_ciContext == nil) {
+        _ciContext = [CIContext contextWithOptions:@{
+            kCIContextHighQualityDownsample: @(YES),
+        }];
+    }
+    return _ciContext;
+}
 
 - (GLKView *)glView {
     return (GLKView *)self.view;
@@ -105,7 +136,16 @@
     self.submitSocketPort.delegate = self;
     
     self.screenSize = [[UIScreen mainScreen] bounds].size;
+ 
+    EKMetalContext *context = [EKMetalContext defaultContext];
+    self.liveview = [[MTKView alloc] initWithFrame:CGRectZero device:context.device];
+    self.render = [[EKMetalRenderLiveview alloc] initWithContext:context metalView:self.liveview];
+    [self.render setupRenderWithError:nil];
     
+    [self.view addSubview:self.liveview];
+    [self layoutLiveview];
+    
+    self.preferredFramesPerSecond = 60;
     [self.glView setContext:LAppGLContext];
     LAppGLContextAction(^{
         self.hiyori = [[LAppModel alloc] initWithName:@"Hiyori"];
@@ -113,12 +153,52 @@
         [self.hiyori startBreath];
     });
     
+    self.fpsTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+    dispatch_source_set_timer(self.fpsTimer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0.1 * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(self.fpsTimer, ^{
+        self.fpsIndicatorLabel.text = @(self.frameCount).stringValue;
+        self.frameCount = 0;
+    });
+    dispatch_resume(self.fpsTimer);
     
     [self loadConfig];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    if (![ARFaceTrackingConfiguration isSupported]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"xd_error", nil) message:NSLocalizedString(@"xd_device_unsupport", nil) preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:NSLocalizedString(@"xd_ok", nil) style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+        self.view.userInteractionEnabled = NO;
+    } else {
+        self.view.userInteractionEnabled = YES;
+    }
+}
+
+- (void)bindData {
+    
+}
+
+- (void)layoutLiveview {
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    [self.liveview mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.view).offset(-20);
+        make.bottom.mas_equalTo(self.view).offset(-20);
+        CGSize size = CGSizeMake(149, 254);
+        if (orientation == UIInterfaceOrientationLandscapeLeft ||
+            orientation == UIInterfaceOrientationLandscapeRight) {
+            size = CGSizeMake(254, 149);
+        }
+        make.size.mas_equalTo(size);
+    }];
+}
+
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     self.screenSize = size;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self layoutLiveview];
+    });
 }
 
 - (void)loadConfig {
@@ -151,35 +231,57 @@
         [accountDefaults setObject:alignmentNumber forKey:@"cameraAlignment"];
     }
     self.alignmentSwitch.on = alignmentNumber.boolValue;
-    //self.sceneView.showsStatistics = YES;
-    self.sceneView.autoenablesDefaultLighting = YES;
-    self.sceneView.debugOptions = SCNDebugOptionNone;
     
-    SCNScene *scene = [SCNScene new];
-    self.sceneView.scene = scene;
-    self.sceneView.hidden = 1;
+    self.label_Socket.text     = NSLocalizedString(@"label_Socket", nil);
+    self.label_PrintJson.text  = NSLocalizedString(@"label_PrintJson", nil);
+    self.label_Capture.text    = NSLocalizedString(@"label_Capture", nil);
+    self.label_Submit.text     = NSLocalizedString(@"label_Submit", nil);
+    self.label_30FPS.text      = NSLocalizedString(@"label_30FPS", nil);
+    self.label_Camera.text     = NSLocalizedString(@"label_Camera", nil);
+    self.label_Reset.text      = NSLocalizedString(@"label_Reset", nil);
+    self.label_Version.text    = NSLocalizedString(@"label_Version", nil);
+    self.label_Advanced.text   = NSLocalizedString(@"label_Advanced", nil);
+    self.label_Relative.text   = NSLocalizedString(@"label_Relative", nil);
+    self.label_PCAddress.text  = NSLocalizedString(@"label_PCAddress", nil);
+    self.label_SocketPort.text = NSLocalizedString(@"label_SocketPort", nil);
+    self.faceCaptureStatusLabel.text = NSLocalizedString(@"waiting", nil);
+    self.submitStatusLabel.text = NSLocalizedString(@"stopped", nil);
+    self.timeStampLabel.text = NSLocalizedString(@"timeStamp", nil);
+    self.liveview.hidden = YES;
 }
 
 - (void)setupARSession {
     self.arSession = [[ARSession alloc] init];
     ARFaceTrackingConfiguration *faceTracking = [[ARFaceTrackingConfiguration alloc] init];
     faceTracking.worldAlignment = self.alignmentSwitch.on ? ARWorldAlignmentCamera : ARWorldAlignmentGravity;
+    
+    XDDefaultModelParameterConfiguration *c = (XDDefaultModelParameterConfiguration *)self.parameterConfiguration;
+    c.frameInterval = 1.0 / 30.0;
+    if (@available(iOS 11.3, *)) {
+        __block ARVideoFormat *format = nil;
+        [[ARFaceTrackingConfiguration supportedVideoFormats] enumerateObjectsUsingBlock:^(ARVideoFormat * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.framesPerSecond == 30 &&
+                fabs(obj.imageResolution.height - 720) < 1e-6) {
+                format = obj;
+            }
+        }];
+        if (format != nil) {
+            faceTracking.videoFormat = format;
+        }
+    }
     self.arSession.delegate = self;
     [self.arSession runWithConfiguration:faceTracking];
-    self.sceneView.session = self.arSession;
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
+    self.frameCount++;
     [LAppOpenGLManagerInstance updateTime];
-    
     glClear(GL_COLOR_BUFFER_BIT);
-
     [self.hiyori setMVPMatrixWithSize:self.screenSize];
     [self.hiyori onUpdateWithParameterUpdate:^{
         [self.parameterConfiguration commit];
     }];
-
-    glClearColor(0, 0, 0, 1);
+    glClearColor(0, 0, 0, 0);
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -211,6 +313,7 @@
 
 - (IBAction)handleFaceCaptureSwitch:(id)sender {
     if(self.captureSwitch.on == 0){
+        [self.arSession pause];
         self.faceCaptureStatusLabel.text = NSLocalizedString(@"waiting", nil);
     }else{
         [self setupARSession];
@@ -301,9 +404,9 @@
 
 - (IBAction)handleCameraSwitch:(id)sender {
     if(self.cameraSwitch.on == 0){
-        self.sceneView.hidden = 1;
+        self.liveview.hidden = YES;
     }else{
-        self.sceneView.hidden = 0;
+        self.liveview.hidden = NO;
     }
 }
 
@@ -333,10 +436,10 @@
 }
 
 - (void)alertError:(NSString*)data {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"errorTitle", nil)
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"xd_error", nil)
                                                                        message:data
                                                                 preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"errorOK", nil) style:UIAlertActionStyleDefault
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"xd_ok", nil) style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * action) {
                                                                   //响应事件
                                                                   //NSLog(@"action = %@", action);
@@ -438,13 +541,39 @@
 #pragma mark - ARSCNViewDelegate
 #pragma mark - ARSessionDelegate
 
-- (ARSCNView *)arSCNView{
-    if (!_arSCNView) {
-        _arSCNView = [[ARSCNView alloc] initWithFrame:self.view.bounds];
-        _arSCNView.delegate = self;
-        _arSCNView.session = self.arSession;
+- (void)session:(ARSession *)session didUpdateFrame:(ARFrame *)frame {
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    EKMetalRenderLiveviewRotation rotation = EKMetalRenderLiveviewRotationRight;
+    if (orientation == UIInterfaceOrientationPortrait) {
+        rotation = EKMetalRenderLiveviewRotationRight;
+    } else if (orientation == UIInterfaceOrientationLandscapeRight) {
+        rotation = EKMetalRenderLiveviewRotationNormal;
+    } else if (orientation == UIInterfaceOrientationLandscapeLeft) {
+        rotation = EKMetalRenderLiveviewRotationUpsideDown;
+    } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+        rotation = EKMetalRenderLiveviewRotationLeft;
     }
-    return _arSCNView;
+    CMVideoFormatDescriptionRef format = NULL;
+    CMVideoFormatDescriptionCreateForImageBuffer(kCFAllocatorDefault,
+                                                 frame.capturedImage,
+                                                 &format);
+    CMSampleTimingInfo timing;
+    timing.decodeTimeStamp = kCMTimeInvalid;
+    timing.presentationTimeStamp = kCMTimeInvalid;
+    timing.duration = kCMTimeInvalid;
+    CMSampleBufferRef sampleBuffer = NULL;
+    CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault,
+                                       frame.capturedImage,
+                                       true,
+                                       NULL,
+                                       NULL,
+                                       format,
+                                       &timing,
+                                       &sampleBuffer);
+    EKSampleBuffer *buffer = [[EKSampleBuffer alloc] initWithSampleBuffer:sampleBuffer freeWhenDone:YES];
+    self.render.orientation = rotation;
+    [self.render renderSampleBuffer:buffer];
+    CFRelease(format);
 }
 
 - (void)session:(ARSession *)session didUpdateAnchors:(NSArray<__kindof ARAnchor *> *)anchors {

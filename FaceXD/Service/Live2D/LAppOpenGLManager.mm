@@ -15,9 +15,9 @@
 @interface LAppOpenGLManager () {
     
 }
-@property (nonatomic, assign) NSTimeInterval currentFrame;
-@property (nonatomic, assign) NSTimeInterval lastFrame;
-@property (nonatomic, assign) NSTimeInterval deltaTime;
+@property (nonatomic, assign) CFTimeInterval currentFrameTime;
+@property (nonatomic, assign) CFTimeInterval lastFrameTime;
+@property (nonatomic, assign) CFTimeInterval deltaTime;
 
 @property (nonatomic, strong) EAGLContext *glContext;
 
@@ -119,10 +119,8 @@
 
 #pragma mark - Time
 - (void)updateTime {
-    NSDate *now = [NSDate date];
-    NSTimeInterval unixtime = [now timeIntervalSince1970];
-    self.currentFrame = unixtime;
-    self.deltaTime = self.currentFrame - self.lastFrame;
-    self.lastFrame = self.currentFrame;
+    self.currentFrameTime = CACurrentMediaTime();
+    self.deltaTime = self.currentFrameTime - self.lastFrameTime;
+    self.lastFrameTime = self.currentFrameTime;
 }
 @end

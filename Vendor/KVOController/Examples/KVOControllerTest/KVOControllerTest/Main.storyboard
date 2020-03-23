@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7ce-Mf-pl5">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="DxQ-gT-9Sx">
+            <objects>
+                <navigationController id="7ce-Mf-pl5" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LUi-c4-HvP">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="dM1-Ly-1wf" kind="relationship" relationship="rootViewController" id="ZKq-od-332"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IiB-wA-rwg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1379" y="268"/>
+        </scene>
+        <!--Sig Test Menu View Controller-->
+        <scene sceneID="PMZ-Dk-GXF">
+            <objects>
+                <viewController id="dM1-Ly-1wf" customClass="KVSigTestMenuViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3fw-h5-4Mn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EWM-K4-JJ8">
+                                <rect key="frame" x="127" y="318" width="120" height="30"/>
+                                <state key="normal" title="StoryBoard Jump"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="4vy-Ll-4xD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrX-CL-3hy">
+                                <rect key="frame" x="148" y="356" width="79" height="30"/>
+                                <state key="normal" title="Code Jump"/>
+                                <connections>
+                                    <action selector="jumpToTestVC:" destination="dM1-Ly-1wf" eventType="touchUpInside" id="481-Hg-Uev"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="EWM-K4-JJ8" firstAttribute="centerY" secondItem="3fw-h5-4Mn" secondAttribute="centerY" id="Ss4-2F-YNO"/>
+                            <constraint firstItem="vrX-CL-3hy" firstAttribute="centerX" secondItem="3fw-h5-4Mn" secondAttribute="centerX" id="UI6-0q-hgD"/>
+                            <constraint firstItem="EWM-K4-JJ8" firstAttribute="centerX" secondItem="3fw-h5-4Mn" secondAttribute="centerX" id="eAJ-W2-RA0"/>
+                            <constraint firstItem="vrX-CL-3hy" firstAttribute="top" secondItem="EWM-K4-JJ8" secondAttribute="bottom" constant="8" id="vpf-we-Ibv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1HJ-Td-RyP"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="h3C-Ob-MRX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="azs-kp-NvC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-559" y="322"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hlx-pV-FGz">
+                                <rect key="frame" x="67" y="279" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="XWr-uW-wfV"/>
+                                    <constraint firstAttribute="width" constant="240" id="m7p-E1-sui"/>
+                                </constraints>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8Bi-1U-FMu">
+                                <rect key="frame" x="67.5" y="231.5" width="240" height="29"/>
+                                <segments>
+                                    <segment title="Red" width="60"/>
+                                    <segment title="Yellow"/>
+                                    <segment title="Blue"/>
+                                    <segment title="Orange"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="hlx-pV-FGz" firstAttribute="top" secondItem="8Bi-1U-FMu" secondAttribute="bottom" constant="20" id="2Nj-p5-cDf"/>
+                            <constraint firstItem="8Bi-1U-FMu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GS9-Sa-tM5"/>
+                            <constraint firstItem="8Bi-1U-FMu" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-88" id="Pw6-Ue-tSZ"/>
+                            <constraint firstItem="hlx-pV-FGz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="t90-aZ-q9B"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="d5A-wk-LfO"/>
+                    <connections>
+                        <outlet property="colorView" destination="hlx-pV-FGz" id="qVC-bs-pJZ"/>
+                        <outlet property="segment" destination="8Bi-1U-FMu" id="8Lv-vD-yhb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="319" y="367"/>
+        </scene>
+    </scenes>
+</document>
