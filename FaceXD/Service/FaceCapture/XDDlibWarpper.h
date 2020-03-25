@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// @return 目标预测点
 - (NSArray<NSValue *> *)predictorWithCVPixelBuffer:(CVPixelBufferRef)pixelBuffer
                                               rect:(CGRect)rect;
+- (void)faceAnchorWithPoints:(NSArray<NSValue *> *)points
+                   imageSize:(CGSize)imageSize;
 @end;
 
 @interface XDDlibWarpper : NSObject

@@ -106,7 +106,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     NSValue *rect = [NSValue valueWithCGRect:faceBounds];
     
     CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-    [self.predictor predictorWithCVPixelBuffer:pixelBuffer rect:faceBoundsInImage];
+    NSArray<NSValue *> *points = [self.predictor predictorWithCVPixelBuffer:pixelBuffer rect:faceBoundsInImage];
+    [self.predictor faceAnchorWithPoints:points imageSize:CGSizeMake(CVPixelBufferGetWidth(pixelBuffer), CVPixelBufferGetHeight(pixelBuffer))];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         self.faceRect.frame = [rect CGRectValue];

@@ -14,6 +14,7 @@
 #import <opencv2/imgproc/types_c.h>
 #import <opencv2/highgui.hpp>
 #import <opencv2/imgproc.hpp>
+#import <opencv2/calib3d.hpp>
 #import <opencv2/video/tracking.hpp>
 #import "XDDlibWarpper.h"
 
@@ -144,6 +145,38 @@ extern void UIImageToMat(const UIImage* image,
         myConvertedRects.push_back(dlibRect);
     }
     return myConvertedRects;
+}
+
+- (void)faceAnchorWithPoints:(NSArray<NSValue *> *)points
+                   imageSize:(CGSize)imageSize {
+    std::vector<cv::Point2d> imagePoints;
+    imagePoints.push_back(cv::Point2d(points[30].CGPointValue.x, points[30].CGPointValue.y));
+    imagePoints.push_back(cv::Point2d(points[8].CGPointValue.x, points[8].CGPointValue.y));
+    imagePoints.push_back(cv::Point2d(points[36].CGPointValue.x, points[36].CGPointValue.y));
+    imagePoints.push_back(cv::Point2d(points[45].CGPointValue.x, points[45].CGPointValue.y));
+    imagePoints.push_back(cv::Point2d(points[1].CGPointValue.x, points[1].CGPointValue.y));
+    imagePoints.push_back(cv::Point2d(points[15].CGPointValue.x, points[15].CGPointValue.y));
+    
+    std::vector<cv::Point3d> modelPoints;
+    modelPoints.push_back(cv::Point3d(0.f, 0.f, 0.f));
+    modelPoints.push_back(cv::Point3d(0.f, -330.f, -65.f));
+    modelPoints.push_back(cv::Point3d(-255.f, 170.f, -135.f));
+    modelPoints.push_back(cv::Point3d(225.f, 170.f, -135.f));
+    modelPoints.push_back(cv::Point3d(-349.f, 85.f, -300.f));
+    modelPoints.push_back(cv::Point3d(349.f, 85.f, -300.f));
+    
+    double focalLength = imageSize.width;
+    cv::Point2d center = cv::Point2d(imageSize.width / 2, imageSize.height / 2);
+    cv::Mat cameraMatrix = (cv::Mat_<double>(3,3) << focalLength, 0, center.x, \
+                                                     0, focalLength, center.y, \
+                                                     0, 0, 1);
+    cv::Mat distCoeffs = cv::Mat::zeros(4, 1, cv::DataType<double>::type);
+    cv::Mat rotationVector;
+    cv::Mat translationVector;
+    
+    cv::solvePnP(modelPoints, imagePoints, cameraMatrix, distCoeffs, rotationVector, translationVector, false, cv::SOLVEPNP_DLS);
+    std::cout << "Rotation:" << std::endl << rotationVector << std::endl;
+    std::cout << "Translation:" << std::endl << translationVector << std::endl;
 }
 
 @end
