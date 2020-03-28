@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <GLKit/GLKit.h>
 NS_ASSUME_NONNULL_BEGIN
 
-@interface XDDlibCaptureViewController : UIViewController
-
+@interface XDDlibCaptureViewController : GLKViewController<GLKViewControllerDelegate>
 @end
 
 NS_ASSUME_NONNULL_END

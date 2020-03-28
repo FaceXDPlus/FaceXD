@@ -11,7 +11,10 @@
 #import <Masonry/Masonry.h>
 #import "XDDlibCaptureViewController.h"
 #import "XDDlibWarpper.h"
-
+#import "XDFaceAnchor.h"
+#import "LAppModel.h"
+#import "LAppOpenGLManager.h"
+#import "XDDlibModelParameterConfiguration.h"
 @interface XDDlibCaptureViewController () <AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureMetadataOutputObjectsDelegate>
 @property (nonatomic, strong) CKSession *session;
 @property (nonatomic, strong) AVCaptureVideoDataOutput *videoOutput;
@@ -23,13 +26,23 @@
 @property (nonatomic, strong) MTKView *liveview;
 
 @property (nonatomic, strong) AVMetadataObject *currentMetadataObject;
+@property (nonatomic, strong) NSTimer *faceTimer;
+@property (nonatomic, assign) NSUInteger faceCount;
 
-@property (nonatomic, strong) UIView *faceRect;
 @property (nonatomic, strong) XDDlibShapePredictor *predictor;
-@property (nonatomic, strong) CAShapeLayer *pointLayer;
+
+@property (nonatomic, strong) LAppModel *haru;
+@property (nonatomic, assign) CGSize screenSize;
+
+@property (nonatomic, strong) XDDlibModelParameterConfiguration *parameter;
 @end
 
 @implementation XDDlibCaptureViewController
+
+- (GLKView *)glView {
+    return (GLKView *)self.view;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,20 +52,11 @@
     self.outputQueue = dispatch_queue_create("VideoOutputQueue", DISPATCH_QUEUE_SERIAL);
     self.faceQueue = dispatch_queue_create("FaceOutputQueue", DISPATCH_QUEUE_SERIAL);
     
-    EKMetalContext *context = [EKMetalContext defaultContext];
-    self.liveview = [[MTKView alloc] initWithFrame:CGRectZero device:context.device];
-    self.render = [[EKMetalRenderLiveview alloc] initWithContext:context metalView:self.liveview];
-    [self.render setupRenderWithError:nil];
-    [self.view addSubview:self.liveview];
-    [self.liveview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
-    }];
-    
     __weak typeof(self) weakSelf = self;
     self.session= [[CKSession alloc] initWithMultiCameraSupport:NO];
     [self.session startSessionWithConfigBlock:^(CKSession * _Nonnull session, CKSessionConfiguration * _Nonnull config) {
         config.videoDevice = @[@(CKCaptureDeviceTypeBuiltInWideAngleCamera | CKCaptureDevicePositionFront)];
-        config.sessionPresent = AVCaptureSessionPreset640x480;
+        config.sessionPresent = AVCaptureSessionPreset1280x720;
         
         weakSelf.videoOutput = [[AVCaptureVideoDataOutput alloc] init];
         [weakSelf.videoOutput setVideoSettings:@{
@@ -70,22 +74,38 @@
         [weakSelf.faceOutput setMetadataObjectTypes:@[AVMetadataObjectTypeFace]];
     }];
     
-    self.faceRect = [[UIView alloc] init];
-    self.faceRect.backgroundColor = [UIColor clearColor];
-    self.faceRect.layer.borderWidth = 2;
-    self.faceRect.layer.borderColor = [UIColor greenColor].CGColor;
-    [self.view addSubview:self.faceRect];
+    self.faceTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        weakSelf.faceCount = 0;
+    }];
+    
+    self.screenSize = [[UIScreen mainScreen] bounds].size;
+    self.preferredFramesPerSecond = 60;
+    [self.glView setContext:LAppGLContext];
+    LAppGLContextAction(^{
+        self.haru = [[LAppModel alloc] initWithName:@"Hiyori"];
+        [self.haru loadAsset];
+        [self.haru startBreath];
+    });
+    
+    self.parameter = [[XDDlibModelParameterConfiguration alloc] initWithModel:self.haru];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    self.pointLayer = [[CAShapeLayer alloc] init];
-    self.pointLayer.frame = self.view.bounds;
-    [self.view.layer addSublayer:self.pointLayer];
+- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
+    [LAppOpenGLManagerInstance updateTime];
+    glClear(GL_COLOR_BUFFER_BIT);
+    [self.haru setMVPMatrixWithSize:self.screenSize];
+    [self.haru onUpdateWithParameterUpdate:^{
+        [self.parameter commit];
+    }];
+    glClearColor(0, 0, 0, 0);
 }
 
 - (void)captureOutput:(AVCaptureOutput *)output
 didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection {
+    if (self.faceCount == 0) {
+        return;
+    }
     CGRect videoInsetRect = self.render.videoInsetRect;
     CGRect faceBounds = self.currentMetadataObject.bounds;
     CGRect faceBoundsInImage = [output transformedMetadataObjectForMetadataObject:self.currentMetadataObject connection:connection].bounds;
@@ -103,19 +123,10 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     faceBounds.size.width *= videoInsetRect.size.width;
     faceBounds.size.height *= videoInsetRect.size.height;
     
-    NSValue *rect = [NSValue valueWithCGRect:faceBounds];
-    
     CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
     NSArray<NSValue *> *points = [self.predictor predictorWithCVPixelBuffer:pixelBuffer rect:faceBoundsInImage];
-    [self.predictor faceAnchorWithPoints:points imageSize:CGSizeMake(CVPixelBufferGetWidth(pixelBuffer), CVPixelBufferGetHeight(pixelBuffer))];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.faceRect.frame = [rect CGRectValue];
-    });
-    
-    CFRetain(sampleBuffer);
-    EKSampleBuffer *buffer = [[EKSampleBuffer alloc] initWithSampleBuffer:sampleBuffer freeWhenDone:YES];
-    [self.render renderSampleBuffer:buffer];
+    XDFaceAnchor *anchor = [self.predictor faceAnchorWithPoints:points imageSize:CGSizeMake(CVPixelBufferGetWidth(pixelBuffer), CVPixelBufferGetHeight(pixelBuffer))];
+    [self.parameter updateParameterWithFaceAnchor:anchor];
 }
 
 - (void)captureOutput:(AVCaptureOutput *)output
@@ -126,6 +137,7 @@ didOutputMetadataObjects:(NSArray<__kindof AVMetadataObject *> *)metadataObjects
         return;
     }
     self.currentMetadataObject = obj;
+    self.faceCount ++;
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreVideo/CoreVideo.h>
+#import "XDFaceAnchor.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XDDlibFrontalFaceDetector : NSObject
@@ -23,8 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// @return 目标预测点
 - (NSArray<NSValue *> *)predictorWithCVPixelBuffer:(CVPixelBufferRef)pixelBuffer
                                               rect:(CGRect)rect;
-- (void)faceAnchorWithPoints:(NSArray<NSValue *> *)points
-                   imageSize:(CGSize)imageSize;
+- (XDFaceAnchor *)faceAnchorWithPoints:(NSArray<NSValue *> *)points
+                             imageSize:(CGSize)imageSize;
 @end;
 
 @interface XDDlibWarpper : NSObject
