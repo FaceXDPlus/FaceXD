@@ -3,3 +3,6 @@ SDK/
 Live2DResource/
 .DS_Store
 FaceXD.xcworkspace/xcuserdata/macbookpro.xcuserdatad/UserInterfaceState.xcuserstate
+Vendor/opencv2.framework
+Vendor/include
+Vendor/lib

@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../../xCode_Project/CameraKit/CameraKit/CameraKit.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:Vendor/KVOController/FBKVOController.xcodeproj">
    </FileRef>
    <FileRef

@@ -18,10 +18,6 @@
 		4F6F95CE2425D9D9008D6BE7 /* KVOController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95CC2425D9D9008D6BE7 /* KVOController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4F90BD6824263DE80065A06C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F90BD6724263DE70065A06C /* Accelerate.framework */; };
 		4F90BD6B242668C40065A06C /* XDDlibCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F90BD6A242668C40065A06C /* XDDlibCaptureViewController.m */; };
-		4F90BD6E2427486D0065A06C /* libdlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95D924262CFF008D6BE7 /* libdlib.a */; };
-		4F90BD72242749D80065A06C /* CameraKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F90BD71242749D80065A06C /* CameraKit.framework */; };
-		4F90BD73242749D80065A06C /* CameraKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F90BD71242749D80065A06C /* CameraKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4F90BD7424275BE80065A06C /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95D624262839008D6BE7 /* opencv2.framework */; };
 		4F90BD7624275C270065A06C /* XDOpenCVWarpper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95D4242627BA008D6BE7 /* XDOpenCVWarpper.mm */; };
 		4F90BD7724275C2B0065A06C /* XDDlibWarpper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95D1242627AC008D6BE7 /* XDDlibWarpper.mm */; };
 		4F90BD7924275D600065A06C /* shape_predictor_68_face_landmarks.dat in Resources */ = {isa = PBXBuildFile; fileRef = 4F90BD7824275D600065A06C /* shape_predictor_68_face_landmarks.dat */; };
@@ -41,6 +37,8 @@
 		4F91788723E2C2880065D31D /* LAppOpenGLManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91788623E2C2880065D31D /* LAppOpenGLManager.mm */; };
 		4FCDCD09242F2BA40069364B /* XDFaceAnchor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD08242F2BA40069364B /* XDFaceAnchor.m */; };
 		4FCDCD0C242F3C6B0069364B /* XDDlibModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD0B242F3C6B0069364B /* XDDlibModelParameterConfiguration.m */; };
+		4FCDCD0E2430C6490069364B /* CameraKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FCDCD0D2430C6490069364B /* CameraKit.framework */; };
+		4FCDCD0F2430C64A0069364B /* CameraKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4FCDCD0D2430C6490069364B /* CameraKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4FDBA28923E97222003F40F1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28823E97222003F40F1 /* AVFoundation.framework */; };
 		4FDBA28D23E9895A003F40F1 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28C23E9895A003F40F1 /* CoreMedia.framework */; };
 		4FDBA28F23E9920C003F40F1 /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28E23E9920C003F40F1 /* ARKit.framework */; };
@@ -96,7 +94,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4F90BD73242749D80065A06C /* CameraKit.framework in Embed Frameworks */,
+				4FCDCD0F2430C64A0069364B /* CameraKit.framework in Embed Frameworks */,
 				4F6F95CA2425D532008D6BE7 /* EKMetalKit.framework in Embed Frameworks */,
 				4F6F95CE2425D9D9008D6BE7 /* KVOController.framework in Embed Frameworks */,
 			);
@@ -153,6 +151,7 @@
 		4FCDCD08242F2BA40069364B /* XDFaceAnchor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDFaceAnchor.m; sourceTree = "<group>"; };
 		4FCDCD0A242F3C6B0069364B /* XDDlibModelParameterConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDlibModelParameterConfiguration.h; sourceTree = "<group>"; };
 		4FCDCD0B242F3C6B0069364B /* XDDlibModelParameterConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDDlibModelParameterConfiguration.m; sourceTree = "<group>"; };
+		4FCDCD0D2430C6490069364B /* CameraKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CameraKit.framework; path = Vendor/CameraKit.framework; sourceTree = "<group>"; };
 		4FDBA28323E95E14003F40F1 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		4FDBA28823E97222003F40F1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4FDBA28A23E9894C003F40F1 /* Vision.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vision.framework; path = System/Library/Frameworks/Vision.framework; sourceTree = SDKROOT; };
@@ -299,17 +298,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FCDCD0E2430C6490069364B /* CameraKit.framework in Frameworks */,
 				4FDBA28D23E9895A003F40F1 /* CoreMedia.framework in Frameworks */,
 				4F90BD6824263DE80065A06C /* Accelerate.framework in Frameworks */,
-				4F90BD6E2427486D0065A06C /* libdlib.a in Frameworks */,
 				4F9175AB23E1F26E0065D31D /* CoreGraphics.framework in Frameworks */,
 				4F6F95BC24254029008D6BE7 /* MetalKit.framework in Frameworks */,
 				4F6F95CD2425D9D9008D6BE7 /* KVOController.framework in Frameworks */,
 				5200CF05241241A200A0FDA0 /* Pods_FaceXD.framework in Frameworks */,
 				4F9175AE23E1F32B0065D31D /* libLive2DCubismCore.a in Frameworks */,
 				4FDBA28923E97222003F40F1 /* AVFoundation.framework in Frameworks */,
-				4F90BD72242749D80065A06C /* CameraKit.framework in Frameworks */,
-				4F90BD7424275BE80065A06C /* opencv2.framework in Frameworks */,
 				4FDBA29123E99A4F003F40F1 /* SceneKit.framework in Frameworks */,
 				4F9175AD23E1F2770065D31D /* GLKit.framework in Frameworks */,
 				4F9175A923E1F25E0065D31D /* OpenGLES.framework in Frameworks */,
@@ -431,6 +428,7 @@
 			isa = PBXGroup;
 			children = (
 				4F90BD71242749D80065A06C /* CameraKit.framework */,
+				4FCDCD0D2430C6490069364B /* CameraKit.framework */,
 				4F90BD6724263DE70065A06C /* Accelerate.framework */,
 				4F6F95D924262CFF008D6BE7 /* libdlib.a */,
 				4F6F95D624262839008D6BE7 /* opencv2.framework */,
@@ -1037,13 +1035,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor",
-					"\"$(SRCROOT)/../Vendor\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/SDK/Core/include\"",
 					"\"$(SRCROOT)/SDK/Framework/src\"",
 					"$(inherited)",
-					"\"$(SRCROOT)/../Vendor/include\"",
+					"\"$(SRCROOT)/Vendor/include\"",
 				);
 				INFOPLIST_FILE = FaceXD/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1053,7 +1050,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/SDK/Core/lib/ios/$(CONFIGURATION)-$(PLATFORM_NAME)\"",
-					"\"$(SRCROOT)/../Vendor/lib\"",
+					"\"$(SRCROOT)/Vendor/lib\"",
 				);
 				MARKETING_VERSION = 1.7.4;
 				OTHER_CFLAGS = "-DCSM_TARGET_IPHONE_ES2";
@@ -1062,6 +1059,8 @@
 					"-lLive2DCubismCore",
 					"$(inherited)",
 					"-ldlib",
+					"-framework",
+					"\"opencv2\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hakura.FaceXD;
 				PRODUCT_NAME = FaceXD;
@@ -1082,13 +1081,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor",
-					"\"$(SRCROOT)/../Vendor\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/SDK/Core/include\"",
 					"\"$(SRCROOT)/SDK/Framework/src\"",
 					"$(inherited)",
-					"\"$(SRCROOT)/../Vendor/include\"",
+					"\"$(SRCROOT)/Vendor/include\"",
 				);
 				INFOPLIST_FILE = FaceXD/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1098,7 +1096,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/SDK/Core/lib/ios/$(CONFIGURATION)-$(PLATFORM_NAME)\"",
-					"\"$(SRCROOT)/../Vendor/lib\"",
+					"\"$(SRCROOT)/Vendor/lib\"",
 				);
 				MARKETING_VERSION = 1.7.4;
 				OTHER_CFLAGS = "-DCSM_TARGET_IPHONE_ES2";
@@ -1107,6 +1105,8 @@
 					"-lLive2DCubismCore",
 					"$(inherited)",
 					"-ldlib",
+					"-framework",
+					"\"opencv2\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hakura.FaceXD;
 				PRODUCT_NAME = FaceXD;
