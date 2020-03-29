@@ -20,7 +20,6 @@
 		4F90BD6B242668C40065A06C /* XDDlibCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F90BD6A242668C40065A06C /* XDDlibCaptureViewController.m */; };
 		4F90BD7624275C270065A06C /* XDOpenCVWarpper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95D4242627BA008D6BE7 /* XDOpenCVWarpper.mm */; };
 		4F90BD7724275C2B0065A06C /* XDDlibWarpper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95D1242627AC008D6BE7 /* XDDlibWarpper.mm */; };
-		4F90BD7924275D600065A06C /* shape_predictor_68_face_landmarks.dat in Resources */ = {isa = PBXBuildFile; fileRef = 4F90BD7824275D600065A06C /* shape_predictor_68_face_landmarks.dat */; };
 		4F91747223E1EFA60065D31D /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747123E1EFA60065D31D /* AppDelegate.mm */; };
 		4F91747823E1EFA60065D31D /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747723E1EFA60065D31D /* ViewController.mm */; };
 		4F91747B23E1EFA60065D31D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F91747923E1EFA60065D31D /* Main.storyboard */; };
@@ -115,19 +114,14 @@
 		4F6F95B5242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDAdvanceModelParameterConfiguration.m; sourceTree = "<group>"; };
 		4F6F95B724253D92008D6BE7 /* EKMetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EKMetalKit.framework; path = Vendor/EKMetalKit.framework; sourceTree = "<group>"; };
 		4F6F95BB24254029008D6BE7 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
-		4F6F95C524254B81008D6BE7 /* EKMetalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EKMetalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F6F95CC2425D9D9008D6BE7 /* KVOController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KVOController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F6F95D0242627AC008D6BE7 /* XDDlibWarpper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDlibWarpper.h; sourceTree = "<group>"; };
 		4F6F95D1242627AC008D6BE7 /* XDDlibWarpper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = XDDlibWarpper.mm; sourceTree = "<group>"; };
 		4F6F95D3242627BA008D6BE7 /* XDOpenCVWarpper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDOpenCVWarpper.h; sourceTree = "<group>"; };
 		4F6F95D4242627BA008D6BE7 /* XDOpenCVWarpper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = XDOpenCVWarpper.mm; sourceTree = "<group>"; };
-		4F6F95D624262839008D6BE7 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../Vendor/opencv2.framework; sourceTree = "<group>"; };
-		4F6F95D924262CFF008D6BE7 /* libdlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdlib.a; path = ../Vendor/lib/libdlib.a; sourceTree = "<group>"; };
 		4F90BD6724263DE70065A06C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		4F90BD69242668C40065A06C /* XDDlibCaptureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDlibCaptureViewController.h; sourceTree = "<group>"; };
 		4F90BD6A242668C40065A06C /* XDDlibCaptureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDDlibCaptureViewController.m; sourceTree = "<group>"; };
-		4F90BD71242749D80065A06C /* CameraKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CameraKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F90BD7824275D600065A06C /* shape_predictor_68_face_landmarks.dat */ = {isa = PBXFileReference; lastKnownFileType = file; name = shape_predictor_68_face_landmarks.dat; path = ../../../Cross_Project/libfacecapture/download/shape_predictor_68_face_landmarks.dat; sourceTree = "<group>"; };
 		4F91746D23E1EFA60065D31D /* FaceXD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceXD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F91747023E1EFA60065D31D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F91747123E1EFA60065D31D /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -419,7 +413,6 @@
 				4F91747E23E1EFA70065D31D /* LaunchScreen.storyboard */,
 				52FB14BF242095630069C308 /* Info.plist */,
 				4F91748223E1EFA70065D31D /* main.m */,
-				4F90BD7824275D600065A06C /* shape_predictor_68_face_landmarks.dat */,
 			);
 			path = FaceXD;
 			sourceTree = "<group>";
@@ -427,13 +420,9 @@
 		4F9175A623E1F0E40065D31D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4F90BD71242749D80065A06C /* CameraKit.framework */,
 				4FCDCD0D2430C6490069364B /* CameraKit.framework */,
 				4F90BD6724263DE70065A06C /* Accelerate.framework */,
-				4F6F95D924262CFF008D6BE7 /* libdlib.a */,
-				4F6F95D624262839008D6BE7 /* opencv2.framework */,
 				4F6F95CC2425D9D9008D6BE7 /* KVOController.framework */,
-				4F6F95C524254B81008D6BE7 /* EKMetalKit.framework */,
 				4F6F95BB24254029008D6BE7 /* MetalKit.framework */,
 				4F6F95B724253D92008D6BE7 /* EKMetalKit.framework */,
 				4FDBA29023E99A4F003F40F1 /* SceneKit.framework */,
@@ -745,7 +734,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F90BD7924275D600065A06C /* shape_predictor_68_face_landmarks.dat in Resources */,
 				52FB14A0241FE1A20069C308 /* Localizable.strings in Resources */,
 				52CCBA512420B993006E87EC /* InfoPlist.strings in Resources */,
 				520D1007240D16FA002453EF /* Live2DResource in Resources */,
@@ -1065,7 +1053,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hakura.FaceXD;
 				PRODUCT_NAME = FaceXD;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 			};
 			name = Debug;
 		};
@@ -1111,7 +1098,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hakura.FaceXD;
 				PRODUCT_NAME = FaceXD;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 			};
 			name = Release;
 		};
