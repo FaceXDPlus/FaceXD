@@ -38,6 +38,11 @@
 		4FCDCD0C242F3C6B0069364B /* XDDlibModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD0B242F3C6B0069364B /* XDDlibModelParameterConfiguration.m */; };
 		4FCDCD0E2430C6490069364B /* CameraKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FCDCD0D2430C6490069364B /* CameraKit.framework */; };
 		4FCDCD0F2430C64A0069364B /* CameraKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4FCDCD0D2430C6490069364B /* CameraKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4FCDCD1A2430D8CD0069364B /* XDResourceDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD192430D8CD0069364B /* XDResourceDownloader.m */; };
+		4FCDCD1F2430DCF50069364B /* XDFilePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD1E2430DCF50069364B /* XDFilePath.m */; };
+		4FCDCD272430DFC60069364B /* FaceXDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD262430DFC60069364B /* FaceXDTests.m */; };
+		4FCDCD2E2430E0A60069364B /* XDFilePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD1E2430DCF50069364B /* XDFilePath.m */; };
+		4FCDCD2F2430E0A90069364B /* XDResourceDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD192430D8CD0069364B /* XDResourceDownloader.m */; };
 		4FDBA28923E97222003F40F1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28823E97222003F40F1 /* AVFoundation.framework */; };
 		4FDBA28D23E9895A003F40F1 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28C23E9895A003F40F1 /* CoreMedia.framework */; };
 		4FDBA28F23E9920C003F40F1 /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28E23E9920C003F40F1 /* ARKit.framework */; };
@@ -85,6 +90,16 @@
 		52CCBA512420B993006E87EC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52FB14C3242095FF0069C308 /* InfoPlist.strings */; };
 		52FB14A0241FE1A20069C308 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52FB14A2241FE1A20069C308 /* Localizable.strings */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4FCDCD292430DFC60069364B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F91746523E1EFA60065D31D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F91746C23E1EFA60065D31D;
+			remoteInfo = FaceXD;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		4F6F95CB2425D533008D6BE7 /* Embed Frameworks */ = {
@@ -146,6 +161,14 @@
 		4FCDCD0A242F3C6B0069364B /* XDDlibModelParameterConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDlibModelParameterConfiguration.h; sourceTree = "<group>"; };
 		4FCDCD0B242F3C6B0069364B /* XDDlibModelParameterConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDDlibModelParameterConfiguration.m; sourceTree = "<group>"; };
 		4FCDCD0D2430C6490069364B /* CameraKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CameraKit.framework; path = Vendor/CameraKit.framework; sourceTree = "<group>"; };
+		4FCDCD182430D8CD0069364B /* XDResourceDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDResourceDownloader.h; sourceTree = "<group>"; };
+		4FCDCD192430D8CD0069364B /* XDResourceDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDResourceDownloader.m; sourceTree = "<group>"; };
+		4FCDCD1B2430D9B20069364B /* request_key.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = request_key.h; sourceTree = "<group>"; };
+		4FCDCD1D2430DCF50069364B /* XDFilePath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDFilePath.h; sourceTree = "<group>"; };
+		4FCDCD1E2430DCF50069364B /* XDFilePath.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDFilePath.m; sourceTree = "<group>"; };
+		4FCDCD242430DFC60069364B /* FaceXDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaceXDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FCDCD262430DFC60069364B /* FaceXDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaceXDTests.m; sourceTree = "<group>"; };
+		4FCDCD282430DFC60069364B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FDBA28323E95E14003F40F1 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		4FDBA28823E97222003F40F1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4FDBA28A23E9894C003F40F1 /* Vision.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vision.framework; path = System/Library/Frameworks/Vision.framework; sourceTree = SDKROOT; };
@@ -309,6 +332,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FCDCD212430DFC60069364B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -341,6 +371,8 @@
 		4F6F95A9241FD23A008D6BE7 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				4FCDCD1C2430DCE10069364B /* Storage */,
+				4FCDCD172430D8720069364B /* Network */,
 				4F6F95CF24262762008D6BE7 /* FaceCapture */,
 				4F6F95AA241FD251008D6BE7 /* Live2D */,
 			);
@@ -382,6 +414,7 @@
 				520D1006240D16FA002453EF /* Live2DResource */,
 				520D0DE5240D0F43002453EF /* Live2DSDK */,
 				4F91746F23E1EFA60065D31D /* FaceXD */,
+				4FCDCD252430DFC60069364B /* FaceXDTests */,
 				4F91746E23E1EFA60065D31D /* Products */,
 				4F9175A623E1F0E40065D31D /* Frameworks */,
 				45792CAFCE751A0DD73E4B27 /* Pods */,
@@ -392,6 +425,7 @@
 			isa = PBXGroup;
 			children = (
 				4F91746D23E1EFA60065D31D /* FaceXD.app */,
+				4FCDCD242430DFC60069364B /* FaceXDTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -437,6 +471,34 @@
 				1456E1CC021CD518305051FC /* Pods_FaceXD.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4FCDCD172430D8720069364B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				4FCDCD182430D8CD0069364B /* XDResourceDownloader.h */,
+				4FCDCD192430D8CD0069364B /* XDResourceDownloader.m */,
+				4FCDCD1B2430D9B20069364B /* request_key.h */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		4FCDCD1C2430DCE10069364B /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				4FCDCD1D2430DCF50069364B /* XDFilePath.h */,
+				4FCDCD1E2430DCF50069364B /* XDFilePath.m */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		4FCDCD252430DFC60069364B /* FaceXDTests */ = {
+			isa = PBXGroup;
+			children = (
+				4FCDCD262430DFC60069364B /* FaceXDTests.m */,
+				4FCDCD282430DFC60069364B /* Info.plist */,
+			);
+			path = FaceXDTests;
 			sourceTree = "<group>";
 		};
 		4FDBA28223E95E06003F40F1 /* Utils */ = {
@@ -696,6 +758,24 @@
 			productReference = 4F91746D23E1EFA60065D31D /* FaceXD.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4FCDCD232430DFC60069364B /* FaceXDTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FCDCD2B2430DFC60069364B /* Build configuration list for PBXNativeTarget "FaceXDTests" */;
+			buildPhases = (
+				4FCDCD202430DFC60069364B /* Sources */,
+				4FCDCD212430DFC60069364B /* Frameworks */,
+				4FCDCD222430DFC60069364B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4FCDCD2A2430DFC60069364B /* PBXTargetDependency */,
+			);
+			name = FaceXDTests;
+			productName = FaceXDTests;
+			productReference = 4FCDCD242430DFC60069364B /* FaceXDTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -708,6 +788,10 @@
 				TargetAttributes = {
 					4F91746C23E1EFA60065D31D = {
 						CreatedOnToolsVersion = 11.2.1;
+					};
+					4FCDCD232430DFC60069364B = {
+						CreatedOnToolsVersion = 11.4;
+						TestTargetID = 4F91746C23E1EFA60065D31D;
 					};
 				};
 			};
@@ -725,6 +809,7 @@
 			projectRoot = "";
 			targets = (
 				4F91746C23E1EFA60065D31D /* FaceXD */,
+				4FCDCD232430DFC60069364B /* FaceXDTests */,
 			);
 		};
 /* End PBXProject section */
@@ -740,6 +825,13 @@
 				4F91748023E1EFA70065D31D /* LaunchScreen.storyboard in Resources */,
 				4F91747D23E1EFA70065D31D /* Assets.xcassets in Resources */,
 				4F91747B23E1EFA60065D31D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FCDCD222430DFC60069364B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -830,7 +922,9 @@
 				4FDBA29523E9AEF8003F40F1 /* XDControlValueLinear.m in Sources */,
 				520D0ED8240D0F66002453EF /* CubismPhysics.cpp in Sources */,
 				520D0ECB240D0F66002453EF /* CubismUserModel.cpp in Sources */,
+				4FCDCD1A2430D8CD0069364B /* XDResourceDownloader.m in Sources */,
 				520D0E96240D0F66002453EF /* CubismMatrix44.cpp in Sources */,
+				4FCDCD1F2430DCF50069364B /* XDFilePath.m in Sources */,
 				520D0EB2240D0F66002453EF /* CubismMotion.cpp in Sources */,
 				520D0E8F240D0F66002453EF /* CubismDefaultParameterId.cpp in Sources */,
 				4F90BD7724275C2B0065A06C /* XDDlibWarpper.mm in Sources */,
@@ -849,7 +943,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FCDCD202430DFC60069364B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FCDCD2E2430E0A60069364B /* XDFilePath.m in Sources */,
+				4FCDCD272430DFC60069364B /* FaceXDTests.m in Sources */,
+				4FCDCD2F2430E0A90069364B /* XDResourceDownloader.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4FCDCD2A2430DFC60069364B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F91746C23E1EFA60065D31D /* FaceXD */;
+			targetProxy = 4FCDCD292430DFC60069364B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4F91747923E1EFA60065D31D /* Main.storyboard */ = {
@@ -1101,6 +1213,46 @@
 			};
 			name = Release;
 		};
+		4FCDCD2C2430DFC60069364B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2VQ94C2355;
+				INFOPLIST_FILE = FaceXDTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.eki.FaceXDTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FaceXD.app/FaceXD";
+			};
+			name = Debug;
+		};
+		4FCDCD2D2430DFC60069364B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2VQ94C2355;
+				INFOPLIST_FILE = FaceXDTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.eki.FaceXDTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FaceXD.app/FaceXD";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1118,6 +1270,15 @@
 			buildConfigurations = (
 				4F91748723E1EFA70065D31D /* Debug */,
 				4F91748823E1EFA70065D31D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FCDCD2B2430DFC60069364B /* Build configuration list for PBXNativeTarget "FaceXDTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FCDCD2C2430DFC60069364B /* Debug */,
+				4FCDCD2D2430DFC60069364B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

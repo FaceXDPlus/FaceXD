@@ -6,3 +6,4 @@ FaceXD.xcworkspace/xcuserdata/macbookpro.xcuserdatad/UserInterfaceState.xcuserst
 Vendor/opencv2.framework
 Vendor/include
 Vendor/lib
+FaceXD/Service/Network/request_key.h
