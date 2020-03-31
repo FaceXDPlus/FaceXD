@@ -4,3 +4,8 @@ Live2DResource/
 .DS_Store
 FaceXD.xcworkspace/xcuserdata/macbookpro.xcuserdatad/UserInterfaceState.xcuserstate
 Podfile.lock
+Vendor/opencv2.framework
+Vendor/include
+Vendor/lib
+FaceXD/Service/Network/request_key.h
+
