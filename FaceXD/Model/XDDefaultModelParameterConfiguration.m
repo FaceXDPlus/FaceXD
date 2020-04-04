@@ -97,8 +97,27 @@
 
     self.parameter.eyeLOpen = @(1 - anchor.blendShapes[ARBlendShapeLocationEyeBlinkLeft].floatValue * 1.3);
     self.parameter.eyeROpen = @(1 - anchor.blendShapes[ARBlendShapeLocationEyeBlinkRight].floatValue * 1.3);
-    self.parameter.eyeX = @([self.eyeLinearX calc:(180 / M_PI) * leftEyeNode.eulerAngles.y]);
-    self.parameter.eyeY = @(-[self.eyeLinearY calc:(180 / M_PI) * leftEyeNode.eulerAngles.x]);
+
+    CGFloat lookUpL = anchor.blendShapes[ARBlendShapeLocationEyeLookUpLeft].floatValue;
+    CGFloat lookDownL = anchor.blendShapes[ARBlendShapeLocationEyeLookDownLeft].floatValue;
+    CGFloat lookInL = anchor.blendShapes[ARBlendShapeLocationEyeLookInLeft].floatValue;
+    CGFloat lookOutL = anchor.blendShapes[ARBlendShapeLocationEyeLookOutLeft].floatValue;
+    CGFloat lookUpR = anchor.blendShapes[ARBlendShapeLocationEyeLookUpRight].floatValue;
+    CGFloat lookDownR = anchor.blendShapes[ARBlendShapeLocationEyeLookDownRight].floatValue;
+    CGFloat lookInR = anchor.blendShapes[ARBlendShapeLocationEyeLookInRight].floatValue;
+    CGFloat lookOutR = anchor.blendShapes[ARBlendShapeLocationEyeLookOutRight].floatValue;
+    CGFloat xEyeL = lookOutL - lookInL;
+    CGFloat xEyeR = lookInR - lookOutR;
+    CGFloat yEyeL = lookUpL - lookDownL;
+    CGFloat yEyeR = lookUpR - lookDownR;
+    
+    if (@available(iOS 12.0, *)) {
+        self.parameter.eyeX = @(anchor.lookAtPoint.x * 2);
+        self.parameter.eyeY = @(anchor.lookAtPoint.y * 2);
+    } else {
+        self.parameter.eyeX = @((xEyeL + xEyeR) / 2);
+        self.parameter.eyeY = @((yEyeL + yEyeR) / 2);
+    }
     self.parameter.mouthOpenY = @(anchor.blendShapes[ARBlendShapeLocationJawOpen].floatValue * 1.8);
     
     CGFloat innerUp = anchor.blendShapes[ARBlendShapeLocationBrowInnerUp].floatValue;
