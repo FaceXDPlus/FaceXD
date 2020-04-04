@@ -17,6 +17,7 @@
 #import "LAppOpenGLManager.h"
 #import "XDDlibCaptureViewController.h"
 #import "GCDAsyncSocket.h"
+#import "NSString+XDIPValiual.h"
 
 @interface ViewController () <ARSessionDelegate,ARSCNViewDelegate,GCDAsyncSocketDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *labelJson;
@@ -288,7 +289,7 @@
                 self.socket = nil;
             }
             NSError *error;
-            if([self isValidatIP:self.submitCaptureAddress.text]
+            if([self.submitCaptureAddress.text isIPString]
                && 0 < [self.submitSocketPort.text intValue]
                && [self.submitSocketPort.text intValue] < 25565
             ){
@@ -359,25 +360,13 @@
     if([array count] == 2){
         NSScanner* scan = [NSScanner scannerWithString:[array objectAtIndex:1]];
         int val;
-        if([self isValidatIP:[array objectAtIndex:0]] && ([scan scanInt:&val] && [scan isAtEnd])){
+        if([[array objectAtIndex:0] isIPString] && ([scan scanInt:&val] && [scan isAtEnd])){
             if(0 < [[array objectAtIndex:1] intValue] && [[array objectAtIndex:1] intValue] < 25565){
                 return true;
             }
         }
     }
     return false;
-}
-
--(BOOL)isValidatIP:(NSString *)ipAddress{
-    
-    NSString  *urlRegEx =@"^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
-                        "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
-                        "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
-                        "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
-    
-    NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlRegEx];
-    return [urlTest evaluateWithObject:ipAddress];
-
 }
 
 - (void)alertError:(NSString*)data {

@@ -40,9 +40,6 @@ extern void UIImageToMat(const UIImage* image,
 #define kDlibFaceLandmarkCount (68)
 @interface XDDlibShapePredictor () {
     dlib::shape_predictor _predictor;
-    cv::KalmanFilter _kalmanFilterX;
-    cv::KalmanFilter _kalmanFilterY;
-    cv::Mat _controlVector; // U
 }
 @end;
 @implementation XDDlibShapePredictor
@@ -50,30 +47,6 @@ extern void UIImageToMat(const UIImage* image,
     self = [super init];
     if (self) {
         _predictor = predictor;
-        
-        double Q = 1; // 越大，对模型信任度越低，偏向于原始数据
-        double R = 10; // 越大，于观测数据信任越低
-        
-        /// kalmanFilterX
-        _kalmanFilterX.init(kDlibFaceLandmarkCount, kDlibFaceLandmarkCount, kDlibFaceLandmarkCount);
-        cv::setIdentity(_kalmanFilterX.statePost, cv::Scalar::all(0)); // x
-        cv::setIdentity(_kalmanFilterX.measurementMatrix); // H
-        cv::setIdentity(_kalmanFilterX.controlMatrix); // B
-        cv::setIdentity(_kalmanFilterX.transitionMatrix); // F
-        cv::setIdentity(_kalmanFilterX.errorCovPost); // P
-        cv::setIdentity(_kalmanFilterX.processNoiseCov, cv::Scalar::all(Q)); // Q
-        cv::setIdentity(_kalmanFilterX.measurementNoiseCov, cv::Scalar::all(R)); // R
-        /// kalmanFilterY
-        _kalmanFilterY.init(kDlibFaceLandmarkCount, kDlibFaceLandmarkCount, kDlibFaceLandmarkCount);
-        cv::setIdentity(_kalmanFilterY.statePost, cv::Scalar::all(0)); // x
-        cv::setIdentity(_kalmanFilterY.measurementMatrix); // H
-        cv::setIdentity(_kalmanFilterY.controlMatrix); // B
-        cv::setIdentity(_kalmanFilterY.transitionMatrix); // F
-        cv::setIdentity(_kalmanFilterY.errorCovPost); // P
-        cv::setIdentity(_kalmanFilterY.processNoiseCov, cv::Scalar::all(Q)); // Q
-        cv::setIdentity(_kalmanFilterY.measurementNoiseCov, cv::Scalar::all(R)); // R
-        
-        _controlVector = cv::Mat::zeros(kDlibFaceLandmarkCount, 1, CV_32F);
     }
     return self;
 }
@@ -111,24 +84,10 @@ extern void UIImageToMat(const UIImage* image,
     // and draw them into the image (samplebuffer)
     for (unsigned long k = 0; k < shape.num_parts(); k++) {
         dlib::point p = shape.part(k);
-        zX.at<float>((int)k, 0) = (float)p.x();
-        zY.at<float>((int)k, 0) = (float)p.y();
-    }
-    
-    
-    // Kalman update
-    _kalmanFilterX.predict(_controlVector);
-    cv::Mat stateX = _kalmanFilterX.correct(zX);
-    
-    _kalmanFilterY.predict(_controlVector);
-    cv::Mat stateY = _kalmanFilterY.correct(zY);
-    
-    // After update
-    for (int i = 0; i < kDlibFaceLandmarkCount; ++i) {
-        CGPoint point = CGPointMake(stateX.at<float>(i, 0), stateY.at<float>(i, 0));
-        NSValue *v = [NSValue valueWithCGPoint:point];
+        NSValue *v = [NSValue valueWithCGPoint:CGPointMake(p.x(), p.y())];
         [array addObject:v];
     }
+    
     return array;
 }
 

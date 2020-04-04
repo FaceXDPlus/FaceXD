@@ -48,6 +48,18 @@
 		4FDBA28F23E9920C003F40F1 /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28E23E9920C003F40F1 /* ARKit.framework */; };
 		4FDBA29123E99A4F003F40F1 /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA29023E99A4F003F40F1 /* SceneKit.framework */; };
 		4FDBA29523E9AEF8003F40F1 /* XDControlValueLinear.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDBA29323E9AEF8003F40F1 /* XDControlValueLinear.m */; };
+		4FE0D2C62438D2FA008F838E /* XDLive2DCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2C52438D2FA008F838E /* XDLive2DCaptureViewController.m */; };
+		4FE0D2C92438D32A008F838E /* XDLive2DCaptureARKitViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2C82438D32A008F838E /* XDLive2DCaptureARKitViewModel.m */; };
+		4FE0D2CC2438D33C008F838E /* XDLive2DCaptureDlibViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2CB2438D33C008F838E /* XDLive2DCaptureDlibViewModel.m */; };
+		4FE0D2CF2438D40E008F838E /* XDLive2DCaptureViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2CE2438D40E008F838E /* XDLive2DCaptureViewModel.m */; };
+		4FE0D2D32438D6D1008F838E /* NSString+XDIPValiual.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2D22438D6D1008F838E /* NSString+XDIPValiual.m */; };
+		4FE0D2D82438DB3F008F838E /* XDPackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2D72438DB3F008F838E /* XDPackManager.m */; };
+		4FE0D2DB2438DB64008F838E /* XDRawJSONSocketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2DA2438DB64008F838E /* XDRawJSONSocketService.m */; };
+		4FE0D2DE2438DBA3008F838E /* XDBaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2DD2438DBA3008F838E /* XDBaseService.m */; };
+		4FE0D2E32438DE26008F838E /* XDBaseNetworkPack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2E22438DE26008F838E /* XDBaseNetworkPack.m */; };
+		4FE0D2E72438DE64008F838E /* XDRawJSONNetworkPack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2E62438DE64008F838E /* XDRawJSONNetworkPack.m */; };
+		4FE0D2F024390D6D008F838E /* XDLive2DControlViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2EF24390D6D008F838E /* XDLive2DControlViewModel.m */; };
+		4FE0D2F324390DE9008F838E /* XDLive2DControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2F224390DE9008F838E /* XDLive2DControlViewController.m */; };
 		5200CF05241241A200A0FDA0 /* Pods_FaceXD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1456E1CC021CD518305051FC /* Pods_FaceXD.framework */; };
 		520D0E8D240D0F66002453EF /* ACubismMotion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0DE6240D0F64002453EF /* ACubismMotion.cpp */; };
 		520D0E8F240D0F66002453EF /* CubismDefaultParameterId.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0DE8240D0F64002453EF /* CubismDefaultParameterId.cpp */; };
@@ -163,7 +175,7 @@
 		4FCDCD0D2430C6490069364B /* CameraKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CameraKit.framework; path = Vendor/CameraKit.framework; sourceTree = "<group>"; };
 		4FCDCD182430D8CD0069364B /* XDResourceDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDResourceDownloader.h; sourceTree = "<group>"; };
 		4FCDCD192430D8CD0069364B /* XDResourceDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDResourceDownloader.m; sourceTree = "<group>"; };
-		4FCDCD1B2430D9B20069364B /* request_key.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = request_key.h; sourceTree = "<group>"; };
+		4FCDCD1B2430D9B20069364B /* request_key.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = request_key.h; path = ../request_key.h; sourceTree = "<group>"; };
 		4FCDCD1D2430DCF50069364B /* XDFilePath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDFilePath.h; sourceTree = "<group>"; };
 		4FCDCD1E2430DCF50069364B /* XDFilePath.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDFilePath.m; sourceTree = "<group>"; };
 		4FCDCD242430DFC60069364B /* FaceXDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaceXDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +190,30 @@
 		4FDBA29223E9AEF8003F40F1 /* XDControlValueLinear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDControlValueLinear.h; sourceTree = "<group>"; };
 		4FDBA29323E9AEF8003F40F1 /* XDControlValueLinear.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDControlValueLinear.m; sourceTree = "<group>"; };
 		4FDBA29423E9AEF8003F40F1 /* XDControlValueProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDControlValueProtocol.h; sourceTree = "<group>"; };
+		4FE0D2C42438D2FA008F838E /* XDLive2DCaptureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDLive2DCaptureViewController.h; sourceTree = "<group>"; };
+		4FE0D2C52438D2FA008F838E /* XDLive2DCaptureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDLive2DCaptureViewController.m; sourceTree = "<group>"; };
+		4FE0D2C72438D32A008F838E /* XDLive2DCaptureARKitViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDLive2DCaptureARKitViewModel.h; sourceTree = "<group>"; };
+		4FE0D2C82438D32A008F838E /* XDLive2DCaptureARKitViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDLive2DCaptureARKitViewModel.m; sourceTree = "<group>"; };
+		4FE0D2CA2438D33C008F838E /* XDLive2DCaptureDlibViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDLive2DCaptureDlibViewModel.h; sourceTree = "<group>"; };
+		4FE0D2CB2438D33C008F838E /* XDLive2DCaptureDlibViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDLive2DCaptureDlibViewModel.m; sourceTree = "<group>"; };
+		4FE0D2CD2438D40E008F838E /* XDLive2DCaptureViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDLive2DCaptureViewModel.h; sourceTree = "<group>"; };
+		4FE0D2CE2438D40E008F838E /* XDLive2DCaptureViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDLive2DCaptureViewModel.m; sourceTree = "<group>"; };
+		4FE0D2D12438D6D1008F838E /* NSString+XDIPValiual.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+XDIPValiual.h"; sourceTree = "<group>"; };
+		4FE0D2D22438D6D1008F838E /* NSString+XDIPValiual.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+XDIPValiual.m"; sourceTree = "<group>"; };
+		4FE0D2D62438DB3F008F838E /* XDPackManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDPackManager.h; sourceTree = "<group>"; };
+		4FE0D2D72438DB3F008F838E /* XDPackManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDPackManager.m; sourceTree = "<group>"; };
+		4FE0D2D92438DB64008F838E /* XDRawJSONSocketService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDRawJSONSocketService.h; sourceTree = "<group>"; };
+		4FE0D2DA2438DB64008F838E /* XDRawJSONSocketService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDRawJSONSocketService.m; sourceTree = "<group>"; };
+		4FE0D2DC2438DBA3008F838E /* XDBaseService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDBaseService.h; sourceTree = "<group>"; };
+		4FE0D2DD2438DBA3008F838E /* XDBaseService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDBaseService.m; sourceTree = "<group>"; };
+		4FE0D2E12438DE26008F838E /* XDBaseNetworkPack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDBaseNetworkPack.h; sourceTree = "<group>"; };
+		4FE0D2E22438DE26008F838E /* XDBaseNetworkPack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDBaseNetworkPack.m; sourceTree = "<group>"; };
+		4FE0D2E52438DE64008F838E /* XDRawJSONNetworkPack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDRawJSONNetworkPack.h; sourceTree = "<group>"; };
+		4FE0D2E62438DE64008F838E /* XDRawJSONNetworkPack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDRawJSONNetworkPack.m; sourceTree = "<group>"; };
+		4FE0D2EE24390D6D008F838E /* XDLive2DControlViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDLive2DControlViewModel.h; sourceTree = "<group>"; };
+		4FE0D2EF24390D6D008F838E /* XDLive2DControlViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDLive2DControlViewModel.m; sourceTree = "<group>"; };
+		4FE0D2F124390DE9008F838E /* XDLive2DControlViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDLive2DControlViewController.h; sourceTree = "<group>"; };
+		4FE0D2F224390DE9008F838E /* XDLive2DControlViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDLive2DControlViewController.m; sourceTree = "<group>"; };
 		520D0DE6240D0F64002453EF /* ACubismMotion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ACubismMotion.cpp; path = SDK/Framework/src/Motion/ACubismMotion.cpp; sourceTree = "<group>"; };
 		520D0DE7240D0F64002453EF /* CubismPose.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismPose.cpp; path = SDK/Framework/src/Effect/CubismPose.cpp; sourceTree = "<group>"; };
 		520D0DE8240D0F64002453EF /* CubismDefaultParameterId.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismDefaultParameterId.cpp; path = SDK/Framework/src/CubismDefaultParameterId.cpp; sourceTree = "<group>"; };
@@ -354,16 +390,8 @@
 		4F6F95A8241FD232008D6BE7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4F6F95AB241FD362008D6BE7 /* XDModelParameter.h */,
-				4F6F95AC241FD362008D6BE7 /* XDModelParameter.m */,
-				4F6F95AE241FD85F008D6BE7 /* XDModelParameterConfigration.h */,
-				4F6F95AF241FD85F008D6BE7 /* XDModelParameterConfigration.m */,
-				4F6F95B1241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.h */,
-				4F6F95B2241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m */,
-				4F6F95B4242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.h */,
-				4F6F95B5242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m */,
-				4FCDCD0A242F3C6B0069364B /* XDDlibModelParameterConfiguration.h */,
-				4FCDCD0B242F3C6B0069364B /* XDDlibModelParameterConfiguration.m */,
+				4FE0D2E02438DE04008F838E /* NetworkPack */,
+				4FE0D2DF2438DDED008F838E /* Live2DModelParameter */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -436,6 +464,7 @@
 				4F6F95A9241FD23A008D6BE7 /* Service */,
 				4F6F95A8241FD232008D6BE7 /* Model */,
 				4FDBA28223E95E06003F40F1 /* Utils */,
+				4FE0D2C12438D243008F838E /* ViewController */,
 				4F91747023E1EFA60065D31D /* AppDelegate.h */,
 				4F91747123E1EFA60065D31D /* AppDelegate.mm */,
 				4F91747623E1EFA60065D31D /* ViewController.h */,
@@ -476,9 +505,8 @@
 		4FCDCD172430D8720069364B /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				4FCDCD182430D8CD0069364B /* XDResourceDownloader.h */,
-				4FCDCD192430D8CD0069364B /* XDResourceDownloader.m */,
-				4FCDCD1B2430D9B20069364B /* request_key.h */,
+				4FE0D2D52438DA76008F838E /* PackManager */,
+				4FE0D2D42438DA6B008F838E /* ResourceDownloader */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -504,12 +532,132 @@
 		4FDBA28223E95E06003F40F1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4FE0D2D02438D69F008F838E /* Extension */,
 				4FDBA29223E9AEF8003F40F1 /* XDControlValueLinear.h */,
 				4FDBA29323E9AEF8003F40F1 /* XDControlValueLinear.m */,
 				4FDBA29423E9AEF8003F40F1 /* XDControlValueProtocol.h */,
 				4FDBA28323E95E14003F40F1 /* stb_image.h */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		4FE0D2C12438D243008F838E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4FE0D2C32438D297008F838E /* ViewModel */,
+				4FE0D2C22438D279008F838E /* View */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4FE0D2C22438D279008F838E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4FE0D2C42438D2FA008F838E /* XDLive2DCaptureViewController.h */,
+				4FE0D2C52438D2FA008F838E /* XDLive2DCaptureViewController.m */,
+				4FE0D2F124390DE9008F838E /* XDLive2DControlViewController.h */,
+				4FE0D2F224390DE9008F838E /* XDLive2DControlViewController.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4FE0D2C32438D297008F838E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4FE0D2ED24390D30008F838E /* Control */,
+				4FE0D2EC24390D1E008F838E /* Capture */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4FE0D2D02438D69F008F838E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4FE0D2D12438D6D1008F838E /* NSString+XDIPValiual.h */,
+				4FE0D2D22438D6D1008F838E /* NSString+XDIPValiual.m */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		4FE0D2D42438DA6B008F838E /* ResourceDownloader */ = {
+			isa = PBXGroup;
+			children = (
+				4FCDCD182430D8CD0069364B /* XDResourceDownloader.h */,
+				4FCDCD192430D8CD0069364B /* XDResourceDownloader.m */,
+				4FCDCD1B2430D9B20069364B /* request_key.h */,
+			);
+			path = ResourceDownloader;
+			sourceTree = "<group>";
+		};
+		4FE0D2D52438DA76008F838E /* PackManager */ = {
+			isa = PBXGroup;
+			children = (
+				4FE0D2D62438DB3F008F838E /* XDPackManager.h */,
+				4FE0D2D72438DB3F008F838E /* XDPackManager.m */,
+				4FE0D2D92438DB64008F838E /* XDRawJSONSocketService.h */,
+				4FE0D2DA2438DB64008F838E /* XDRawJSONSocketService.m */,
+				4FE0D2DC2438DBA3008F838E /* XDBaseService.h */,
+				4FE0D2DD2438DBA3008F838E /* XDBaseService.m */,
+			);
+			path = PackManager;
+			sourceTree = "<group>";
+		};
+		4FE0D2DF2438DDED008F838E /* Live2DModelParameter */ = {
+			isa = PBXGroup;
+			children = (
+				4F6F95AB241FD362008D6BE7 /* XDModelParameter.h */,
+				4F6F95AC241FD362008D6BE7 /* XDModelParameter.m */,
+				4F6F95AE241FD85F008D6BE7 /* XDModelParameterConfigration.h */,
+				4F6F95AF241FD85F008D6BE7 /* XDModelParameterConfigration.m */,
+				4F6F95B1241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.h */,
+				4F6F95B2241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m */,
+				4F6F95B4242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.h */,
+				4F6F95B5242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m */,
+				4FCDCD0A242F3C6B0069364B /* XDDlibModelParameterConfiguration.h */,
+				4FCDCD0B242F3C6B0069364B /* XDDlibModelParameterConfiguration.m */,
+			);
+			path = Live2DModelParameter;
+			sourceTree = "<group>";
+		};
+		4FE0D2E02438DE04008F838E /* NetworkPack */ = {
+			isa = PBXGroup;
+			children = (
+				4FE0D2E42438DE38008F838E /* RawJSON */,
+				4FE0D2E12438DE26008F838E /* XDBaseNetworkPack.h */,
+				4FE0D2E22438DE26008F838E /* XDBaseNetworkPack.m */,
+			);
+			path = NetworkPack;
+			sourceTree = "<group>";
+		};
+		4FE0D2E42438DE38008F838E /* RawJSON */ = {
+			isa = PBXGroup;
+			children = (
+				4FE0D2E52438DE64008F838E /* XDRawJSONNetworkPack.h */,
+				4FE0D2E62438DE64008F838E /* XDRawJSONNetworkPack.m */,
+			);
+			path = RawJSON;
+			sourceTree = "<group>";
+		};
+		4FE0D2EC24390D1E008F838E /* Capture */ = {
+			isa = PBXGroup;
+			children = (
+				4FE0D2C72438D32A008F838E /* XDLive2DCaptureARKitViewModel.h */,
+				4FE0D2C82438D32A008F838E /* XDLive2DCaptureARKitViewModel.m */,
+				4FE0D2CA2438D33C008F838E /* XDLive2DCaptureDlibViewModel.h */,
+				4FE0D2CB2438D33C008F838E /* XDLive2DCaptureDlibViewModel.m */,
+				4FE0D2CD2438D40E008F838E /* XDLive2DCaptureViewModel.h */,
+				4FE0D2CE2438D40E008F838E /* XDLive2DCaptureViewModel.m */,
+			);
+			path = Capture;
+			sourceTree = "<group>";
+		};
+		4FE0D2ED24390D30008F838E /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				4FE0D2EE24390D6D008F838E /* XDLive2DControlViewModel.h */,
+				4FE0D2EF24390D6D008F838E /* XDLive2DControlViewModel.m */,
+			);
+			path = Control;
 			sourceTree = "<group>";
 		};
 		520D0DE5240D0F43002453EF /* Live2DSDK */ = {
@@ -884,12 +1032,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FE0D2D32438D6D1008F838E /* NSString+XDIPValiual.m in Sources */,
 				520D0EA9240D0F66002453EF /* CubismCdiJson.cpp in Sources */,
 				520D0EC6240D0F66002453EF /* CubismRenderer_OpenGLES2.cpp in Sources */,
 				520D0EAD240D0F66002453EF /* CubismEyeBlink.cpp in Sources */,
 				520D0E9C240D0F66002453EF /* csmRectF.cpp in Sources */,
 				520D0EB8240D0F66002453EF /* CubismIdManager.cpp in Sources */,
 				520D0ED9240D0F66002453EF /* CubismModelUserData.cpp in Sources */,
+				4FE0D2C62438D2FA008F838E /* XDLive2DCaptureViewController.m in Sources */,
 				520D0E91240D0F66002453EF /* CubismViewMatrix.cpp in Sources */,
 				520D0EA6240D0F66002453EF /* CubismModelSettingJson.cpp in Sources */,
 				520D0E9B240D0F66002453EF /* csmString.cpp in Sources */,
@@ -897,18 +1047,23 @@
 				520D0ED7240D0F66002453EF /* CubismPhysicsJson.cpp in Sources */,
 				520D0EB4240D0F66002453EF /* CubismMotionQueueManager.cpp in Sources */,
 				520D0EA4240D0F66002453EF /* CubismMoc.cpp in Sources */,
+				4FE0D2CC2438D33C008F838E /* XDLive2DCaptureDlibViewModel.m in Sources */,
 				4FCDCD09242F2BA40069364B /* XDFaceAnchor.m in Sources */,
 				4F6F95B6242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m in Sources */,
+				4FE0D2DE2438DBA3008F838E /* XDBaseService.m in Sources */,
 				4F9176B823E299A40065D31D /* LAppModel.mm in Sources */,
 				520D0ED2240D0F66002453EF /* CubismString.cpp in Sources */,
 				520D0E93240D0F66002453EF /* CubismVector2.cpp in Sources */,
 				520D0E9F240D0F66002453EF /* CubismId.cpp in Sources */,
+				4FE0D2D82438DB3F008F838E /* XDPackManager.m in Sources */,
 				4F90BD6B242668C40065A06C /* XDDlibCaptureViewController.m in Sources */,
 				520D0E8D240D0F66002453EF /* ACubismMotion.cpp in Sources */,
 				520D0EAB240D0F66002453EF /* CubismPose.cpp in Sources */,
 				520D0EC4240D0F66002453EF /* CubismRenderer.cpp in Sources */,
+				4FE0D2F324390DE9008F838E /* XDLive2DControlViewController.m in Sources */,
 				520D0E97240D0F66002453EF /* CubismModel.cpp in Sources */,
 				520D0EC8240D0F66002453EF /* CubismFramework.cpp in Sources */,
+				4FE0D2CF2438D40E008F838E /* XDLive2DCaptureViewModel.m in Sources */,
 				4F9176B423E2981E0065D31D /* LAppBundle.m in Sources */,
 				520D0E90240D0F66002453EF /* CubismModelMatrix.cpp in Sources */,
 				4F91747823E1EFA60065D31D /* ViewController.mm in Sources */,
@@ -917,16 +1072,21 @@
 				520D0EDB240D0F66002453EF /* CubismModelUserDataJson.cpp in Sources */,
 				4F90BD7624275C270065A06C /* XDOpenCVWarpper.mm in Sources */,
 				520D0E9E240D0F66002453EF /* CubismExpressionMotion.cpp in Sources */,
+				4FE0D2E32438DE26008F838E /* XDBaseNetworkPack.m in Sources */,
 				520D0EB6240D0F66002453EF /* CubismMotionJson.cpp in Sources */,
 				520D0ED1240D0F66002453EF /* CubismJson.cpp in Sources */,
 				4FDBA29523E9AEF8003F40F1 /* XDControlValueLinear.m in Sources */,
 				520D0ED8240D0F66002453EF /* CubismPhysics.cpp in Sources */,
+				4FE0D2F024390D6D008F838E /* XDLive2DControlViewModel.m in Sources */,
 				520D0ECB240D0F66002453EF /* CubismUserModel.cpp in Sources */,
+				4FE0D2C92438D32A008F838E /* XDLive2DCaptureARKitViewModel.m in Sources */,
 				4FCDCD1A2430D8CD0069364B /* XDResourceDownloader.m in Sources */,
 				520D0E96240D0F66002453EF /* CubismMatrix44.cpp in Sources */,
+				4FE0D2DB2438DB64008F838E /* XDRawJSONSocketService.m in Sources */,
 				4FCDCD1F2430DCF50069364B /* XDFilePath.m in Sources */,
 				520D0EB2240D0F66002453EF /* CubismMotion.cpp in Sources */,
 				520D0E8F240D0F66002453EF /* CubismDefaultParameterId.cpp in Sources */,
+				4FE0D2E72438DE64008F838E /* XDRawJSONNetworkPack.m in Sources */,
 				4F90BD7724275C2B0065A06C /* XDDlibWarpper.mm in Sources */,
 				4F91747223E1EFA60065D31D /* AppDelegate.mm in Sources */,
 				520D0EB7240D0F66002453EF /* CubismMotionQueueEntry.cpp in Sources */,
