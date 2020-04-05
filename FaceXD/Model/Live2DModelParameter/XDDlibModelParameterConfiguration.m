@@ -9,11 +9,21 @@
 #import "XDDlibModelParameterConfiguration.h"
 #import "XDFaceAnchor.h"
 @interface XDDlibModelParameterConfiguration ()
+@property (nonatomic, strong) SCNNode *faceNode;
+
 @property (nonatomic, assign) CFTimeInterval lastUpdateTime;
 @property (nonatomic, copy) XDModelParameter *lastParameter;
 @end
 
 @implementation XDDlibModelParameterConfiguration
+
+- (SCNNode *)faceNode {
+    if (_faceNode == nil) {
+        _faceNode = [SCNNode node];
+    }
+    return _faceNode;
+}
+
 - (instancetype)initWithModel:(LAppModel *)model {
     self = [super initWithModel:model];
     if (self) {
@@ -25,8 +35,13 @@
 }
 
 - (void)updateParameterWithFaceAnchor:(XDFaceAnchor *)anchor {
+    if (!anchor.isTracked) {
+        return;
+    }
     self.lastParameter = self.parameter;
-    CGFloat pitch = anchor.headPitch.floatValue;
+    self.faceNode.simdTransform = anchor.transform;
+    
+    CGFloat pitch = self.faceNode.eulerAngles.x;
     CGFloat pitchSig = pitch > 0 ? 1 : -1;
     pitch = pitchSig * (M_PI - fabs(pitch));
     pitch = 180.0 / M_PI * pitch;
@@ -37,13 +52,8 @@
         pitch = 32;
     }
     self.parameter.headPitch = @(pitch * 2);
-    self.parameter.headRoll = @(180.0 / M_PI * anchor.headRoll.floatValue * 2);
-    self.parameter.headYaw = @(-180.0 / M_PI * anchor.headYaw.floatValue * 1.2);
-    
-    self.parameter.eyeLOpen = @(anchor.leftEyeOpen.floatValue * 30);
-    self.parameter.eyeROpen = @(anchor.leftEyeOpen.floatValue * 30);
-    self.parameter.mouthOpenY = @(anchor.mouthOpenY.floatValue * 8);
-    self.parameter.mouthForm = @(anchor.mouthOpenX.floatValue);
+    self.parameter.headRoll = @(180.0 / M_PI * self.faceNode.eulerAngles.z * 2);
+    self.parameter.headYaw = @(-180.0 / M_PI * self.faceNode.eulerAngles.y * 1.2);
     
     self.lastUpdateTime = CACurrentMediaTime();
 }

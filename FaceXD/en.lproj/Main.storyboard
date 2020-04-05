@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Z07-In-w9M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gXy-PS-eI8">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -8,23 +8,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--GLKit View Controller-->
-        <scene sceneID="eXM-aT-fTv">
-            <objects>
-                <glkViewController preferredFramesPerSecond="30" id="Z07-In-w9M" customClass="ViewController" sceneMemberID="viewController">
-                    <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" drawableDepthFormat="16" enableSetNeedsDisplay="NO" id="tl3-KB-2xS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="JTf-kA-RjL"/>
-                        <connections>
-                            <outlet property="delegate" destination="Z07-In-w9M" id="E3H-Yw-Uhj"/>
-                        </connections>
-                    </glkView>
-                </glkViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Vhy-9K-OF8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-550.72463768115949" y="-316.07142857142856"/>
-        </scene>
         <!--Live2D Control View Controller-->
         <scene sceneID="LKy-qw-7mf">
             <objects>
@@ -58,9 +41,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="onAddressExit:" destination="Z07-In-w9M" eventType="editingDidEndOnExit" id="zU9-kO-Cna"/>
-                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TimeStamp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJG-cs-Qu3">
                                 <rect key="frame" x="7" y="116" width="400" height="21"/>
@@ -84,9 +64,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="onSocketPortExit:" destination="Z07-In-w9M" eventType="editingDidEndOnExit" id="OeO-Pm-uWk"/>
-                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stopped" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ss-16-hW3">
                                 <rect key="frame" x="328.5" y="139" width="65.5" height="21"/>
@@ -130,7 +107,7 @@
                                                 <rect key="frame" x="110.5" y="0.0" width="39" height="30"/>
                                                 <state key="normal" title="Reset"/>
                                                 <connections>
-                                                    <action selector="handleResetButton:" destination="Z07-In-w9M" eventType="touchUpInside" id="XrI-8f-s6B"/>
+                                                    <action selector="handleResetButtonDown:" destination="jaT-Hx-bwf" eventType="touchUpInside" id="j4o-8s-6HQ"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -147,7 +124,7 @@
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zaF-mn-e9e">
                                                 <rect key="frame" x="104.5" y="0.0" width="51" height="31"/>
                                                 <connections>
-                                                    <action selector="handleAlignmentSwitchChange:" destination="Z07-In-w9M" eventType="valueChanged" id="kJN-5h-NKU"/>
+                                                    <action selector="handleRelativeSwitchChange:" destination="jaT-Hx-bwf" eventType="valueChanged" id="cLZ-2r-gwk"/>
                                                 </connections>
                                             </switch>
                                         </subviews>
@@ -164,7 +141,7 @@
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LQ6-sM-fRx">
                                                 <rect key="frame" x="105.5" y="0.0" width="51" height="31"/>
                                                 <connections>
-                                                    <action selector="handleAdvancedSwitch:" destination="Z07-In-w9M" eventType="valueChanged" id="WDV-Pw-WVG"/>
+                                                    <action selector="handleAdvancedSwitchChange:" destination="jaT-Hx-bwf" eventType="valueChanged" id="P99-Mp-z0V"/>
                                                 </connections>
                                             </switch>
                                         </subviews>
@@ -181,7 +158,7 @@
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="B2w-Lz-c6h">
                                                 <rect key="frame" x="107" y="0.0" width="51" height="31"/>
                                                 <connections>
-                                                    <action selector="handleCameraSwitch:" destination="Z07-In-w9M" eventType="valueChanged" id="Ogq-Vv-ahU"/>
+                                                    <action selector="handleShowCameraSwitchChange:" destination="jaT-Hx-bwf" eventType="valueChanged" id="Xwy-iN-FLX"/>
                                                 </connections>
                                             </switch>
                                         </subviews>
@@ -198,7 +175,7 @@
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fos-4J-Qnk">
                                                 <rect key="frame" x="107.5" y="0.0" width="51" height="31"/>
                                                 <connections>
-                                                    <action selector="handleJsonSwitch:" destination="Z07-In-w9M" eventType="valueChanged" id="pkx-GS-hRV"/>
+                                                    <action selector="handleShowJSONSwitchChange:" destination="jaT-Hx-bwf" eventType="valueChanged" id="9r9-eF-fk6"/>
                                                 </connections>
                                             </switch>
                                         </subviews>
@@ -215,7 +192,7 @@
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lJx-L9-zJm">
                                                 <rect key="frame" x="106.5" y="0.0" width="51" height="31"/>
                                                 <connections>
-                                                    <action selector="handleSubmitSwitch:" destination="Z07-In-w9M" eventType="valueChanged" id="XAC-HV-7oX"/>
+                                                    <action selector="handleSubmitSwitchChange:" destination="jaT-Hx-bwf" eventType="valueChanged" id="uvK-3V-8zV"/>
                                                 </connections>
                                             </switch>
                                         </subviews>
@@ -232,7 +209,7 @@
                                             <switch opaque="NO" contentMode="top" horizontalHuggingPriority="750" verticalHuggingPriority="750" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="feg-Sg-GvO">
                                                 <rect key="frame" x="106.5" y="0.0" width="51" height="31"/>
                                                 <connections>
-                                                    <action selector="handleFaceCaptureSwitch:" destination="Z07-In-w9M" eventType="valueChanged" id="ZeI-vP-cYx"/>
+                                                    <action selector="handleCaptureSwitchChange:" destination="jaT-Hx-bwf" eventType="valueChanged" id="Qyi-P3-JfH"/>
                                                 </connections>
                                             </switch>
                                         </subviews>
@@ -295,6 +272,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nmX-KZ-b3x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="781.15942028985512" y="-331.47321428571428"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="uqX-si-Oh5">
+            <objects>
+                <viewController id="gXy-PS-eI8" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ReQ-KH-LPT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Nfd-bu-i0n"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v6i-eC-bQC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-578" y="-315"/>
         </scene>
     </scenes>
 </document>

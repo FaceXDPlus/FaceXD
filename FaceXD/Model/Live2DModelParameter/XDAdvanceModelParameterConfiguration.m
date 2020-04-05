@@ -9,14 +9,8 @@
 #import "XDAdvanceModelParameterConfiguration.h"
 
 @implementation XDAdvanceModelParameterConfiguration
-- (void)updateParameterWithFaceAnchor:(ARFaceAnchor *)anchor
-                             faceNode:(SCNNode *)faceNode
-                          leftEyeNode:(SCNNode *)leftEyeNode
-                         rightEyeNode:(SCNNode *)rightEyeNode {
-    [super updateParameterWithFaceAnchor:anchor
-                                faceNode:faceNode
-                             leftEyeNode:leftEyeNode
-                            rightEyeNode:rightEyeNode];
+- (void)updateParameterWithFaceAnchor:(XDFaceAnchor *)anchor {
+    [super updateParameterWithFaceAnchor:anchor];
     self.parameter.blendShapes = anchor.blendShapes;
 }
 @end

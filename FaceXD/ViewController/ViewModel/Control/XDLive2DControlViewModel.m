@@ -16,7 +16,6 @@
 
 @interface XDLive2DControlViewModel ()
 @property (nonatomic, strong) XDRawJSONSocketService *jsonSocketService;
-@property (nonatomic, assign) BOOL isCapturing;
 @property (nonatomic, assign) BOOL isSubmiting;
 
 @property (nonatomic, strong) XDLive2DCaptureViewModel *captureViewModel;
@@ -51,14 +50,6 @@
         _port = port;
         
         _showJSON = [accountDefaults boolForKey:XDUserDefineKeySubmitJSONSwitch];
-        _advanceMode = [accountDefaults boolForKey:XDUserDefineKeySubmitAdvancedSwitch];
-        
-        NSNumber *alignmentNumber = [accountDefaults objectForKey:XDUserDefineKeySubmitCameraAlignment];
-        if (alignmentNumber == nil) {
-            alignmentNumber = @(YES);
-            [accountDefaults setObject:alignmentNumber forKey:XDUserDefineKeySubmitCameraAlignment];
-        }
-        _relativeMode = alignmentNumber.boolValue;
         _isSubmiting = NO;
         [self bindData];
     }
@@ -100,12 +91,6 @@
 - (void)attachLive2DCaptureViewModel:(XDLive2DCaptureViewModel *)captureViewModel {
     [self.captureViewModel removeKVOObserver:self];
     self.captureViewModel = captureViewModel;
-    __weak typeof(self) weakSelf = self;
-    [self.captureViewModel addKVOObserver:self forKeyPath:FBKVOKeyPath(_captureViewModel.isCapturing)
-                                    block:^(id  _Nullable oldValue, id  _Nullable newValue) {
-        weakSelf.isCapturing = weakSelf.captureViewModel.isCapturing;
-    }];
-    self.isCapturing = self.captureViewModel.isCapturing;
 }
 #pragma mark - Submit
 - (void)startSubmit {

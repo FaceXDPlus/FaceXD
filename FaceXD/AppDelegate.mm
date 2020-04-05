@@ -1,6 +1,5 @@
 #import "Live2DCubismCore.hpp"
 #import "LAppAllocator.h"
-#import "LAppOpenGLManager.h"
 #import "AppDelegate.h"
 
 class LAppLogger {
@@ -19,7 +18,6 @@ public:
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [[LAppOpenGLManager sharedInstance] setup];
     [self setupLive2DSDK];
     return YES;
 }

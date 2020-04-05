@@ -27,6 +27,7 @@
     if (self) {
         _socketQueue = dispatch_queue_create("XDRawJSONSocketService::SocketQueue", DISPATCH_QUEUE_SERIAL);
         _isConnected = NO;
+        _isPaused = YES;
     }
     return self;
 }

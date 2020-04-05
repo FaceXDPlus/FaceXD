@@ -85,20 +85,20 @@
 - (void)sendPack:(XDBaseNetworkPack *)pack
         observer:(NSObject *)observer
       completion:(XDPackManagerCompletion)completion {
-    [self.servicesRegisterLock lock];
-    [self.services enumerateObjectsUsingBlock:^(XDBaseService * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj canHandlePack:pack]) {
-            dispatch_async(self.sendQueue, ^{
+    dispatch_async(self.sendQueue, ^{
+        [self.servicesRegisterLock lock];
+        [self.services enumerateObjectsUsingBlock:^(XDBaseService * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj canHandlePack:pack]) {
                 [obj handlePack:pack];
-            });
-        }
-    }];
-    [self.servicesRegisterLock unlock];
-    
-    [self listenPack:[pack class]
-                type:XDPackManagerListenTypeOnce
-            observer:observer
-             handler:completion];
+            }
+        }];
+        [self.servicesRegisterLock unlock];
+        
+        [self listenPack:[pack class]
+                    type:XDPackManagerListenTypeOnce
+                observer:observer
+                 handler:completion];
+    });
 }
 
 - (void)listenPack:(Class)pack

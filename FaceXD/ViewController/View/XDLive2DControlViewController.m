@@ -9,9 +9,11 @@
 #import <KVOController/KVOController.h>
 #import "XDLive2DControlViewController.h"
 #import "XDLive2DControlViewModel.h"
-
+#import "XDLive2DCaptureViewModel.h"
 @interface XDLive2DControlViewController ()
 @property (nonatomic, strong) XDLive2DControlViewModel *viewModel;
+
+@property (nonatomic, assign) BOOL needShowCamera;
 
 @property (nonatomic, weak) IBOutlet UILabel *addressLabel;
 @property (nonatomic, weak) IBOutlet UITextField *addressField;
@@ -40,8 +42,8 @@
 
 @implementation XDLive2DControlViewController
 
-- (instancetype)init {
-    self = [super init];
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
     if (self) {
         _viewModel = [[XDLive2DControlViewModel alloc] init];
     }
@@ -63,11 +65,11 @@
         FBKVOKeyPath(_viewModel.host),
         FBKVOKeyPath(_viewModel.port),
         FBKVOKeyPath(_viewModel.appVersion),
-        FBKVOKeyPath(_viewModel.advanceMode),
-        FBKVOKeyPath(_viewModel.relativeMode),
+        FBKVOKeyPath(_viewModel.captureViewModel.advanceMode),
+        @"captureViewModel.worldAlignment",
         FBKVOKeyPath(_viewModel.showJSON),
         FBKVOKeyPath(_viewModel.isSubmiting),
-        FBKVOKeyPath(_viewModel.isCapturing),
+        FBKVOKeyPath(_viewModel.captureViewModel.isCapturing),
     ];
     __weak typeof(self) weakSelf = self;
     [self.viewModel addKVOObserver:self
@@ -84,14 +86,67 @@
     self.addressField.text = self.viewModel.host;
     self.socketPortField.text = self.viewModel.port;
     self.appVersionLabel.text = self.viewModel.appVersion;
-    self.advancedSwitch.on = self.viewModel.advanceMode;
-    self.relativeSwitch.on = self.viewModel.relativeMode;
+    self.advancedSwitch.on = self.viewModel.captureViewModel.advanceMode;
     self.showJSONSwitch.on = self.viewModel.showJSON;
     self.submitSwitch.on = self.viewModel.isSubmiting;
-    self.captureSwitch.on = self.viewModel.isCapturing;
+    self.captureSwitch.on = self.viewModel.captureViewModel.isCapturing;
+    
+    NSNumber *alignment = [self.viewModel.captureViewModel valueForKey:@"worldAlignment"];
+    if (alignment) {
+        BOOL isReltive = (alignment.intValue == ARWorldAlignmentCamera);
+        self.relativeSwitch.on = isReltive;
+        self.relativeSwitch.userInteractionEnabled= YES;
+    } else {
+        self.relativeSwitch.on = NO;
+        self.relativeSwitch.userInteractionEnabled = NO;
+    }
 }
 
-#pragma mark - Private
+- (void)attachCaptureViewModel:(XDLive2DCaptureViewModel *)captureViewModel {
+    [self.viewModel attachLive2DCaptureViewModel:captureViewModel];
+    [self syncData];
+}
 
+#pragma mark - Handler
 
+- (IBAction)handleCaptureSwitchChange:(id)sender {
+    if (self.captureSwitch.on) {
+        [self.viewModel startCapture];
+    } else {
+        [self.viewModel stopCapture];
+    }
+    
+}
+
+- (IBAction)handleSubmitSwitchChange:(id)sender {
+    if (self.submitSwitch.on) {
+        [self.viewModel startSubmit];
+    } else {
+        [self.viewModel stopSubmit];
+    }
+}
+
+- (IBAction)handleShowJSONSwitchChange:(id)sender {
+    
+}
+
+- (IBAction)handleShowCameraSwitchChange:(id)sender {
+    self.needShowCamera = self.showCameraSwitch.on;
+}
+
+- (IBAction)handleAdvancedSwitchChange:(id)sender {
+    self.viewModel.captureViewModel.advanceMode = self.advancedSwitch.on;
+}
+
+- (IBAction)handleRelativeSwitchChange:(id)sender {
+    if (self.relativeSwitch.on) {
+        [self.viewModel.captureViewModel setValue:@(ARWorldAlignmentCamera) forKey:@"worldAlignment"];
+    } else {
+        [self.viewModel.captureViewModel setValue:@(ARWorldAlignmentGravity) forKey:@"worldAlignment"];
+    }
+}
+
+- (IBAction)handleResetButtonDown:(id)sender {
+    
+}
 @end

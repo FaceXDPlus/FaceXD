@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <ARKit/ARKit.h>
 #import "XDLive2DCaptureViewModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XDLive2DCaptureARKitViewModel : XDLive2DCaptureViewModel
-
+@property (nonatomic, assign) ARWorldAlignment worldAlignment;
 @end
 
 NS_ASSUME_NONNULL_END

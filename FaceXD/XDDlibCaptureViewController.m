@@ -13,7 +13,7 @@
 #import "XDDlibWarpper.h"
 #import "XDFaceAnchor.h"
 #import "LAppModel.h"
-#import "LAppOpenGLManager.h"
+#import "LAppOpenGLContext.h"
 #import "XDDlibModelParameterConfiguration.h"
 @interface XDDlibCaptureViewController () <AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureMetadataOutputObjectsDelegate>
 @property (nonatomic, strong) CKSession *session;
@@ -91,7 +91,7 @@
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
-    [LAppOpenGLManagerInstance updateTime];
+    [LAppOpenGLContextInstance updateTime];
     glClear(GL_COLOR_BUFFER_BIT);
     [self.haru setMVPMatrixWithSize:self.screenSize];
     [self.haru onUpdateWithParameterUpdate:^{

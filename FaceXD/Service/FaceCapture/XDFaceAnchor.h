@@ -7,19 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <ARKit/ARKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XDFaceAnchor : NSObject
-@property (nonatomic, strong, nullable) NSNumber *headPitch;
-@property (nonatomic, strong, nullable) NSNumber *headYaw;
-@property (nonatomic, strong, nullable) NSNumber *headRoll;
 
-@property (nonatomic, strong, nullable) NSNumber *leftEyeOpen;
-@property (nonatomic, strong, nullable) NSNumber *rightEyeOpen;
+@property (nonatomic, readonly) BOOL isTracked;
+@property (nonatomic, readonly) simd_float4x4 transform;
+@property (nonatomic, readonly) ARFaceGeometry *geometry;
+@property (nonatomic, readonly) simd_float4x4 leftEyeTransform;
+@property (nonatomic, readonly) simd_float4x4 rightEyeTransform;
+@property (nonatomic, readonly) simd_float3 lookAtPoint;
+@property (nonatomic, readonly) NSDictionary<ARBlendShapeLocation, NSNumber *> *blendShapes;
 
-@property (nonatomic, strong, nullable) NSNumber *mouthOpenY;
-@property (nonatomic, strong, nullable) NSNumber *mouthOpenX;
++ (instancetype)faceAnchorWithARFaceAnchor:(ARFaceAnchor *)faceAnchor;
++ (instancetype)faceAnchorWith68Points:(NSArray<NSValue *> *)points;
 @end
 
 NS_ASSUME_NONNULL_END

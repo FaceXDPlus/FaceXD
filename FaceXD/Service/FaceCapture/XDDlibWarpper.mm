@@ -137,13 +137,13 @@ extern void UIImageToMat(const UIImage* image,
     cv::Mat rotation = [self convertToEulerAngle:rotationVector];
     cv::Mat feature = [self processFeatureParameter:points];
     XDFaceAnchor *anchor = [[XDFaceAnchor alloc] init];
-    anchor.headPitch = @(rotation.at<double>(0, 0));
-    anchor.headYaw = @(rotation.at<double>(1, 0));
-    anchor.headRoll = @(rotation.at<double>(2, 0));
-    anchor.leftEyeOpen = @(feature.at<double>(0, 0));
-    anchor.rightEyeOpen = @(feature.at<double>(1, 0));
-    anchor.mouthOpenY = @(feature.at<double>(2, 0));
-    anchor.mouthOpenX = @(feature.at<double>(3, 0));
+//    anchor.headPitch = @(rotation.at<double>(0, 0));
+//    anchor.headYaw = @(rotation.at<double>(1, 0));
+//    anchor.headRoll = @(rotation.at<double>(2, 0));
+//    anchor.leftEyeOpen = @(feature.at<double>(0, 0));
+//    anchor.rightEyeOpen = @(feature.at<double>(1, 0));
+//    anchor.mouthOpenY = @(feature.at<double>(2, 0));
+//    anchor.mouthOpenX = @(feature.at<double>(3, 0));
     return anchor;
 }
 

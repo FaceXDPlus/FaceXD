@@ -6,11 +6,11 @@
 //  Copyright © 2020 hakura. All rights reserved.
 //
 
-#import "XDModelParameterConfigration.h"
+#import "XDModelParameterConfiguration.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface XDDefaultModelParameterConfiguration : XDModelParameterConfigration
+@interface XDDefaultModelParameterConfiguration : XDModelParameterConfiguration
 
 @property (nonatomic, assign) ARWorldAlignment worldAlignment;
 @property (nonatomic, assign) UIInterfaceOrientation orientation;

@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-
+#import "LAppOpenGLContext.h"
 NS_ASSUME_NONNULL_BEGIN
 
 #define kLAppModelDefaultExpressionPriority (3)
@@ -33,7 +33,10 @@ extern LAppParam const LAppParamEyeBrowRAngle;
 
 @property (nonatomic, readonly) NSArray<NSString *> *expressionName;
 
-- (nullable instancetype)initWithName:(NSString *)name;
+@property (nonatomic, strong) LAppOpenGLContext *glContext;
+
+- (nullable instancetype)initWithName:(NSString *)name
+                            glContext:(LAppOpenGLContext *)glContext;
 
 - (void)setMVPMatrixWithSize:(CGSize)size;
 

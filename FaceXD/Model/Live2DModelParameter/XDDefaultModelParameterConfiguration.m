@@ -11,6 +11,10 @@
 #import "XDControlValueLinear.h"
 
 @interface XDDefaultModelParameterConfiguration ()
+@property (nonatomic, strong) SCNNode *faceNode;
+@property (nonatomic, strong) SCNNode *leftEyeNode;
+@property (nonatomic, strong) SCNNode *rightEyeNode;
+
 @property (nonatomic, strong) XDControlValueLinear *eyeLinearX;
 @property (nonatomic, strong) XDControlValueLinear *eyeLinearY;
 
@@ -19,6 +23,27 @@
 @end
 
 @implementation XDDefaultModelParameterConfiguration
+
+- (SCNNode *)faceNode {
+    if (_faceNode == nil) {
+        _faceNode = [SCNNode node];
+    }
+    return _faceNode;
+}
+
+- (SCNNode *)leftEyeNode {
+    if (_leftEyeNode == nil) {
+        _leftEyeNode = [SCNNode node];
+    }
+    return _leftEyeNode;
+}
+
+- (SCNNode *)rightEyeNode {
+    if (_rightEyeNode == nil) {
+        _rightEyeNode = [SCNNode node];
+    }
+    return _rightEyeNode;
+}
 
 - (instancetype)initWithModel:(LAppModel *)model {
     self = [super initWithModel:model];
@@ -55,26 +80,26 @@
 }
 
 #pragma mark - Public
-- (void)updateParameterWithFaceAnchor:(ARFaceAnchor *)anchor
-                             faceNode:(SCNNode *)faceNode
-                          leftEyeNode:(SCNNode *)leftEyeNode
-                         rightEyeNode:(SCNNode *)rightEyeNode {
+- (void)updateParameterWithFaceAnchor:(XDFaceAnchor *)anchor {
     if (!anchor.isTracked) {
         return;
     }
-    
     self.lastParameter = self.parameter;
+    self.faceNode.simdTransform = anchor.transform;
+    self.leftEyeNode.simdTransform = anchor.transform;
+    self.rightEyeNode.simdTransform = anchor.transform;
+    
     if (self.worldAlignment == ARWorldAlignmentCamera) {
-        self.parameter.headPitch = @(-(180 / M_PI) * faceNode.eulerAngles.x * 1.3);
-        self.parameter.headYaw = @((180 / M_PI) * faceNode.eulerAngles.y);
-        self.parameter.headRoll = @(-(180 / M_PI) * faceNode.eulerAngles.z + 90.0);
+        self.parameter.headPitch = @(-(180 / M_PI) * self.faceNode.eulerAngles.x * 1.3);
+        self.parameter.headYaw = @((180 / M_PI) * self.faceNode.eulerAngles.y);
+        self.parameter.headRoll = @(-(180 / M_PI) * self.faceNode.eulerAngles.z + 90.0);
         switch (self.orientation) {
             case UIInterfaceOrientationLandscapeRight: {
                 self.parameter.headRoll = @(self.parameter.headRoll.floatValue - 90);
             }
                 break;
             case UIInterfaceOrientationLandscapeLeft: {
-                CGFloat headRoll = (M_PI - ABS(faceNode.eulerAngles.z)) * (faceNode.eulerAngles.z > 0 ? -1 : 1);
+                CGFloat headRoll = (M_PI - ABS(self.faceNode.eulerAngles.z)) * (self.faceNode.eulerAngles.z > 0 ? -1 : 1);
                 self.parameter.headRoll = @(-(180 / M_PI) * headRoll);
             }
                 break;
@@ -86,9 +111,9 @@
                 break;
         }
     } else if (self.worldAlignment == ARWorldAlignmentGravity) {
-        self.parameter.headPitch = @(-(180 / M_PI) * faceNode.eulerAngles.x * 1.3);
-        self.parameter.headYaw = @((180 / M_PI) * faceNode.eulerAngles.y);
-        self.parameter.headRoll = @(-(180 / M_PI) * faceNode.eulerAngles.z);
+        self.parameter.headPitch = @(-(180 / M_PI) * self.faceNode.eulerAngles.x * 1.3);
+        self.parameter.headYaw = @((180 / M_PI) * self.faceNode.eulerAngles.y);
+        self.parameter.headRoll = @(-(180 / M_PI) * self.faceNode.eulerAngles.z);
     }
     
     self.parameter.bodyAngleX = @(self.parameter.headYaw.floatValue / 4);
@@ -97,8 +122,8 @@
 
     self.parameter.eyeLOpen = @(1 - anchor.blendShapes[ARBlendShapeLocationEyeBlinkLeft].floatValue * 1.3);
     self.parameter.eyeROpen = @(1 - anchor.blendShapes[ARBlendShapeLocationEyeBlinkRight].floatValue * 1.3);
-    self.parameter.eyeX = @([self.eyeLinearX calc:(180 / M_PI) * leftEyeNode.eulerAngles.y]);
-    self.parameter.eyeY = @(-[self.eyeLinearY calc:(180 / M_PI) * leftEyeNode.eulerAngles.x]);
+    self.parameter.eyeX = @([self.eyeLinearX calc:(180 / M_PI) * self.leftEyeNode.eulerAngles.y]);
+    self.parameter.eyeY = @(-[self.eyeLinearY calc:(180 / M_PI) * self.leftEyeNode.eulerAngles.x]);
     self.parameter.mouthOpenY = @(anchor.blendShapes[ARBlendShapeLocationJawOpen].floatValue * 1.8);
     
     CGFloat innerUp = anchor.blendShapes[ARBlendShapeLocationBrowInnerUp].floatValue;

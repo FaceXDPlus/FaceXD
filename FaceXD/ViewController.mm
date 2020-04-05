@@ -7,97 +7,28 @@
 #import <EKMetalKit/EKMetalKit.h>
 #import <KVOController/KVOController.h>
 #import <Masonry/Masonry.h>
-#import "XDModelParameter.h"
-#import "XDDefaultModelParameterConfiguration.h"
-#import "XDAdvanceModelParameterConfiguration.h"
-#import "CubismModelMatrix.hpp"
-#import "ViewController.h"
-#import "LAppModel.h"
-#import "LAppBundle.h"
-#import "LAppOpenGLManager.h"
-#import "XDDlibCaptureViewController.h"
-#import "GCDAsyncSocket.h"
-#import "NSString+XDIPValiual.h"
 
+#import "ViewController.h"
+#import "NSString+XDIPValiual.h"
 #import "UIStoryboard+XDStoryboard.h"
 #import "XDLive2DControlViewController.h"
-@interface ViewController () <ARSessionDelegate,ARSCNViewDelegate,GCDAsyncSocketDelegate>
+#import "XDLive2DCaptureViewController.h"
+@interface ViewController ()
 
 @property (nonatomic, strong) XDLive2DControlViewController *controlViewController;
-
-@property (nonatomic, strong) EKMetalRenderLiveview *render;
-@property (nonatomic, strong) MTKView *liveview;
-@property (nonatomic, strong) CIContext *ciContext;
-
-@property (nonatomic) GLKView *glView;
-@property (nonatomic, strong) LAppModel *hiyori;
-@property (nonatomic, assign) CGSize screenSize;
-@property (nonatomic, assign) NSInteger expressionCount;
-
-@property (nonatomic, strong) ARSession *arSession;
-@property (nonatomic, strong) SCNNode *faceNode;
-@property (nonatomic, strong) SCNNode *leftEyeNode;
-@property (nonatomic, strong) SCNNode *rightEyeNode;
-
-@property (nonatomic, strong) XDModelParameterConfigration *parameterConfiguration;
-@property (nonatomic, strong) XDModelParameterConfigration *advanceParameterConfiguration;
-
-@property (nonatomic, strong) dispatch_queue_t networkQueue;
-@property (nonatomic, strong) dispatch_queue_t processJSONQueue;
+@property (nonatomic, strong) XDLive2DCaptureViewController *captureViewController;
 @end
 
 @implementation ViewController
-
-- (CIContext *)ciContext {
-    if (_ciContext == nil) {
-        _ciContext = [CIContext contextWithOptions:@{
-            kCIContextHighQualityDownsample: @(YES),
-        }];
-    }
-    return _ciContext;
-}
-
-- (GLKView *)glView {
-    return (GLKView *)self.view;
-}
-
-- (SCNNode *)faceNode {
-    if (_faceNode == nil) {
-        _faceNode = [SCNNode node];
-    }
-    return _faceNode;
-}
-
-- (SCNNode *)leftEyeNode {
-    if (_leftEyeNode == nil) {
-        _leftEyeNode = [SCNNode node];
-    }
-    return _leftEyeNode;
-}
-
-- (SCNNode *)rightEyeNode {
-    if (_rightEyeNode == nil) {
-        _rightEyeNode = [SCNNode node];
-    }
-    return _rightEyeNode;
-}
-
-- (XDModelParameterConfigration *)parameterConfiguration {
-    if (_parameterConfiguration == nil) {
-        _parameterConfiguration = [[XDDefaultModelParameterConfiguration alloc] initWithModel:self.hiyori];
-    }
-    return _parameterConfiguration;
-}
-
-- (XDModelParameterConfigration *)advanceParameterConfiguration {
-    if (_advanceParameterConfiguration == nil) {
-        _advanceParameterConfiguration = [[XDAdvanceModelParameterConfiguration alloc] initWithModel:self.hiyori];
-    }
-    return _advanceParameterConfiguration;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.captureViewController = [[XDLive2DCaptureViewController alloc] initWithModelName:@"Hiyori"];
+    [self.view addSubview:self.captureViewController.view];
+    [self addChildViewController:self.captureViewController];
+    [self.captureViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
     
     self.controlViewController = (XDLive2DControlViewController *)[UIStoryboard xd_viewControllerWithClass:[XDLive2DControlViewController class]];
     [self.view addSubview:self.controlViewController.view];
@@ -106,90 +37,19 @@
         make.edges.equalTo(self.view);
     }];
     
-    self.networkQueue = dispatch_queue_create("FaceXD::NetworkQueue", DISPATCH_QUEUE_SERIAL);
-    self.processJSONQueue = dispatch_queue_create("FaceXD::ProcessJSONQueue", DISPATCH_QUEUE_SERIAL);
+    [self.controlViewController attachCaptureViewModel:self.captureViewController.viewModel];
     
-    self.screenSize = [[UIScreen mainScreen] bounds].size;
- 
-    EKMetalContext *context = [EKMetalContext defaultContext];
-    self.liveview = [[MTKView alloc] initWithFrame:CGRectZero device:context.device];
-    self.render = [[EKMetalRenderLiveview alloc] initWithContext:context metalView:self.liveview];
-    [self.render setupRenderWithError:nil];
-    
-    [self.view addSubview:self.liveview];
-    [self layoutLiveview];
-    
-    self.preferredFramesPerSecond = 60;
-    [self.glView setContext:LAppGLContext];
-    LAppGLContextAction(^{
-        self.hiyori = [[LAppModel alloc] initWithName:@"Hiyori"];
-        [self.hiyori loadAsset];
-        [self.hiyori startBreath];
-    });
-    
-    [self loadConfig];
+    [self bindData];
 }
 
 - (void)bindData {
-    
-}
-
-- (void)layoutLiveview {
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    [self.liveview mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.view).offset(-20);
-        make.bottom.mas_equalTo(self.view).offset(-20);
-        CGSize size = CGSizeMake(149, 254);
-        if (orientation == UIInterfaceOrientationLandscapeLeft ||
-            orientation == UIInterfaceOrientationLandscapeRight) {
-            size = CGSizeMake(254, 149);
-        }
-        make.size.mas_equalTo(size);
+    __weak typeof(self) weakSelf = self;
+    [self.controlViewController addKVOObserver:self forKeyPath:FBKVOKeyPath(_controlViewController.needShowCamera) block:^(id  _Nullable oldValue, id  _Nullable newValue) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakSelf.captureViewController.liveview.hidden = ![newValue boolValue];
+        });
     }];
-}
-
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
-    self.screenSize = size;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self layoutLiveview];
-    });
-}
-
-- (void)loadConfig {
-    
-}
-
-- (void)setupARSession {
-    self.arSession = [[ARSession alloc] init];
-    ARFaceTrackingConfiguration *faceTracking = [[ARFaceTrackingConfiguration alloc] init];
-    faceTracking.worldAlignment = ARWorldAlignmentCamera;
-    
-    XDDefaultModelParameterConfiguration *c = (XDDefaultModelParameterConfiguration *)self.parameterConfiguration;
-    c.frameInterval = 1.0 / 30.0;
-    if (@available(iOS 11.3, *)) {
-        __block ARVideoFormat *format = nil;
-        [[ARFaceTrackingConfiguration supportedVideoFormats] enumerateObjectsUsingBlock:^(ARVideoFormat * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (obj.framesPerSecond == 30 &&
-                fabs(obj.imageResolution.height - 720) < 1e-6) {
-                format = obj;
-            }
-        }];
-        if (format != nil) {
-            faceTracking.videoFormat = format;
-        }
-    }
-    self.arSession.delegate = self;
-    [self.arSession runWithConfiguration:faceTracking];
-}
-
-- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
-    [LAppOpenGLManagerInstance updateTime];
-    glClear(GL_COLOR_BUFFER_BIT);
-    [self.hiyori setMVPMatrixWithSize:self.screenSize];
-    [self.hiyori onUpdateWithParameterUpdate:^{
-        [self.parameterConfiguration commit];
-    }];
-    glClearColor(0, 0, 0, 0);
+    self.captureViewController.liveview.hidden = !self.controlViewController.needShowCamera;
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -432,103 +292,5 @@
 //    [accountDefaults synchronize];
 //    [sender resignFirstResponder];
 //}
-
-#pragma mark - Delegate
-#pragma mark - ARSCNViewDelegate
-#pragma mark - ARSessionDelegate
-
-- (void)session:(ARSession *)session didUpdateFrame:(ARFrame *)frame {
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    EKMetalRenderLiveviewRotation rotation = EKMetalRenderLiveviewRotationRight;
-    if (orientation == UIInterfaceOrientationPortrait) {
-        rotation = EKMetalRenderLiveviewRotationRight;
-    } else if (orientation == UIInterfaceOrientationLandscapeRight) {
-        rotation = EKMetalRenderLiveviewRotationNormal;
-    } else if (orientation == UIInterfaceOrientationLandscapeLeft) {
-        rotation = EKMetalRenderLiveviewRotationUpsideDown;
-    } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
-        rotation = EKMetalRenderLiveviewRotationLeft;
-    }
-    CMVideoFormatDescriptionRef format = NULL;
-    CMVideoFormatDescriptionCreateForImageBuffer(kCFAllocatorDefault,
-                                                 frame.capturedImage,
-                                                 &format);
-    CMSampleTimingInfo timing;
-    timing.decodeTimeStamp = kCMTimeInvalid;
-    timing.presentationTimeStamp = kCMTimeInvalid;
-    timing.duration = kCMTimeInvalid;
-    CMSampleBufferRef sampleBuffer = NULL;
-    CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault,
-                                       frame.capturedImage,
-                                       true,
-                                       NULL,
-                                       NULL,
-                                       format,
-                                       &timing,
-                                       &sampleBuffer);
-    EKSampleBuffer *buffer = [[EKSampleBuffer alloc] initWithSampleBuffer:sampleBuffer freeWhenDone:YES];
-    self.render.orientation = rotation;
-    [self.render renderSampleBuffer:buffer];
-    CFRelease(format);
-}
-
-- (void)session:(ARSession *)session didUpdateAnchors:(NSArray<__kindof ARAnchor *> *)anchors {
-    if(1){
-        ARFaceAnchor *faceAnchor = anchors.firstObject;
-        if (faceAnchor) {
-            UInt64 recordTime = [[NSDate date] timeIntervalSince1970]*1000;
-
-            NSString *timeString = [NSString stringWithFormat:@"%llu", recordTime];
-            NSString *lastTimeString = [NSString stringWithFormat:@"%llu", lastRecordTime];
-            
-            if(1){
-                if((recordTime - lastRecordTime) < timeInOneFps){
-                    //self.timeStampLabel.text = @"跳过本数据";
-                    return;
-                }else{
-                    lastRecordTime = recordTime;
-//                    self.timeStampLabel.text = [NSString stringWithFormat:NSLocalizedString(@"30FPSLabel", nil), lastTimeString, timeString];
-                }
-            }else{
-//                self.timeStampLabel.text = [NSString stringWithFormat:NSLocalizedString(@"60FPSLabel", nil), timeString];
-            }
-            
-            self.faceNode.simdTransform = faceAnchor.transform;
-            if (@available(iOS 12.0, *)) {
-                self.leftEyeNode.simdTransform = faceAnchor.leftEyeTransform;
-                self.rightEyeNode.simdTransform = faceAnchor.rightEyeTransform;
-            }
-            
-            UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-            if ([self.parameterConfiguration isKindOfClass:[XDDefaultModelParameterConfiguration class]]) {
-                [self.parameterConfiguration setValue:@(self.arSession.configuration.worldAlignment) forKey:@"worldAlignment"];
-                [self.parameterConfiguration setValue:@(orientation) forKey:@"orientation"];
-            }
-            if ([self.advanceParameterConfiguration isKindOfClass:[XDAdvanceModelParameterConfiguration class]]) {
-                [self.advanceParameterConfiguration setValue:@(self.arSession.configuration.worldAlignment) forKey:@"worldAlignment"];
-                [self.advanceParameterConfiguration setValue:@(orientation) forKey:@"orientation"];
-            }
-            
-            [self.parameterConfiguration updateParameterWithFaceAnchor:faceAnchor
-                                                              faceNode:self.faceNode
-                                                           leftEyeNode:self.leftEyeNode
-                                                          rightEyeNode:self.rightEyeNode];
-            [self.advanceParameterConfiguration updateParameterWithFaceAnchor:faceAnchor
-                                                                 faceNode:self.faceNode
-                                                              leftEyeNode:self.leftEyeNode
-                                                             rightEyeNode:self.rightEyeNode];
-            self.parameterConfiguration.parameter.timestamp = timeString;
-            self.advanceParameterConfiguration.parameter.timestamp = timeString;
-            
-            NSDictionary *param = @{};
-            if(1){
-                param = [self.advanceParameterConfiguration.parameter parameterValueDictionary];
-            } else {
-                param = [self.parameterConfiguration.parameter parameterValueDictionary];
-            }
-        }
-    }
-}
-
 
 @end

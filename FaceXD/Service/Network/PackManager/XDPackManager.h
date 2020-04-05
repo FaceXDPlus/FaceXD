@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, XDPackManagerListenType) {
 
 - (void)sendPack:(XDBaseNetworkPack *)pack
         observer:(NSObject *)observer
-      completion:(XDPackManagerCompletion)completion;
+      completion:(XDPackManagerCompletion _Nullable)completion;
 
 - (void)listenPack:(Class)pack
           observer:(NSObject *)observer

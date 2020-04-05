@@ -10,7 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class XDLive2DCaptureViewModel;
 @interface XDLive2DControlViewController : UIViewController
+
+@property (nonatomic, readonly) BOOL needShowCamera;
+
+- (void)attachCaptureViewModel:(XDLive2DCaptureViewModel *)captureViewModel;
 
 @end
 
