@@ -10,11 +10,28 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class XDLive2DCaptureViewModel;
 @interface XDLive2DControlViewModel : NSObject
 @property (nonatomic, copy) NSString *host;
 @property (nonatomic, copy) NSString *port;
 - (NSError *)connect;
 - (void)disconnect;
+
+@property (nonatomic, readonly) NSString *appVersion;
+@property (nonatomic, assign) BOOL advanceMode;
+@property (nonatomic, assign) BOOL relativeMode;
+@property (nonatomic, assign) BOOL showJSON;
+
+@property (nonatomic, readonly) BOOL isCapturing;
+@property (nonatomic, readonly) BOOL isSubmiting;
+
+- (void)startCapture;
+- (void)stopCapture;
+
+- (void)startSubmit;
+- (void)stopSubmit;
+
+- (void)attachLive2DCaptureViewModel:(XDLive2DCaptureViewModel *)captureViewModel;
 @end
 
 NS_ASSUME_NONNULL_END

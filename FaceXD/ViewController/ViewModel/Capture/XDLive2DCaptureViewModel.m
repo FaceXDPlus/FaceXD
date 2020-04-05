@@ -9,9 +9,17 @@
 #import "XDLive2DCaptureViewModel.h"
 
 @interface XDLive2DCaptureViewModel ()
-
+@property (nonatomic, assign) BOOL isCapturing;
 @end
 
 @implementation XDLive2DCaptureViewModel
+
+- (void)startCapture {
+    self.isCapturing = YES;
+}
+
+- (void)stopCapture {
+    self.isCapturing = NO;
+}
 
 @end

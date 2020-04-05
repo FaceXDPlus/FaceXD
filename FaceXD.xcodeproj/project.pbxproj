@@ -60,6 +60,7 @@
 		4FE0D2E72438DE64008F838E /* XDRawJSONNetworkPack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2E62438DE64008F838E /* XDRawJSONNetworkPack.m */; };
 		4FE0D2F024390D6D008F838E /* XDLive2DControlViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2EF24390D6D008F838E /* XDLive2DControlViewModel.m */; };
 		4FE0D2F324390DE9008F838E /* XDLive2DControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2F224390DE9008F838E /* XDLive2DControlViewController.m */; };
+		4FE0D2F72439B8DD008F838E /* UIStoryboard+XDStoryboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2F62439B8DD008F838E /* UIStoryboard+XDStoryboard.m */; };
 		5200CF05241241A200A0FDA0 /* Pods_FaceXD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1456E1CC021CD518305051FC /* Pods_FaceXD.framework */; };
 		520D0E8D240D0F66002453EF /* ACubismMotion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0DE6240D0F64002453EF /* ACubismMotion.cpp */; };
 		520D0E8F240D0F66002453EF /* CubismDefaultParameterId.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0DE8240D0F64002453EF /* CubismDefaultParameterId.cpp */; };
@@ -214,6 +215,9 @@
 		4FE0D2EF24390D6D008F838E /* XDLive2DControlViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDLive2DControlViewModel.m; sourceTree = "<group>"; };
 		4FE0D2F124390DE9008F838E /* XDLive2DControlViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDLive2DControlViewController.h; sourceTree = "<group>"; };
 		4FE0D2F224390DE9008F838E /* XDLive2DControlViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDLive2DControlViewController.m; sourceTree = "<group>"; };
+		4FE0D2F4243920D1008F838E /* XDUserDefineKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDUserDefineKeys.h; sourceTree = "<group>"; };
+		4FE0D2F52439B8DD008F838E /* UIStoryboard+XDStoryboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+XDStoryboard.h"; sourceTree = "<group>"; };
+		4FE0D2F62439B8DD008F838E /* UIStoryboard+XDStoryboard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIStoryboard+XDStoryboard.m"; sourceTree = "<group>"; };
 		520D0DE6240D0F64002453EF /* ACubismMotion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ACubismMotion.cpp; path = SDK/Framework/src/Motion/ACubismMotion.cpp; sourceTree = "<group>"; };
 		520D0DE7240D0F64002453EF /* CubismPose.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismPose.cpp; path = SDK/Framework/src/Effect/CubismPose.cpp; sourceTree = "<group>"; };
 		520D0DE8240D0F64002453EF /* CubismDefaultParameterId.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismDefaultParameterId.cpp; path = SDK/Framework/src/CubismDefaultParameterId.cpp; sourceTree = "<group>"; };
@@ -471,6 +475,7 @@
 				4F91747723E1EFA60065D31D /* ViewController.mm */,
 				4F90BD69242668C40065A06C /* XDDlibCaptureViewController.h */,
 				4F90BD6A242668C40065A06C /* XDDlibCaptureViewController.m */,
+				4FE0D2F4243920D1008F838E /* XDUserDefineKeys.h */,
 				4F91747923E1EFA60065D31D /* Main.storyboard */,
 				4F91747C23E1EFA70065D31D /* Assets.xcassets */,
 				4F91747E23E1EFA70065D31D /* LaunchScreen.storyboard */,
@@ -575,6 +580,8 @@
 			children = (
 				4FE0D2D12438D6D1008F838E /* NSString+XDIPValiual.h */,
 				4FE0D2D22438D6D1008F838E /* NSString+XDIPValiual.m */,
+				4FE0D2F52439B8DD008F838E /* UIStoryboard+XDStoryboard.h */,
+				4FE0D2F62439B8DD008F838E /* UIStoryboard+XDStoryboard.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1092,6 +1099,7 @@
 				520D0EB7240D0F66002453EF /* CubismMotionQueueEntry.cpp in Sources */,
 				520D0E95240D0F66002453EF /* CubismMath.cpp in Sources */,
 				4F6F95B0241FD85F008D6BE7 /* XDModelParameterConfigration.m in Sources */,
+				4FE0D2F72439B8DD008F838E /* UIStoryboard+XDStoryboard.m in Sources */,
 				4F91788723E2C2880065D31D /* LAppOpenGLManager.mm in Sources */,
 				4F91748323E1EFA70065D31D /* main.m in Sources */,
 				520D0EC7240D0F66002453EF /* CubismOffscreenSurface_OpenGLES2.cpp in Sources */,

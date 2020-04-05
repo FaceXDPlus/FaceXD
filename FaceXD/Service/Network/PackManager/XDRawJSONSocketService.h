@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface XDRawJSONSocketService : XDBaseService
 
 @property (nonatomic, readonly) BOOL isConnected;
+@property (nonatomic, readonly) BOOL isPaused;
 @property (nonatomic, readonly) NSError *lastError;
 
 - (void)setupServiceWithEndpointHost:(NSString *)endpointHost
@@ -21,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
                                error:(NSError *__autoreleasing  _Nullable * _Nullable)error;
 - (void)disconnect;
 
+- (void)pause;
+- (void)resume;
 
 @end
 

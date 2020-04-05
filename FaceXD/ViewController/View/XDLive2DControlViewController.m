@@ -6,8 +6,10 @@
 //  Copyright © 2020 hakura. All rights reserved.
 //
 
+#import <KVOController/KVOController.h>
 #import "XDLive2DControlViewController.h"
 #import "XDLive2DControlViewModel.h"
+
 @interface XDLive2DControlViewController ()
 @property (nonatomic, strong) XDLive2DControlViewModel *viewModel;
 
@@ -57,11 +59,36 @@
 }
 
 - (void)bindData {
-    
+    NSArray *uiListenKeys = @[
+        FBKVOKeyPath(_viewModel.host),
+        FBKVOKeyPath(_viewModel.port),
+        FBKVOKeyPath(_viewModel.appVersion),
+        FBKVOKeyPath(_viewModel.advanceMode),
+        FBKVOKeyPath(_viewModel.relativeMode),
+        FBKVOKeyPath(_viewModel.showJSON),
+        FBKVOKeyPath(_viewModel.isSubmiting),
+        FBKVOKeyPath(_viewModel.isCapturing),
+    ];
+    __weak typeof(self) weakSelf = self;
+    [self.viewModel addKVOObserver:self
+                       forKeyPaths:uiListenKeys
+                             block:^(id  _Nullable oldValue, id  _Nullable newValue) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf syncData];
+        });
+    }];
+    [self syncData];
 }
 
 - (void)syncData {
-    
+    self.addressField.text = self.viewModel.host;
+    self.socketPortField.text = self.viewModel.port;
+    self.appVersionLabel.text = self.viewModel.appVersion;
+    self.advancedSwitch.on = self.viewModel.advanceMode;
+    self.relativeSwitch.on = self.viewModel.relativeMode;
+    self.showJSONSwitch.on = self.viewModel.showJSON;
+    self.submitSwitch.on = self.viewModel.isSubmiting;
+    self.captureSwitch.on = self.viewModel.isCapturing;
 }
 
 #pragma mark - Private

@@ -16,6 +16,7 @@
 @property (nonatomic, strong) GCDAsyncSocket *socket;
 @property (nonatomic, strong) dispatch_queue_t socketQueue;
 @property (nonatomic, assign) BOOL isConnected;
+@property (nonatomic, assign) BOOL isPaused;
 @property (nonatomic, strong) NSError *lastError;
 @end
 
@@ -53,6 +54,10 @@
 }
 
 - (void)handlePack:(XDBaseNetworkPack *)pack {
+    if (self.isPaused ||
+        !self.isConnected) {
+        return;
+    }
     NSData *data = [pack serialize];
     [self.socket writeData:data withTimeout:-1 tag:kXDRawJSONSocketServiceSocketTag];
 }
@@ -60,6 +65,7 @@
 #pragma mark - Delegate
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port {
     self.isConnected = YES;
+    [self resume];
     [self.socket readDataWithTimeout:-1 tag:kXDRawJSONSocketServiceSocketTag];
 }
 
@@ -71,6 +77,14 @@
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
     
     [self.socket readDataWithTimeout:-1 tag:kXDRawJSONSocketServiceSocketTag];
+}
+
+- (void)pause {
+    self.isPaused = YES;
+}
+
+- (void)resume {
+    self.isPaused = NO;
 }
 
 @end

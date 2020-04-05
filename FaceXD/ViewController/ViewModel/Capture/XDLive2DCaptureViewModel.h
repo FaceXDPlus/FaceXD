@@ -12,6 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XDLive2DCaptureViewModel : NSObject
 
+@property (nonatomic, readonly) BOOL isCapturing;
+
+- (void)startCapture NS_REQUIRES_SUPER;
+- (void)stopCapture NS_REQUIRES_SUPER;
+
 @end
 
 NS_ASSUME_NONNULL_END
