@@ -7,3 +7,4 @@ Vendor/opencv2.framework
 Vendor/include
 Vendor/lib
 FaceXD/Service/Network/request_key.h
+shape_predictor_68_face_landmarks.dat

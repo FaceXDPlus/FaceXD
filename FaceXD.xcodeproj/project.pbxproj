@@ -36,11 +36,9 @@
 		4FCDCD0C242F3C6B0069364B /* XDDlibModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD0B242F3C6B0069364B /* XDDlibModelParameterConfiguration.m */; };
 		4FCDCD0E2430C6490069364B /* CameraKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FCDCD0D2430C6490069364B /* CameraKit.framework */; };
 		4FCDCD0F2430C64A0069364B /* CameraKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4FCDCD0D2430C6490069364B /* CameraKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4FCDCD1A2430D8CD0069364B /* XDResourceDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD192430D8CD0069364B /* XDResourceDownloader.m */; };
 		4FCDCD1F2430DCF50069364B /* XDFilePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD1E2430DCF50069364B /* XDFilePath.m */; };
 		4FCDCD272430DFC60069364B /* FaceXDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD262430DFC60069364B /* FaceXDTests.m */; };
 		4FCDCD2E2430E0A60069364B /* XDFilePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD1E2430DCF50069364B /* XDFilePath.m */; };
-		4FCDCD2F2430E0A90069364B /* XDResourceDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD192430D8CD0069364B /* XDResourceDownloader.m */; };
 		4FDBA28923E97222003F40F1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28823E97222003F40F1 /* AVFoundation.framework */; };
 		4FDBA28D23E9895A003F40F1 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28C23E9895A003F40F1 /* CoreMedia.framework */; };
 		4FDBA28F23E9920C003F40F1 /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28E23E9920C003F40F1 /* ARKit.framework */; };
@@ -60,6 +58,7 @@
 		4FE0D2F324390DE9008F838E /* XDLive2DControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2F224390DE9008F838E /* XDLive2DControlViewController.m */; };
 		4FE0D2F72439B8DD008F838E /* UIStoryboard+XDStoryboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2F62439B8DD008F838E /* UIStoryboard+XDStoryboard.m */; };
 		4FE0D2F8243A5889008F838E /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747723E1EFA60065D31D /* ViewController.mm */; };
+		4FE0D2FA243B1202008F838E /* shape_predictor_68_face_landmarks.dat in Resources */ = {isa = PBXBuildFile; fileRef = 4FE0D2F9243B1202008F838E /* shape_predictor_68_face_landmarks.dat */; };
 		5200CF05241241A200A0FDA0 /* Pods_FaceXD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1456E1CC021CD518305051FC /* Pods_FaceXD.framework */; };
 		520D0E8D240D0F66002453EF /* ACubismMotion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0DE6240D0F64002453EF /* ACubismMotion.cpp */; };
 		520D0E8F240D0F66002453EF /* CubismDefaultParameterId.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0DE8240D0F64002453EF /* CubismDefaultParameterId.cpp */; };
@@ -217,6 +216,7 @@
 		4FE0D2F4243920D1008F838E /* XDUserDefineKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDUserDefineKeys.h; sourceTree = "<group>"; };
 		4FE0D2F52439B8DD008F838E /* UIStoryboard+XDStoryboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+XDStoryboard.h"; sourceTree = "<group>"; };
 		4FE0D2F62439B8DD008F838E /* UIStoryboard+XDStoryboard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIStoryboard+XDStoryboard.m"; sourceTree = "<group>"; };
+		4FE0D2F9243B1202008F838E /* shape_predictor_68_face_landmarks.dat */ = {isa = PBXFileReference; lastKnownFileType = file; name = shape_predictor_68_face_landmarks.dat; path = Vendor/shape_predictor_68_face_landmarks.dat; sourceTree = SOURCE_ROOT; };
 		520D0DE6240D0F64002453EF /* ACubismMotion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ACubismMotion.cpp; path = SDK/Framework/src/Motion/ACubismMotion.cpp; sourceTree = "<group>"; };
 		520D0DE7240D0F64002453EF /* CubismPose.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismPose.cpp; path = SDK/Framework/src/Effect/CubismPose.cpp; sourceTree = "<group>"; };
 		520D0DE8240D0F64002453EF /* CubismDefaultParameterId.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismDefaultParameterId.cpp; path = SDK/Framework/src/CubismDefaultParameterId.cpp; sourceTree = "<group>"; };
@@ -477,6 +477,7 @@
 				4FE0D2F4243920D1008F838E /* XDUserDefineKeys.h */,
 				4F91747923E1EFA60065D31D /* Main.storyboard */,
 				4F91747C23E1EFA70065D31D /* Assets.xcassets */,
+				4FE0D2F9243B1202008F838E /* shape_predictor_68_face_landmarks.dat */,
 				4F91747E23E1EFA70065D31D /* LaunchScreen.storyboard */,
 				52FB14BF242095630069C308 /* Info.plist */,
 				4F91748223E1EFA70065D31D /* main.m */,
@@ -973,6 +974,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FE0D2FA243B1202008F838E /* shape_predictor_68_face_landmarks.dat in Resources */,
 				52FB14A0241FE1A20069C308 /* Localizable.strings in Resources */,
 				52CCBA512420B993006E87EC /* InfoPlist.strings in Resources */,
 				520D1007240D16FA002453EF /* Live2DResource in Resources */,
@@ -1084,7 +1086,6 @@
 				4FE0D2F024390D6D008F838E /* XDLive2DControlViewModel.m in Sources */,
 				520D0ECB240D0F66002453EF /* CubismUserModel.cpp in Sources */,
 				4FE0D2C92438D32A008F838E /* XDLive2DCaptureARKitViewModel.m in Sources */,
-				4FCDCD1A2430D8CD0069364B /* XDResourceDownloader.m in Sources */,
 				520D0E96240D0F66002453EF /* CubismMatrix44.cpp in Sources */,
 				4FE0D2DB2438DB64008F838E /* XDRawJSONSocketService.m in Sources */,
 				4FCDCD1F2430DCF50069364B /* XDFilePath.m in Sources */,
@@ -1115,7 +1116,6 @@
 			files = (
 				4FCDCD2E2430E0A60069364B /* XDFilePath.m in Sources */,
 				4FCDCD272430DFC60069364B /* FaceXDTests.m in Sources */,
-				4FCDCD2F2430E0A90069364B /* XDResourceDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
