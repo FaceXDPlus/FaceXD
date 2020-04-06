@@ -20,8 +20,6 @@
 		4F90BD7624275C270065A06C /* XDOpenCVWarpper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95D4242627BA008D6BE7 /* XDOpenCVWarpper.mm */; };
 		4F90BD7724275C2B0065A06C /* XDDlibWarpper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95D1242627AC008D6BE7 /* XDDlibWarpper.mm */; };
 		4F91747223E1EFA60065D31D /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747123E1EFA60065D31D /* AppDelegate.mm */; };
-		4F91747B23E1EFA60065D31D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F91747923E1EFA60065D31D /* Main.storyboard */; };
-		4F91747823E1EFA60065D31D /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747723E1EFA60065D31D /* ViewController.mm */; };
 		4F91747D23E1EFA70065D31D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F91747C23E1EFA70065D31D /* Assets.xcassets */; };
 		4F91748023E1EFA70065D31D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F91747E23E1EFA70065D31D /* LaunchScreen.storyboard */; };
 		4F91748323E1EFA70065D31D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91748223E1EFA70065D31D /* main.m */; };
@@ -60,6 +58,7 @@
 		4FE0D2F72439B8DD008F838E /* UIStoryboard+XDStoryboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2F62439B8DD008F838E /* UIStoryboard+XDStoryboard.m */; };
 		4FE0D2F8243A5889008F838E /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747723E1EFA60065D31D /* ViewController.mm */; };
 		4FE0D2FA243B1202008F838E /* shape_predictor_68_face_landmarks.dat in Resources */ = {isa = PBXBuildFile; fileRef = 4FE0D2F9243B1202008F838E /* shape_predictor_68_face_landmarks.dat */; };
+		4FE0D2FD243B150F008F838E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FE0D2FC243B150F008F838E /* Main.storyboard */; };
 		5200CF05241241A200A0FDA0 /* Pods_FaceXD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1456E1CC021CD518305051FC /* Pods_FaceXD.framework */; };
 		520D0E8D240D0F66002453EF /* ACubismMotion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0DE6240D0F64002453EF /* ACubismMotion.cpp */; };
 		520D0E8F240D0F66002453EF /* CubismDefaultParameterId.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0DE8240D0F64002453EF /* CubismDefaultParameterId.cpp */; };
@@ -99,7 +98,6 @@
 		520D0ED9240D0F66002453EF /* CubismModelUserData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0E89240D0F66002453EF /* CubismModelUserData.cpp */; };
 		520D0EDB240D0F66002453EF /* CubismModelUserDataJson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0E8C240D0F66002453EF /* CubismModelUserDataJson.cpp */; };
 		520D1007240D16FA002453EF /* Live2DResource in Resources */ = {isa = PBXBuildFile; fileRef = 520D1006240D16FA002453EF /* Live2DResource */; };
-		529F9A8924263AFA009B2A88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 529F9A8824263AFA009B2A88 /* Main.storyboard */; };
 		52CCBA512420B993006E87EC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52FB14C3242095FF0069C308 /* InfoPlist.strings */; };
 		52FB14A0241FE1A20069C308 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52FB14A2241FE1A20069C308 /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -219,6 +217,7 @@
 		4FE0D2F52439B8DD008F838E /* UIStoryboard+XDStoryboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+XDStoryboard.h"; sourceTree = "<group>"; };
 		4FE0D2F62439B8DD008F838E /* UIStoryboard+XDStoryboard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIStoryboard+XDStoryboard.m"; sourceTree = "<group>"; };
 		4FE0D2F9243B1202008F838E /* shape_predictor_68_face_landmarks.dat */ = {isa = PBXFileReference; lastKnownFileType = file; name = shape_predictor_68_face_landmarks.dat; path = Vendor/shape_predictor_68_face_landmarks.dat; sourceTree = SOURCE_ROOT; };
+		4FE0D2FC243B150F008F838E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		520D0DE6240D0F64002453EF /* ACubismMotion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ACubismMotion.cpp; path = SDK/Framework/src/Motion/ACubismMotion.cpp; sourceTree = "<group>"; };
 		520D0DE7240D0F64002453EF /* CubismPose.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismPose.cpp; path = SDK/Framework/src/Effect/CubismPose.cpp; sourceTree = "<group>"; };
 		520D0DE8240D0F64002453EF /* CubismDefaultParameterId.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismDefaultParameterId.cpp; path = SDK/Framework/src/CubismDefaultParameterId.cpp; sourceTree = "<group>"; };
@@ -338,7 +337,6 @@
 		520D0E8A240D0F66002453EF /* CubismId.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CubismId.hpp; path = SDK/Framework/src/Id/CubismId.hpp; sourceTree = "<group>"; };
 		520D0E8C240D0F66002453EF /* CubismModelUserDataJson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismModelUserDataJson.cpp; path = SDK/Framework/src/Model/CubismModelUserDataJson.cpp; sourceTree = "<group>"; };
 		520D1006240D16FA002453EF /* Live2DResource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Live2DResource; sourceTree = "<group>"; };
-		529F9A8824263AFA009B2A88 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		52FB14A1241FE1A20069C308 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		52FB14A5241FE2550069C308 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		52FB14AC241FE30A0069C308 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
@@ -476,9 +474,9 @@
 				4F90BD69242668C40065A06C /* XDDlibCaptureViewController.h */,
 				4F90BD6A242668C40065A06C /* XDDlibCaptureViewController.m */,
 				4FE0D2F4243920D1008F838E /* XDUserDefineKeys.h */,
-				4F91747923E1EFA60065D31D /* Main.storyboard */,
 				4F91747C23E1EFA70065D31D /* Assets.xcassets */,
 				4FE0D2F9243B1202008F838E /* shape_predictor_68_face_landmarks.dat */,
+				4FE0D2FC243B150F008F838E /* Main.storyboard */,
 				4F91747E23E1EFA70065D31D /* LaunchScreen.storyboard */,
 				52FB14BF242095630069C308 /* Info.plist */,
 				4F91748223E1EFA70065D31D /* main.m */,
@@ -978,8 +976,8 @@
 				4FE0D2FA243B1202008F838E /* shape_predictor_68_face_landmarks.dat in Resources */,
 				52FB14A0241FE1A20069C308 /* Localizable.strings in Resources */,
 				52CCBA512420B993006E87EC /* InfoPlist.strings in Resources */,
+				4FE0D2FD243B150F008F838E /* Main.storyboard in Resources */,
 				520D1007240D16FA002453EF /* Live2DResource in Resources */,
-				529F9A8924263AFA009B2A88 /* Main.storyboard in Resources */,
 				4F91748023E1EFA70065D31D /* LaunchScreen.storyboard in Resources */,
 				4F91747D23E1EFA70065D31D /* Assets.xcassets in Resources */,
 			);
