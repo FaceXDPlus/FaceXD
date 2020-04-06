@@ -20,7 +20,6 @@
 @property (nonatomic, weak) IBOutlet UITextField *addressField;
 @property (nonatomic, weak) IBOutlet UILabel *socketPortLabel;
 @property (nonatomic, weak) IBOutlet UITextField *socketPortField;
-@property (nonatomic, weak) IBOutlet UILabel *timestampLabel;
 @property (nonatomic, weak) IBOutlet UILabel *captureStateLabel;
 @property (nonatomic, weak) IBOutlet UILabel *submitStateLabel;
 
@@ -33,8 +32,6 @@
 @property (nonatomic, weak) IBOutlet UISwitch *advancedSwitch;
 @property (nonatomic, weak) IBOutlet UILabel *showCameraLabel;
 @property (nonatomic, weak) IBOutlet UISwitch *showCameraSwitch;
-@property (nonatomic, weak) IBOutlet UILabel *showJSONLabel;
-@property (nonatomic, weak) IBOutlet UISwitch *showJSONSwitch;
 @property (nonatomic, weak) IBOutlet UILabel *submitLabel;
 @property (nonatomic, weak) IBOutlet UISwitch *submitSwitch;
 @property (nonatomic, weak) IBOutlet UILabel *captureLabel;
@@ -68,7 +65,6 @@
         FBKVOKeyPath(_viewModel.appVersion),
         FBKVOKeyPath(_viewModel.captureViewModel.advanceMode),
         @"captureViewModel.worldAlignment",
-        FBKVOKeyPath(_viewModel.showJSON),
         FBKVOKeyPath(_viewModel.jsonSocketService.isConnected),
         FBKVOKeyPath(_viewModel.captureViewModel.isCapturing),
     ];
@@ -124,7 +120,6 @@
     self.socketPortField.text = self.viewModel.port;
     self.appVersionLabel.text = self.viewModel.appVersion;
     self.advancedSwitch.on = self.viewModel.captureViewModel.advanceMode;
-    self.showJSONSwitch.on = self.viewModel.showJSON;
     self.submitSwitch.on = self.viewModel.jsonSocketService.isConnected;
     self.captureSwitch.on = self.viewModel.captureViewModel.isCapturing;
     
@@ -200,10 +195,6 @@
     } else {
         [self.viewModel disconnect];
     }
-}
-
-- (IBAction)handleShowJSONSwitchChange:(id)sender {
-    
 }
 
 - (IBAction)handleShowCameraSwitchChange:(id)sender {

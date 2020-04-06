@@ -48,7 +48,6 @@
         _host = address;
         _port = port;
         
-        _showJSON = [accountDefaults boolForKey:XDUserDefineKeySubmitJSONSwitch];
         [self bindData];
     }
     return self;

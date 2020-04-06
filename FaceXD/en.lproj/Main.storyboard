@@ -81,7 +81,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="2nk-7R-YCv">
-                                <rect key="frame" x="20" y="477" width="185" height="362.5"/>
+                                <rect key="frame" x="20" y="526" width="185" height="313.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="is4-f4-qJJ">
                                         <rect key="frame" x="0.0" y="0.0" width="184" height="20.5"/>
@@ -169,25 +169,8 @@
                                             </switch>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="wNy-sD-8fd">
-                                        <rect key="frame" x="0.0" y="233.5" width="156.5" height="31"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Print Json" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFw-lc-Qeo">
-                                                <rect key="frame" x="0.0" y="0.0" width="76.5" height="31"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fos-4J-Qnk">
-                                                <rect key="frame" x="107.5" y="0.0" width="51" height="31"/>
-                                                <connections>
-                                                    <action selector="handleShowJSONSwitchChange:" destination="jaT-Hx-bwf" eventType="valueChanged" id="9r9-eF-fk6"/>
-                                                </connections>
-                                            </switch>
-                                        </subviews>
-                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="52" translatesAutoresizingMaskIntoConstraints="NO" id="IKw-ZO-ATH">
-                                        <rect key="frame" x="0.0" y="282.5" width="155.5" height="31"/>
+                                        <rect key="frame" x="0.0" y="233.5" width="155.5" height="31"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Submit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wcl-9X-ei4">
                                                 <rect key="frame" x="0.0" y="0.0" width="54.5" height="31"/>
@@ -204,7 +187,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="9Mk-Af-UKT">
-                                        <rect key="frame" x="0.0" y="331.5" width="155.5" height="31"/>
+                                        <rect key="frame" x="0.0" y="282.5" width="155.5" height="31"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Capture" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDz-13-ruP">
                                                 <rect key="frame" x="0.0" y="0.0" width="61.5" height="31"/>
@@ -265,8 +248,6 @@
                         <outlet property="resetLabel" destination="pHn-YA-7yp" id="vBN-nr-vsm"/>
                         <outlet property="showCameraLabel" destination="5Wx-Y1-D2I" id="HJa-OC-AIU"/>
                         <outlet property="showCameraSwitch" destination="B2w-Lz-c6h" id="e7K-0f-FDn"/>
-                        <outlet property="showJSONLabel" destination="PFw-lc-Qeo" id="J6P-RJ-89r"/>
-                        <outlet property="showJSONSwitch" destination="fos-4J-Qnk" id="zFf-lA-b3z"/>
                         <outlet property="socketPortField" destination="pF4-6n-OvS" id="BCn-bg-TqY"/>
                         <outlet property="socketPortLabel" destination="s3v-FS-ATW" id="4aP-ge-aHS"/>
                         <outlet property="submitLabel" destination="Wcl-9X-ei4" id="yqX-oO-3cW"/>

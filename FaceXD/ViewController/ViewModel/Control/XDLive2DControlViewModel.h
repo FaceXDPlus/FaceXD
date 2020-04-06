@@ -19,7 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)disconnect;
 
 @property (nonatomic, readonly) NSString *appVersion;
-@property (nonatomic, assign) BOOL showJSON;
 
 @property (nonatomic, readonly) XDLive2DCaptureViewModel *captureViewModel;
 
