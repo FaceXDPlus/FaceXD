@@ -64,10 +64,12 @@
 - (void)bindData {
     __weak typeof(self) weakSelf = self;
     if ([self viewModelClass] == [XDLive2DCaptureARKitViewModel class]) {
-        [self.viewModel addKVOObserver:self
+        XDLive2DCaptureARKitViewModel *arViewModel = (XDLive2DCaptureARKitViewModel *)self.viewModel;
+        [arViewModel addKVOObserver:self
                             forKeyPath:@"worldAlignment" block:^(id  _Nullable oldValue, id  _Nullable newValue) {
             weakSelf.defaultModelParameterConfiguration.worldAlignment = [newValue integerValue];
         }];
+        self.defaultModelParameterConfiguration.worldAlignment = arViewModel.worldAlignment;
     }
 }
 

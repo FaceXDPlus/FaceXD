@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "XDRawJSONSocketService.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @class XDLive2DCaptureViewModel;
 @interface XDLive2DControlViewModel : NSObject
+@property (nonatomic, readonly) XDRawJSONSocketService *jsonSocketService;
 @property (nonatomic, copy) NSString *host;
 @property (nonatomic, copy) NSString *port;
 - (NSError *)connect;
@@ -19,15 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) NSString *appVersion;
 @property (nonatomic, assign) BOOL showJSON;
-@property (nonatomic, readonly) BOOL isSubmiting;
 
 @property (nonatomic, readonly) XDLive2DCaptureViewModel *captureViewModel;
 
 - (void)startCapture;
 - (void)stopCapture;
-
-- (void)startSubmit;
-- (void)stopSubmit;
 
 - (void)attachLive2DCaptureViewModel:(XDLive2DCaptureViewModel *)captureViewModel;
 @end

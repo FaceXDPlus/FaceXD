@@ -52,6 +52,7 @@
         [self stopCapture];
         [self startCapture];
     }
+    [[NSUserDefaults standardUserDefaults] setObject:@(worldAlignment) forKey:XDUserDefineKeySubmitCameraAlignment];
 }
 
 #pragma mark - Private

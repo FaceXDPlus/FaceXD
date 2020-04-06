@@ -31,4 +31,9 @@
     self.isCapturing = NO;
 }
 
+- (void)setAdvanceMode:(BOOL)advanceMode {
+    _advanceMode = advanceMode;
+    [[NSUserDefaults standardUserDefaults] setBool:_advanceMode forKey:XDUserDefineKeySubmitAdvancedSwitch];
+}
+
 @end

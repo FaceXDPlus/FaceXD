@@ -23,6 +23,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
+    
     self.captureViewController = [[XDLive2DCaptureViewController alloc] initWithModelName:@"Hiyori"];
     [self.view addSubview:self.captureViewController.view];
     [self addChildViewController:self.captureViewController];
@@ -79,23 +81,14 @@
 //    self.timeStampLabel.text = NSLocalizedString(@"timeStamp", nil);
 //}
 
-//- (IBAction)handleFaceCaptureSwitch:(id)sender {
-//    if(self.captureSwitch.on == 0){
-//        [self.arSession pause];
-//        self.faceCaptureStatusLabel.text = NSLocalizedString(@"waiting", nil);
-//    }else{
-//        [self setupARSession];
-//        self.faceCaptureStatusLabel.text = NSLocalizedString(@"capturing", nil);
-//    }
-//}
-//
+
 //- (IBAction)handleSubmitSwitch:(id)sender {
 //    if(self.submitSwitch.on == 0){
 //        if (self.socket.isConnected){
 //            [self.socket disconnect];
 //            self.socket = nil;
 //        }
-//        self.submitStatusLabel.text = NSLocalizedString(@"stopped", nil);
+//        self.submitStatusLabel.text =
 //        self.useSocketSwitch.enabled = 1;
 //        socketTag = 0;
 //        [UIApplication sharedApplication].idleTimerDisabled = NO;
@@ -170,40 +163,6 @@
 //    [accountDefaults synchronize];
 //}
 
-//- (IBAction)handleCameraSwitch:(id)sender {
-//    if(self.cameraSwitch.on == 0){
-//        self.liveview.hidden = YES;
-//    }else{
-//        self.liveview.hidden = NO;
-//    }
-//}
-
--(BOOL)checkSocketAddress:(NSArray*)array {
-    if([array count] == 2){
-        NSScanner* scan = [NSScanner scannerWithString:[array objectAtIndex:1]];
-        int val;
-        if([[array objectAtIndex:0] isIPString] && ([scan scanInt:&val] && [scan isAtEnd])){
-            if(0 < [[array objectAtIndex:1] intValue] && [[array objectAtIndex:1] intValue] < 25565){
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-- (void)alertError:(NSString*)data {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"errorTitle", nil)
-                                                                       message:data
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"errorOK", nil) style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {
-                                                                  //响应事件
-                                                                  //NSLog(@"action = %@", action);
-                                                              }];
-    [alert addAction:cancelAction];
-    [self presentViewController:alert animated:YES completion:nil];
-
-}
 
 //- (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(nonnull NSString *)host port:(uint16_t)port{
 //    NSLog(NSLocalizedString(@"socketConnected", nil), host, port);

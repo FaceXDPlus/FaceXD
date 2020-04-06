@@ -10,6 +10,7 @@
 #import "XDLive2DControlViewController.h"
 #import "XDLive2DControlViewModel.h"
 #import "XDLive2DCaptureViewModel.h"
+#import "NSString+XDIPValiual.h"
 @interface XDLive2DControlViewController ()
 @property (nonatomic, strong) XDLive2DControlViewModel *viewModel;
 
@@ -68,7 +69,7 @@
         FBKVOKeyPath(_viewModel.captureViewModel.advanceMode),
         @"captureViewModel.worldAlignment",
         FBKVOKeyPath(_viewModel.showJSON),
-        FBKVOKeyPath(_viewModel.isSubmiting),
+        FBKVOKeyPath(_viewModel.jsonSocketService.isConnected),
         FBKVOKeyPath(_viewModel.captureViewModel.isCapturing),
     ];
     __weak typeof(self) weakSelf = self;
@@ -79,7 +80,43 @@
             [weakSelf syncData];
         });
     }];
+    
+    [self.viewModel addKVOObserver:self
+                        forKeyPath:FBKVOKeyPath(_viewModel.captureViewModel.isCapturing) block:^(id  _Nullable oldValue, id  _Nullable newValue) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf syncCaptureState];
+        });
+    }];
+    
+    [self.viewModel addKVOObserver:self
+                        forKeyPath:FBKVOKeyPath(_viewModel.jsonSocketService.isConnected)
+                             block:^(id  _Nullable oldValue, id  _Nullable newValue) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf syncSubmitState];
+        });
+    }];
+    
+    [self syncCaptureState];
+    [self syncSubmitState];
     [self syncData];
+}
+
+- (void)syncCaptureState {
+    BOOL state = self.viewModel.captureViewModel.isCapturing;
+    if (state) {
+        self.captureStateLabel.text = NSLocalizedString(@"capturing", nil);
+    } else {
+        self.captureStateLabel.text = NSLocalizedString(@"waiting", nil);
+    }
+}
+
+- (void)syncSubmitState {
+    BOOL state = self.viewModel.jsonSocketService.isConnected;
+    if (state) {
+        self.submitStateLabel.text = NSLocalizedString(@"started", nil);
+    } else {
+        self.submitStateLabel.text = NSLocalizedString(@"stopped", nil);
+    }
 }
 
 - (void)syncData {
@@ -88,23 +125,37 @@
     self.appVersionLabel.text = self.viewModel.appVersion;
     self.advancedSwitch.on = self.viewModel.captureViewModel.advanceMode;
     self.showJSONSwitch.on = self.viewModel.showJSON;
-    self.submitSwitch.on = self.viewModel.isSubmiting;
+    self.submitSwitch.on = self.viewModel.jsonSocketService.isConnected;
     self.captureSwitch.on = self.viewModel.captureViewModel.isCapturing;
     
     NSNumber *alignment = [self.viewModel.captureViewModel valueForKey:@"worldAlignment"];
     if (alignment) {
         BOOL isReltive = (alignment.intValue == ARWorldAlignmentCamera);
         self.relativeSwitch.on = isReltive;
-        self.relativeSwitch.userInteractionEnabled= YES;
+        self.relativeSwitch.enabled = YES;
     } else {
         self.relativeSwitch.on = NO;
-        self.relativeSwitch.userInteractionEnabled = NO;
+        self.relativeSwitch.enabled = NO;
     }
 }
 
 - (void)attachCaptureViewModel:(XDLive2DCaptureViewModel *)captureViewModel {
     [self.viewModel attachLive2DCaptureViewModel:captureViewModel];
     [self syncData];
+}
+
+- (void)alertError:(NSString*)data {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"errorTitle", nil)
+                                                                       message:data
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"errorOK", nil) style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {
+                                                                  //响应事件
+                                                                  //NSLog(@"action = %@", action);
+                                                              }];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+
 }
 
 #pragma mark - Handler
@@ -120,9 +171,34 @@
 
 - (IBAction)handleSubmitSwitchChange:(id)sender {
     if (self.submitSwitch.on) {
-        [self.viewModel startSubmit];
+        BOOL connectSuccess = NO;
+        NSString *connectErrorStr = nil;
+        do {
+            if (!([self.addressField.text isIPString] &&
+                0 < [self.socketPortField.text intValue] &&
+                25565 > [self.socketPortField.text intValue])) {
+                connectErrorStr = NSLocalizedString(@"illegalAddress", nil);
+                break;
+            }
+            
+            self.viewModel.host = self.addressField.text;
+            self.viewModel.port = self.socketPortField.text;
+            
+            NSError *connectError = [self.viewModel connect];
+            if (connectError) {
+                connectErrorStr = connectError.localizedDescription;
+                break;
+            }
+            
+            connectSuccess = YES;
+        } while (0);
+        if (!connectSuccess) {
+            self.submitSwitch.on = NO;
+            [self alertError:connectErrorStr];
+            [self.viewModel disconnect];
+        }
     } else {
-        [self.viewModel stopSubmit];
+        [self.viewModel disconnect];
     }
 }
 
@@ -147,6 +223,17 @@
 }
 
 - (IBAction)handleResetButtonDown:(id)sender {
-    
+    [self.viewModel disconnect];
+    [self.viewModel stopCapture];
+}
+
+- (IBAction)handleAddressFieldEnd:(id)sender {
+    self.viewModel.host = self.addressField.text;
+    [sender resignFirstResponder];
+}
+
+- (IBAction)handlePortFieldEnd:(id)sender {
+    self.viewModel.port = self.socketPortField.text;
+    [sender resignFirstResponder];
 }
 @end

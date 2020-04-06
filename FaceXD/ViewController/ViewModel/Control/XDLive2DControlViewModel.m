@@ -8,7 +8,6 @@
 
 #import <KVOController/KVOController.h>
 #import "XDLive2DControlViewModel.h"
-#import "XDRawJSONSocketService.h"
 #import "XDPackManager.h"
 #import "XDUserDefineKeys.h"
 
@@ -50,20 +49,23 @@
         _port = port;
         
         _showJSON = [accountDefaults boolForKey:XDUserDefineKeySubmitJSONSwitch];
-        _isSubmiting = NO;
         [self bindData];
     }
     return self;
 }
 
 - (void)bindData {
-    __weak typeof(self) weakSelf = self;
-    [self.jsonSocketService addKVOObserver:self
-                                forKeyPath:FBKVOKeyPath(_jsonSocketService.isPaused)
-                                     block:^(id  _Nullable oldValue, id  _Nullable newValue) {
-        weakSelf.isSubmiting = !weakSelf.jsonSocketService.isPaused;
-    }];
-    self.isSubmiting = !self.jsonSocketService.isPaused;
+    
+}
+
+- (void)setHost:(NSString *)host {
+    _host = host;
+    [[NSUserDefaults standardUserDefaults] setObject:host forKey:XDUserDefineKeySubmitAddress];
+}
+
+- (void)setPort:(NSString *)port {
+    _port = port;
+    [[NSUserDefaults standardUserDefaults] setObject:port forKey:XDUserDefineKeySubmitSocketPort];
 }
 
 #pragma mark - Public Method
@@ -91,16 +93,6 @@
 - (void)attachLive2DCaptureViewModel:(XDLive2DCaptureViewModel *)captureViewModel {
     [self.captureViewModel removeKVOObserver:self];
     self.captureViewModel = captureViewModel;
-}
-#pragma mark - Submit
-- (void)startSubmit {
-    [self.jsonSocketService resume];
-    self.isSubmiting = YES;
-}
-
-- (void)stopSubmit {
-    [self.jsonSocketService pause];
-    self.isSubmiting = NO;
 }
 
 @end
