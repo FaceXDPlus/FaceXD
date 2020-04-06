@@ -52,6 +52,14 @@
         });
     }];
     self.captureViewController.liveview.hidden = !self.controlViewController.needShowCamera;
+    
+    [self.captureViewController addKVOObserver:self
+                                    forKeyPath:FBKVOKeyPath(_captureViewController.timestampString)
+                                         block:^(id  _Nullable oldValue, id  _Nullable newValue) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakSelf.controlViewController.timestampLabel.text = newValue;
+        });
+    }];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

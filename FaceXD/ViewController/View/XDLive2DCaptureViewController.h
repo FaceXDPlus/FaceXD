@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) XDLive2DCaptureViewModel *viewModel;
 @property (nonatomic, readonly) MTKView *liveview;
 
+@property (nonatomic, readonly) NSString *timestampString;
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithModelName:(NSString *)modelName;
     

@@ -42,6 +42,7 @@
 @property (nonatomic, strong) XDDefaultModelParameterConfiguration *defaultModelParameterConfiguration;
 @property (nonatomic, strong) XDAdvanceModelParameterConfiguration *advanceParameterConfiguration;
 
+@property (nonatomic, copy) NSString *timestampString;
 @end
 
 @implementation XDLive2DCaptureViewController
@@ -152,6 +153,7 @@
         UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
         UInt64 recordTime = [[NSDate date] timeIntervalSince1970] * 1000;
         NSString *timeString = [NSString stringWithFormat:@"%llu", recordTime];
+        self.timestampString = timeString;
         
         self.defaultModelParameterConfiguration.orientation = orientation;
         [self.defaultModelParameterConfiguration updateParameterWithFaceAnchor:faceAnchor];
