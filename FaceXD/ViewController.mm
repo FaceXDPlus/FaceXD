@@ -44,6 +44,18 @@
     [self bindData];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    if (![ARFaceTrackingConfiguration isSupported]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"xd_error", nil) message:NSLocalizedString(@"xd_device_unsupport", nil) preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:NSLocalizedString(@"xd_ok", nil) style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+        self.view.userInteractionEnabled = NO;
+    } else {
+        self.view.userInteractionEnabled = YES;
+    }
+}
+
 - (void)bindData {
     __weak typeof(self) weakSelf = self;
     [self.controlViewController addKVOObserver:self forKeyPath:FBKVOKeyPath(_controlViewController.needShowCamera) block:^(id  _Nullable oldValue, id  _Nullable newValue) {
