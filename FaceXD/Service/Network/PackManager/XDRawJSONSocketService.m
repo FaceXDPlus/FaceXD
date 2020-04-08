@@ -16,7 +16,7 @@
 @property (nonatomic, strong) GCDAsyncSocket *socket;
 @property (nonatomic, strong) dispatch_queue_t socketQueue;
 @property (nonatomic, assign) BOOL isConnected;
-@property (nonatomic, strong) NSError *lastError;
+//@property (nonatomic, strong) NSError *lastError;
 @end
 
 @implementation XDRawJSONSocketService

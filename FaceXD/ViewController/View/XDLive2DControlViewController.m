@@ -11,6 +11,7 @@
 #import "XDLive2DControlViewModel.h"
 #import "XDLive2DCaptureViewModel.h"
 #import "NSString+XDIPValiual.h"
+
 @interface XDLive2DControlViewController ()
 @property (nonatomic, strong) XDLive2DControlViewModel *viewModel;
 
@@ -36,6 +37,19 @@
 @property (nonatomic, weak) IBOutlet UISwitch *submitSwitch;
 @property (nonatomic, weak) IBOutlet UILabel *captureLabel;
 @property (nonatomic, weak) IBOutlet UISwitch *captureSwitch;
+
+@property (weak, nonatomic) IBOutlet UILabel *label_Capture;
+@property (weak, nonatomic) IBOutlet UILabel *label_Submit;
+@property (weak, nonatomic) IBOutlet UILabel *label_30FPS;
+@property (weak, nonatomic) IBOutlet UILabel *label_Camera;
+@property (weak, nonatomic) IBOutlet UILabel *label_Reset;
+@property (weak, nonatomic) IBOutlet UILabel *label_Version;
+@property (weak, nonatomic) IBOutlet UILabel *label_Advanced;
+@property (weak, nonatomic) IBOutlet UILabel *label_Relative;
+@property (weak, nonatomic) IBOutlet UILabel *label_PCAddress;
+@property (weak, nonatomic) IBOutlet UILabel *label_SocketPort;
+@property (weak, nonatomic) IBOutlet UILabel *timeStampLabel;
+
 @end
 
 @implementation XDLive2DControlViewController
@@ -55,7 +69,17 @@
 }
 
 - (void)setupView {
-    
+    self.label_Capture.text    = NSLocalizedString(@"label_Capture", nil);
+    self.label_Submit.text     = NSLocalizedString(@"label_Submit", nil);
+    self.label_30FPS.text      = NSLocalizedString(@"label_30FPS", nil);
+    self.label_Camera.text     = NSLocalizedString(@"label_Camera", nil);
+    self.label_Reset.text      = NSLocalizedString(@"label_Reset", nil);
+    self.label_Version.text    = NSLocalizedString(@"label_Version", nil);
+    self.label_Advanced.text   = NSLocalizedString(@"label_Advanced", nil);
+    self.label_Relative.text   = NSLocalizedString(@"label_Relative", nil);
+    self.label_PCAddress.text  = NSLocalizedString(@"label_PCAddress", nil);
+    self.label_SocketPort.text = NSLocalizedString(@"label_SocketPort", nil);
+    self.timeStampLabel.text   = NSLocalizedString(@"timeStamp", nil);
 }
 
 - (void)bindData {
@@ -107,11 +131,23 @@
 }
 
 - (void)syncSubmitState {
-    BOOL state = self.viewModel.jsonSocketService.isConnected;
+    BOOL state  = self.viewModel.jsonSocketService.isConnected;
     if (state) {
+        [UIApplication sharedApplication].idleTimerDisabled = YES;
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         self.submitStateLabel.text = NSLocalizedString(@"started", nil);
     } else {
+        [UIApplication sharedApplication].idleTimerDisabled = NO;
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         self.submitStateLabel.text = NSLocalizedString(@"stopped", nil);
+        NSError *lastError = self.viewModel.jsonSocketService.lastError;
+        if(lastError){
+            [self alertError:lastError.localizedDescription];
+            NSError *err = nil;
+            self.viewModel.jsonSocketService.lastError = err;
+            self.submitSwitch.enabled = YES;
+            self.submitSwitch.on = NO;
+        }
     }
 }
 
@@ -120,7 +156,7 @@
     self.socketPortField.text = self.viewModel.port;
     self.appVersionLabel.text = self.viewModel.appVersion;
     self.advancedSwitch.on = self.viewModel.captureViewModel.advanceMode;
-    self.submitSwitch.on = self.viewModel.jsonSocketService.isConnected;
+    //self.submitSwitch.on = self.viewModel.jsonSocketService.isConnected;
     self.captureSwitch.on = self.viewModel.captureViewModel.isCapturing;
     
     NSNumber *alignment = [self.viewModel.captureViewModel valueForKey:@"worldAlignment"];
@@ -140,10 +176,10 @@
 }
 
 - (void)alertError:(NSString*)data {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"errorTitle", nil)
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"xd_error", nil)
                                                                        message:data
                                                                 preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"errorOK", nil) style:UIAlertActionStyleDefault
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"xd_ok", nil) style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * action) {
                                                                   //响应事件
                                                                   //NSLog(@"action = %@", action);
@@ -166,32 +202,21 @@
 
 - (IBAction)handleSubmitSwitchChange:(id)sender {
     if (self.submitSwitch.on) {
-        BOOL connectSuccess = NO;
         NSString *connectErrorStr = nil;
-        do {
-            if (!([self.addressField.text isIPString] &&
-                0 < [self.socketPortField.text intValue] &&
-                25565 > [self.socketPortField.text intValue])) {
-                connectErrorStr = NSLocalizedString(@"illegalAddress", nil);
-                break;
-            }
-            
-            self.viewModel.host = self.addressField.text;
-            self.viewModel.port = self.socketPortField.text;
-            
-            NSError *connectError = [self.viewModel connect];
-            if (connectError) {
-                connectErrorStr = connectError.localizedDescription;
-                break;
-            }
-            
-            connectSuccess = YES;
-        } while (0);
-        if (!connectSuccess) {
-            self.submitSwitch.on = NO;
+        
+        if (!([self.addressField.text isIPString] &&
+            0 < [self.socketPortField.text intValue] &&
+            25565 > [self.socketPortField.text intValue])) {
+            connectErrorStr = NSLocalizedString(@"illegalAddress", nil);
             [self alertError:connectErrorStr];
-            [self.viewModel disconnect];
+            return;
         }
+        
+        self.viewModel.host = self.addressField.text;
+        self.viewModel.port = self.socketPortField.text;
+
+        self.submitSwitch.enabled = NO;
+        [self.viewModel connect];
     } else {
         [self.viewModel disconnect];
     }

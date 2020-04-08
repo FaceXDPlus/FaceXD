@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gXy-PS-eI8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gXy-PS-eI8">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -242,6 +242,15 @@
                         <outlet property="captureLabel" destination="zDz-13-ruP" id="hzo-gf-sii"/>
                         <outlet property="captureStateLabel" destination="pyE-2n-3fQ" id="fWd-It-fhG"/>
                         <outlet property="captureSwitch" destination="feg-Sg-GvO" id="dT0-R3-RSQ"/>
+                        <outlet property="label_Advanced" destination="2eb-05-tq3" id="UXh-Oa-1Qg"/>
+                        <outlet property="label_Camera" destination="5Wx-Y1-D2I" id="qSN-Tu-KOq"/>
+                        <outlet property="label_Capture" destination="zDz-13-ruP" id="TBE-j5-p3O"/>
+                        <outlet property="label_PCAddress" destination="egt-rQ-l4S" id="HpR-AN-w8N"/>
+                        <outlet property="label_Relative" destination="9an-7h-uo1" id="qcu-b2-7sl"/>
+                        <outlet property="label_Reset" destination="pHn-YA-7yp" id="wUB-qh-ejb"/>
+                        <outlet property="label_SocketPort" destination="s3v-FS-ATW" id="IIq-9p-rPw"/>
+                        <outlet property="label_Submit" destination="Wcl-9X-ei4" id="uub-lA-aZh"/>
+                        <outlet property="label_Version" destination="Kv4-nn-DE4" id="9e0-Ac-PYX"/>
                         <outlet property="relativeLabel" destination="9an-7h-uo1" id="Jxy-6M-nfC"/>
                         <outlet property="relativeSwitch" destination="zaF-mn-e9e" id="9TA-oh-Fkb"/>
                         <outlet property="resetButton" destination="Eov-JP-ihQ" id="158-QJ-8nU"/>
@@ -253,6 +262,7 @@
                         <outlet property="submitLabel" destination="Wcl-9X-ei4" id="yqX-oO-3cW"/>
                         <outlet property="submitStateLabel" destination="9ss-16-hW3" id="IJH-Ph-ZMu"/>
                         <outlet property="submitSwitch" destination="lJx-L9-zJm" id="QrY-SC-GUC"/>
+                        <outlet property="timeStampLabel" destination="aJG-cs-Qu3" id="MMg-yO-EhG"/>
                         <outlet property="timestampLabel" destination="aJG-cs-Qu3" id="TmH-IP-cHy"/>
                     </connections>
                 </viewController>

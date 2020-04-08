@@ -20,8 +20,6 @@
 "label_Relative"      = "Relative";
 "label_Advanced"      = "Advanced";
 "label_Camera"        = "Camera";
-"label_PrintJson"     = "Print Json";
-"label_Socket"        = "Socket";
 "label_30FPS"         = "30FPS";
 "label_Submit"        = "Submit";
 "label_Capture"       = "Capture";

@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface XDRawJSONSocketService : XDBaseService
 
 @property (nonatomic, readonly) BOOL isConnected;
-@property (nonatomic, readonly) NSError *lastError;
+@property (nonatomic, readwrite) NSError *lastError;
 
 - (void)setupServiceWithEndpointHost:(NSString *)endpointHost
                                 port:(NSString *)endpointPort
