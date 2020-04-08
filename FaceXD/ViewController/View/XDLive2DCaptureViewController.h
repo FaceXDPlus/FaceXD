@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "XDLive2DCaptureViewModel.h"
 NS_ASSUME_NONNULL_BEGIN
 @class XDLive2DCaptureViewModel;
 @interface XDLive2DCaptureViewController : UIViewController
@@ -17,7 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSString *timestampString;
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithModelName:(NSString *)modelName;
-    
+
+- (void)resetModel;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -124,6 +124,9 @@
     });
 }
 
+- (void)resetModel {
+    [self.defaultModelParameterConfiguration reset];
+}
 #pragma mark - Handler
 - (void)handleDispalyUpdate {
     [self.glView display];
@@ -145,7 +148,7 @@
     [self.live2DModel onUpdateWithParameterUpdate:^{
         [self.defaultModelParameterConfiguration commit];
     }];
-    glClearColor(0, 0, 1, 0);
+    glClearColor(0, 0, 0, 0);
 }
 
 - (void)viewModel:(XDLive2DCaptureViewModel *)viewModel didOutputFaceAnchor:(XDFaceAnchor *)faceAnchor {

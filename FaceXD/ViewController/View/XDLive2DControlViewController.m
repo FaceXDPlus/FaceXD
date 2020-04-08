@@ -24,6 +24,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *captureStateLabel;
 @property (nonatomic, weak) IBOutlet UILabel *submitStateLabel;
 
+@property (nonatomic, weak) IBOutlet UILabel *versionLabel;
 @property (nonatomic, weak) IBOutlet UILabel *appVersionLabel;
 @property (nonatomic, weak) IBOutlet UILabel *resetLabel;
 @property (nonatomic, weak) IBOutlet UIButton *resetButton;
@@ -37,18 +38,6 @@
 @property (nonatomic, weak) IBOutlet UISwitch *submitSwitch;
 @property (nonatomic, weak) IBOutlet UILabel *captureLabel;
 @property (nonatomic, weak) IBOutlet UISwitch *captureSwitch;
-
-@property (weak, nonatomic) IBOutlet UILabel *label_Capture;
-@property (weak, nonatomic) IBOutlet UILabel *label_Submit;
-@property (weak, nonatomic) IBOutlet UILabel *label_30FPS;
-@property (weak, nonatomic) IBOutlet UILabel *label_Camera;
-@property (weak, nonatomic) IBOutlet UILabel *label_Reset;
-@property (weak, nonatomic) IBOutlet UILabel *label_Version;
-@property (weak, nonatomic) IBOutlet UILabel *label_Advanced;
-@property (weak, nonatomic) IBOutlet UILabel *label_Relative;
-@property (weak, nonatomic) IBOutlet UILabel *label_PCAddress;
-@property (weak, nonatomic) IBOutlet UILabel *label_SocketPort;
-@property (weak, nonatomic) IBOutlet UILabel *timeStampLabel;
 
 @end
 
@@ -69,17 +58,16 @@
 }
 
 - (void)setupView {
-    self.label_Capture.text    = NSLocalizedString(@"label_Capture", nil);
-    self.label_Submit.text     = NSLocalizedString(@"label_Submit", nil);
-    self.label_30FPS.text      = NSLocalizedString(@"label_30FPS", nil);
-    self.label_Camera.text     = NSLocalizedString(@"label_Camera", nil);
-    self.label_Reset.text      = NSLocalizedString(@"label_Reset", nil);
-    self.label_Version.text    = NSLocalizedString(@"label_Version", nil);
-    self.label_Advanced.text   = NSLocalizedString(@"label_Advanced", nil);
-    self.label_Relative.text   = NSLocalizedString(@"label_Relative", nil);
-    self.label_PCAddress.text  = NSLocalizedString(@"label_PCAddress", nil);
-    self.label_SocketPort.text = NSLocalizedString(@"label_SocketPort", nil);
-    self.timeStampLabel.text   = NSLocalizedString(@"timeStamp", nil);
+    self.captureLabel.text = NSLocalizedString(@"label_Capture", nil);
+    self.submitLabel.text = NSLocalizedString(@"label_Submit", nil);
+    self.showCameraLabel.text = NSLocalizedString(@"label_Camera", nil);
+    self.resetLabel.text = NSLocalizedString(@"label_Reset", nil);
+    self.versionLabel.text = NSLocalizedString(@"label_Version", nil);
+    self.advancedLabel.text = NSLocalizedString(@"label_Advanced", nil);
+    self.relativeLabel.text = NSLocalizedString(@"label_Relative", nil);
+    self.addressLabel.text = NSLocalizedString(@"label_PCAddress", nil);
+    self.socketPortLabel.text = NSLocalizedString(@"label_SocketPort", nil);
+    self.timestampLabel.text = NSLocalizedString(@"timeStamp", nil);
 }
 
 - (void)bindData {
@@ -89,7 +77,6 @@
         FBKVOKeyPath(_viewModel.appVersion),
         FBKVOKeyPath(_viewModel.captureViewModel.advanceMode),
         @"captureViewModel.worldAlignment",
-        FBKVOKeyPath(_viewModel.jsonSocketService.isConnected),
         FBKVOKeyPath(_viewModel.captureViewModel.isCapturing),
     ];
     __weak typeof(self) weakSelf = self;
@@ -132,6 +119,7 @@
 
 - (void)syncSubmitState {
     BOOL state  = self.viewModel.jsonSocketService.isConnected;
+    self.submitSwitch.on = state;
     if (state) {
         [UIApplication sharedApplication].idleTimerDisabled = YES;
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
@@ -143,8 +131,6 @@
         NSError *lastError = self.viewModel.jsonSocketService.lastError;
         if(lastError){
             [self alertError:lastError.localizedDescription];
-            NSError *err = nil;
-            self.viewModel.jsonSocketService.lastError = err;
             self.submitSwitch.enabled = YES;
             self.submitSwitch.on = NO;
         }
@@ -156,7 +142,6 @@
     self.socketPortField.text = self.viewModel.port;
     self.appVersionLabel.text = self.viewModel.appVersion;
     self.advancedSwitch.on = self.viewModel.captureViewModel.advanceMode;
-    //self.submitSwitch.on = self.viewModel.jsonSocketService.isConnected;
     self.captureSwitch.on = self.viewModel.captureViewModel.isCapturing;
     
     NSNumber *alignment = [self.viewModel.captureViewModel valueForKey:@"worldAlignment"];
@@ -209,6 +194,8 @@
             25565 > [self.socketPortField.text intValue])) {
             connectErrorStr = NSLocalizedString(@"illegalAddress", nil);
             [self alertError:connectErrorStr];
+            self.submitSwitch.on = NO;
+            self.submitSwitch.enabled = YES;
             return;
         }
         

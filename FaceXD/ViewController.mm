@@ -23,8 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
-    
     self.captureViewController = [[XDLive2DCaptureViewController alloc] initWithModelName:@"Hiyori"];
     [self.view addSubview:self.captureViewController.view];
     [self addChildViewController:self.captureViewController];
@@ -71,6 +69,15 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             weakSelf.controlViewController.timestampLabel.text = newValue;
         });
+    }];
+    
+    [self.captureViewController addKVOObserver:self
+                                    forKeyPath:FBKVOKeyPath(_captureViewController.viewModel.isCapturing)
+                                         block:^(id  _Nullable oldValue, id  _Nullable newValue) {
+        if (![newValue boolValue]) {
+            /// 结束捕捉的时候要回中模型
+            [weakSelf.captureViewController resetModel];
+        }
     }];
 }
 

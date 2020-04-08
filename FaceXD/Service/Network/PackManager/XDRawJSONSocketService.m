@@ -16,7 +16,7 @@
 @property (nonatomic, strong) GCDAsyncSocket *socket;
 @property (nonatomic, strong) dispatch_queue_t socketQueue;
 @property (nonatomic, assign) BOOL isConnected;
-//@property (nonatomic, strong) NSError *lastError;
+@property (nonatomic, strong) NSError *lastError;
 @end
 
 @implementation XDRawJSONSocketService
@@ -63,6 +63,7 @@
 #pragma mark - Delegate
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port {
     self.isConnected = YES;
+    self.lastError = nil;
     [self.socket readDataWithTimeout:-1 tag:kXDRawJSONSocketServiceSocketTag];
 }
 
