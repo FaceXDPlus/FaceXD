@@ -11,6 +11,8 @@
 #import "XDLive2DControlViewModel.h"
 #import "XDLive2DCaptureViewModel.h"
 #import "NSString+XDIPValiual.h"
+#import "XDLive2DCaptureARKitViewModel.h"
+
 
 @interface XDLive2DControlViewController ()
 @property (nonatomic, strong) XDLive2DControlViewModel *viewModel;
@@ -76,7 +78,6 @@
         FBKVOKeyPath(_viewModel.port),
         FBKVOKeyPath(_viewModel.appVersion),
         FBKVOKeyPath(_viewModel.captureViewModel.advanceMode),
-        @"captureViewModel.worldAlignment",
         FBKVOKeyPath(_viewModel.captureViewModel.isCapturing),
     ];
     __weak typeof(self) weakSelf = self;
@@ -87,6 +88,16 @@
             [weakSelf syncData];
         });
     }];
+    
+    if ([self.viewModel isKindOfClass:NSClassFromString(@"XDLive2DCaptureARKitViewModel")]) {
+        [self.viewModel addKVOObserver:self
+                            forKeyPath:@"_viewModel.captureViewModel.worldAlignment"
+                                 block:^(id  _Nullable oldValue, id  _Nullable newValue) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf syncAlignment];
+            });
+        }];
+    }
     
     [self.viewModel addKVOObserver:self
                         forKeyPath:FBKVOKeyPath(_viewModel.captureViewModel.isCapturing) block:^(id  _Nullable oldValue, id  _Nullable newValue) {
@@ -106,6 +117,7 @@
     [self syncCaptureState];
     [self syncSubmitState];
     [self syncData];
+    [self syncAlignment];
 }
 
 - (void)syncCaptureState {
@@ -144,6 +156,9 @@
     self.advancedSwitch.on = self.viewModel.captureViewModel.advanceMode;
     self.captureSwitch.on = self.viewModel.captureViewModel.isCapturing;
     
+}
+
+- (void)syncAlignment {
     NSNumber *alignment = [self.viewModel.captureViewModel valueForKey:@"worldAlignment"];
     if (alignment) {
         BOOL isReltive = (alignment.intValue == ARWorldAlignmentCamera);

@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSDictionary<ARBlendShapeLocation, NSNumber *> *blendShapes;
 
 + (instancetype)faceAnchorWithARFaceAnchor:(ARFaceAnchor *)faceAnchor;
-+ (instancetype)faceAnchorWith68Points:(NSArray<NSValue *> *)points;
++ (instancetype)faceAnchorWith68Points:(NSArray<NSValue *> *)points imageSize:(CGSize)imageSize;
 @end
 
 NS_ASSUME_NONNULL_END

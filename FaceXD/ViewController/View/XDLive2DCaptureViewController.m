@@ -40,6 +40,7 @@
 @property (nonatomic, assign) CGSize modelSize;
 
 @property (nonatomic, strong) XDDefaultModelParameterConfiguration *defaultModelParameterConfiguration;
+@property (nonatomic, strong) XDDlibModelParameterConfiguration *dlibModelParameterConfiguration;
 @property (nonatomic, strong) XDAdvanceModelParameterConfiguration *advanceParameterConfiguration;
 
 @property (nonatomic, copy) NSString *timestampString;
@@ -97,6 +98,7 @@
     
     self.defaultModelParameterConfiguration = [[XDDefaultModelParameterConfiguration alloc] initWithModel:self.live2DModel];
     self.advanceParameterConfiguration = [[XDAdvanceModelParameterConfiguration alloc] initWithModel:self.live2DModel];
+    self.dlibModelParameterConfiguration = [[XDDlibModelParameterConfiguration alloc] initWithModel:self.live2DModel];
     
     self.modelSize = self.view.bounds.size;
     [self bindData];
@@ -126,6 +128,7 @@
 
 - (void)resetModel {
     [self.defaultModelParameterConfiguration reset];
+    [self.dlibModelParameterConfiguration reset];
 }
 #pragma mark - Handler
 - (void)handleDispalyUpdate {
@@ -134,6 +137,7 @@
 
 #pragma mark - Data Source
 - (Class)viewModelClass {
+    return [XDLive2DCaptureDlibViewModel class];
     if ([ARFaceTrackingConfiguration isSupported]) {
         return [XDLive2DCaptureARKitViewModel class];
     }
@@ -146,7 +150,11 @@
     glClear(GL_COLOR_BUFFER_BIT);
     [self.live2DModel setMVPMatrixWithSize:self.modelSize];
     [self.live2DModel onUpdateWithParameterUpdate:^{
-        [self.defaultModelParameterConfiguration commit];
+        if ([self viewModelClass] == [XDLive2DCaptureDlibViewModel class]) {
+            [self.dlibModelParameterConfiguration commit];
+        } else {
+            [self.defaultModelParameterConfiguration commit];
+        }
     }];
     glClearColor(0, 0, 0, 0);
 }
@@ -154,26 +162,28 @@
 - (void)viewModel:(XDLive2DCaptureViewModel *)viewModel didOutputFaceAnchor:(XDFaceAnchor *)faceAnchor {
     dispatch_async(dispatch_get_main_queue(), ^{
         UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+        NSDictionary *parm = @{};
+        
         UInt64 recordTime = [[NSDate date] timeIntervalSince1970] * 1000;
         NSString *timeString = [NSString stringWithFormat:@"%llu", recordTime];
         self.timestampString = timeString;
         
-        self.defaultModelParameterConfiguration.orientation = orientation;
-        [self.defaultModelParameterConfiguration updateParameterWithFaceAnchor:faceAnchor];
-        
-        self.advanceParameterConfiguration.orientation = orientation;
-        [self.advanceParameterConfiguration updateParameterWithFaceAnchor:faceAnchor];
-        
-        self.defaultModelParameterConfiguration.parameter.timestamp = timeString;
-        self.advanceParameterConfiguration.parameter.timestamp = timeString;
-        
-        NSDictionary *parm = @{};
-        if (self.viewModel.advanceMode) {
-            parm = [self.advanceParameterConfiguration.parameter parameterValueDictionary];
+        if ([self viewModelClass] == [XDLive2DCaptureDlibViewModel class]) {
+            [self.dlibModelParameterConfiguration updateParameterWithFaceAnchor:faceAnchor];
         } else {
-            parm = [self.defaultModelParameterConfiguration.parameter parameterValueDictionary];
+            self.defaultModelParameterConfiguration.orientation = orientation;
+            [self.defaultModelParameterConfiguration updateParameterWithFaceAnchor:faceAnchor];
+            self.defaultModelParameterConfiguration.parameter.timestamp = @(recordTime);
+            self.advanceParameterConfiguration.orientation = orientation;
+            [self.advanceParameterConfiguration updateParameterWithFaceAnchor:faceAnchor];
+            self.advanceParameterConfiguration.parameter.timestamp = @(recordTime);
+         
+            if (self.viewModel.advanceMode) {
+                parm = [self.advanceParameterConfiguration.parameter parameterValueDictionary];
+            } else {
+                parm = [self.defaultModelParameterConfiguration.parameter parameterValueDictionary];
+            }
         }
-        
         
         XDRawJSONNetworkPack *pack = [[XDRawJSONNetworkPack alloc] initWithDictionary:parm];
         [[XDPackManager sharedInstance] sendPack:pack observer:self completion:nil];
@@ -189,14 +199,19 @@
         }
         UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
         EKMetalRenderLiveviewRotation rotation = EKMetalRenderLiveviewRotationRight;
-        if (orientation == UIInterfaceOrientationPortrait) {
-            rotation = EKMetalRenderLiveviewRotationRight;
-        } else if (orientation == UIInterfaceOrientationLandscapeRight) {
+        
+        if ([self viewModelClass] == [XDLive2DCaptureDlibViewModel class]) {
             rotation = EKMetalRenderLiveviewRotationNormal;
-        } else if (orientation == UIInterfaceOrientationLandscapeLeft) {
-            rotation = EKMetalRenderLiveviewRotationUpsideDown;
-        } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
-            rotation = EKMetalRenderLiveviewRotationLeft;
+        } else {
+            if (orientation == UIInterfaceOrientationPortrait) {
+                rotation = EKMetalRenderLiveviewRotationRight;
+            } else if (orientation == UIInterfaceOrientationLandscapeRight) {
+                rotation = EKMetalRenderLiveviewRotationNormal;
+            } else if (orientation == UIInterfaceOrientationLandscapeLeft) {
+                rotation = EKMetalRenderLiveviewRotationUpsideDown;
+            } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+                rotation = EKMetalRenderLiveviewRotationLeft;
+            }
         }
         
         EKSampleBuffer *buffer = [[EKSampleBuffer alloc] initWithSampleBuffer:sampleBuffer freeWhenDone:YES];

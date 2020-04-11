@@ -31,7 +31,7 @@
 		4F9176B423E2981E0065D31D /* LAppBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9176B323E2981E0065D31D /* LAppBundle.m */; };
 		4F9176B823E299A40065D31D /* LAppModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F9176B723E299A40065D31D /* LAppModel.mm */; };
 		4F91788723E2C2880065D31D /* LAppOpenGLContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91788623E2C2880065D31D /* LAppOpenGLContext.mm */; };
-		4FCDCD09242F2BA40069364B /* XDFaceAnchor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD08242F2BA40069364B /* XDFaceAnchor.m */; };
+		4FCDCD09242F2BA40069364B /* XDFaceAnchor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD08242F2BA40069364B /* XDFaceAnchor.mm */; };
 		4FCDCD0C242F3C6B0069364B /* XDDlibModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD0B242F3C6B0069364B /* XDDlibModelParameterConfiguration.m */; };
 		4FCDCD0E2430C6490069364B /* CameraKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FCDCD0D2430C6490069364B /* CameraKit.framework */; };
 		4FCDCD0F2430C64A0069364B /* CameraKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4FCDCD0D2430C6490069364B /* CameraKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -168,7 +168,7 @@
 		4F91788523E2C2880065D31D /* LAppOpenGLContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LAppOpenGLContext.h; sourceTree = "<group>"; };
 		4F91788623E2C2880065D31D /* LAppOpenGLContext.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LAppOpenGLContext.mm; sourceTree = "<group>"; };
 		4FCDCD07242F2BA40069364B /* XDFaceAnchor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDFaceAnchor.h; sourceTree = "<group>"; };
-		4FCDCD08242F2BA40069364B /* XDFaceAnchor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDFaceAnchor.m; sourceTree = "<group>"; };
+		4FCDCD08242F2BA40069364B /* XDFaceAnchor.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = XDFaceAnchor.mm; sourceTree = "<group>"; };
 		4FCDCD0A242F3C6B0069364B /* XDDlibModelParameterConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDlibModelParameterConfiguration.h; sourceTree = "<group>"; };
 		4FCDCD0B242F3C6B0069364B /* XDDlibModelParameterConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDDlibModelParameterConfiguration.m; sourceTree = "<group>"; };
 		4FCDCD0D2430C6490069364B /* CameraKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CameraKit.framework; path = Vendor/CameraKit.framework; sourceTree = "<group>"; };
@@ -432,7 +432,7 @@
 				4F6F95D3242627BA008D6BE7 /* XDOpenCVWarpper.h */,
 				4F6F95D4242627BA008D6BE7 /* XDOpenCVWarpper.mm */,
 				4FCDCD07242F2BA40069364B /* XDFaceAnchor.h */,
-				4FCDCD08242F2BA40069364B /* XDFaceAnchor.m */,
+				4FCDCD08242F2BA40069364B /* XDFaceAnchor.mm */,
 			);
 			path = FaceCapture;
 			sourceTree = "<group>";
@@ -1055,7 +1055,7 @@
 				520D0EB4240D0F66002453EF /* CubismMotionQueueManager.cpp in Sources */,
 				520D0EA4240D0F66002453EF /* CubismMoc.cpp in Sources */,
 				4FE0D2CC2438D33C008F838E /* XDLive2DCaptureDlibViewModel.m in Sources */,
-				4FCDCD09242F2BA40069364B /* XDFaceAnchor.m in Sources */,
+				4FCDCD09242F2BA40069364B /* XDFaceAnchor.mm in Sources */,
 				4F6F95B6242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m in Sources */,
 				4FE0D2DE2438DBA3008F838E /* XDBaseService.m in Sources */,
 				4F9176B823E299A40065D31D /* LAppModel.mm in Sources */,

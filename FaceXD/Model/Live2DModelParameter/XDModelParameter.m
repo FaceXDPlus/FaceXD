@@ -51,8 +51,8 @@
         @"eyeY"            : [NSString stringWithFormat: @"%.5lf", self.eyeY.floatValue],
         @"mouthOpenY"      : [NSString stringWithFormat: @"%.5lf", self.mouthOpenY.floatValue],
         @"mouthForm"       : [NSString stringWithFormat: @"%.5lf", self.mouthForm.floatValue],
-        @"blendShapes"     : self.blendShapes == nil ? [NSNull null] : self.blendShapes,
-        @"timeStamp"       : self.timestamp,
+        @"blendShapes"     : self.blendShapes == nil ? @{} : self.blendShapes,
+        @"timeStamp"       : self.timestamp ? : @(0),
     };
 }
 

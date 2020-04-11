@@ -52,9 +52,10 @@
         pitch = 32;
     }
     self.parameter.headPitch = @(pitch * 2);
-    self.parameter.headRoll = @(180.0 / M_PI * self.faceNode.eulerAngles.z * 2);
-    self.parameter.headYaw = @(-180.0 / M_PI * self.faceNode.eulerAngles.y * 1.2);
+    self.parameter.headRoll = @(-180.0 / M_PI * self.faceNode.eulerAngles.z * 2);
+    self.parameter.headYaw = @(180.0 / M_PI * self.faceNode.eulerAngles.y * 1.2);
     
+    NSLog(@"parm: %@", self.parameter);
     self.lastUpdateTime = CACurrentMediaTime();
 }
 
