@@ -123,7 +123,13 @@
 - (void)syncCaptureState {
     BOOL state = self.viewModel.captureViewModel.isCapturing;
     if (state) {
-        self.captureStateLabel.text = NSLocalizedString(@"capturing", nil);
+        NSString *str = NSLocalizedString(@"capturing", nil);
+        if (![self.viewModel.captureViewModel isKindOfClass:NSClassFromString(@"XDLive2DCaptureARKitViewModel")]) {
+            str = [str stringByAppendingFormat:@"(%@)", NSLocalizedString(@"xd_low_accuracy", nil)];
+        } else {
+            str = [str stringByAppendingFormat:@"(%@)", NSLocalizedString(@"xd_high_accuracy", nil)];
+        }
+        self.captureStateLabel.text = str;
     } else {
         self.captureStateLabel.text = NSLocalizedString(@"waiting", nil);
     }

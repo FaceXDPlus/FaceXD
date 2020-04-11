@@ -21,6 +21,9 @@
 @property (nonatomic, strong) XDControlValueLinear *eyeLinearY;
 
 @property (nonatomic, strong) NSDictionary<NSString *, XDSimpleKalman *> *parameterKalman;
+
+@property (nonatomic, strong) XDModelParameter *sendParameter;
+
 @end
 
 @implementation XDDefaultModelParameterConfiguration
@@ -44,6 +47,13 @@
         _rightEyeNode = [SCNNode node];
     }
     return _rightEyeNode;
+}
+
+- (XDModelParameter *)sendParameter {
+    if (_sendParameter == nil) {
+        _sendParameter = [[XDModelParameter alloc] init];
+    }
+    return _sendParameter;
 }
 
 - (instancetype)initWithModel:(LAppModel *)model {
@@ -185,8 +195,10 @@
         if (kalman) {
             v = [kalman calc:v];
         }
+        
         if (targetValue) {
             [self.model setParam:key forValue:@(v)];
+            [self.sendParameter setValue:@(v) forKey:obj];
         } else {
             [self.model setParam:key forValue:@(0)];
         }

@@ -40,7 +40,6 @@
         [_shapePredictor loadModelWithPath:[[NSBundle mainBundle] pathForResource:@"shape_predictor_68_face_landmarks" ofType:@"dat"]];
         _videoOutputQueue = dispatch_queue_create("VideoOutputQueue", DISPATCH_QUEUE_SERIAL);
         _faceOutputQueue = dispatch_queue_create("FaceOutputQueue", DISPATCH_QUEUE_SERIAL);
-        _cameraSession = [[CKSession alloc] initWithMultiCameraSupport:NO];
     }
     return self;
 }
@@ -48,6 +47,7 @@
 #pragma mark - Override Method
 - (void)startCapture {
     __weak typeof(self) weakSelf = self;
+    self.cameraSession = [[CKSession alloc] initWithMultiCameraSupport:NO];
     [self.cameraSession startSessionWithConfigBlock:^(CKSession * _Nonnull session, CKSessionConfiguration * _Nonnull config) {
         NSNumber *deviceID = @(CKCaptureDeviceTypeBuiltInWideAngleCamera | CKCaptureDevicePositionFront);
         config.videoDevice = @[deviceID];
@@ -74,8 +74,8 @@
         if (connection) {
             connection.videoOrientation = AVCaptureVideoOrientationPortrait;
             [connection setVideoMirrored:YES];
+            [weakSelf.faceOutput setMetadataObjectTypes:@[AVMetadataObjectTypeFace]];
         }
-        [weakSelf.faceOutput setMetadataObjectTypes:@[AVMetadataObjectTypeFace]];
     }];
     
     self.faceCheckTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
@@ -98,10 +98,6 @@
 - (void)captureOutput:(AVCaptureOutput *)output
 didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection {
-    if (self.faceCheckCount == 0) {
-        return;
-    }
-    
     CGRect faceBoundsInImage = [output transformedMetadataObjectForMetadataObject:self.currentMetadataObject connection:connection].bounds;
     
     CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
@@ -116,7 +112,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         CFRelease(sampleBuffer);
     }
     
-    if (self.delegate &&
+    if (self.faceCheckCount > 0 &&
+        self.delegate &&
         [self.delegate respondsToSelector:@selector(viewModel:didOutputFaceAnchor:)]) {
         [self.delegate viewModel:self didOutputFaceAnchor:anchor];
     }

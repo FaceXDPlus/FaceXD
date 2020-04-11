@@ -25,3 +25,5 @@
 "label_Capture"       = "开始捕捉";
 "label_PCAddress"     = "PC推流地址";
 "label_SocketPort"    = "Socket端口";
+"xd_low_accuracy" = "低精度";
+"xd_high_accuracy" = "高精度";

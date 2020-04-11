@@ -156,6 +156,12 @@
     auto mouthWid = (d5 / dReference - 0.13) * 1.27 + 0.02;
     auto mouthLen = d6 / dReference;
     
+    if (isnan(mouthLen)) {
+        mouthLen = 0;
+    }
+    if (isnan(mouthWid)) {
+        mouthWid = 0;
+    }
     cv::Mat feature = (cv::Mat_<double>(4, 1) << leftEyeWid, rightEyeWid, mouthWid, mouthLen);
     return feature;
 }

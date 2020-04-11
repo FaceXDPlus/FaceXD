@@ -23,3 +23,5 @@
 "label_30FPS"         = "30FPS";
 "label_Submit"        = "Submit";
 "label_Capture"       = "Capture";
+"xd_low_accuracy" = "low accuracy";
+"xd_high_accuracy" = "high accuracy";

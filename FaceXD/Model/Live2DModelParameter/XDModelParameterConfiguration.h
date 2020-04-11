@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)reset;
 - (void)commit;
 
+- (XDModelParameter *)sendParameter;
+
 - (NSDictionary<NSString *, NSString *> *)parameterKeyMap;
 @end
 

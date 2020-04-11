@@ -137,7 +137,6 @@
 
 #pragma mark - Data Source
 - (Class)viewModelClass {
-    return [XDLive2DCaptureDlibViewModel class];
     if ([ARFaceTrackingConfiguration isSupported]) {
         return [XDLive2DCaptureARKitViewModel class];
     }
@@ -179,9 +178,9 @@
             self.advanceParameterConfiguration.parameter.timestamp = @(recordTime);
          
             if (self.viewModel.advanceMode) {
-                parm = [self.advanceParameterConfiguration.parameter parameterValueDictionary];
+                parm = [self.advanceParameterConfiguration.sendParameter parameterValueDictionary];
             } else {
-                parm = [self.defaultModelParameterConfiguration.parameter parameterValueDictionary];
+                parm = [self.defaultModelParameterConfiguration.sendParameter parameterValueDictionary];
             }
         }
         

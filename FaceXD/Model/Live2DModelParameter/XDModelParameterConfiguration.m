@@ -42,6 +42,10 @@
     }];
 }
 
+- (XDModelParameter *)sendParameter {
+    return self.parameter;
+}
+
 - (NSDictionary<NSString *,NSString *> *)parameterKeyMap {
     static NSDictionary *map = nil;
     static dispatch_once_t onceToken;
