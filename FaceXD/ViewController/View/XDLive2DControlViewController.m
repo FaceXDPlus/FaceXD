@@ -173,6 +173,7 @@
 - (void)attachCaptureViewModel:(XDLive2DCaptureViewModel *)captureViewModel {
     [self.viewModel attachLive2DCaptureViewModel:captureViewModel];
     [self syncData];
+    [self syncAlignment];
 }
 
 - (void)alertError:(NSString*)data {
