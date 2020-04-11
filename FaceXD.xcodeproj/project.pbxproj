@@ -59,6 +59,7 @@
 		4FE0D2F8243A5889008F838E /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747723E1EFA60065D31D /* ViewController.mm */; };
 		4FE0D2FA243B1202008F838E /* shape_predictor_68_face_landmarks.dat in Resources */ = {isa = PBXBuildFile; fileRef = 4FE0D2F9243B1202008F838E /* shape_predictor_68_face_landmarks.dat */; };
 		4FE0D2FD243B150F008F838E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FE0D2FC243B150F008F838E /* Main.storyboard */; };
+		4FE0D30024421740008F838E /* XDSimpleKalman.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2FF24421740008F838E /* XDSimpleKalman.m */; };
 		5200CF05241241A200A0FDA0 /* Pods_FaceXD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1456E1CC021CD518305051FC /* Pods_FaceXD.framework */; };
 		520D0E8D240D0F66002453EF /* ACubismMotion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0DE6240D0F64002453EF /* ACubismMotion.cpp */; };
 		520D0E8F240D0F66002453EF /* CubismDefaultParameterId.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0DE8240D0F64002453EF /* CubismDefaultParameterId.cpp */; };
@@ -218,6 +219,8 @@
 		4FE0D2F62439B8DD008F838E /* UIStoryboard+XDStoryboard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIStoryboard+XDStoryboard.m"; sourceTree = "<group>"; };
 		4FE0D2F9243B1202008F838E /* shape_predictor_68_face_landmarks.dat */ = {isa = PBXFileReference; lastKnownFileType = file; name = shape_predictor_68_face_landmarks.dat; path = Vendor/shape_predictor_68_face_landmarks.dat; sourceTree = SOURCE_ROOT; };
 		4FE0D2FC243B150F008F838E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		4FE0D2FE24421740008F838E /* XDSimpleKalman.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDSimpleKalman.h; sourceTree = "<group>"; };
+		4FE0D2FF24421740008F838E /* XDSimpleKalman.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDSimpleKalman.m; sourceTree = "<group>"; };
 		520D0DE6240D0F64002453EF /* ACubismMotion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ACubismMotion.cpp; path = SDK/Framework/src/Motion/ACubismMotion.cpp; sourceTree = "<group>"; };
 		520D0DE7240D0F64002453EF /* CubismPose.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismPose.cpp; path = SDK/Framework/src/Effect/CubismPose.cpp; sourceTree = "<group>"; };
 		520D0DE8240D0F64002453EF /* CubismDefaultParameterId.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismDefaultParameterId.cpp; path = SDK/Framework/src/CubismDefaultParameterId.cpp; sourceTree = "<group>"; };
@@ -541,6 +544,8 @@
 				4FDBA29323E9AEF8003F40F1 /* XDControlValueLinear.m */,
 				4FDBA29423E9AEF8003F40F1 /* XDControlValueProtocol.h */,
 				4FDBA28323E95E14003F40F1 /* stb_image.h */,
+				4FE0D2FE24421740008F838E /* XDSimpleKalman.h */,
+				4FE0D2FF24421740008F838E /* XDSimpleKalman.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1076,6 +1081,7 @@
 				4F9175CF23E1FA1B0065D31D /* LAppAllocator.mm in Sources */,
 				520D0EDB240D0F66002453EF /* CubismModelUserDataJson.cpp in Sources */,
 				4F90BD7624275C270065A06C /* XDOpenCVWarpper.mm in Sources */,
+				4FE0D30024421740008F838E /* XDSimpleKalman.m in Sources */,
 				520D0E9E240D0F66002453EF /* CubismExpressionMotion.cpp in Sources */,
 				4FE0D2E32438DE26008F838E /* XDBaseNetworkPack.m in Sources */,
 				520D0EB6240D0F66002453EF /* CubismMotionJson.cpp in Sources */,

@@ -9,8 +9,10 @@
 #import <QuartzCore/CABase.h>
 #import "XDDefaultModelParameterConfiguration.h"
 #import "XDControlValueLinear.h"
+#import "XDSimpleKalman.h"
 
 @interface XDDefaultModelParameterConfiguration ()
+
 @property (nonatomic, strong) SCNNode *faceNode;
 @property (nonatomic, strong) SCNNode *leftEyeNode;
 @property (nonatomic, strong) SCNNode *rightEyeNode;
@@ -18,8 +20,7 @@
 @property (nonatomic, strong) XDControlValueLinear *eyeLinearX;
 @property (nonatomic, strong) XDControlValueLinear *eyeLinearY;
 
-@property (nonatomic, assign) CFTimeInterval lastUpdateTime;
-@property (nonatomic, copy) XDModelParameter *lastParameter;
+@property (nonatomic, strong) NSDictionary<NSString *, XDSimpleKalman *> *parameterKalman;
 @end
 
 @implementation XDDefaultModelParameterConfiguration
@@ -52,9 +53,20 @@
                                                             outputMin:[self.model paramMinValue:LAppParamEyeBallX].doubleValue inputMax:45 inputMin:-45];
         _eyeLinearY = [[XDControlValueLinear alloc] initWithOutputMax:[self.model paramMaxValue:LAppParamEyeBallY].doubleValue
                                                             outputMin:[self.model paramMinValue:LAppParamEyeBallY].doubleValue inputMax:45 inputMin:-45];
-        _interpolation = YES;
-        _frameInterval = 1.0 / 30.0;
-        _lastUpdateTime = -1;
+        _parameterKalman = @{
+            LAppParamAngleY: [XDSimpleKalman kalmanWithQ:1 R:10],
+            LAppParamAngleX: [XDSimpleKalman kalmanWithQ:1 R:10],
+            LAppParamAngleZ: [XDSimpleKalman kalmanWithQ:1 R:10],
+            LAppParamBodyAngleX: [XDSimpleKalman kalmanWithQ:1 R:10],
+            LAppParamBodyAngleY: [XDSimpleKalman kalmanWithQ:1 R:10],
+            LAppParamBodyAngleZ: [XDSimpleKalman kalmanWithQ:1 R:10],
+            LAppParamEyeLOpen: [XDSimpleKalman kalmanWithQ:1 R:10],
+            LAppParamEyeROpen: [XDSimpleKalman kalmanWithQ:1 R:10],
+            LAppParamEyeBallX: [XDSimpleKalman kalmanWithQ:1 R:10],
+            LAppParamEyeBallY: [XDSimpleKalman kalmanWithQ:1 R:10],
+            LAppParamMouthOpenY: [XDSimpleKalman kalmanWithQ:1 R:10],
+            LAppParamMouthForm: [XDSimpleKalman kalmanWithQ:1 R:10],
+        };
     }
     return self;
 }
@@ -74,17 +86,12 @@
     _orientation = orientation;
 }
 
-#pragma mark - Interpolation;
-- (CGFloat)interpolateFrom:(CGFloat)from to:(CGFloat)to percent:(CGFloat)percent {
-    return from + (to - from) * percent;
-}
-
 #pragma mark - Public
 - (void)updateParameterWithFaceAnchor:(XDFaceAnchor *)anchor {
     if (!anchor.isTracked) {
         return;
     }
-    self.lastParameter = self.parameter;
+
     self.faceNode.simdTransform = anchor.transform;
     self.leftEyeNode.simdTransform = anchor.transform;
     self.rightEyeNode.simdTransform = anchor.transform;
@@ -165,23 +172,20 @@
     }
     self.parameter.mouthForm = @(mouthForm);
     
-    self.lastUpdateTime = CACurrentMediaTime();
 }
 
 - (void)commit {
-    CGFloat persent = 1;
-    if (self.lastUpdateTime > 0) {
-        CFTimeInterval currentInterpolationTime = CACurrentMediaTime() - self.lastUpdateTime;
-        persent = currentInterpolationTime / self.frameInterval;
-        if (persent > 1) {
-            persent = 1;
-        }
-    }
     [self.parameterKeyMap enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
         NSNumber *targetValue = [self.parameter valueForKey:obj];
-        NSNumber *fromValue = [self.lastParameter valueForKey:obj];
-        CGFloat v = self.interpolation ? [self interpolateFrom:fromValue.floatValue to:targetValue.floatValue percent:persent] : targetValue.floatValue;
-        if (v) {
+        if (targetValue == nil) {
+            targetValue = @(0);
+        }
+        CGFloat v = targetValue.floatValue;
+        XDSimpleKalman *kalman = [self.parameterKalman objectForKey:key];
+        if (kalman) {
+            v = [kalman calc:v];
+        }
+        if (targetValue) {
             [self.model setParam:key forValue:@(v)];
         } else {
             [self.model setParam:key forValue:@(0)];

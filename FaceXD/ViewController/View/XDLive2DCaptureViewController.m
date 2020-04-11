@@ -137,7 +137,7 @@
 
 #pragma mark - Data Source
 - (Class)viewModelClass {
-    return [XDLive2DCaptureDlibViewModel class];
+//    return [XDLive2DCaptureDlibViewModel class];
     if ([ARFaceTrackingConfiguration isSupported]) {
         return [XDLive2DCaptureARKitViewModel class];
     }
