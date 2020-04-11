@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)reset;
 - (void)commit;
 
+/// 所有头部角度，身体角度的取值为[-180, 180] ,单位度
+/// 所有表情信息取值[0, 1]
 - (XDModelParameter *)sendParameter;
 
 - (NSDictionary<NSString *, NSString *> *)parameterKeyMap;
