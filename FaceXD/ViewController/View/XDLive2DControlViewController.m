@@ -159,6 +159,11 @@
 }
 
 - (void)syncAlignment {
+    if (![self.viewModel.captureViewModel.class isKindOfClass:NSClassFromString(@"XDLive2DCaptureARKitViewModel")]) {
+        self.relativeSwitch.on = NO;
+        self.relativeSwitch.enabled = NO;
+        return;
+    }
     NSNumber *alignment = [self.viewModel.captureViewModel valueForKey:@"worldAlignment"];
     if (alignment) {
         BOOL isReltive = (alignment.intValue == ARWorldAlignmentCamera);
