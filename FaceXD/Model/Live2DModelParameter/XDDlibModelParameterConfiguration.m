@@ -34,12 +34,12 @@
             LAppParamBodyAngleX: [XDSimpleKalman kalmanWithQ:0.4 R:100],
             LAppParamBodyAngleY: [XDSimpleKalman kalmanWithQ:0.4 R:100],
             LAppParamBodyAngleZ: [XDSimpleKalman kalmanWithQ:0.4 R:100],
-            LAppParamEyeLOpen: [XDSimpleKalman kalmanWithQ:1 R:10],
-            LAppParamEyeROpen: [XDSimpleKalman kalmanWithQ:1 R:10],
+            LAppParamEyeLOpen: [XDSimpleKalman kalmanWithQ:0.9 R:20],
+            LAppParamEyeROpen: [XDSimpleKalman kalmanWithQ:0.9 R:20],
             LAppParamEyeBallX: [XDSimpleKalman kalmanWithQ:1 R:10],
             LAppParamEyeBallY: [XDSimpleKalman kalmanWithQ:1 R:10],
-            LAppParamMouthOpenY: [XDSimpleKalman kalmanWithQ:1 R:10],
-            LAppParamMouthForm: [XDSimpleKalman kalmanWithQ:1 R:10],
+            LAppParamMouthOpenY: [XDSimpleKalman kalmanWithQ:0.8 R:50],
+            LAppParamMouthForm: [XDSimpleKalman kalmanWithQ:0.8 R:50],
         };
     }
     return self;
@@ -67,12 +67,35 @@
     self.parameter.bodyAngleX = @(self.parameter.headYaw.floatValue / 4);
     self.parameter.bodyAngleY = @(self.parameter.headPitch.floatValue / 2);
     self.parameter.bodyAngleZ = @(self.parameter.headRoll.floatValue / 2);
+    
+    CGFloat eyeLeft = anchor.blendShapes[ARBlendShapeLocationEyeBlinkLeft].floatValue;
+    CGFloat eyeRight = anchor.blendShapes[ARBlendShapeLocationEyeBlinkRight].floatValue;
+    
+    if (eyeLeft > 0.15) {
+        eyeLeft = 1;
+    } else {
+        eyeLeft = 0;
+    }
+    
+    if (eyeRight > 0.15) {
+        eyeRight = 1;
+    } else {
+        eyeRight = 0;
+    }
+    
+    CGFloat mouthOpenY = anchor.blendShapes[ARBlendShapeLocationJawOpen].floatValue;
+    if (mouthOpenY > 0.1) {
+        mouthOpenY = 1;
+    } else {
+        mouthOpenY = 0;
+    }
+    
+    CGFloat mouthForm = anchor.blendShapes[ARBlendShapeLocationMouthPucker].floatValue;
+    self.parameter.eyeLOpen = @(eyeLeft);
+    self.parameter.eyeROpen = @(eyeRight);
+    self.parameter.mouthOpenY = @(mouthOpenY);
+    self.parameter.mouthForm = @(mouthForm * 3);
     NSLog(@"parm: %@", self.parameter);
-}
-
-#pragma mark - Interpolation;
-- (CGFloat)interpolateFrom:(CGFloat)from to:(CGFloat)to percent:(CGFloat)percent {
-    return from + (to - from) * percent;
 }
 
 - (void)commit {

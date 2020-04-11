@@ -78,14 +78,12 @@
     rotationMatrix = SCNMatrix4Rotate(rotationMatrix, rotation.at<double>(2, 0), 0, 0, 1);
     anchor.isTracked = YES;
     anchor.transform = SCNMatrix4ToMat4(rotationMatrix);
-    
-//    anchor.headPitch = @(rotation.at<double>(0, 0));
-//    anchor.headYaw = @(rotation.at<double>(1, 0));
-//    anchor.headRoll = @(rotation.at<double>(2, 0));
-//    anchor.leftEyeOpen = @(feature.at<double>(0, 0));
-//    anchor.rightEyeOpen = @(feature.at<double>(1, 0));
-//    anchor.mouthOpenY = @(feature.at<double>(2, 0));
-//    anchor.mouthOpenX = @(feature.at<double>(3, 0));
+    anchor.blendShapes = @{
+        ARBlendShapeLocationEyeBlinkLeft: @(feature.at<double>(0, 0)),
+        ARBlendShapeLocationEyeBlinkRight: @(feature.at<double>(1, 0)),
+        ARBlendShapeLocationJawOpen: @(feature.at<double>(2, 0)),
+        ARBlendShapeLocationMouthPucker: @(feature.at<double>(3, 0)),
+    };
     return anchor;
 }
 
