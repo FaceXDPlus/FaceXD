@@ -142,6 +142,7 @@
         [UIApplication sharedApplication].idleTimerDisabled = YES;
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         self.submitStateLabel.text = NSLocalizedString(@"started", nil);
+        self.submitSwitch.enabled = YES;
     } else {
         [UIApplication sharedApplication].idleTimerDisabled = NO;
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
