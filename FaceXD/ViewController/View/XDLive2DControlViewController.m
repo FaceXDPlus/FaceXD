@@ -166,7 +166,7 @@
 }
 
 - (void)syncAlignment {
-    if (![self.viewModel.captureViewModel.class isKindOfClass:NSClassFromString(@"XDLive2DCaptureARKitViewModel")]) {
+    if (![self.viewModel.captureViewModel isKindOfClass:NSClassFromString(@"XDLive2DCaptureARKitViewModel")]) {
         self.relativeSwitch.on = NO;
         self.relativeSwitch.enabled = NO;
         return;
