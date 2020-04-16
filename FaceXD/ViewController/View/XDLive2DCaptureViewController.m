@@ -137,6 +137,7 @@
 
 #pragma mark - Data Source
 - (Class)viewModelClass {
+    return [XDLive2DCaptureDlibViewModel class];
     if ([ARFaceTrackingConfiguration isSupported]) {
         return [XDLive2DCaptureARKitViewModel class];
     }
@@ -169,6 +170,7 @@
         
         if ([self viewModelClass] == [XDLive2DCaptureDlibViewModel class]) {
             [self.dlibModelParameterConfiguration updateParameterWithFaceAnchor:faceAnchor];
+            parm = [self.dlibModelParameterConfiguration.sendParameter parameterValueDictionary];
         } else {
             self.defaultModelParameterConfiguration.orientation = orientation;
             [self.defaultModelParameterConfiguration updateParameterWithFaceAnchor:faceAnchor];

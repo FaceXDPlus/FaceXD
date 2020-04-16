@@ -14,12 +14,42 @@
 
 @implementation XDMathf
 
++ (double)repeat:(double)t
+          length:(double)length {
+    return simd_clamp(t - floor(t / length) * length, 0.0, length);
+}
+
++ (double)deltaAngle:(double)current
+              target:(double)target {
+    double delta = [[self class] repeat:(target - current)
+                                 length:360.f];
+    if (delta > 180.f) {
+        delta -= 360.f;
+    }
+    return delta;
+}
+
++ (double)smoothDampAngle:(double)current
+                   target:(double)target
+          currentVelocity:(double *)currentVelocity
+               smoothTime:(double)smoothTime
+                 maxSpeed:(double)maxSpeed
+                deltaTime:(double)deltaTime {
+    target = current + [[self class] deltaAngle:current target:target];
+    return [[self class] smoothDamp:current
+                             target:target
+                    currentVelocity:currentVelocity
+                         smoothTime:smoothTime
+                           maxSpeed:maxSpeed
+                          deltaTime:deltaTime];
+}
+
 + (double)smoothDamp:(double)current
-               target:(double)target
-      currentVelocity:(double *)currentVelocity
-           smoothTime:(double)smoothTime
-             maxSpeed:(double)maxSpeed
-            deltaTime:(double)deltaTime {
+              target:(double)target
+     currentVelocity:(double *)currentVelocity
+          smoothTime:(double)smoothTime
+            maxSpeed:(double)maxSpeed
+           deltaTime:(double)deltaTime {
     smoothTime = simd_max((double)0.0001f, smoothTime);
     double omega = 2.f / smoothTime;
     

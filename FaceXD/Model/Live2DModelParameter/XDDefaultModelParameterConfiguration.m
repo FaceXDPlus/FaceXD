@@ -10,8 +10,11 @@
 #import "XDDefaultModelParameterConfiguration.h"
 #import "XDControlValueLinear.h"
 #import "XDSimpleKalman.h"
+#import "XDSmoothDamp.h"
 
-@interface XDDefaultModelParameterConfiguration ()
+@interface XDDefaultModelParameterConfiguration () {
+    CFTimeInterval _lastCommitTimeInterval;
+}
 
 @property (nonatomic, strong) SCNNode *faceNode;
 @property (nonatomic, strong) SCNNode *leftEyeNode;
@@ -20,7 +23,7 @@
 @property (nonatomic, strong) XDControlValueLinear *eyeLinearX;
 @property (nonatomic, strong) XDControlValueLinear *eyeLinearY;
 
-@property (nonatomic, strong) NSDictionary<NSString *, XDSimpleKalman *> *parameterKalman;
+@property (nonatomic, strong) NSDictionary<NSString *, XDSmoothDamp *> *parameterSmoothDamp;
 
 @property (nonatomic, strong) XDModelParameter *sendParameter;
 
@@ -63,19 +66,19 @@
                                                             outputMin:[self.model paramMinValue:LAppParamEyeBallX].doubleValue inputMax:45 inputMin:-45];
         _eyeLinearY = [[XDControlValueLinear alloc] initWithOutputMax:[self.model paramMaxValue:LAppParamEyeBallY].doubleValue
                                                             outputMin:[self.model paramMinValue:LAppParamEyeBallY].doubleValue inputMax:45 inputMin:-45];
-        _parameterKalman = @{
-            LAppParamAngleY: [XDSimpleKalman kalmanWithQ:1 R:10],
-            LAppParamAngleX: [XDSimpleKalman kalmanWithQ:1 R:10],
-            LAppParamAngleZ: [XDSimpleKalman kalmanWithQ:1 R:10],
-            LAppParamBodyAngleX: [XDSimpleKalman kalmanWithQ:1 R:10],
-            LAppParamBodyAngleY: [XDSimpleKalman kalmanWithQ:1 R:10],
-            LAppParamBodyAngleZ: [XDSimpleKalman kalmanWithQ:1 R:10],
-            LAppParamEyeLOpen: [XDSimpleKalman kalmanWithQ:5 R:10],
-            LAppParamEyeROpen: [XDSimpleKalman kalmanWithQ:5 R:10],
-            LAppParamEyeBallX: [XDSimpleKalman kalmanWithQ:1 R:10],
-            LAppParamEyeBallY: [XDSimpleKalman kalmanWithQ:1 R:10],
-            LAppParamMouthOpenY: [XDSimpleKalman kalmanWithQ:1 R:10],
-            LAppParamMouthForm: [XDSimpleKalman kalmanWithQ:1 R:10],
+        _parameterSmoothDamp = @{
+            LAppParamAngleY: [XDSmoothDamp smoothDampWithSmoothTime:0.07],
+            LAppParamAngleX: [XDSmoothDamp smoothDampWithSmoothTime:0.07],
+            LAppParamAngleZ: [XDSmoothDamp smoothDampWithSmoothTime:0.07],
+            LAppParamBodyAngleX: [XDSmoothDamp smoothDampWithSmoothTime:0.07],
+            LAppParamBodyAngleY: [XDSmoothDamp smoothDampWithSmoothTime:0.07],
+            LAppParamBodyAngleZ: [XDSmoothDamp smoothDampWithSmoothTime:0.07],
+            LAppParamEyeLOpen: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+            LAppParamEyeROpen: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+            LAppParamEyeBallX: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+            LAppParamEyeBallY: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+            LAppParamMouthOpenY: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+            LAppParamMouthForm: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
         };
     }
     return self;
@@ -185,24 +188,30 @@
 }
 
 - (void)commit {
+    CFTimeInterval currentTime = CACurrentMediaTime();
     [self.parameterKeyMap enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
         NSNumber *targetValue = [self.parameter valueForKey:obj];
+        NSNumber *currentValue = [self.model paramValue:key];
         if (targetValue == nil) {
             targetValue = @(0);
         }
         CGFloat v = targetValue.floatValue;
-        XDSimpleKalman *kalman = [self.parameterKalman objectForKey:key];
-        if (kalman) {
-            v = [kalman calc:v];
+        CGFloat smooth = v;
+        XDSmoothDamp *smoothDamp = [self.parameterSmoothDamp objectForKey:key];
+        if (smoothDamp) {
+            smoothDamp.deltaTime = currentTime - _lastCommitTimeInterval;
+            smoothDamp.currentValue = [currentValue doubleValue];
+            smooth = [smoothDamp calc:v];
         }
         
         if (targetValue) {
-            [self.model setParam:key forValue:@(v)];
+            [self.model setParam:key forValue:@(smooth)];
             [self.sendParameter setValue:@(v) forKey:obj];
         } else {
             [self.model setParam:key forValue:@(0)];
         }
     }];
+    _lastCommitTimeInterval = currentTime;
 }
 
 

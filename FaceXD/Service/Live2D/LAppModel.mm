@@ -311,6 +311,11 @@ public:
     self.model->GetModel()->SaveParameters();
 }
 
+- (NSNumber *)paramValue:(LAppParam)param {
+    Csm::csmFloat32 value =  self.model->GetModel()->GetParameterValue(Csm::CubismFramework::GetIdManager()->GetId([param cStringUsingEncoding:NSUTF8StringEncoding]));
+    return @(value);
+}
+
 #pragma mark - On Update
 - (void)onUpdateWithParameterUpdate:(dispatch_block_t)block {
     NSTimeInterval deltaTime = self.glContext.deltaTime;

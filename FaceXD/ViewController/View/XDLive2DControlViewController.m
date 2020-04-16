@@ -160,7 +160,13 @@
     self.addressField.text = self.viewModel.host;
     self.socketPortField.text = self.viewModel.port;
     self.appVersionLabel.text = self.viewModel.appVersion;
-    self.advancedSwitch.on = self.viewModel.captureViewModel.advanceMode;
+    if ([self.viewModel.captureViewModel isKindOfClass:NSClassFromString(@"XDLive2DCaptureARKitViewModel")]) {
+        self.advancedSwitch.enabled = YES;
+        self.advancedSwitch.on = self.viewModel.captureViewModel.advanceMode;
+    } else {
+        self.advancedSwitch.enabled = NO;
+        self.advancedSwitch.on = NO;
+    }
     self.captureSwitch.on = self.viewModel.captureViewModel.isCapturing;
     
 }

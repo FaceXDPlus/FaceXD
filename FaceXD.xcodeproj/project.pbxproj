@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4F2FB01E2448AEB800F52F82 /* XDMathf.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FB01D2448AEB800F52F82 /* XDMathf.m */; };
+		4F2FB0212448BF8F00F52F82 /* XDSmoothDamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FB0202448BF8F00F52F82 /* XDSmoothDamp.m */; };
 		4F6F95AD241FD362008D6BE7 /* XDModelParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95AC241FD362008D6BE7 /* XDModelParameter.m */; };
 		4F6F95B0241FD85F008D6BE7 /* XDModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95AF241FD85F008D6BE7 /* XDModelParameterConfiguration.m */; };
 		4F6F95B3241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95B2241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m */; };
@@ -134,6 +135,8 @@
 		1456E1CC021CD518305051FC /* Pods_FaceXD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FaceXD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F2FB01C2448AEB800F52F82 /* XDMathf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDMathf.h; sourceTree = "<group>"; };
 		4F2FB01D2448AEB800F52F82 /* XDMathf.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDMathf.m; sourceTree = "<group>"; };
+		4F2FB01F2448BF8F00F52F82 /* XDSmoothDamp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDSmoothDamp.h; sourceTree = "<group>"; };
+		4F2FB0202448BF8F00F52F82 /* XDSmoothDamp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDSmoothDamp.m; sourceTree = "<group>"; };
 		4F6F95AB241FD362008D6BE7 /* XDModelParameter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDModelParameter.h; sourceTree = "<group>"; };
 		4F6F95AC241FD362008D6BE7 /* XDModelParameter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDModelParameter.m; sourceTree = "<group>"; };
 		4F6F95AE241FD85F008D6BE7 /* XDModelParameterConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDModelParameterConfiguration.h; sourceTree = "<group>"; };
@@ -549,6 +552,8 @@
 				4FDBA28323E95E14003F40F1 /* stb_image.h */,
 				4FE0D2FE24421740008F838E /* XDSimpleKalman.h */,
 				4FE0D2FF24421740008F838E /* XDSimpleKalman.m */,
+				4F2FB01F2448BF8F00F52F82 /* XDSmoothDamp.h */,
+				4F2FB0202448BF8F00F52F82 /* XDSmoothDamp.m */,
 				4F2FB01C2448AEB800F52F82 /* XDMathf.h */,
 				4F2FB01D2448AEB800F52F82 /* XDMathf.m */,
 			);
@@ -1056,6 +1061,7 @@
 				520D0E9C240D0F66002453EF /* csmRectF.cpp in Sources */,
 				520D0EB8240D0F66002453EF /* CubismIdManager.cpp in Sources */,
 				520D0ED9240D0F66002453EF /* CubismModelUserData.cpp in Sources */,
+				4F2FB0212448BF8F00F52F82 /* XDSmoothDamp.m in Sources */,
 				4FE0D2C62438D2FA008F838E /* XDLive2DCaptureViewController.m in Sources */,
 				520D0E91240D0F66002453EF /* CubismViewMatrix.cpp in Sources */,
 				520D0EA6240D0F66002453EF /* CubismModelSettingJson.cpp in Sources */,

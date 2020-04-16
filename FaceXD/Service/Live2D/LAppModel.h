@@ -53,6 +53,7 @@ extern LAppParam const LAppParamEyeBrowRAngle;
 - (NSNumber *)paramMaxValue:(LAppParam)param;
 - (NSNumber *)paramMinValue:(LAppParam)param;
 - (NSNumber *)paramDefaultValue:(LAppParam)param;
+- (NSNumber *)paramValue:(LAppParam)param;
 - (void)setParam:(LAppParam)param forValue:(NSNumber *)value;
 - (void)setParam:(LAppParam)param forValue:(NSNumber *)value width:(CGFloat)width;
 

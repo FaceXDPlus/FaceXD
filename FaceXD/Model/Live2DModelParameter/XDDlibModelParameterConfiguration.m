@@ -10,13 +10,19 @@
 #import "XDFaceAnchor.h"
 #import "XDSimpleKalman.h"
 #import "XDControlValueLinear.h"
-@interface XDDlibModelParameterConfiguration ()
+#import "XDMathf.h"
+#import "XDSmoothDamp.h"
+@interface XDDlibModelParameterConfiguration () {
+    CFTimeInterval _lastCommitTimeInterval;
+}
 @property (nonatomic, strong) SCNNode *faceNode;
 @property (nonatomic, strong) NSDictionary<NSString *, XDSimpleKalman *> *parameterKalman;
+@property (nonatomic, strong) NSDictionary<NSString *, XDSmoothDamp *> *parameterSmoothDamp;
 
 @property (nonatomic, strong) XDControlValueLinear *mouthFormLinear;
 
 @property (nonatomic, strong) XDModelParameter *sendParameter;
+
 @end
 
 @implementation XDDlibModelParameterConfiguration
@@ -53,7 +59,24 @@
             LAppParamMouthOpenY: [XDSimpleKalman kalmanWithQ:0.8 R:50],
             LAppParamMouthForm: [XDSimpleKalman kalmanWithQ:0.8 R:50],
         };
+        
+        _parameterSmoothDamp = @{
+            LAppParamAngleY: [XDSmoothDamp smoothDampWithSmoothTime:0.07],
+            LAppParamAngleX: [XDSmoothDamp smoothDampWithSmoothTime:0.07],
+            LAppParamAngleZ: [XDSmoothDamp smoothDampWithSmoothTime:0.07],
+            LAppParamBodyAngleX: [XDSmoothDamp smoothDampWithSmoothTime:0.07],
+            LAppParamBodyAngleY: [XDSmoothDamp smoothDampWithSmoothTime:0.07],
+            LAppParamBodyAngleZ: [XDSmoothDamp smoothDampWithSmoothTime:0.07],
+            LAppParamEyeLOpen: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+            LAppParamEyeROpen: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+            LAppParamEyeBallX: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+            LAppParamEyeBallY: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+            LAppParamMouthOpenY: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+            LAppParamMouthForm: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+        };
+        
         _mouthFormLinear = [[XDControlValueLinear alloc] initWithOutputMax:7 outputMin:-1 inputMax:0.3 inputMin:0.25];
+        _lastCommitTimeInterval = CACurrentMediaTime();
     }
     return self;
 }
@@ -106,23 +129,33 @@
     CGFloat mouthForm = anchor.blendShapes[ARBlendShapeLocationMouthPucker].floatValue;
     mouthForm = [self.mouthFormLinear calc:mouthForm];
     
-    self.parameter.eyeLOpen = @(eyeLeft);
-    self.parameter.eyeROpen = @(eyeRight);
+    self.parameter.eyeROpen = @(eyeLeft);
+    self.parameter.eyeLOpen = @(eyeRight);
     self.parameter.mouthOpenY = @(mouthOpenY);
     self.parameter.mouthForm = @(mouthForm);
 }
 
 - (void)commit {
+    CFTimeInterval currentTime = CACurrentMediaTime();
     [self.parameterKeyMap enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
         NSNumber *targetValue = [self.parameter valueForKey:obj];
+        NSNumber *currentValue = [self.model paramValue:key];
         if (targetValue == nil) {
             targetValue = @(0);
         }
+        
         CGFloat v = targetValue.floatValue;
         XDSimpleKalman *kalman = [self.parameterKalman objectForKey:key];
         if (kalman) {
             v = [kalman calc:v];
         }
+        XDSmoothDamp *smoothDamp = [self.parameterSmoothDamp objectForKey:key];
+        if (smoothDamp) {
+            smoothDamp.deltaTime = currentTime - _lastCommitTimeInterval;
+            smoothDamp.currentValue = [currentValue doubleValue];
+            v = [smoothDamp calc:v];
+        }
+        
         if (targetValue) {
             [self.model setParam:key forValue:@(v)];
             [self.sendParameter setValue:@(v) forKey:obj];
@@ -130,5 +163,6 @@
             [self.model setParam:key forValue:@(0)];
         }
     }];
+    _lastCommitTimeInterval = currentTime;
 }
 @end
