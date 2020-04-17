@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F2FB01E2448AEB800F52F82 /* XDMathf.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FB01D2448AEB800F52F82 /* XDMathf.m */; };
 		4F2FB0212448BF8F00F52F82 /* XDSmoothDamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FB0202448BF8F00F52F82 /* XDSmoothDamp.m */; };
+		4F4A49D8244A0686003BBA56 /* XDQRScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A49D7244A0686003BBA56 /* XDQRScanViewController.m */; };
 		4F6F95AD241FD362008D6BE7 /* XDModelParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95AC241FD362008D6BE7 /* XDModelParameter.m */; };
 		4F6F95B0241FD85F008D6BE7 /* XDModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95AF241FD85F008D6BE7 /* XDModelParameterConfiguration.m */; };
 		4F6F95B3241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95B2241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m */; };
@@ -137,6 +138,8 @@
 		4F2FB01D2448AEB800F52F82 /* XDMathf.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDMathf.m; sourceTree = "<group>"; };
 		4F2FB01F2448BF8F00F52F82 /* XDSmoothDamp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDSmoothDamp.h; sourceTree = "<group>"; };
 		4F2FB0202448BF8F00F52F82 /* XDSmoothDamp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDSmoothDamp.m; sourceTree = "<group>"; };
+		4F4A49D6244A0686003BBA56 /* XDQRScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDQRScanViewController.h; sourceTree = "<group>"; };
+		4F4A49D7244A0686003BBA56 /* XDQRScanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDQRScanViewController.m; sourceTree = "<group>"; };
 		4F6F95AB241FD362008D6BE7 /* XDModelParameter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDModelParameter.h; sourceTree = "<group>"; };
 		4F6F95AC241FD362008D6BE7 /* XDModelParameter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDModelParameter.m; sourceTree = "<group>"; };
 		4F6F95AE241FD85F008D6BE7 /* XDModelParameterConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDModelParameterConfiguration.h; sourceTree = "<group>"; };
@@ -398,6 +401,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		4F4A49D5244A064D003BBA56 /* QRScan */ = {
+			isa = PBXGroup;
+			children = (
+				4F4A49D6244A0686003BBA56 /* XDQRScanViewController.h */,
+				4F4A49D7244A0686003BBA56 /* XDQRScanViewController.m */,
+			);
+			path = QRScan;
+			sourceTree = "<group>";
+		};
 		4F6F95A8241FD232008D6BE7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,30 +575,11 @@
 		4FE0D2C12438D243008F838E /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4FE0D2C32438D297008F838E /* ViewModel */,
-				4FE0D2C22438D279008F838E /* View */,
+				4F4A49D5244A064D003BBA56 /* QRScan */,
+				4FE0D2EC24390D1E008F838E /* Capture */,
+				4FE0D2ED24390D30008F838E /* Control */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		4FE0D2C22438D279008F838E /* View */ = {
-			isa = PBXGroup;
-			children = (
-				4FE0D2C42438D2FA008F838E /* XDLive2DCaptureViewController.h */,
-				4FE0D2C52438D2FA008F838E /* XDLive2DCaptureViewController.m */,
-				4FE0D2F124390DE9008F838E /* XDLive2DControlViewController.h */,
-				4FE0D2F224390DE9008F838E /* XDLive2DControlViewController.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		4FE0D2C32438D297008F838E /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				4FE0D2ED24390D30008F838E /* Control */,
-				4FE0D2EC24390D1E008F838E /* Capture */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		4FE0D2D02438D69F008F838E /* Extension */ = {
@@ -668,6 +661,8 @@
 				4FE0D2CB2438D33C008F838E /* XDLive2DCaptureDlibViewModel.m */,
 				4FE0D2CD2438D40E008F838E /* XDLive2DCaptureViewModel.h */,
 				4FE0D2CE2438D40E008F838E /* XDLive2DCaptureViewModel.m */,
+				4FE0D2C42438D2FA008F838E /* XDLive2DCaptureViewController.h */,
+				4FE0D2C52438D2FA008F838E /* XDLive2DCaptureViewController.m */,
 			);
 			path = Capture;
 			sourceTree = "<group>";
@@ -677,6 +672,8 @@
 			children = (
 				4FE0D2EE24390D6D008F838E /* XDLive2DControlViewModel.h */,
 				4FE0D2EF24390D6D008F838E /* XDLive2DControlViewModel.m */,
+				4FE0D2F124390DE9008F838E /* XDLive2DControlViewController.h */,
+				4FE0D2F224390DE9008F838E /* XDLive2DControlViewController.m */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -1092,6 +1089,7 @@
 				520D0EC9240D0F66002453EF /* CubismMotionManager.cpp in Sources */,
 				4F9175CF23E1FA1B0065D31D /* LAppAllocator.mm in Sources */,
 				520D0EDB240D0F66002453EF /* CubismModelUserDataJson.cpp in Sources */,
+				4F4A49D8244A0686003BBA56 /* XDQRScanViewController.m in Sources */,
 				4F90BD7624275C270065A06C /* XDOpenCVWarpper.mm in Sources */,
 				4FE0D30024421740008F838E /* XDSimpleKalman.m in Sources */,
 				520D0E9E240D0F66002453EF /* CubismExpressionMotion.cpp in Sources */,
