@@ -32,7 +32,7 @@
 }
 
 - (void)commit {
-    [self.parameterKeyMap enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
+    [[self class].parameterKeyMap enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
         NSNumber *v = [self.parameter valueForKey:obj];
         if (v) {
             [self.model setParam:key forValue:v];
@@ -46,7 +46,7 @@
     return self.parameter;
 }
 
-- (NSDictionary<NSString *,NSString *> *)parameterKeyMap {
++ (NSDictionary<NSString *,NSString *> *)parameterKeyMap {
     static NSDictionary *map = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

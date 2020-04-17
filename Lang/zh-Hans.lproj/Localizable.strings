@@ -27,3 +27,5 @@
 "label_SocketPort"    = "Socket端口";
 "xd_low_accuracy" = "低精度";
 "xd_high_accuracy" = "高精度";
+"xd_qr_scan_tips" = "扫描连接二维码";
+"xd_qr_scan_exit_tips" = "下滑可返回";

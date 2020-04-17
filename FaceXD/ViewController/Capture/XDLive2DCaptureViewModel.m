@@ -36,4 +36,17 @@
     [[NSUserDefaults standardUserDefaults] setBool:_advanceMode forKey:XDUserDefineKeySubmitAdvancedSwitch];
 }
 
+- (NSArray<NSString *> *)filterSendKeys {
+    static NSArray *array = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        array = @[
+            LAppParamBodyAngleX,
+            LAppParamBodyAngleY,
+            LAppParamBodyAngleZ,
+        ];
+    });
+    return array;
+}
+
 @end

@@ -12,9 +12,10 @@
 #import "XDLive2DCaptureViewModel.h"
 #import "NSString+XDIPValiual.h"
 #import "XDLive2DCaptureARKitViewModel.h"
+#import "XDQRScanViewController.h"
+#import <GCDAsyncSocket.h>
 
-
-@interface XDLive2DControlViewController ()
+@interface XDLive2DControlViewController () <GCDAsyncSocketDelegate>
 @property (nonatomic, strong) XDLive2DControlViewModel *viewModel;
 
 @property (nonatomic, assign) BOOL needShowCamera;
@@ -41,6 +42,9 @@
 @property (nonatomic, weak) IBOutlet UILabel *captureLabel;
 @property (nonatomic, weak) IBOutlet UISwitch *captureSwitch;
 
+@property (nonatomic, strong) NSMutableArray<GCDAsyncSocket *> *currentReachabilitys;
+@property (nonatomic, strong) dispatch_queue_t reachabilityDelegateQueue;
+@property (nonatomic, strong) NSTimer *reachabilityTimeoutTimer;
 @end
 
 @implementation XDLive2DControlViewController
@@ -49,6 +53,8 @@
     self = [super initWithCoder:coder];
     if (self) {
         _viewModel = [[XDLive2DControlViewModel alloc] init];
+        _currentReachabilitys = [[NSMutableArray alloc] init];
+        _reachabilityDelegateQueue = dispatch_queue_create("ReachabilityQueue", DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }
@@ -209,6 +215,53 @@
 
 #pragma mark - Handler
 
+- (void)handleQRCodeInput:(NSString *)qrInput {
+    NSError *err = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[qrInput dataUsingEncoding:NSUTF8StringEncoding]
+                                                                         options:NSJSONReadingAllowFragments
+                                                                           error:&err];
+    if (err) {
+        return;
+    }
+    
+    do {
+        __weak typeof(self) weakSelf = self;
+        [self.reachabilityTimeoutTimer invalidate];
+        self.reachabilityTimeoutTimer = nil;
+        
+        NSString *portString = [json objectForKey:@"port"];
+        if (!(portString &&
+            [portString isKindOfClass:[NSString class]])) {
+            break;
+        }
+        
+        NSDictionary *ipDict = [json objectForKey:@"IP_Dict"];
+        if (ipDict &&
+            [ipDict isKindOfClass:[NSDictionary class]]) {
+            NSArray<NSString *> *allAddress = [ipDict allValues];
+            [self.currentReachabilitys removeAllObjects];
+            for (NSString *address in allAddress) {
+                GCDAsyncSocket *socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:self.reachabilityDelegateQueue];
+                NSError *err = nil;
+                [socket connectToHost:address onPort:portString.intValue error:&err];
+                NSLog(@"[REACHABILITY]: connect err: %@", err);
+                [self.currentReachabilitys addObject:socket];
+            }
+        } else {
+            break;
+        }
+        
+        self.reachabilityTimeoutTimer  = [NSTimer scheduledTimerWithTimeInterval:5 repeats:NO block:^(NSTimer * _Nonnull timer) {
+            NSArray *a = weakSelf.currentReachabilitys.copy;
+            for (GCDAsyncSocket *obj in a) {
+                [obj disconnect];
+            }
+            [weakSelf.currentReachabilitys removeAllObjects];
+        }];
+        
+    } while (0);
+}
+
 - (IBAction)handleCaptureSwitchChange:(id)sender {
     if (self.captureSwitch.on) {
         [self.viewModel startCapture];
@@ -274,6 +327,34 @@
 }
 
 - (IBAction)handleScanQRCodeButtonDown:(id)sender {
-    
+    [self.viewModel stopCapture];
+    XDQRScanViewController *qrScan = [[XDQRScanViewController alloc] init];
+    [self presentViewController:qrScan animated:YES completion:nil];
+    __weak typeof(qrScan) weakQRScan = qrScan;
+    __weak typeof(self) weakSelf = self;
+    qrScan.resultBlock = ^(NSString * _Nonnull stringValue) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf handleQRCodeInput:stringValue];
+            [weakQRScan dismissViewControllerAnimated:YES completion:nil];
+        });
+    };
 }
+
+#pragma mark - Delegate
+- (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.reachabilityTimeoutTimer invalidate];
+        self.reachabilityTimeoutTimer = nil;
+        
+        self.viewModel.host = host;
+        self.viewModel.port = [@(port) stringValue];
+       
+        NSArray *a = self.currentReachabilitys.copy;
+        for (GCDAsyncSocket *obj in a) {
+            [obj disconnect];
+        }
+        [self.currentReachabilitys removeAllObjects];
+    });
+}
+
 @end

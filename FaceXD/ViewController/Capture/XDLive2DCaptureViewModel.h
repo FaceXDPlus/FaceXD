@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)startCapture NS_REQUIRES_SUPER;
 - (void)stopCapture NS_REQUIRES_SUPER;
 
+- (NSArray<NSString *> *)filterSendKeys;
 @end
 
 NS_ASSUME_NONNULL_END
