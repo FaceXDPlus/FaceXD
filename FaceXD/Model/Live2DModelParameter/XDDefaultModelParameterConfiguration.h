@@ -6,18 +6,15 @@
 //  Copyright © 2020 hakura. All rights reserved.
 //
 
-#import "XDModelParameterConfigration.h"
+#import "XDModelParameterConfiguration.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface XDDefaultModelParameterConfiguration : XDModelParameterConfigration
+@interface XDDefaultModelParameterConfiguration : XDModelParameterConfiguration
 
 @property (nonatomic, assign) ARWorldAlignment worldAlignment;
 @property (nonatomic, assign) UIInterfaceOrientation orientation;
 
-@property (nonatomic, assign) BOOL interpolation;
-/// 数据间隔, 如果数据以30Hz更新，则设置(1.0 / 30.0)
-@property (nonatomic, assign) NSTimeInterval frameInterval;
 @end
 
 NS_ASSUME_NONNULL_END

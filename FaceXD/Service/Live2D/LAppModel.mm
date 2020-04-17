@@ -11,7 +11,7 @@
 #import "CubismRenderer_OpenGLES2.hpp"
 #import "LAppBundle.h"
 #import "LAppModel.h"
-#import "LAppOpenGLManager.h"
+#import "LAppOpenGLContext.h"
 
 #define LAppModelParameterID(key) Csm::CubismFramework::GetIdManager()->GetId(Csm::DefaultParameterId::key)
 
@@ -90,9 +90,11 @@ public:
     }
 }
 
-- (instancetype)initWithName:(NSString *)name {
+- (instancetype)initWithName:(NSString *)name
+                   glContext:(nonnull LAppOpenGLContext *)glContext {
     self = [super init];
     if (self) {
+        _glContext = glContext;
         _assetName = name;
         _modelSetting = nullptr;
         _expressionMotionMap = [[NSMutableDictionary alloc] init];
@@ -220,7 +222,7 @@ public:
         NSString *textureFileName = [[NSString alloc] initWithCString:self.modelSetting->GetTextureFileName(i) encoding:NSUTF8StringEncoding];
         NSString *textureFilePath = [textureDirPath stringByAppendingPathComponent:textureFileName];
         GLuint texture;
-        if ([LAppOpenGLManagerInstance createTexture:&texture withFilePath:textureFilePath]) {
+        if ([self.glContext createTexture:&texture withFilePath:textureFilePath]) {
             self.model->GetRenderer<Csm::Rendering::CubismRenderer_OpenGLES2>()->BindTexture(i, texture);
         }
     }
@@ -231,7 +233,7 @@ public:
     auto map = self.model->GetRenderer<Csm::Rendering::CubismRenderer_OpenGLES2>()->GetBindedTextures();
     for (Csm::csmInt32 i = 0; i < textureCount; ++i) {
         GLuint texture = map[i];
-        [LAppOpenGLManagerInstance releaseTexture:texture];
+        [self.glContext releaseTexture:texture];
     }
 }
 
@@ -309,9 +311,14 @@ public:
     self.model->GetModel()->SaveParameters();
 }
 
+- (NSNumber *)paramValue:(LAppParam)param {
+    Csm::csmFloat32 value =  self.model->GetModel()->GetParameterValue(Csm::CubismFramework::GetIdManager()->GetId([param cStringUsingEncoding:NSUTF8StringEncoding]));
+    return @(value);
+}
+
 #pragma mark - On Update
 - (void)onUpdateWithParameterUpdate:(dispatch_block_t)block {
-    NSTimeInterval deltaTime = LAppOpenGLManagerInstance.deltaTime;
+    NSTimeInterval deltaTime = self.glContext.deltaTime;
     /// 设置模型参数
     self.model->GetModel()->LoadParameters();
     if (block) {

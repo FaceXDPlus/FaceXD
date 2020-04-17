@@ -9,16 +9,55 @@
 #import <QuartzCore/CABase.h>
 #import "XDDefaultModelParameterConfiguration.h"
 #import "XDControlValueLinear.h"
+#import "XDSimpleKalman.h"
+#import "XDSmoothDamp.h"
 
-@interface XDDefaultModelParameterConfiguration ()
+@interface XDDefaultModelParameterConfiguration () {
+    CFTimeInterval _lastCommitTimeInterval;
+}
+
+@property (nonatomic, strong) SCNNode *faceNode;
+@property (nonatomic, strong) SCNNode *leftEyeNode;
+@property (nonatomic, strong) SCNNode *rightEyeNode;
+
 @property (nonatomic, strong) XDControlValueLinear *eyeLinearX;
 @property (nonatomic, strong) XDControlValueLinear *eyeLinearY;
 
-@property (nonatomic, assign) CFTimeInterval lastUpdateTime;
-@property (nonatomic, copy) XDModelParameter *lastParameter;
+@property (nonatomic, strong) NSDictionary<NSString *, XDSmoothDamp *> *parameterSmoothDamp;
+
+@property (nonatomic, strong) XDModelParameter *sendParameter;
+
 @end
 
 @implementation XDDefaultModelParameterConfiguration
+
+- (SCNNode *)faceNode {
+    if (_faceNode == nil) {
+        _faceNode = [SCNNode node];
+    }
+    return _faceNode;
+}
+
+- (SCNNode *)leftEyeNode {
+    if (_leftEyeNode == nil) {
+        _leftEyeNode = [SCNNode node];
+    }
+    return _leftEyeNode;
+}
+
+- (SCNNode *)rightEyeNode {
+    if (_rightEyeNode == nil) {
+        _rightEyeNode = [SCNNode node];
+    }
+    return _rightEyeNode;
+}
+
+- (XDModelParameter *)sendParameter {
+    if (_sendParameter == nil) {
+        _sendParameter = [[XDModelParameter alloc] init];
+    }
+    return _sendParameter;
+}
 
 - (instancetype)initWithModel:(LAppModel *)model {
     self = [super initWithModel:model];
@@ -27,9 +66,20 @@
                                                             outputMin:[self.model paramMinValue:LAppParamEyeBallX].doubleValue inputMax:45 inputMin:-45];
         _eyeLinearY = [[XDControlValueLinear alloc] initWithOutputMax:[self.model paramMaxValue:LAppParamEyeBallY].doubleValue
                                                             outputMin:[self.model paramMinValue:LAppParamEyeBallY].doubleValue inputMax:45 inputMin:-45];
-        _interpolation = YES;
-        _frameInterval = 1.0 / 30.0;
-        _lastUpdateTime = -1;
+        _parameterSmoothDamp = @{
+            LAppParamAngleY: [XDSmoothDamp smoothDampWithSmoothTime:0.07],
+            LAppParamAngleX: [XDSmoothDamp smoothDampWithSmoothTime:0.07],
+            LAppParamAngleZ: [XDSmoothDamp smoothDampWithSmoothTime:0.07],
+            LAppParamBodyAngleX: [XDSmoothDamp smoothDampWithSmoothTime:0.07],
+            LAppParamBodyAngleY: [XDSmoothDamp smoothDampWithSmoothTime:0.07],
+            LAppParamBodyAngleZ: [XDSmoothDamp smoothDampWithSmoothTime:0.07],
+            LAppParamEyeLOpen: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+            LAppParamEyeROpen: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+            LAppParamEyeBallX: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+            LAppParamEyeBallY: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+            LAppParamMouthOpenY: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+            LAppParamMouthForm: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+        };
     }
     return self;
 }
@@ -49,32 +99,27 @@
     _orientation = orientation;
 }
 
-#pragma mark - Interpolation;
-- (CGFloat)interpolateFrom:(CGFloat)from to:(CGFloat)to percent:(CGFloat)percent {
-    return from + (to - from) * percent;
-}
-
 #pragma mark - Public
-- (void)updateParameterWithFaceAnchor:(ARFaceAnchor *)anchor
-                             faceNode:(SCNNode *)faceNode
-                          leftEyeNode:(SCNNode *)leftEyeNode
-                         rightEyeNode:(SCNNode *)rightEyeNode {
+- (void)updateParameterWithFaceAnchor:(XDFaceAnchor *)anchor {
     if (!anchor.isTracked) {
         return;
     }
+
+    self.faceNode.simdTransform = anchor.transform;
+    self.leftEyeNode.simdTransform = anchor.transform;
+    self.rightEyeNode.simdTransform = anchor.transform;
     
-    self.lastParameter = self.parameter;
     if (self.worldAlignment == ARWorldAlignmentCamera) {
-        self.parameter.headPitch = @(-(180 / M_PI) * faceNode.eulerAngles.x * 1.3);
-        self.parameter.headYaw = @((180 / M_PI) * faceNode.eulerAngles.y);
-        self.parameter.headRoll = @(-(180 / M_PI) * faceNode.eulerAngles.z + 90.0);
+        self.parameter.headPitch = @(-(180 / M_PI) * self.faceNode.eulerAngles.x * 1.3);
+        self.parameter.headYaw = @((180 / M_PI) * self.faceNode.eulerAngles.y);
+        self.parameter.headRoll = @(-(180 / M_PI) * self.faceNode.eulerAngles.z + 90.0);
         switch (self.orientation) {
             case UIInterfaceOrientationLandscapeRight: {
                 self.parameter.headRoll = @(self.parameter.headRoll.floatValue - 90);
             }
                 break;
             case UIInterfaceOrientationLandscapeLeft: {
-                CGFloat headRoll = (M_PI - ABS(faceNode.eulerAngles.z)) * (faceNode.eulerAngles.z > 0 ? -1 : 1);
+                CGFloat headRoll = (M_PI - ABS(self.faceNode.eulerAngles.z)) * (self.faceNode.eulerAngles.z > 0 ? -1 : 1);
                 self.parameter.headRoll = @(-(180 / M_PI) * headRoll);
             }
                 break;
@@ -86,9 +131,9 @@
                 break;
         }
     } else if (self.worldAlignment == ARWorldAlignmentGravity) {
-        self.parameter.headPitch = @(-(180 / M_PI) * faceNode.eulerAngles.x * 1.3);
-        self.parameter.headYaw = @((180 / M_PI) * faceNode.eulerAngles.y);
-        self.parameter.headRoll = @(-(180 / M_PI) * faceNode.eulerAngles.z);
+        self.parameter.headPitch = @(-(180 / M_PI) * self.faceNode.eulerAngles.x * 1.3);
+        self.parameter.headYaw = @((180 / M_PI) * self.faceNode.eulerAngles.y);
+        self.parameter.headRoll = @(-(180 / M_PI) * self.faceNode.eulerAngles.z);
     }
     
     self.parameter.bodyAngleX = @(self.parameter.headYaw.floatValue / 4);
@@ -140,28 +185,33 @@
     }
     self.parameter.mouthForm = @(mouthForm);
     
-    self.lastUpdateTime = CACurrentMediaTime();
 }
 
 - (void)commit {
-    CGFloat persent = 1;
-    if (self.lastUpdateTime > 0) {
-        CFTimeInterval currentInterpolationTime = CACurrentMediaTime() - self.lastUpdateTime;
-        persent = currentInterpolationTime / self.frameInterval;
-        if (persent > 1) {
-            persent = 1;
-        }
-    }
+    CFTimeInterval currentTime = CACurrentMediaTime();
     [self.parameterKeyMap enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
         NSNumber *targetValue = [self.parameter valueForKey:obj];
-        NSNumber *fromValue = [self.lastParameter valueForKey:obj];
-        CGFloat v = self.interpolation ? [self interpolateFrom:fromValue.floatValue to:targetValue.floatValue percent:persent] : targetValue.floatValue;
-        if (v) {
-            [self.model setParam:key forValue:@(v)];
+        NSNumber *currentValue = [self.model paramValue:key];
+        if (targetValue == nil) {
+            targetValue = @(0);
+        }
+        CGFloat v = targetValue.floatValue;
+        CGFloat smooth = v;
+        XDSmoothDamp *smoothDamp = [self.parameterSmoothDamp objectForKey:key];
+        if (smoothDamp) {
+            smoothDamp.deltaTime = currentTime - _lastCommitTimeInterval;
+            smoothDamp.currentValue = [currentValue doubleValue];
+            smooth = [smoothDamp calc:v];
+        }
+        
+        if (targetValue) {
+            [self.model setParam:key forValue:@(smooth)];
+            [self.sendParameter setValue:@(v) forKey:obj];
         } else {
             [self.model setParam:key forValue:@(0)];
         }
     }];
+    _lastCommitTimeInterval = currentTime;
 }
 
 

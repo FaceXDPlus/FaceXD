@@ -1,18 +1,18 @@
 //
-//  XDModelParameterConfigration.m
+//  XDModelParameterConfiguration.m
 //  FaceXD
 //
 //  Created by CmST0us on 2020/3/16.
 //  Copyright © 2020 hakura. All rights reserved.
 //
 
-#import "XDModelParameterConfigration.h"
+#import "XDModelParameterConfiguration.h"
 
-@interface XDModelParameterConfigration ()
+@interface XDModelParameterConfiguration ()
 @property (nonatomic, strong) XDModelParameter *parameter;
 @end
 
-@implementation XDModelParameterConfigration
+@implementation XDModelParameterConfiguration
 
 - (instancetype)initWithModel:(LAppModel *)model {
     self = [super init];
@@ -23,10 +23,7 @@
     return self;
 }
 
-- (void)updateParameterWithFaceAnchor:(ARFaceAnchor *)anchor
-                             faceNode:(SCNNode *)faceNode
-                          leftEyeNode:(SCNNode *)leftEyeNode
-                         rightEyeNode:(SCNNode *)rightEyeNode {
+- (void)updateParameterWithFaceAnchor:(XDFaceAnchor *)anchor {
     
 }
 
@@ -43,6 +40,10 @@
             [self.model setParam:key forValue:@(0)];
         }
     }];
+}
+
+- (XDModelParameter *)sendParameter {
+    return self.parameter;
 }
 
 - (NSDictionary<NSString *,NSString *> *)parameterKeyMap {

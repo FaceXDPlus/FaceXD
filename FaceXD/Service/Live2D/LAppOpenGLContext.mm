@@ -2,7 +2,7 @@
 #define STBI_ONLY_PNG
 #define STB_IMAGE_IMPLEMENTATION
 #import "stb_image.h"
-#import "LAppOpenGLManager.h"
+#import "LAppOpenGLContext.h"
 
 @interface LAppOpenGLTextureInfo : NSObject
 @property (nonatomic, assign) GLuint name;
@@ -12,9 +12,10 @@
 @implementation LAppOpenGLTextureInfo
 @end
 
-@interface LAppOpenGLManager () {
+@interface LAppOpenGLContext () {
     
 }
+@property (nonatomic, weak) NSObject *referObject;
 @property (nonatomic, assign) CFTimeInterval currentFrameTime;
 @property (nonatomic, assign) CFTimeInterval lastFrameTime;
 @property (nonatomic, assign) CFTimeInterval deltaTime;
@@ -25,16 +26,17 @@
 @property (nonatomic, strong) NSMutableDictionary<NSNumber *, LAppOpenGLTextureInfo *> *textureMap;
 @end
 
-@implementation LAppOpenGLManager
+@implementation LAppOpenGLContext
 
-+ (instancetype)sharedInstance {
-    static LAppOpenGLManager *manager;
-    @synchronized (self) {
-        if (manager == nil) {
-            manager = [[LAppOpenGLManager alloc] init];
-        }
-        return manager;
-    }
+- (void)dealloc {
+    [self clean];
+}
+
++ (instancetype)contextForObject:(NSObject *)object {
+    LAppOpenGLContext *context = [[LAppOpenGLContext alloc] init];
+    context.referObject = object;
+    [context setup];
+    return context;
 }
 
 - (void)setup {
@@ -45,6 +47,10 @@
 }
 
 - (void)clean {
+    [self.textureMap enumerateKeysAndObjectsUsingBlock:^(NSNumber * _Nonnull key, LAppOpenGLTextureInfo * _Nonnull obj, BOOL * _Nonnull stop) {
+        GLuint textureName = obj.name;
+        glDeleteTextures(1, &textureName);
+    }];
     [self.textureMap removeAllObjects];
 }
 
