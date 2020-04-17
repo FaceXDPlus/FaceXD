@@ -69,7 +69,6 @@
     self.relativeLabel.text = NSLocalizedString(@"label_Relative", nil);
     self.addressLabel.text = NSLocalizedString(@"label_PCAddress", nil);
     self.socketPortLabel.text = NSLocalizedString(@"label_SocketPort", nil);
-    self.timestampLabel.text = NSLocalizedString(@"timeStamp", nil);
 }
 
 - (void)bindData {
@@ -272,5 +271,9 @@
 - (IBAction)handlePortFieldEnd:(id)sender {
     self.viewModel.port = self.socketPortField.text;
     [sender resignFirstResponder];
+}
+
+- (IBAction)handleScanQRCodeButtonDown:(id)sender {
+    
 }
 @end
