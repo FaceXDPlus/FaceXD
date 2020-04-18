@@ -42,8 +42,6 @@
 @property (nonatomic, strong) XDDefaultModelParameterConfiguration *defaultModelParameterConfiguration;
 @property (nonatomic, strong) XDDlibModelParameterConfiguration *dlibModelParameterConfiguration;
 @property (nonatomic, strong) XDAdvanceModelParameterConfiguration *advanceParameterConfiguration;
-
-@property (nonatomic, copy) NSString *timestampString;
 @end
 
 @implementation XDLive2DCaptureViewController
@@ -137,7 +135,6 @@
 
 #pragma mark - Data Source
 - (Class)viewModelClass {
-    //return [XDLive2DCaptureDlibViewModel class];
     if ([ARFaceTrackingConfiguration isSupported]) {
         return [XDLive2DCaptureARKitViewModel class];
     }
@@ -162,29 +159,29 @@
 - (void)viewModel:(XDLive2DCaptureViewModel *)viewModel didOutputFaceAnchor:(XDFaceAnchor *)faceAnchor {
     dispatch_async(dispatch_get_main_queue(), ^{
         UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-        NSDictionary *parm = @{};
-        
-        UInt64 recordTime = [[NSDate date] timeIntervalSince1970] * 1000;
-        NSString *timeString = [NSString stringWithFormat:@"%llu", recordTime];
-        self.timestampString = timeString;
+        NSMutableDictionary *parm = [[NSMutableDictionary alloc] init];
         
         if ([self viewModelClass] == [XDLive2DCaptureDlibViewModel class]) {
             [self.dlibModelParameterConfiguration updateParameterWithFaceAnchor:faceAnchor];
-            parm = [self.dlibModelParameterConfiguration.sendParameter parameterValueDictionary];
+            parm = [self.dlibModelParameterConfiguration.sendParameter parameterValueDictionary].mutableCopy;
         } else {
             self.defaultModelParameterConfiguration.orientation = orientation;
             [self.defaultModelParameterConfiguration updateParameterWithFaceAnchor:faceAnchor];
-            self.defaultModelParameterConfiguration.parameter.timestamp = @(recordTime);
+            
             self.advanceParameterConfiguration.orientation = orientation;
             [self.advanceParameterConfiguration updateParameterWithFaceAnchor:faceAnchor];
-            self.advanceParameterConfiguration.parameter.timestamp = @(recordTime);
          
             if (self.viewModel.advanceMode) {
-                parm = [self.advanceParameterConfiguration.sendParameter parameterValueDictionary];
+                parm = [self.advanceParameterConfiguration.sendParameter parameterValueDictionary].mutableCopy;
             } else {
-                parm = [self.defaultModelParameterConfiguration.sendParameter parameterValueDictionary];
+                parm = [self.defaultModelParameterConfiguration.sendParameter parameterValueDictionary].mutableCopy;
             }
         }
+        
+        [self.viewModel.filterSendKeys enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString *removeKey = [[XDModelParameterConfiguration parameterKeyMap] objectForKey:obj];
+            [parm removeObjectForKey:removeKey];
+        }];
         
         XDRawJSONNetworkPack *pack = [[XDRawJSONNetworkPack alloc] initWithDictionary:parm];
         [[XDPackManager sharedInstance] sendPack:pack observer:self completion:nil];

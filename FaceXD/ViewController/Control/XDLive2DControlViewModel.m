@@ -36,7 +36,7 @@
         NSString *address = [accountDefaults objectForKey:XDUserDefineKeySubmitAddress];
         NSString *port = [accountDefaults objectForKey:XDUserDefineKeySubmitSocketPort];
         if(address == nil){
-            address = @"127.0.0.1:12345";
+            address = @"192.168.1.100";
             [accountDefaults setObject:address forKey:XDUserDefineKeySubmitAddress];
             [accountDefaults synchronize];
         }

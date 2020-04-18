@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 所有表情信息取值[0, 1]
 - (XDModelParameter *)sendParameter;
 
-- (NSDictionary<NSString *, NSString *> *)parameterKeyMap;
++ (NSDictionary<NSString *, NSString *> *)parameterKeyMap;
 @end
 
 NS_ASSUME_NONNULL_END

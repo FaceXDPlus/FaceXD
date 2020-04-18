@@ -189,7 +189,7 @@
 
 - (void)commit {
     CFTimeInterval currentTime = CACurrentMediaTime();
-    [self.parameterKeyMap enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
+    [[self class].parameterKeyMap enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
         NSNumber *targetValue = [self.parameter valueForKey:obj];
         NSNumber *currentValue = [self.model paramValue:key];
         if (targetValue == nil) {

@@ -25,5 +25,9 @@
 "label_Capture"       = "开始捕捉";
 "label_PCAddress"     = "PC推流地址";
 "label_SocketPort"    = "Socket端口";
+"button_Reset"        = "重置";
+"button_Qr_scan"      = "扫一扫";
 "xd_low_accuracy" = "低精度";
 "xd_high_accuracy" = "高精度";
+"xd_qr_scan_tips" = "扫描连接二维码";
+"xd_qr_scan_exit_tips" = "下滑可返回";
