@@ -23,6 +23,8 @@
 "label_30FPS"         = "30FPS";
 "label_Submit"        = "Submit";
 "label_Capture"       = "Capture";
+"button_Reset"        = "Reset";
+"button_Qr_scan"      = "Qr Scan";
 "xd_low_accuracy" = "low accuracy";
 "xd_high_accuracy" = "high accuracy";
 "xd_qr_scan_tips" = "Scan Connection QR Code";

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gXy-PS-eI8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gXy-PS-eI8">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -45,6 +45,20 @@
                                     <action selector="handleAddressFieldEnd:" destination="jaT-Hx-bwf" eventType="editingDidEndOnExit" id="acT-se-akW"/>
                                 </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rsk-E6-QKr">
+                                <rect key="frame" x="275" y="102" width="80" height="29.999999999999986"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="3vJ-3F-a4c"/>
+                                    <constraint firstAttribute="height" constant="30" id="kH8-rg-d33"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
+                                <state key="normal" title="Scan">
+                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleScanQRCodeButtonDown:" destination="jaT-Hx-bwf" eventType="touchUpInside" id="aK1-oa-exN"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Socket port" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3v-FS-ATW">
                                 <rect key="frame" x="265.66666666666669" y="44" width="89.333333333333314" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -162,22 +176,8 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rsk-E6-QKr">
-                                <rect key="frame" x="275" y="110.33333333333333" width="80" height="29.999999999999986"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="3vJ-3F-a4c"/>
-                                    <constraint firstAttribute="height" constant="30" id="kH8-rg-d33"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
-                                <state key="normal" title="扫一扫">
-                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="handleScanQRCodeButtonDown:" destination="jaT-Hx-bwf" eventType="touchUpInside" id="aK1-oa-exN"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stopped" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ss-16-hW3">
-                                <rect key="frame" x="107.33333333333334" y="111" width="65.333333333333343" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Stopped" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ss-16-hW3">
+                                <rect key="frame" x="107.33333333333334" y="112" width="65.333333333333343" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="5VJ-53-fLC"/>
                                 </constraints>
@@ -221,6 +221,7 @@
                         <outlet property="relativeSwitch" destination="zaF-mn-e9e" id="9TA-oh-Fkb"/>
                         <outlet property="resetButton" destination="Eov-JP-ihQ" id="158-QJ-8nU"/>
                         <outlet property="resetLabel" destination="pHn-YA-7yp" id="vBN-nr-vsm"/>
+                        <outlet property="scanButton" destination="Rsk-E6-QKr" id="KTB-zf-TyP"/>
                         <outlet property="showCameraLabel" destination="5Wx-Y1-D2I" id="HJa-OC-AIU"/>
                         <outlet property="showCameraSwitch" destination="B2w-Lz-c6h" id="e7K-0f-FDn"/>
                         <outlet property="socketPortField" destination="pF4-6n-OvS" id="BCn-bg-TqY"/>

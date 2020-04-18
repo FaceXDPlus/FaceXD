@@ -41,6 +41,7 @@
 @property (nonatomic, weak) IBOutlet UISwitch *submitSwitch;
 @property (nonatomic, weak) IBOutlet UILabel *captureLabel;
 @property (nonatomic, weak) IBOutlet UISwitch *captureSwitch;
+@property (weak, nonatomic) IBOutlet UIButton *scanButton;
 
 @property (nonatomic, strong) NSMutableArray<GCDAsyncSocket *> *currentReachabilitys;
 @property (nonatomic, strong) dispatch_queue_t reachabilityDelegateQueue;
@@ -75,6 +76,8 @@
     self.relativeLabel.text = NSLocalizedString(@"label_Relative", nil);
     self.addressLabel.text = NSLocalizedString(@"label_PCAddress", nil);
     self.socketPortLabel.text = NSLocalizedString(@"label_SocketPort", nil);
+    [_scanButton  setTitle:NSLocalizedString(@"button_Qr_scan", nil) forState:UIControlStateNormal];
+    [_resetButton setTitle:NSLocalizedString(@"button_Reset", nil) forState:UIControlStateNormal];
 }
 
 - (void)bindData {
