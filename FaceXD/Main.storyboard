@@ -45,8 +45,25 @@
                                     <action selector="handleAddressFieldEnd:" destination="jaT-Hx-bwf" eventType="editingDidEndOnExit" id="acT-se-akW"/>
                                 </connections>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Socket port" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3v-FS-ATW">
+                                <rect key="frame" x="265.66666666666669" y="44" width="89.333333333333314" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pF4-6n-OvS">
+                                <rect key="frame" x="258" y="69" width="97" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="TgK-em-y8h"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="handlePortFieldEnd:" destination="jaT-Hx-bwf" eventType="editingDidEndOnExit" id="nNb-op-xUP"/>
+                                </connections>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rsk-E6-QKr">
-                                <rect key="frame" x="275" y="102" width="80" height="29.999999999999986"/>
+                                <rect key="frame" x="275" y="110" width="70" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="3vJ-3F-a4c"/>
                                     <constraint firstAttribute="height" constant="30" id="kH8-rg-d33"/>
@@ -59,23 +76,6 @@
                                     <action selector="handleScanQRCodeButtonDown:" destination="jaT-Hx-bwf" eventType="touchUpInside" id="aK1-oa-exN"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Socket port" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3v-FS-ATW">
-                                <rect key="frame" x="265.66666666666669" y="44" width="89.333333333333314" height="20.333333333333329"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pF4-6n-OvS">
-                                <rect key="frame" x="258" y="68.333333333333329" width="97" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="97" id="TgK-em-y8h"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="handlePortFieldEnd:" destination="jaT-Hx-bwf" eventType="editingDidEndOnExit" id="nNb-op-xUP"/>
-                                </connections>
-                            </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="cdV-mk-eBE">
                                 <rect key="frame" x="24" y="477" width="185" height="289"/>
                                 <subviews>
@@ -192,12 +192,12 @@
                             <constraint firstItem="s3v-FS-ATW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="egt-rQ-l4S" secondAttribute="trailing" constant="8" symbolic="YES" id="1qd-jb-suJ"/>
                             <constraint firstItem="QBR-Xi-5e1" firstAttribute="trailing" secondItem="Rsk-E6-QKr" secondAttribute="trailing" constant="20" id="6gm-B6-hxl"/>
                             <constraint firstItem="QBR-Xi-5e1" firstAttribute="trailing" secondItem="s3v-FS-ATW" secondAttribute="trailing" constant="20" id="7UY-og-VEQ"/>
-                            <constraint firstItem="Rsk-E6-QKr" firstAttribute="top" secondItem="pF4-6n-OvS" secondAttribute="bottom" constant="8" id="Eyb-NO-Vje"/>
+                            <constraint firstItem="Rsk-E6-QKr" firstAttribute="top" secondItem="pF4-6n-OvS" secondAttribute="bottom" constant="3.5" id="Eyb-NO-Vje"/>
                             <constraint firstItem="9ss-16-hW3" firstAttribute="firstBaseline" secondItem="pyE-2n-3fQ" secondAttribute="firstBaseline" id="IOE-Y6-RZa"/>
                             <constraint firstItem="pyE-2n-3fQ" firstAttribute="leading" secondItem="QBR-Xi-5e1" secondAttribute="leading" constant="20" id="Kva-IT-qQq"/>
                             <constraint firstItem="egt-rQ-l4S" firstAttribute="leading" secondItem="QBR-Xi-5e1" secondAttribute="leading" constant="20" id="NMq-hl-vyI"/>
                             <constraint firstItem="QBR-Xi-5e1" firstAttribute="bottom" secondItem="cdV-mk-eBE" secondAttribute="bottom" constant="12" id="Nb8-Bl-6hB"/>
-                            <constraint firstItem="pF4-6n-OvS" firstAttribute="top" secondItem="s3v-FS-ATW" secondAttribute="bottom" constant="4" id="NcA-JC-8Os"/>
+                            <constraint firstItem="pF4-6n-OvS" firstAttribute="top" secondItem="s3v-FS-ATW" secondAttribute="bottom" constant="4.5" id="NcA-JC-8Os"/>
                             <constraint firstItem="pyE-2n-3fQ" firstAttribute="top" secondItem="rd5-oi-M3Y" secondAttribute="bottom" constant="8" id="Xxu-BJ-qGd"/>
                             <constraint firstItem="s3v-FS-ATW" firstAttribute="top" secondItem="QBR-Xi-5e1" secondAttribute="top" id="dQK-Cq-esT"/>
                             <constraint firstItem="egt-rQ-l4S" firstAttribute="top" secondItem="QBR-Xi-5e1" secondAttribute="top" id="eQJ-WQ-Yp5"/>
@@ -234,7 +234,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nmX-KZ-b3x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="318" y="-316"/>
+            <point key="canvasLocation" x="317.60000000000002" y="-316.25615763546801"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="uqX-si-Oh5">
