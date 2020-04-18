@@ -1325,7 +1325,7 @@
 					"\"$(SRCROOT)/SDK/Core/lib/ios/$(CONFIGURATION)-$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)/Vendor/lib\"",
 				);
-				MARKETING_VERSION = 1.7.8;
+				MARKETING_VERSION = 1.7.9;
 				OTHER_CFLAGS = "-DCSM_TARGET_IPHONE_ES2";
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
@@ -1371,7 +1371,7 @@
 					"\"$(SRCROOT)/SDK/Core/lib/ios/$(CONFIGURATION)-$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)/Vendor/lib\"",
 				);
-				MARKETING_VERSION = 1.7.8;
+				MARKETING_VERSION = 1.7.9;
 				OTHER_CFLAGS = "-DCSM_TARGET_IPHONE_ES2";
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
