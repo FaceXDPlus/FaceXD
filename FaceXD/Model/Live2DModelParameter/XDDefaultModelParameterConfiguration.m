@@ -184,7 +184,13 @@
         mouthForm = mouthForm - mouthFunnel;
     }
     self.parameter.mouthForm = @(mouthForm);
-    
+    if (self.appendBlendShapes) {
+        self.parameter.blendShapes = anchor.blendShapes;
+        self.sendParameter.blendShapes = anchor.blendShapes;
+    } else {
+        self.parameter.blendShapes = nil;
+        self.sendParameter.blendShapes = nil;
+    }
 }
 
 - (void)commit {
