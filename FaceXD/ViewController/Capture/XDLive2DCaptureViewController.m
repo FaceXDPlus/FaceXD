@@ -41,7 +41,6 @@
 
 @property (nonatomic, strong) XDDefaultModelParameterConfiguration *defaultModelParameterConfiguration;
 @property (nonatomic, strong) XDDlibModelParameterConfiguration *dlibModelParameterConfiguration;
-@property (nonatomic, strong) XDAdvanceModelParameterConfiguration *advanceParameterConfiguration;
 @end
 
 @implementation XDLive2DCaptureViewController
@@ -71,6 +70,13 @@
         }];
         self.defaultModelParameterConfiguration.worldAlignment = arViewModel.worldAlignment;
     }
+    
+    [self.viewModel addKVOObserver:self
+                        forKeyPath:FBKVOKeyPath(_viewModel.advanceMode)
+                             block:^(id  _Nullable oldValue, id  _Nullable newValue) {
+        weakSelf.defaultModelParameterConfiguration.appendBlendShapes = [newValue boolValue];
+    }];
+    self.defaultModelParameterConfiguration.appendBlendShapes = self.viewModel.advanceMode;
 }
 
 - (void)viewDidLoad {
@@ -95,7 +101,6 @@
     [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
     
     self.defaultModelParameterConfiguration = [[XDDefaultModelParameterConfiguration alloc] initWithModel:self.live2DModel];
-    self.advanceParameterConfiguration = [[XDAdvanceModelParameterConfiguration alloc] initWithModel:self.live2DModel];
     self.dlibModelParameterConfiguration = [[XDDlibModelParameterConfiguration alloc] initWithModel:self.live2DModel];
     
     self.modelSize = self.view.bounds.size;
@@ -167,15 +172,8 @@
         } else {
             self.defaultModelParameterConfiguration.orientation = orientation;
             [self.defaultModelParameterConfiguration updateParameterWithFaceAnchor:faceAnchor];
-            
-            self.advanceParameterConfiguration.orientation = orientation;
-            [self.advanceParameterConfiguration updateParameterWithFaceAnchor:faceAnchor];
-         
-            if (self.viewModel.advanceMode) {
-                parm = [self.advanceParameterConfiguration.sendParameter parameterValueDictionary].mutableCopy;
-            } else {
-                parm = [self.defaultModelParameterConfiguration.sendParameter parameterValueDictionary].mutableCopy;
-            }
+
+            parm = [self.defaultModelParameterConfiguration.sendParameter parameterValueDictionary].mutableCopy;
         }
         
         [self.viewModel.filterSendKeys enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gXy-PS-eI8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gXy-PS-eI8">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -62,11 +62,11 @@
                                     <action selector="handlePortFieldEnd:" destination="jaT-Hx-bwf" eventType="editingDidEndOnExit" id="nNb-op-xUP"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rsk-E6-QKr">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rsk-E6-QKr">
                                 <rect key="frame" x="275" y="110" width="70" height="23"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="3vJ-3F-a4c"/>
-                                    <constraint firstAttribute="height" constant="30" id="kH8-rg-d33"/>
+                                    <constraint firstAttribute="width" constant="70" id="3vJ-3F-a4c"/>
+                                    <constraint firstAttribute="height" constant="23" id="kH8-rg-d33"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
                                 <state key="normal" title="Scan">
@@ -176,8 +176,8 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Stopped" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ss-16-hW3">
-                                <rect key="frame" x="107.33333333333334" y="112" width="65.333333333333343" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stopped" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ss-16-hW3">
+                                <rect key="frame" x="107.33333333333334" y="111" width="65.333333333333343" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="5VJ-53-fLC"/>
                                 </constraints>
@@ -190,9 +190,9 @@
                         <constraints>
                             <constraint firstItem="cdV-mk-eBE" firstAttribute="leading" secondItem="QBR-Xi-5e1" secondAttribute="leading" constant="24" id="0C5-FR-h6z"/>
                             <constraint firstItem="s3v-FS-ATW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="egt-rQ-l4S" secondAttribute="trailing" constant="8" symbolic="YES" id="1qd-jb-suJ"/>
-                            <constraint firstItem="QBR-Xi-5e1" firstAttribute="trailing" secondItem="Rsk-E6-QKr" secondAttribute="trailing" constant="20" id="6gm-B6-hxl"/>
+                            <constraint firstItem="QBR-Xi-5e1" firstAttribute="trailing" secondItem="Rsk-E6-QKr" secondAttribute="trailing" constant="30" id="6gm-B6-hxl"/>
                             <constraint firstItem="QBR-Xi-5e1" firstAttribute="trailing" secondItem="s3v-FS-ATW" secondAttribute="trailing" constant="20" id="7UY-og-VEQ"/>
-                            <constraint firstItem="Rsk-E6-QKr" firstAttribute="top" secondItem="pF4-6n-OvS" secondAttribute="bottom" constant="3.5" id="Eyb-NO-Vje"/>
+                            <constraint firstItem="Rsk-E6-QKr" firstAttribute="top" secondItem="pF4-6n-OvS" secondAttribute="bottom" constant="7" id="Eyb-NO-Vje"/>
                             <constraint firstItem="9ss-16-hW3" firstAttribute="firstBaseline" secondItem="pyE-2n-3fQ" secondAttribute="firstBaseline" id="IOE-Y6-RZa"/>
                             <constraint firstItem="pyE-2n-3fQ" firstAttribute="leading" secondItem="QBR-Xi-5e1" secondAttribute="leading" constant="20" id="Kva-IT-qQq"/>
                             <constraint firstItem="egt-rQ-l4S" firstAttribute="leading" secondItem="QBR-Xi-5e1" secondAttribute="leading" constant="20" id="NMq-hl-vyI"/>
