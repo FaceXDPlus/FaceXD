@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "XDRawJSONSocketService.h"
+#import "XDWebSocketService.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @class XDLive2DCaptureViewModel;
 @interface XDLive2DControlViewModel : NSObject
-@property (nonatomic, readonly) XDRawJSONSocketService *jsonSocketService;
+@property (nonatomic, readonly) XDWebSocketService *webSocketService;
 @property (nonatomic, copy) NSString *host;
 @property (nonatomic, copy) NSString *port;
 - (NSError *)connect;

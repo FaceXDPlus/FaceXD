@@ -14,7 +14,7 @@
 #import "XDLive2DCaptureViewModel.h"
 
 @interface XDLive2DControlViewModel ()
-@property (nonatomic, strong) XDRawJSONSocketService *jsonSocketService;
+@property (nonatomic, strong) XDWebSocketService *webSocketService;
 @property (nonatomic, assign) BOOL isSubmiting;
 
 @property (nonatomic, strong) XDLive2DCaptureViewModel *captureViewModel;
@@ -24,8 +24,8 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _jsonSocketService = [[XDRawJSONSocketService alloc] init];
-        [[XDPackManager sharedInstance] registerService:_jsonSocketService];
+        _webSocketService = [[XDWebSocketService alloc] init];
+        [[XDPackManager sharedInstance] registerService:_webSocketService];
         
         NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
         NSString *build = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
@@ -71,14 +71,13 @@
 
 - (NSError *)connect {
     NSError *err = nil;
-    [self.jsonSocketService setupServiceWithEndpointHost:self.host
-                                                    port:self.port
-                                                 timeout:5 error:&err];
+    NSString *url = [NSString stringWithFormat:@"ws://%@:%@", self.host, self.port];
+    [self.webSocketService setupServiceWithURL:[NSURL URLWithString:url] timeout:5 error:&err];
     return err;
 }
 
 - (void)disconnect {
-    [self.jsonSocketService disconnect];
+    [self.webSocketService disconnect];
 }
 
 #pragma mark - Capture
