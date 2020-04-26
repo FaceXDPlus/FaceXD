@@ -4,5 +4,6 @@ target 'FaceXD' do
 
 pod 'CocoaAsyncSocket'
 pod 'Masonry'
+pod 'SocketRocket'
 
 end

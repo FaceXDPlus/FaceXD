@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class XDBaseService;
 @protocol XDBaseServiceDelegate <NSObject>
-- (void)service:(XDBaseService *)service didReceivePack:(XDBaseNetworkPack *)pack error:(NSError *)error;
+- (void)service:(XDBaseService *)service didReceivePack:(XDBaseNetworkPack *)pack error:(NSError * _Nullable)error;
 @end
 
 @interface XDBaseService : NSObject

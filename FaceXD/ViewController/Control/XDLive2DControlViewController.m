@@ -115,7 +115,7 @@
     }];
     
     [self.viewModel addKVOObserver:self
-                        forKeyPath:FBKVOKeyPath(_viewModel.jsonSocketService.isConnected)
+                        forKeyPath:FBKVOKeyPath(_viewModel.webSocketService.isConnected)
                              block:^(id  _Nullable oldValue, id  _Nullable newValue) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf syncSubmitState];
@@ -144,7 +144,7 @@
 }
 
 - (void)syncSubmitState {
-    BOOL state  = self.viewModel.jsonSocketService.isConnected;
+    BOOL state  = self.viewModel.webSocketService.isConnected;
     self.submitSwitch.on = state;
     if (state) {
         [UIApplication sharedApplication].idleTimerDisabled = YES;
@@ -155,7 +155,7 @@
         [UIApplication sharedApplication].idleTimerDisabled = NO;
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         self.submitStateLabel.text = NSLocalizedString(@"stopped", nil);
-        NSError *lastError = self.viewModel.jsonSocketService.lastError;
+        NSError *lastError = self.viewModel.webSocketService.lastError;
         if(lastError){
             [self alertError:lastError.localizedDescription];
             self.submitSwitch.enabled = YES;
