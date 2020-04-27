@@ -23,7 +23,15 @@
     return self;
 }
 
+- (void)beforeUpdateParameter:(XDModelParameter *)parameter {
+    
+}
+
 - (void)updateParameterWithFaceAnchor:(XDFaceAnchor *)anchor {
+    
+}
+
+- (void)afterUpdateParameter:(XDModelParameter *)parameter {
     
 }
 

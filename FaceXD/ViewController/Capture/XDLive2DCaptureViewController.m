@@ -24,10 +24,11 @@
 
 #import "XDDlibModelParameterConfiguration.h"
 #import "XDDefaultModelParameterConfiguration.h"
-#import "XDAdvanceModelParameterConfiguration.h"
 #import "XDRawJSONNetworkPack.h"
 
-@interface XDLive2DCaptureViewController () <GLKViewDelegate, XDLive2DCaptureViewModelDelegate>
+@interface XDLive2DCaptureViewController () <GLKViewDelegate, XDLive2DCaptureViewModelDelegate> {
+    CFTimeInterval _lastTime;
+}
 @property (nonatomic, strong) XDLive2DCaptureViewModel *viewModel;
 @property (nonatomic, strong) LAppModel *live2DModel;
 @property (nonatomic, strong) LAppOpenGLContext *glContext;
@@ -162,6 +163,11 @@
 }
 
 - (void)viewModel:(XDLive2DCaptureViewModel *)viewModel didOutputFaceAnchor:(XDFaceAnchor *)faceAnchor {
+    CFTimeInterval currentTime = CACurrentMediaTime();
+    if (currentTime - _lastTime < 1.0 / 30.0) {
+        return;
+    }
+    _lastTime = currentTime;
     dispatch_async(dispatch_get_main_queue(), ^{
         UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
         NSMutableDictionary *parm = [[NSMutableDictionary alloc] init];

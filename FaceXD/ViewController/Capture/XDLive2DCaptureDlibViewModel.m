@@ -70,6 +70,37 @@
             return;
         }
         
+        CKCaptureDevice *device = [weakSelf.cameraSession.currentVideoDevice firstObject];
+        NSInteger exceptFrameRate = 60;
+        NSInteger exceptResolution = 720;
+        OSType exceptFormat = kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange;
+        AVCaptureDeviceFormat *hitFormat = nil;
+        if (device) {
+            if ([device.captureDevice lockForConfiguration:nil]) {
+                for (AVCaptureDeviceFormat *format in device.captureDevice.formats) {
+                    CMVideoDimensions dimension = CMVideoFormatDescriptionGetDimensions(format.formatDescription);
+                    if (dimension.height != exceptResolution) {
+                        continue;
+                    }
+                    if (CMFormatDescriptionGetMediaSubType(format.formatDescription) != exceptFormat) {
+                        continue;
+                    }
+                    
+                    for (AVFrameRateRange *range in format.videoSupportedFrameRateRanges) {
+                        if (range.maxFrameRate >= exceptFrameRate) {
+                            hitFormat = format;
+                        }
+                    }
+                }
+                if (hitFormat) {
+                    [device.captureDevice setActiveFormat:hitFormat];
+                    [device.captureDevice setActiveVideoMinFrameDuration:CMTimeMake(1, 60)];
+                    [device.captureDevice setActiveVideoMaxFrameDuration:CMTimeMake(1, 60)];
+                }
+                [device.captureDevice unlockForConfiguration];
+            }
+        }
+        
         AVCaptureConnection *connection = [weakSelf.videoOutput.connections firstObject];
         if (connection) {
             connection.videoOrientation = AVCaptureVideoOrientationPortrait;

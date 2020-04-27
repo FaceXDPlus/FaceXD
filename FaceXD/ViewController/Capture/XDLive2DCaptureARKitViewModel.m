@@ -65,7 +65,7 @@
     if (@available(iOS 11.3, *)) {
         __block ARVideoFormat *format = nil;
         [[ARFaceTrackingConfiguration supportedVideoFormats] enumerateObjectsUsingBlock:^(ARVideoFormat * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (obj.framesPerSecond == 30 &&
+            if (obj.framesPerSecond == 60 &&
                 fabs(obj.imageResolution.height - 720) < 1e-6) {
                 format = obj;
             }
