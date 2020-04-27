@@ -13,7 +13,6 @@
 		4F6F95AD241FD362008D6BE7 /* XDModelParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95AC241FD362008D6BE7 /* XDModelParameter.m */; };
 		4F6F95B0241FD85F008D6BE7 /* XDModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95AF241FD85F008D6BE7 /* XDModelParameterConfiguration.m */; };
 		4F6F95B3241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95B2241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m */; };
-		4F6F95B6242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95B5242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m */; };
 		4F6F95BC24254029008D6BE7 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95BB24254029008D6BE7 /* MetalKit.framework */; };
 		4F6F95C92425D532008D6BE7 /* EKMetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95B724253D92008D6BE7 /* EKMetalKit.framework */; };
 		4F6F95CA2425D532008D6BE7 /* EKMetalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95B724253D92008D6BE7 /* EKMetalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -147,8 +146,6 @@
 		4F6F95AF241FD85F008D6BE7 /* XDModelParameterConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDModelParameterConfiguration.m; sourceTree = "<group>"; };
 		4F6F95B1241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDefaultModelParameterConfiguration.h; sourceTree = "<group>"; };
 		4F6F95B2241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDDefaultModelParameterConfiguration.m; sourceTree = "<group>"; };
-		4F6F95B4242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDAdvanceModelParameterConfiguration.h; sourceTree = "<group>"; };
-		4F6F95B5242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDAdvanceModelParameterConfiguration.m; sourceTree = "<group>"; };
 		4F6F95B724253D92008D6BE7 /* EKMetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EKMetalKit.framework; path = Vendor/EKMetalKit.framework; sourceTree = "<group>"; };
 		4F6F95BB24254029008D6BE7 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		4F6F95CC2425D9D9008D6BE7 /* KVOController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KVOController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -630,8 +627,6 @@
 				4F6F95AF241FD85F008D6BE7 /* XDModelParameterConfiguration.m */,
 				4F6F95B1241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.h */,
 				4F6F95B2241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m */,
-				4F6F95B4242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.h */,
-				4F6F95B5242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m */,
 				4FCDCD0A242F3C6B0069364B /* XDDlibModelParameterConfiguration.h */,
 				4FCDCD0B242F3C6B0069364B /* XDDlibModelParameterConfiguration.m */,
 			);
@@ -1075,7 +1070,6 @@
 				520D0EA4240D0F66002453EF /* CubismMoc.cpp in Sources */,
 				4FE0D2CC2438D33C008F838E /* XDLive2DCaptureDlibViewModel.m in Sources */,
 				4FCDCD09242F2BA40069364B /* XDFaceAnchor.mm in Sources */,
-				4F6F95B6242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m in Sources */,
 				4FE0D2DE2438DBA3008F838E /* XDBaseService.m in Sources */,
 				4F9176B823E299A40065D31D /* LAppModel.mm in Sources */,
 				520D0ED2240D0F66002453EF /* CubismString.cpp in Sources */,

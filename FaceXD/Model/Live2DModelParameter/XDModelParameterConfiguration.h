@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithModel:(LAppModel *)model;
 
 - (void)updateParameterWithFaceAnchor:(XDFaceAnchor *)anchor;
+- (void)beforeUpdateParameter:(XDModelParameter *)parameter;
+- (void)afterUpdateParameter:(XDModelParameter *)parameter;
 
 - (void)reset;
 - (void)commit;

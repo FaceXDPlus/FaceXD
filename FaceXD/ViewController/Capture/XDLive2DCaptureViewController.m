@@ -24,7 +24,6 @@
 
 #import "XDDlibModelParameterConfiguration.h"
 #import "XDDefaultModelParameterConfiguration.h"
-#import "XDAdvanceModelParameterConfiguration.h"
 #import "XDRawJSONNetworkPack.h"
 
 @interface XDLive2DCaptureViewController () <GLKViewDelegate, XDLive2DCaptureViewModelDelegate>

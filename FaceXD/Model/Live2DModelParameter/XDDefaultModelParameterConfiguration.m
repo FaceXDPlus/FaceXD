@@ -100,6 +100,10 @@
 }
 
 #pragma mark - Public
+- (void)beforeUpdateParameter:(XDModelParameter *)parameter {
+    
+}
+
 - (void)updateParameterWithFaceAnchor:(XDFaceAnchor *)anchor {
     if (!anchor.isTracked) {
         return;
@@ -186,11 +190,13 @@
     self.parameter.mouthForm = @(mouthForm);
     if (self.appendBlendShapes) {
         self.parameter.blendShapes = anchor.blendShapes;
-        self.sendParameter.blendShapes = anchor.blendShapes;
     } else {
-        self.parameter.blendShapes = nil;
-        self.sendParameter.blendShapes = nil;
+        self.parameter.blendShapes = nil;        
     }
+}
+
+- (void)afterUpdateParameter:(XDModelParameter *)parameter {
+    self.sendParameter = self.parameter;
 }
 
 - (void)commit {
@@ -201,18 +207,16 @@
         if (targetValue == nil) {
             targetValue = @(0);
         }
-        CGFloat v = targetValue.floatValue;
-        CGFloat smooth = v;
+        CGFloat smooth = targetValue.floatValue;
         XDSmoothDamp *smoothDamp = [self.parameterSmoothDamp objectForKey:key];
         if (smoothDamp) {
             smoothDamp.deltaTime = currentTime - _lastCommitTimeInterval;
             smoothDamp.currentValue = [currentValue doubleValue];
-            smooth = [smoothDamp calc:v];
+            smooth = [smoothDamp calc:smooth];
         }
         
         if (targetValue) {
             [self.model setParam:key forValue:@(smooth)];
-            [self.sendParameter setValue:@(v) forKey:obj];
         } else {
             [self.model setParam:key forValue:@(0)];
         }
