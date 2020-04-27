@@ -28,8 +28,7 @@
 }
 
 - (void)updateParameterWithFaceAnchor:(XDFaceAnchor *)anchor {
-    [self beforeUpdateParameter:self.parameter];
-    [self afterUpdateParameter:self.parameter];
+    
 }
 
 - (void)afterUpdateParameter:(XDModelParameter *)parameter {

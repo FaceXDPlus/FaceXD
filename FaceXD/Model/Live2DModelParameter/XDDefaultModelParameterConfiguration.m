@@ -105,6 +105,7 @@
 }
 
 - (void)updateParameterWithFaceAnchor:(XDFaceAnchor *)anchor {
+    [self beforeUpdateParameter:self.parameter];
     if (!anchor.isTracked) {
         return;
     }
@@ -193,6 +194,7 @@
     } else {
         self.parameter.blendShapes = nil;        
     }
+    [self afterUpdateParameter:self.parameter];
 }
 
 - (void)afterUpdateParameter:(XDModelParameter *)parameter {
