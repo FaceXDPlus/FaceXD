@@ -1,18 +1,18 @@
 //
-//  XDModelParameterConfigration.m
+//  XDModelParameterConfiguration.m
 //  FaceXD
 //
 //  Created by CmST0us on 2020/3/16.
 //  Copyright © 2020 hakura. All rights reserved.
 //
 
-#import "XDModelParameterConfigration.h"
+#import "XDModelParameterConfiguration.h"
 
-@interface XDModelParameterConfigration ()
+@interface XDModelParameterConfiguration ()
 @property (nonatomic, strong) XDModelParameter *parameter;
 @end
 
-@implementation XDModelParameterConfigration
+@implementation XDModelParameterConfiguration
 
 - (instancetype)initWithModel:(LAppModel *)model {
     self = [super init];
@@ -23,10 +23,15 @@
     return self;
 }
 
-- (void)updateParameterWithFaceAnchor:(ARFaceAnchor *)anchor
-                             faceNode:(SCNNode *)faceNode
-                          leftEyeNode:(SCNNode *)leftEyeNode
-                         rightEyeNode:(SCNNode *)rightEyeNode {
+- (void)beforeUpdateParameter:(XDModelParameter *)parameter {
+    
+}
+
+- (void)updateParameterWithFaceAnchor:(XDFaceAnchor *)anchor {
+    
+}
+
+- (void)afterUpdateParameter:(XDModelParameter *)parameter {
     
 }
 
@@ -35,7 +40,7 @@
 }
 
 - (void)commit {
-    [self.parameterKeyMap enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
+    [[self class].parameterKeyMap enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
         NSNumber *v = [self.parameter valueForKey:obj];
         if (v) {
             [self.model setParam:key forValue:v];
@@ -45,7 +50,11 @@
     }];
 }
 
-- (NSDictionary<NSString *,NSString *> *)parameterKeyMap {
+- (XDModelParameter *)sendParameter {
+    return self.parameter;
+}
+
++ (NSDictionary<NSString *,NSString *> *)parameterKeyMap {
     static NSDictionary *map = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

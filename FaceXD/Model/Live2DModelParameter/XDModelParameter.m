@@ -28,7 +28,6 @@
     copyParameter.eyeY = [self.eyeY copy];
     copyParameter.mouthOpenY = [self.mouthOpenY copy];
     copyParameter.mouthForm = [self.mouthForm copy];
-    copyParameter.timestamp = [self.timestamp copy];
     copyParameter.blendShapes = [self.blendShapes copy];
     return copyParameter;
 }
@@ -51,8 +50,7 @@
         @"eyeY"            : [NSString stringWithFormat: @"%.5lf", self.eyeY.floatValue],
         @"mouthOpenY"      : [NSString stringWithFormat: @"%.5lf", self.mouthOpenY.floatValue],
         @"mouthForm"       : [NSString stringWithFormat: @"%.5lf", self.mouthForm.floatValue],
-        @"blendShapes"     : self.blendShapes == nil ? [NSNull null] : self.blendShapes,
-        @"timeStamp"       : self.timestamp,
+        @"blendShapes"     : self.blendShapes == nil ? @{} : self.blendShapes,
     };
 }
 

@@ -9,17 +9,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#define LAppGLContextAction(block) [[LAppOpenGLManager sharedInstance] inContext:block];
-#define LAppGLContext [LAppOpenGLManager sharedInstance].glContext
-#define LAppOpenGLManagerInstance [LAppOpenGLManager sharedInstance]
-
-@interface LAppOpenGLManager : NSObject
+@interface LAppOpenGLContext : NSObject
 @property (nonatomic, readonly) EAGLContext *glContext;
 @property (nonatomic, readonly) CFTimeInterval deltaTime;
-+ (instancetype)sharedInstance;
 
-- (void)setup;
-- (void)clean;
++ (instancetype)contextForObject:(NSObject *)object;
 
 #pragma mark - Texture
 

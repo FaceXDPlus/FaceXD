@@ -20,8 +20,14 @@
 "label_Relative"      = "Relative";
 "label_Advanced"      = "Advanced";
 "label_Camera"        = "Camera";
-"label_PrintJson"     = "Print Json";
-"label_Socket"        = "Socket";
 "label_30FPS"         = "30FPS";
 "label_Submit"        = "Submit";
 "label_Capture"       = "Capture";
+"label_PCAddress"     = "PC Address";
+"label_SocketPort"    = "Socket Port";
+"button_Reset"        = "Reset";
+"button_Qr_scan"      = "Qr Scan";
+"xd_low_accuracy" = "low accuracy";
+"xd_high_accuracy" = "high accuracy";
+"xd_qr_scan_tips" = "Scan Connection QR Code";
+"xd_qr_scan_exit_tips" = "Swipe down to cancel";

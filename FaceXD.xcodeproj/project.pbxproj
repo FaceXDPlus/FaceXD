@@ -7,17 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F2FB01E2448AEB800F52F82 /* XDMathf.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FB01D2448AEB800F52F82 /* XDMathf.m */; };
+		4F2FB0212448BF8F00F52F82 /* XDSmoothDamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FB0202448BF8F00F52F82 /* XDSmoothDamp.m */; };
+		4F4A49D8244A0686003BBA56 /* XDQRScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A49D7244A0686003BBA56 /* XDQRScanViewController.m */; };
 		4F6F95AD241FD362008D6BE7 /* XDModelParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95AC241FD362008D6BE7 /* XDModelParameter.m */; };
-		4F6F95B0241FD85F008D6BE7 /* XDModelParameterConfigration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95AF241FD85F008D6BE7 /* XDModelParameterConfigration.m */; };
+		4F6F95B0241FD85F008D6BE7 /* XDModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95AF241FD85F008D6BE7 /* XDModelParameterConfiguration.m */; };
 		4F6F95B3241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95B2241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m */; };
-		4F6F95B6242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95B5242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m */; };
 		4F6F95BC24254029008D6BE7 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95BB24254029008D6BE7 /* MetalKit.framework */; };
 		4F6F95C92425D532008D6BE7 /* EKMetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95B724253D92008D6BE7 /* EKMetalKit.framework */; };
 		4F6F95CA2425D532008D6BE7 /* EKMetalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95B724253D92008D6BE7 /* EKMetalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4F6F95CD2425D9D9008D6BE7 /* KVOController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95CC2425D9D9008D6BE7 /* KVOController.framework */; };
 		4F6F95CE2425D9D9008D6BE7 /* KVOController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95CC2425D9D9008D6BE7 /* KVOController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4F90BD6824263DE80065A06C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F90BD6724263DE70065A06C /* Accelerate.framework */; };
+		4F90BD7624275C270065A06C /* XDOpenCVWarpper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95D4242627BA008D6BE7 /* XDOpenCVWarpper.mm */; };
+		4F90BD7724275C2B0065A06C /* XDDlibWarpper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95D1242627AC008D6BE7 /* XDDlibWarpper.mm */; };
 		4F91747223E1EFA60065D31D /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747123E1EFA60065D31D /* AppDelegate.mm */; };
-		4F91747823E1EFA60065D31D /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747723E1EFA60065D31D /* ViewController.mm */; };
 		4F91747D23E1EFA70065D31D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F91747C23E1EFA70065D31D /* Assets.xcassets */; };
 		4F91748023E1EFA70065D31D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F91747E23E1EFA70065D31D /* LaunchScreen.storyboard */; };
 		4F91748323E1EFA70065D31D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91748223E1EFA70065D31D /* main.m */; };
@@ -28,12 +32,37 @@
 		4F9175CF23E1FA1B0065D31D /* LAppAllocator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F9175CD23E1FA1B0065D31D /* LAppAllocator.mm */; };
 		4F9176B423E2981E0065D31D /* LAppBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9176B323E2981E0065D31D /* LAppBundle.m */; };
 		4F9176B823E299A40065D31D /* LAppModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F9176B723E299A40065D31D /* LAppModel.mm */; };
-		4F91788723E2C2880065D31D /* LAppOpenGLManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91788623E2C2880065D31D /* LAppOpenGLManager.mm */; };
+		4F91788723E2C2880065D31D /* LAppOpenGLContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91788623E2C2880065D31D /* LAppOpenGLContext.mm */; };
+		4FC532522453EE7600B03C9D /* XDWebSocketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC532512453EE7600B03C9D /* XDWebSocketService.m */; };
+		4FCDCD09242F2BA40069364B /* XDFaceAnchor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD08242F2BA40069364B /* XDFaceAnchor.mm */; };
+		4FCDCD0C242F3C6B0069364B /* XDDlibModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD0B242F3C6B0069364B /* XDDlibModelParameterConfiguration.m */; };
+		4FCDCD0E2430C6490069364B /* CameraKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FCDCD0D2430C6490069364B /* CameraKit.framework */; };
+		4FCDCD0F2430C64A0069364B /* CameraKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4FCDCD0D2430C6490069364B /* CameraKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4FCDCD1F2430DCF50069364B /* XDFilePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD1E2430DCF50069364B /* XDFilePath.m */; };
+		4FCDCD272430DFC60069364B /* FaceXDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD262430DFC60069364B /* FaceXDTests.m */; };
+		4FCDCD2E2430E0A60069364B /* XDFilePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD1E2430DCF50069364B /* XDFilePath.m */; };
 		4FDBA28923E97222003F40F1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28823E97222003F40F1 /* AVFoundation.framework */; };
 		4FDBA28D23E9895A003F40F1 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28C23E9895A003F40F1 /* CoreMedia.framework */; };
 		4FDBA28F23E9920C003F40F1 /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28E23E9920C003F40F1 /* ARKit.framework */; };
 		4FDBA29123E99A4F003F40F1 /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA29023E99A4F003F40F1 /* SceneKit.framework */; };
 		4FDBA29523E9AEF8003F40F1 /* XDControlValueLinear.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDBA29323E9AEF8003F40F1 /* XDControlValueLinear.m */; };
+		4FE0D2C62438D2FA008F838E /* XDLive2DCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2C52438D2FA008F838E /* XDLive2DCaptureViewController.m */; };
+		4FE0D2C92438D32A008F838E /* XDLive2DCaptureARKitViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2C82438D32A008F838E /* XDLive2DCaptureARKitViewModel.m */; };
+		4FE0D2CC2438D33C008F838E /* XDLive2DCaptureDlibViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2CB2438D33C008F838E /* XDLive2DCaptureDlibViewModel.m */; };
+		4FE0D2CF2438D40E008F838E /* XDLive2DCaptureViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2CE2438D40E008F838E /* XDLive2DCaptureViewModel.m */; };
+		4FE0D2D32438D6D1008F838E /* NSString+XDIPValiual.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2D22438D6D1008F838E /* NSString+XDIPValiual.m */; };
+		4FE0D2D82438DB3F008F838E /* XDPackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2D72438DB3F008F838E /* XDPackManager.m */; };
+		4FE0D2DB2438DB64008F838E /* XDRawJSONSocketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2DA2438DB64008F838E /* XDRawJSONSocketService.m */; };
+		4FE0D2DE2438DBA3008F838E /* XDBaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2DD2438DBA3008F838E /* XDBaseService.m */; };
+		4FE0D2E32438DE26008F838E /* XDBaseNetworkPack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2E22438DE26008F838E /* XDBaseNetworkPack.m */; };
+		4FE0D2E72438DE64008F838E /* XDRawJSONNetworkPack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2E62438DE64008F838E /* XDRawJSONNetworkPack.m */; };
+		4FE0D2F024390D6D008F838E /* XDLive2DControlViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2EF24390D6D008F838E /* XDLive2DControlViewModel.m */; };
+		4FE0D2F324390DE9008F838E /* XDLive2DControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2F224390DE9008F838E /* XDLive2DControlViewController.m */; };
+		4FE0D2F72439B8DD008F838E /* UIStoryboard+XDStoryboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2F62439B8DD008F838E /* UIStoryboard+XDStoryboard.m */; };
+		4FE0D2F8243A5889008F838E /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747723E1EFA60065D31D /* ViewController.mm */; };
+		4FE0D2FA243B1202008F838E /* shape_predictor_68_face_landmarks.dat in Resources */ = {isa = PBXBuildFile; fileRef = 4FE0D2F9243B1202008F838E /* shape_predictor_68_face_landmarks.dat */; };
+		4FE0D2FD243B150F008F838E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FE0D2FC243B150F008F838E /* Main.storyboard */; };
+		4FE0D30024421740008F838E /* XDSimpleKalman.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2FF24421740008F838E /* XDSimpleKalman.m */; };
 		5200CF05241241A200A0FDA0 /* Pods_FaceXD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1456E1CC021CD518305051FC /* Pods_FaceXD.framework */; };
 		520D0E8D240D0F66002453EF /* ACubismMotion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0DE6240D0F64002453EF /* ACubismMotion.cpp */; };
 		520D0E8F240D0F66002453EF /* CubismDefaultParameterId.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0DE8240D0F64002453EF /* CubismDefaultParameterId.cpp */; };
@@ -73,10 +102,19 @@
 		520D0ED9240D0F66002453EF /* CubismModelUserData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0E89240D0F66002453EF /* CubismModelUserData.cpp */; };
 		520D0EDB240D0F66002453EF /* CubismModelUserDataJson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0E8C240D0F66002453EF /* CubismModelUserDataJson.cpp */; };
 		520D1007240D16FA002453EF /* Live2DResource in Resources */ = {isa = PBXBuildFile; fileRef = 520D1006240D16FA002453EF /* Live2DResource */; };
-		529F9A8924263AFA009B2A88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 529F9A8824263AFA009B2A88 /* Main.storyboard */; };
 		52CCBA512420B993006E87EC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52FB14C3242095FF0069C308 /* InfoPlist.strings */; };
 		52FB14A0241FE1A20069C308 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52FB14A2241FE1A20069C308 /* Localizable.strings */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4FCDCD292430DFC60069364B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F91746523E1EFA60065D31D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F91746C23E1EFA60065D31D;
+			remoteInfo = FaceXD;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		4F6F95CB2425D533008D6BE7 /* Embed Frameworks */ = {
@@ -85,6 +123,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				4FCDCD0F2430C64A0069364B /* CameraKit.framework in Embed Frameworks */,
 				4F6F95CA2425D532008D6BE7 /* EKMetalKit.framework in Embed Frameworks */,
 				4F6F95CE2425D9D9008D6BE7 /* KVOController.framework in Embed Frameworks */,
 			);
@@ -95,18 +134,28 @@
 
 /* Begin PBXFileReference section */
 		1456E1CC021CD518305051FC /* Pods_FaceXD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FaceXD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F2FB01C2448AEB800F52F82 /* XDMathf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDMathf.h; sourceTree = "<group>"; };
+		4F2FB01D2448AEB800F52F82 /* XDMathf.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDMathf.m; sourceTree = "<group>"; };
+		4F2FB01F2448BF8F00F52F82 /* XDSmoothDamp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDSmoothDamp.h; sourceTree = "<group>"; };
+		4F2FB0202448BF8F00F52F82 /* XDSmoothDamp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDSmoothDamp.m; sourceTree = "<group>"; };
+		4F4A49D6244A0686003BBA56 /* XDQRScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDQRScanViewController.h; sourceTree = "<group>"; };
+		4F4A49D7244A0686003BBA56 /* XDQRScanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDQRScanViewController.m; sourceTree = "<group>"; };
 		4F6F95AB241FD362008D6BE7 /* XDModelParameter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDModelParameter.h; sourceTree = "<group>"; };
 		4F6F95AC241FD362008D6BE7 /* XDModelParameter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDModelParameter.m; sourceTree = "<group>"; };
-		4F6F95AE241FD85F008D6BE7 /* XDModelParameterConfigration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDModelParameterConfigration.h; sourceTree = "<group>"; };
-		4F6F95AF241FD85F008D6BE7 /* XDModelParameterConfigration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDModelParameterConfigration.m; sourceTree = "<group>"; };
+		4F6F95AE241FD85F008D6BE7 /* XDModelParameterConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDModelParameterConfiguration.h; sourceTree = "<group>"; };
+		4F6F95AF241FD85F008D6BE7 /* XDModelParameterConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDModelParameterConfiguration.m; sourceTree = "<group>"; };
 		4F6F95B1241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDefaultModelParameterConfiguration.h; sourceTree = "<group>"; };
 		4F6F95B2241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDDefaultModelParameterConfiguration.m; sourceTree = "<group>"; };
-		4F6F95B4242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDAdvanceModelParameterConfiguration.h; sourceTree = "<group>"; };
-		4F6F95B5242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDAdvanceModelParameterConfiguration.m; sourceTree = "<group>"; };
 		4F6F95B724253D92008D6BE7 /* EKMetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EKMetalKit.framework; path = Vendor/EKMetalKit.framework; sourceTree = "<group>"; };
 		4F6F95BB24254029008D6BE7 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
-		4F6F95C524254B81008D6BE7 /* EKMetalKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EKMetalKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F6F95CC2425D9D9008D6BE7 /* KVOController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KVOController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F6F95D0242627AC008D6BE7 /* XDDlibWarpper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDlibWarpper.h; sourceTree = "<group>"; };
+		4F6F95D1242627AC008D6BE7 /* XDDlibWarpper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = XDDlibWarpper.mm; sourceTree = "<group>"; };
+		4F6F95D3242627BA008D6BE7 /* XDOpenCVWarpper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDOpenCVWarpper.h; sourceTree = "<group>"; };
+		4F6F95D4242627BA008D6BE7 /* XDOpenCVWarpper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = XDOpenCVWarpper.mm; sourceTree = "<group>"; };
+		4F90BD6724263DE70065A06C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		4F90BD69242668C40065A06C /* XDDlibCaptureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDlibCaptureViewController.h; sourceTree = "<group>"; };
+		4F90BD6A242668C40065A06C /* XDDlibCaptureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDDlibCaptureViewController.m; sourceTree = "<group>"; };
 		4F91746D23E1EFA60065D31D /* FaceXD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceXD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F91747023E1EFA60065D31D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F91747123E1EFA60065D31D /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -124,8 +173,23 @@
 		4F9176B323E2981E0065D31D /* LAppBundle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LAppBundle.m; sourceTree = "<group>"; };
 		4F9176B623E299A40065D31D /* LAppModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LAppModel.h; sourceTree = "<group>"; };
 		4F9176B723E299A40065D31D /* LAppModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LAppModel.mm; sourceTree = "<group>"; };
-		4F91788523E2C2880065D31D /* LAppOpenGLManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LAppOpenGLManager.h; sourceTree = "<group>"; };
-		4F91788623E2C2880065D31D /* LAppOpenGLManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LAppOpenGLManager.mm; sourceTree = "<group>"; };
+		4F91788523E2C2880065D31D /* LAppOpenGLContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LAppOpenGLContext.h; sourceTree = "<group>"; };
+		4F91788623E2C2880065D31D /* LAppOpenGLContext.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LAppOpenGLContext.mm; sourceTree = "<group>"; };
+		4FC532502453EE7600B03C9D /* XDWebSocketService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDWebSocketService.h; sourceTree = "<group>"; };
+		4FC532512453EE7600B03C9D /* XDWebSocketService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDWebSocketService.m; sourceTree = "<group>"; };
+		4FCDCD07242F2BA40069364B /* XDFaceAnchor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDFaceAnchor.h; sourceTree = "<group>"; };
+		4FCDCD08242F2BA40069364B /* XDFaceAnchor.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = XDFaceAnchor.mm; sourceTree = "<group>"; };
+		4FCDCD0A242F3C6B0069364B /* XDDlibModelParameterConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDlibModelParameterConfiguration.h; sourceTree = "<group>"; };
+		4FCDCD0B242F3C6B0069364B /* XDDlibModelParameterConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDDlibModelParameterConfiguration.m; sourceTree = "<group>"; };
+		4FCDCD0D2430C6490069364B /* CameraKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CameraKit.framework; path = Vendor/CameraKit.framework; sourceTree = "<group>"; };
+		4FCDCD182430D8CD0069364B /* XDResourceDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDResourceDownloader.h; sourceTree = "<group>"; };
+		4FCDCD192430D8CD0069364B /* XDResourceDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDResourceDownloader.m; sourceTree = "<group>"; };
+		4FCDCD1B2430D9B20069364B /* request_key.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = request_key.h; path = ../request_key.h; sourceTree = "<group>"; };
+		4FCDCD1D2430DCF50069364B /* XDFilePath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDFilePath.h; sourceTree = "<group>"; };
+		4FCDCD1E2430DCF50069364B /* XDFilePath.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDFilePath.m; sourceTree = "<group>"; };
+		4FCDCD242430DFC60069364B /* FaceXDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaceXDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FCDCD262430DFC60069364B /* FaceXDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaceXDTests.m; sourceTree = "<group>"; };
+		4FCDCD282430DFC60069364B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FDBA28323E95E14003F40F1 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		4FDBA28823E97222003F40F1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4FDBA28A23E9894C003F40F1 /* Vision.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vision.framework; path = System/Library/Frameworks/Vision.framework; sourceTree = SDKROOT; };
@@ -135,6 +199,37 @@
 		4FDBA29223E9AEF8003F40F1 /* XDControlValueLinear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDControlValueLinear.h; sourceTree = "<group>"; };
 		4FDBA29323E9AEF8003F40F1 /* XDControlValueLinear.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDControlValueLinear.m; sourceTree = "<group>"; };
 		4FDBA29423E9AEF8003F40F1 /* XDControlValueProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDControlValueProtocol.h; sourceTree = "<group>"; };
+		4FE0D2C42438D2FA008F838E /* XDLive2DCaptureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDLive2DCaptureViewController.h; sourceTree = "<group>"; };
+		4FE0D2C52438D2FA008F838E /* XDLive2DCaptureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDLive2DCaptureViewController.m; sourceTree = "<group>"; };
+		4FE0D2C72438D32A008F838E /* XDLive2DCaptureARKitViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDLive2DCaptureARKitViewModel.h; sourceTree = "<group>"; };
+		4FE0D2C82438D32A008F838E /* XDLive2DCaptureARKitViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDLive2DCaptureARKitViewModel.m; sourceTree = "<group>"; };
+		4FE0D2CA2438D33C008F838E /* XDLive2DCaptureDlibViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDLive2DCaptureDlibViewModel.h; sourceTree = "<group>"; };
+		4FE0D2CB2438D33C008F838E /* XDLive2DCaptureDlibViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDLive2DCaptureDlibViewModel.m; sourceTree = "<group>"; };
+		4FE0D2CD2438D40E008F838E /* XDLive2DCaptureViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDLive2DCaptureViewModel.h; sourceTree = "<group>"; };
+		4FE0D2CE2438D40E008F838E /* XDLive2DCaptureViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDLive2DCaptureViewModel.m; sourceTree = "<group>"; };
+		4FE0D2D12438D6D1008F838E /* NSString+XDIPValiual.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+XDIPValiual.h"; sourceTree = "<group>"; };
+		4FE0D2D22438D6D1008F838E /* NSString+XDIPValiual.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+XDIPValiual.m"; sourceTree = "<group>"; };
+		4FE0D2D62438DB3F008F838E /* XDPackManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDPackManager.h; sourceTree = "<group>"; };
+		4FE0D2D72438DB3F008F838E /* XDPackManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDPackManager.m; sourceTree = "<group>"; };
+		4FE0D2D92438DB64008F838E /* XDRawJSONSocketService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDRawJSONSocketService.h; sourceTree = "<group>"; };
+		4FE0D2DA2438DB64008F838E /* XDRawJSONSocketService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDRawJSONSocketService.m; sourceTree = "<group>"; };
+		4FE0D2DC2438DBA3008F838E /* XDBaseService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDBaseService.h; sourceTree = "<group>"; };
+		4FE0D2DD2438DBA3008F838E /* XDBaseService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDBaseService.m; sourceTree = "<group>"; };
+		4FE0D2E12438DE26008F838E /* XDBaseNetworkPack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDBaseNetworkPack.h; sourceTree = "<group>"; };
+		4FE0D2E22438DE26008F838E /* XDBaseNetworkPack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDBaseNetworkPack.m; sourceTree = "<group>"; };
+		4FE0D2E52438DE64008F838E /* XDRawJSONNetworkPack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDRawJSONNetworkPack.h; sourceTree = "<group>"; };
+		4FE0D2E62438DE64008F838E /* XDRawJSONNetworkPack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDRawJSONNetworkPack.m; sourceTree = "<group>"; };
+		4FE0D2EE24390D6D008F838E /* XDLive2DControlViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDLive2DControlViewModel.h; sourceTree = "<group>"; };
+		4FE0D2EF24390D6D008F838E /* XDLive2DControlViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDLive2DControlViewModel.m; sourceTree = "<group>"; };
+		4FE0D2F124390DE9008F838E /* XDLive2DControlViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDLive2DControlViewController.h; sourceTree = "<group>"; };
+		4FE0D2F224390DE9008F838E /* XDLive2DControlViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDLive2DControlViewController.m; sourceTree = "<group>"; };
+		4FE0D2F4243920D1008F838E /* XDUserDefineKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDUserDefineKeys.h; sourceTree = "<group>"; };
+		4FE0D2F52439B8DD008F838E /* UIStoryboard+XDStoryboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+XDStoryboard.h"; sourceTree = "<group>"; };
+		4FE0D2F62439B8DD008F838E /* UIStoryboard+XDStoryboard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIStoryboard+XDStoryboard.m"; sourceTree = "<group>"; };
+		4FE0D2F9243B1202008F838E /* shape_predictor_68_face_landmarks.dat */ = {isa = PBXFileReference; lastKnownFileType = file; name = shape_predictor_68_face_landmarks.dat; path = Vendor/shape_predictor_68_face_landmarks.dat; sourceTree = SOURCE_ROOT; };
+		4FE0D2FC243B150F008F838E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		4FE0D2FE24421740008F838E /* XDSimpleKalman.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDSimpleKalman.h; sourceTree = "<group>"; };
+		4FE0D2FF24421740008F838E /* XDSimpleKalman.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDSimpleKalman.m; sourceTree = "<group>"; };
 		520D0DE6240D0F64002453EF /* ACubismMotion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ACubismMotion.cpp; path = SDK/Framework/src/Motion/ACubismMotion.cpp; sourceTree = "<group>"; };
 		520D0DE7240D0F64002453EF /* CubismPose.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismPose.cpp; path = SDK/Framework/src/Effect/CubismPose.cpp; sourceTree = "<group>"; };
 		520D0DE8240D0F64002453EF /* CubismDefaultParameterId.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismDefaultParameterId.cpp; path = SDK/Framework/src/CubismDefaultParameterId.cpp; sourceTree = "<group>"; };
@@ -254,7 +349,6 @@
 		520D0E8A240D0F66002453EF /* CubismId.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CubismId.hpp; path = SDK/Framework/src/Id/CubismId.hpp; sourceTree = "<group>"; };
 		520D0E8C240D0F66002453EF /* CubismModelUserDataJson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubismModelUserDataJson.cpp; path = SDK/Framework/src/Model/CubismModelUserDataJson.cpp; sourceTree = "<group>"; };
 		520D1006240D16FA002453EF /* Live2DResource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Live2DResource; sourceTree = "<group>"; };
-		529F9A8824263AFA009B2A88 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		52FB14A1241FE1A20069C308 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		52FB14A5241FE2550069C308 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		52FB14AC241FE30A0069C308 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
@@ -271,7 +365,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FCDCD0E2430C6490069364B /* CameraKit.framework in Frameworks */,
 				4FDBA28D23E9895A003F40F1 /* CoreMedia.framework in Frameworks */,
+				4F90BD6824263DE80065A06C /* Accelerate.framework in Frameworks */,
 				4F9175AB23E1F26E0065D31D /* CoreGraphics.framework in Frameworks */,
 				4F6F95BC24254029008D6BE7 /* MetalKit.framework in Frameworks */,
 				4F6F95CD2425D9D9008D6BE7 /* KVOController.framework in Frameworks */,
@@ -283,6 +379,13 @@
 				4F9175A923E1F25E0065D31D /* OpenGLES.framework in Frameworks */,
 				4F6F95C92425D532008D6BE7 /* EKMetalKit.framework in Frameworks */,
 				4FDBA28F23E9920C003F40F1 /* ARKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FCDCD212430DFC60069364B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,17 +401,20 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		4F4A49D5244A064D003BBA56 /* QRScan */ = {
+			isa = PBXGroup;
+			children = (
+				4F4A49D6244A0686003BBA56 /* XDQRScanViewController.h */,
+				4F4A49D7244A0686003BBA56 /* XDQRScanViewController.m */,
+			);
+			path = QRScan;
+			sourceTree = "<group>";
+		};
 		4F6F95A8241FD232008D6BE7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4F6F95AB241FD362008D6BE7 /* XDModelParameter.h */,
-				4F6F95AC241FD362008D6BE7 /* XDModelParameter.m */,
-				4F6F95AE241FD85F008D6BE7 /* XDModelParameterConfigration.h */,
-				4F6F95AF241FD85F008D6BE7 /* XDModelParameterConfigration.m */,
-				4F6F95B1241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.h */,
-				4F6F95B2241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m */,
-				4F6F95B4242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.h */,
-				4F6F95B5242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m */,
+				4FE0D2E02438DE04008F838E /* NetworkPack */,
+				4FE0D2DF2438DDED008F838E /* Live2DModelParameter */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -316,6 +422,9 @@
 		4F6F95A9241FD23A008D6BE7 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				4FCDCD1C2430DCE10069364B /* Storage */,
+				4FCDCD172430D8720069364B /* Network */,
+				4F6F95CF24262762008D6BE7 /* FaceCapture */,
 				4F6F95AA241FD251008D6BE7 /* Live2D */,
 			);
 			path = Service;
@@ -330,10 +439,23 @@
 				4F9176B323E2981E0065D31D /* LAppBundle.m */,
 				4F9176B623E299A40065D31D /* LAppModel.h */,
 				4F9176B723E299A40065D31D /* LAppModel.mm */,
-				4F91788523E2C2880065D31D /* LAppOpenGLManager.h */,
-				4F91788623E2C2880065D31D /* LAppOpenGLManager.mm */,
+				4F91788523E2C2880065D31D /* LAppOpenGLContext.h */,
+				4F91788623E2C2880065D31D /* LAppOpenGLContext.mm */,
 			);
 			path = Live2D;
+			sourceTree = "<group>";
+		};
+		4F6F95CF24262762008D6BE7 /* FaceCapture */ = {
+			isa = PBXGroup;
+			children = (
+				4F6F95D0242627AC008D6BE7 /* XDDlibWarpper.h */,
+				4F6F95D1242627AC008D6BE7 /* XDDlibWarpper.mm */,
+				4F6F95D3242627BA008D6BE7 /* XDOpenCVWarpper.h */,
+				4F6F95D4242627BA008D6BE7 /* XDOpenCVWarpper.mm */,
+				4FCDCD07242F2BA40069364B /* XDFaceAnchor.h */,
+				4FCDCD08242F2BA40069364B /* XDFaceAnchor.mm */,
+			);
+			path = FaceCapture;
 			sourceTree = "<group>";
 		};
 		4F91746423E1EFA60065D31D = {
@@ -343,6 +465,7 @@
 				520D1006240D16FA002453EF /* Live2DResource */,
 				520D0DE5240D0F43002453EF /* Live2DSDK */,
 				4F91746F23E1EFA60065D31D /* FaceXD */,
+				4FCDCD252430DFC60069364B /* FaceXDTests */,
 				4F91746E23E1EFA60065D31D /* Products */,
 				4F9175A623E1F0E40065D31D /* Frameworks */,
 				45792CAFCE751A0DD73E4B27 /* Pods */,
@@ -353,6 +476,7 @@
 			isa = PBXGroup;
 			children = (
 				4F91746D23E1EFA60065D31D /* FaceXD.app */,
+				4FCDCD242430DFC60069364B /* FaceXDTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -363,12 +487,17 @@
 				4F6F95A9241FD23A008D6BE7 /* Service */,
 				4F6F95A8241FD232008D6BE7 /* Model */,
 				4FDBA28223E95E06003F40F1 /* Utils */,
+				4FE0D2C12438D243008F838E /* ViewController */,
 				4F91747023E1EFA60065D31D /* AppDelegate.h */,
 				4F91747123E1EFA60065D31D /* AppDelegate.mm */,
 				4F91747623E1EFA60065D31D /* ViewController.h */,
 				4F91747723E1EFA60065D31D /* ViewController.mm */,
-				529F9A8824263AFA009B2A88 /* Main.storyboard */,
+				4F90BD69242668C40065A06C /* XDDlibCaptureViewController.h */,
+				4F90BD6A242668C40065A06C /* XDDlibCaptureViewController.m */,
+				4FE0D2F4243920D1008F838E /* XDUserDefineKeys.h */,
 				4F91747C23E1EFA70065D31D /* Assets.xcassets */,
+				4FE0D2F9243B1202008F838E /* shape_predictor_68_face_landmarks.dat */,
+				4FE0D2FC243B150F008F838E /* Main.storyboard */,
 				4F91747E23E1EFA70065D31D /* LaunchScreen.storyboard */,
 				52FB14BF242095630069C308 /* Info.plist */,
 				4F91748223E1EFA70065D31D /* main.m */,
@@ -379,8 +508,9 @@
 		4F9175A623E1F0E40065D31D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4FCDCD0D2430C6490069364B /* CameraKit.framework */,
+				4F90BD6724263DE70065A06C /* Accelerate.framework */,
 				4F6F95CC2425D9D9008D6BE7 /* KVOController.framework */,
-				4F6F95C524254B81008D6BE7 /* EKMetalKit.framework */,
 				4F6F95BB24254029008D6BE7 /* MetalKit.framework */,
 				4F6F95B724253D92008D6BE7 /* EKMetalKit.framework */,
 				4FDBA29023E99A4F003F40F1 /* SceneKit.framework */,
@@ -397,15 +527,155 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4FCDCD172430D8720069364B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				4FE0D2D52438DA76008F838E /* PackManager */,
+				4FE0D2D42438DA6B008F838E /* ResourceDownloader */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		4FCDCD1C2430DCE10069364B /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				4FCDCD1D2430DCF50069364B /* XDFilePath.h */,
+				4FCDCD1E2430DCF50069364B /* XDFilePath.m */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		4FCDCD252430DFC60069364B /* FaceXDTests */ = {
+			isa = PBXGroup;
+			children = (
+				4FCDCD262430DFC60069364B /* FaceXDTests.m */,
+				4FCDCD282430DFC60069364B /* Info.plist */,
+			);
+			path = FaceXDTests;
+			sourceTree = "<group>";
+		};
 		4FDBA28223E95E06003F40F1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4FE0D2D02438D69F008F838E /* Extension */,
 				4FDBA29223E9AEF8003F40F1 /* XDControlValueLinear.h */,
 				4FDBA29323E9AEF8003F40F1 /* XDControlValueLinear.m */,
 				4FDBA29423E9AEF8003F40F1 /* XDControlValueProtocol.h */,
 				4FDBA28323E95E14003F40F1 /* stb_image.h */,
+				4FE0D2FE24421740008F838E /* XDSimpleKalman.h */,
+				4FE0D2FF24421740008F838E /* XDSimpleKalman.m */,
+				4F2FB01F2448BF8F00F52F82 /* XDSmoothDamp.h */,
+				4F2FB0202448BF8F00F52F82 /* XDSmoothDamp.m */,
+				4F2FB01C2448AEB800F52F82 /* XDMathf.h */,
+				4F2FB01D2448AEB800F52F82 /* XDMathf.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		4FE0D2C12438D243008F838E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4F4A49D5244A064D003BBA56 /* QRScan */,
+				4FE0D2EC24390D1E008F838E /* Capture */,
+				4FE0D2ED24390D30008F838E /* Control */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4FE0D2D02438D69F008F838E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4FE0D2D12438D6D1008F838E /* NSString+XDIPValiual.h */,
+				4FE0D2D22438D6D1008F838E /* NSString+XDIPValiual.m */,
+				4FE0D2F52439B8DD008F838E /* UIStoryboard+XDStoryboard.h */,
+				4FE0D2F62439B8DD008F838E /* UIStoryboard+XDStoryboard.m */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		4FE0D2D42438DA6B008F838E /* ResourceDownloader */ = {
+			isa = PBXGroup;
+			children = (
+				4FCDCD182430D8CD0069364B /* XDResourceDownloader.h */,
+				4FCDCD192430D8CD0069364B /* XDResourceDownloader.m */,
+				4FCDCD1B2430D9B20069364B /* request_key.h */,
+			);
+			path = ResourceDownloader;
+			sourceTree = "<group>";
+		};
+		4FE0D2D52438DA76008F838E /* PackManager */ = {
+			isa = PBXGroup;
+			children = (
+				4FE0D2D62438DB3F008F838E /* XDPackManager.h */,
+				4FE0D2D72438DB3F008F838E /* XDPackManager.m */,
+				4FE0D2D92438DB64008F838E /* XDRawJSONSocketService.h */,
+				4FE0D2DA2438DB64008F838E /* XDRawJSONSocketService.m */,
+				4FC532502453EE7600B03C9D /* XDWebSocketService.h */,
+				4FC532512453EE7600B03C9D /* XDWebSocketService.m */,
+				4FE0D2DC2438DBA3008F838E /* XDBaseService.h */,
+				4FE0D2DD2438DBA3008F838E /* XDBaseService.m */,
+			);
+			path = PackManager;
+			sourceTree = "<group>";
+		};
+		4FE0D2DF2438DDED008F838E /* Live2DModelParameter */ = {
+			isa = PBXGroup;
+			children = (
+				4F6F95AB241FD362008D6BE7 /* XDModelParameter.h */,
+				4F6F95AC241FD362008D6BE7 /* XDModelParameter.m */,
+				4F6F95AE241FD85F008D6BE7 /* XDModelParameterConfiguration.h */,
+				4F6F95AF241FD85F008D6BE7 /* XDModelParameterConfiguration.m */,
+				4F6F95B1241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.h */,
+				4F6F95B2241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m */,
+				4FCDCD0A242F3C6B0069364B /* XDDlibModelParameterConfiguration.h */,
+				4FCDCD0B242F3C6B0069364B /* XDDlibModelParameterConfiguration.m */,
+			);
+			path = Live2DModelParameter;
+			sourceTree = "<group>";
+		};
+		4FE0D2E02438DE04008F838E /* NetworkPack */ = {
+			isa = PBXGroup;
+			children = (
+				4FE0D2E42438DE38008F838E /* RawJSON */,
+				4FE0D2E12438DE26008F838E /* XDBaseNetworkPack.h */,
+				4FE0D2E22438DE26008F838E /* XDBaseNetworkPack.m */,
+			);
+			path = NetworkPack;
+			sourceTree = "<group>";
+		};
+		4FE0D2E42438DE38008F838E /* RawJSON */ = {
+			isa = PBXGroup;
+			children = (
+				4FE0D2E52438DE64008F838E /* XDRawJSONNetworkPack.h */,
+				4FE0D2E62438DE64008F838E /* XDRawJSONNetworkPack.m */,
+			);
+			path = RawJSON;
+			sourceTree = "<group>";
+		};
+		4FE0D2EC24390D1E008F838E /* Capture */ = {
+			isa = PBXGroup;
+			children = (
+				4FE0D2C72438D32A008F838E /* XDLive2DCaptureARKitViewModel.h */,
+				4FE0D2C82438D32A008F838E /* XDLive2DCaptureARKitViewModel.m */,
+				4FE0D2CA2438D33C008F838E /* XDLive2DCaptureDlibViewModel.h */,
+				4FE0D2CB2438D33C008F838E /* XDLive2DCaptureDlibViewModel.m */,
+				4FE0D2CD2438D40E008F838E /* XDLive2DCaptureViewModel.h */,
+				4FE0D2CE2438D40E008F838E /* XDLive2DCaptureViewModel.m */,
+				4FE0D2C42438D2FA008F838E /* XDLive2DCaptureViewController.h */,
+				4FE0D2C52438D2FA008F838E /* XDLive2DCaptureViewController.m */,
+			);
+			path = Capture;
+			sourceTree = "<group>";
+		};
+		4FE0D2ED24390D30008F838E /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				4FE0D2EE24390D6D008F838E /* XDLive2DControlViewModel.h */,
+				4FE0D2EF24390D6D008F838E /* XDLive2DControlViewModel.m */,
+				4FE0D2F124390DE9008F838E /* XDLive2DControlViewController.h */,
+				4FE0D2F224390DE9008F838E /* XDLive2DControlViewController.m */,
+			);
+			path = Control;
 			sourceTree = "<group>";
 		};
 		520D0DE5240D0F43002453EF /* Live2DSDK */ = {
@@ -654,6 +924,24 @@
 			productReference = 4F91746D23E1EFA60065D31D /* FaceXD.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4FCDCD232430DFC60069364B /* FaceXDTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FCDCD2B2430DFC60069364B /* Build configuration list for PBXNativeTarget "FaceXDTests" */;
+			buildPhases = (
+				4FCDCD202430DFC60069364B /* Sources */,
+				4FCDCD212430DFC60069364B /* Frameworks */,
+				4FCDCD222430DFC60069364B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4FCDCD2A2430DFC60069364B /* PBXTargetDependency */,
+			);
+			name = FaceXDTests;
+			productName = FaceXDTests;
+			productReference = 4FCDCD242430DFC60069364B /* FaceXDTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -666,6 +954,10 @@
 				TargetAttributes = {
 					4F91746C23E1EFA60065D31D = {
 						CreatedOnToolsVersion = 11.2.1;
+					};
+					4FCDCD232430DFC60069364B = {
+						CreatedOnToolsVersion = 11.4;
+						TestTargetID = 4F91746C23E1EFA60065D31D;
 					};
 				};
 			};
@@ -683,6 +975,7 @@
 			projectRoot = "";
 			targets = (
 				4F91746C23E1EFA60065D31D /* FaceXD */,
+				4FCDCD232430DFC60069364B /* FaceXDTests */,
 			);
 		};
 /* End PBXProject section */
@@ -692,12 +985,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FE0D2FA243B1202008F838E /* shape_predictor_68_face_landmarks.dat in Resources */,
 				52FB14A0241FE1A20069C308 /* Localizable.strings in Resources */,
 				52CCBA512420B993006E87EC /* InfoPlist.strings in Resources */,
+				4FE0D2FD243B150F008F838E /* Main.storyboard in Resources */,
 				520D1007240D16FA002453EF /* Live2DResource in Resources */,
-				529F9A8924263AFA009B2A88 /* Main.storyboard in Resources */,
 				4F91748023E1EFA70065D31D /* LaunchScreen.storyboard in Resources */,
 				4F91747D23E1EFA70065D31D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FCDCD222430DFC60069364B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -750,59 +1051,98 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FE0D2D32438D6D1008F838E /* NSString+XDIPValiual.m in Sources */,
 				520D0EA9240D0F66002453EF /* CubismCdiJson.cpp in Sources */,
 				520D0EC6240D0F66002453EF /* CubismRenderer_OpenGLES2.cpp in Sources */,
 				520D0EAD240D0F66002453EF /* CubismEyeBlink.cpp in Sources */,
 				520D0E9C240D0F66002453EF /* csmRectF.cpp in Sources */,
 				520D0EB8240D0F66002453EF /* CubismIdManager.cpp in Sources */,
 				520D0ED9240D0F66002453EF /* CubismModelUserData.cpp in Sources */,
+				4F2FB0212448BF8F00F52F82 /* XDSmoothDamp.m in Sources */,
+				4FE0D2C62438D2FA008F838E /* XDLive2DCaptureViewController.m in Sources */,
 				520D0E91240D0F66002453EF /* CubismViewMatrix.cpp in Sources */,
 				520D0EA6240D0F66002453EF /* CubismModelSettingJson.cpp in Sources */,
+				4FC532522453EE7600B03C9D /* XDWebSocketService.m in Sources */,
 				520D0E9B240D0F66002453EF /* csmString.cpp in Sources */,
 				520D0ED3240D0F66002453EF /* CubismDebug.cpp in Sources */,
 				520D0ED7240D0F66002453EF /* CubismPhysicsJson.cpp in Sources */,
 				520D0EB4240D0F66002453EF /* CubismMotionQueueManager.cpp in Sources */,
 				520D0EA4240D0F66002453EF /* CubismMoc.cpp in Sources */,
-				4F6F95B6242259B9008D6BE7 /* XDAdvanceModelParameterConfiguration.m in Sources */,
+				4FE0D2CC2438D33C008F838E /* XDLive2DCaptureDlibViewModel.m in Sources */,
+				4FCDCD09242F2BA40069364B /* XDFaceAnchor.mm in Sources */,
+				4FE0D2DE2438DBA3008F838E /* XDBaseService.m in Sources */,
 				4F9176B823E299A40065D31D /* LAppModel.mm in Sources */,
 				520D0ED2240D0F66002453EF /* CubismString.cpp in Sources */,
 				520D0E93240D0F66002453EF /* CubismVector2.cpp in Sources */,
 				520D0E9F240D0F66002453EF /* CubismId.cpp in Sources */,
+				4F2FB01E2448AEB800F52F82 /* XDMathf.m in Sources */,
+				4FE0D2D82438DB3F008F838E /* XDPackManager.m in Sources */,
 				520D0E8D240D0F66002453EF /* ACubismMotion.cpp in Sources */,
 				520D0EAB240D0F66002453EF /* CubismPose.cpp in Sources */,
 				520D0EC4240D0F66002453EF /* CubismRenderer.cpp in Sources */,
+				4FE0D2F324390DE9008F838E /* XDLive2DControlViewController.m in Sources */,
 				520D0E97240D0F66002453EF /* CubismModel.cpp in Sources */,
 				520D0EC8240D0F66002453EF /* CubismFramework.cpp in Sources */,
+				4FE0D2CF2438D40E008F838E /* XDLive2DCaptureViewModel.m in Sources */,
 				4F9176B423E2981E0065D31D /* LAppBundle.m in Sources */,
 				520D0E90240D0F66002453EF /* CubismModelMatrix.cpp in Sources */,
-				4F91747823E1EFA60065D31D /* ViewController.mm in Sources */,
 				520D0EC9240D0F66002453EF /* CubismMotionManager.cpp in Sources */,
 				4F9175CF23E1FA1B0065D31D /* LAppAllocator.mm in Sources */,
 				520D0EDB240D0F66002453EF /* CubismModelUserDataJson.cpp in Sources */,
+				4F4A49D8244A0686003BBA56 /* XDQRScanViewController.m in Sources */,
+				4F90BD7624275C270065A06C /* XDOpenCVWarpper.mm in Sources */,
+				4FE0D30024421740008F838E /* XDSimpleKalman.m in Sources */,
 				520D0E9E240D0F66002453EF /* CubismExpressionMotion.cpp in Sources */,
+				4FE0D2E32438DE26008F838E /* XDBaseNetworkPack.m in Sources */,
 				520D0EB6240D0F66002453EF /* CubismMotionJson.cpp in Sources */,
 				520D0ED1240D0F66002453EF /* CubismJson.cpp in Sources */,
 				4FDBA29523E9AEF8003F40F1 /* XDControlValueLinear.m in Sources */,
 				520D0ED8240D0F66002453EF /* CubismPhysics.cpp in Sources */,
+				4FE0D2F024390D6D008F838E /* XDLive2DControlViewModel.m in Sources */,
 				520D0ECB240D0F66002453EF /* CubismUserModel.cpp in Sources */,
+				4FE0D2C92438D32A008F838E /* XDLive2DCaptureARKitViewModel.m in Sources */,
 				520D0E96240D0F66002453EF /* CubismMatrix44.cpp in Sources */,
+				4FE0D2DB2438DB64008F838E /* XDRawJSONSocketService.m in Sources */,
+				4FCDCD1F2430DCF50069364B /* XDFilePath.m in Sources */,
 				520D0EB2240D0F66002453EF /* CubismMotion.cpp in Sources */,
 				520D0E8F240D0F66002453EF /* CubismDefaultParameterId.cpp in Sources */,
+				4FE0D2E72438DE64008F838E /* XDRawJSONNetworkPack.m in Sources */,
+				4F90BD7724275C2B0065A06C /* XDDlibWarpper.mm in Sources */,
 				4F91747223E1EFA60065D31D /* AppDelegate.mm in Sources */,
 				520D0EB7240D0F66002453EF /* CubismMotionQueueEntry.cpp in Sources */,
+				4FE0D2F8243A5889008F838E /* ViewController.mm in Sources */,
 				520D0E95240D0F66002453EF /* CubismMath.cpp in Sources */,
-				4F6F95B0241FD85F008D6BE7 /* XDModelParameterConfigration.m in Sources */,
-				4F91788723E2C2880065D31D /* LAppOpenGLManager.mm in Sources */,
+				4F6F95B0241FD85F008D6BE7 /* XDModelParameterConfiguration.m in Sources */,
+				4FE0D2F72439B8DD008F838E /* UIStoryboard+XDStoryboard.m in Sources */,
+				4F91788723E2C2880065D31D /* LAppOpenGLContext.mm in Sources */,
 				4F91748323E1EFA70065D31D /* main.m in Sources */,
 				520D0EC7240D0F66002453EF /* CubismOffscreenSurface_OpenGLES2.cpp in Sources */,
 				4F6F95B3241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m in Sources */,
 				520D0ECC240D0F66002453EF /* CubismBreath.cpp in Sources */,
 				4F6F95AD241FD362008D6BE7 /* XDModelParameter.m in Sources */,
 				520D0E94240D0F66002453EF /* CubismTargetPoint.cpp in Sources */,
+				4FCDCD0C242F3C6B0069364B /* XDDlibModelParameterConfiguration.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FCDCD202430DFC60069364B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FCDCD2E2430E0A60069364B /* XDFilePath.m in Sources */,
+				4FCDCD272430DFC60069364B /* FaceXDTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4FCDCD2A2430DFC60069364B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F91746C23E1EFA60065D31D /* FaceXD */;
+			targetProxy = 4FCDCD292430DFC60069364B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4F91747E23E1EFA70065D31D /* LaunchScreen.storyboard */ = {
@@ -962,7 +1302,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = C2JFNKPW64;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -973,6 +1313,7 @@
 					"\"$(SRCROOT)/SDK/Core/include\"",
 					"\"$(SRCROOT)/SDK/Framework/src\"",
 					"$(inherited)",
+					"\"$(SRCROOT)/Vendor/include\"",
 				);
 				INFOPLIST_FILE = FaceXD/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -980,17 +1321,24 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SDK/Core/lib/ios/$(CONFIGURATION)-$(PLATFORM_NAME)\"";
-				MARKETING_VERSION = 1.7.4;
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)/SDK/Core/lib/ios/$(CONFIGURATION)-$(PLATFORM_NAME)\"",
+					"\"$(SRCROOT)/Vendor/lib\"",
+				);
+				MARKETING_VERSION = 2.0.0;
 				OTHER_CFLAGS = "-DCSM_TARGET_IPHONE_ES2";
+				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
 					"-lLive2DCubismCore",
 					"$(inherited)",
+					"-ldlib",
+					"-framework",
+					"\"opencv2\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hakura.FaceXD;
 				PRODUCT_NAME = FaceXD;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Debug;
 		};
@@ -1001,7 +1349,8 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = C2JFNKPW64;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1012,6 +1361,7 @@
 					"\"$(SRCROOT)/SDK/Core/include\"",
 					"\"$(SRCROOT)/SDK/Framework/src\"",
 					"$(inherited)",
+					"\"$(SRCROOT)/Vendor/include\"",
 				);
 				INFOPLIST_FILE = FaceXD/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1019,17 +1369,64 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SDK/Core/lib/ios/$(CONFIGURATION)-$(PLATFORM_NAME)\"";
-				MARKETING_VERSION = 1.7.4;
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)/SDK/Core/lib/ios/$(CONFIGURATION)-$(PLATFORM_NAME)\"",
+					"\"$(SRCROOT)/Vendor/lib\"",
+				);
+				MARKETING_VERSION = 2.0.0;
 				OTHER_CFLAGS = "-DCSM_TARGET_IPHONE_ES2";
+				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
 					"-lLive2DCubismCore",
 					"$(inherited)",
+					"-ldlib",
+					"-framework",
+					"\"opencv2\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hakura.FaceXD;
 				PRODUCT_NAME = FaceXD;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
+				VALID_ARCHS = "arm64 arm64e";
+			};
+			name = Release;
+		};
+		4FCDCD2C2430DFC60069364B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2VQ94C2355;
+				INFOPLIST_FILE = FaceXDTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.eki.FaceXDTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FaceXD.app/FaceXD";
+			};
+			name = Debug;
+		};
+		4FCDCD2D2430DFC60069364B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2VQ94C2355;
+				INFOPLIST_FILE = FaceXDTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.eki.FaceXDTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FaceXD.app/FaceXD";
 			};
 			name = Release;
 		};
@@ -1050,6 +1447,15 @@
 			buildConfigurations = (
 				4F91748723E1EFA70065D31D /* Debug */,
 				4F91748823E1EFA70065D31D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FCDCD2B2430DFC60069364B /* Build configuration list for PBXNativeTarget "FaceXDTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FCDCD2C2430DFC60069364B /* Debug */,
+				4FCDCD2D2430DFC60069364B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
