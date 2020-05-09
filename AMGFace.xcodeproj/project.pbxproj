@@ -1339,7 +1339,7 @@
 					"-framework",
 					"\"opencv2\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AMG.AMGFace;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AMG.AMGFaces;
 				PRODUCT_NAME = AMGFace;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e";
@@ -1387,7 +1387,7 @@
 					"-framework",
 					"\"opencv2\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AMG.AMGFace;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AMG.AMGFaces;
 				PRODUCT_NAME = AMGFace;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e";
@@ -1399,7 +1399,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2VQ94C2355;
+				DEVELOPMENT_TEAM = Z85Y5UDZCQ;
 				INFOPLIST_FILE = FaceXDTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1419,7 +1419,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2VQ94C2355;
+				DEVELOPMENT_TEAM = Z85Y5UDZCQ;
 				INFOPLIST_FILE = FaceXDTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
