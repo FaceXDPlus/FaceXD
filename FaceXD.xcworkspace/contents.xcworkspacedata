@@ -5,7 +5,7 @@
       location = "group:Vendor/KVOController/FBKVOController.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:FaceXD.xcodeproj">
+      location = "group:/Users/macbookpro/Documents/GitHub/FaceXD/AMGFace.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

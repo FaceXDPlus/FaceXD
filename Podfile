@@ -1,6 +1,6 @@
 platform :ios, '11.0'
 use_frameworks!
-target 'FaceXD' do
+target 'AMGFace' do
 
 pod 'CocoaAsyncSocket'
 pod 'Masonry'
