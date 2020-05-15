@@ -82,7 +82,7 @@
     self.preferredFramesPerSecond = 60;
     [self.glView setContext:LAppGLContext];
     LAppGLContextAction(^{
-        self.model = [[LAppModel alloc] initWithName:@"Hakura"];
+        self.model = [[LAppModel alloc] initWithName:@"baixiao"];
         [self.model loadAsset];
         [self.model startBreath];
     });
