@@ -77,6 +77,10 @@
         make.centerX.equalTo(self.view);
         make.top.equalTo(self.tipsLabel.mas_bottom).offset(12);
     }];
+    
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleViewSwipeDownGesture:)];
+    swipe.direction = UISwipeGestureRecognizerDirectionDown;
+    [self.view addGestureRecognizer:swipe];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -108,6 +112,11 @@
     [self.session stopSessionWithCompletion:^(NSError * _Nullable error) {
         
     }];
+
+    NSArray *gestureRecognizerArray = [NSArray arrayWithArray:self.view.gestureRecognizers];
+    for (UIGestureRecognizer *nowGestureRecognizer in gestureRecognizerArray) {
+        [self.view removeGestureRecognizer:nowGestureRecognizer];
+    }
 }
 
 - (void)captureOutput:(AVCaptureOutput *)output
@@ -126,6 +135,10 @@ didOutputMetadataObjects:(NSArray<__kindof AVMetadataObject *> *)metadataObjects
             }
         }
     }
+}
+
+-(void)handleViewSwipeDownGesture:(UIGestureRecognizer *)swipe{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
