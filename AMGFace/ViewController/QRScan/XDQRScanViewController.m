@@ -78,7 +78,7 @@
         make.top.equalTo(self.tipsLabel.mas_bottom).offset(12);
     }];
     
-    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipemethod:)];
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleViewSwipeDownGesture:)];
     swipe.direction = UISwipeGestureRecognizerDirectionDown;
     [self.view addGestureRecognizer:swipe];
 }
@@ -137,7 +137,7 @@ didOutputMetadataObjects:(NSArray<__kindof AVMetadataObject *> *)metadataObjects
     }
 }
 
--(void)swipemethod:(UIGestureRecognizer *)swipe{
+-(void)handleViewSwipeDownGesture:(UIGestureRecognizer *)swipe{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
