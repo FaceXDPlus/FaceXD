@@ -103,7 +103,19 @@
         
         AVCaptureConnection *connection = [weakSelf.videoOutput.connections firstObject];
         if (connection) {
-            connection.videoOrientation = AVCaptureVideoOrientationPortrait;
+            __block UIInterfaceOrientation orientation;
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                orientation = [UIApplication sharedApplication].statusBarOrientation;
+            });
+            if (orientation == UIInterfaceOrientationLandscapeLeft) {
+                connection.videoOrientation = AVCaptureVideoOrientationLandscapeLeft;
+            } else if (orientation == UIInterfaceOrientationLandscapeRight) {
+                connection.videoOrientation = AVCaptureVideoOrientationLandscapeRight;
+            } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+                connection.videoOrientation = AVCaptureVideoOrientationPortraitUpsideDown;
+            } else {
+                connection.videoOrientation = AVCaptureVideoOrientationPortrait;
+            }
             [connection setVideoMirrored:YES];
             [weakSelf.faceOutput setMetadataObjectTypes:@[AVMetadataObjectTypeFace]];
         }
@@ -112,7 +124,7 @@
     self.faceCheckTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
         weakSelf.faceCheckCount = 0;
     }];
-    
+    [self bindData];
     [super startCapture];
 }
 
@@ -122,7 +134,40 @@
     }];
     [self.faceCheckTimer invalidate];
     self.faceCheckTimer = nil;
+    [self unBindData];
     [super stopCapture];
+}
+
+- (void)bindData {
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleOrientationChange)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
+}
+
+- (void)unBindData {
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+#pragma mark - Handler
+- (void)handleOrientationChange {
+    AVCaptureConnection *connection = [self.videoOutput.connections firstObject];
+    if (connection) {
+        UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+        if (orientation == UIInterfaceOrientationLandscapeLeft) {
+            connection.videoOrientation = AVCaptureVideoOrientationLandscapeLeft;
+        } else if (orientation == UIInterfaceOrientationLandscapeRight) {
+            connection.videoOrientation = AVCaptureVideoOrientationLandscapeRight;
+        } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+            connection.videoOrientation = AVCaptureVideoOrientationPortraitUpsideDown;
+        } else {
+            connection.videoOrientation = AVCaptureVideoOrientationPortrait;
+        }
+        [connection setVideoMirrored:YES];
+    }
 }
 
 #pragma mark - Delegate

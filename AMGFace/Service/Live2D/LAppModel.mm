@@ -114,13 +114,13 @@ public:
 
 - (void)setMVPMatrixWithSize:(CGSize)size {
     Csm::CubismMatrix44 projectionMatrix;
-    CGFloat radio = size.width / size.height;
+    CGFloat ratio = size.width / size.height;
     CGFloat userScale = 1.8;
     /// 基础坐标缩放
-    if (radio > 0) {
-        projectionMatrix.Scale(1 / radio * userScale, 1 * userScale);
+    if (ratio > 1) {
+        projectionMatrix.Scale(1 * userScale, ratio * userScale);
     } else {
-        projectionMatrix.Scale(1 * userScale, 1 / radio * userScale);
+        projectionMatrix.Scale(1 / ratio * userScale, 1 * userScale);
     }
 
     /// 后期可作为可配置项处理
