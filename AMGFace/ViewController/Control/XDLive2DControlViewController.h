@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) BOOL needShowCamera;
 
 - (void)attachCaptureViewModel:(XDLive2DCaptureViewModel *)captureViewModel;
-
+- (void)layoutControlPannelSwitchStackViewWithPoint:(CGPoint)point;
 @end
 
 NS_ASSUME_NONNULL_END

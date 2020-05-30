@@ -134,6 +134,23 @@
     [self.defaultModelParameterConfiguration reset];
     [self.dlibModelParameterConfiguration reset];
 }
+
+- (void)layoutCameraPreviewViewWithPoint:(CGPoint)point {
+    CGPoint centerPoint = self.view.center;
+    CGFloat centerXOffset = point.x - centerPoint.x;
+    CGFloat centerYOffset = point.y - centerPoint.y;
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    [self.liveview mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view.mas_centerX).offset(centerXOffset);
+        make.centerY.equalTo(self.view.mas_centerY).offset(centerYOffset);
+        CGSize size = CGSizeMake(149, 254);
+        if (orientation == UIInterfaceOrientationLandscapeLeft ||
+            orientation == UIInterfaceOrientationLandscapeRight) {
+            size = CGSizeMake(254, 149);
+        }
+        make.size.mas_equalTo(size);
+    }];
+}
 #pragma mark - Handler
 - (void)handleDispalyUpdate {
     [self.glView display];
@@ -141,7 +158,6 @@
 
 #pragma mark - Data Source
 - (Class)viewModelClass {
-    return [XDLive2DCaptureDlibViewModel class];
     if ([ARFaceTrackingConfiguration isSupported]) {
         return [XDLive2DCaptureARKitViewModel class];
     }

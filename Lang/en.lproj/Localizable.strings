@@ -31,3 +31,5 @@
 "xd_high_accuracy" = "high accuracy";
 "xd_qr_scan_tips" = "Scan Connection QR Code";
 "xd_qr_scan_exit_tips" = "Swipe down to cancel";
+"label_gesture" = "Gesture";
+"button_show_gesture_help" = "Show Help";

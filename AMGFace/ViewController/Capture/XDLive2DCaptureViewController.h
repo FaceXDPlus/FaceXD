@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithModelName:(NSString *)modelName;
 
 - (void)resetModel;
+- (void)layoutCameraPreviewViewWithPoint:(CGPoint)point;
 @end
 
 NS_ASSUME_NONNULL_END
