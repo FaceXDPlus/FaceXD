@@ -25,6 +25,7 @@
 #import "XDDlibModelParameterConfiguration.h"
 #import "XDDefaultModelParameterConfiguration.h"
 #import "XDRawJSONNetworkPack.h"
+#import "XDUserDefineKeys.h"
 
 @interface XDLive2DCaptureViewController () <GLKViewDelegate, XDLive2DCaptureViewModelDelegate> {
     CFTimeInterval _lastTime;
@@ -109,17 +110,24 @@
 }
 
 - (void)layoutLiveview {
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    [self.liveview mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.view).offset(-20);
-        make.bottom.mas_equalTo(self.view).offset(-20);
-        CGSize size = CGSizeMake(149, 254);
-        if (orientation == UIInterfaceOrientationLandscapeLeft ||
-            orientation == UIInterfaceOrientationLandscapeRight) {
-            size = CGSizeMake(254, 149);
-        }
-        make.size.mas_equalTo(size);
-    }];
+    NSNumber *lastX = [[NSUserDefaults standardUserDefaults] valueForKey:XDUserDefineKeyCameraPreviewLastPointX];
+    NSNumber *lastY = [[NSUserDefaults standardUserDefaults] valueForKey:XDUserDefineKeyCameraPreviewLastPointY];
+    if (lastX == nil ||
+        lastY == nil) {
+        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+        [self.liveview mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(self.view).offset(-20);
+            make.bottom.mas_equalTo(self.view).offset(-20);
+            CGSize size = CGSizeMake(149, 254);
+            if (orientation == UIInterfaceOrientationLandscapeLeft ||
+                orientation == UIInterfaceOrientationLandscapeRight) {
+                size = CGSizeMake(254, 149);
+            }
+            make.size.mas_equalTo(size);
+        }];
+    } else {
+        [self layoutCameraPreviewViewWithPoint:CGPointMake(lastX.floatValue, lastY.floatValue)];
+    }
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size
@@ -136,6 +144,8 @@
 }
 
 - (void)layoutCameraPreviewViewWithPoint:(CGPoint)point {
+    [[NSUserDefaults standardUserDefaults] setValue:@(point.x) forKey:XDUserDefineKeyCameraPreviewLastPointX];
+    [[NSUserDefaults standardUserDefaults] setValue:@(point.y) forKey:XDUserDefineKeyCameraPreviewLastPointY];
     CGPoint centerPoint = self.view.center;
     CGFloat centerXOffset = point.x - centerPoint.x;
     CGFloat centerYOffset = point.y - centerPoint.y;

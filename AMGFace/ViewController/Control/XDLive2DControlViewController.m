@@ -15,6 +15,7 @@
 #import "XDQRScanViewController.h"
 #import <GCDAsyncSocket.h>
 #import <Masonry/Masonry.h>
+#import "XDUserDefineKeys.h"
 @interface XDLive2DControlViewController () <GCDAsyncSocketDelegate>
 @property (nonatomic, strong) XDLive2DControlViewModel *viewModel;
 
@@ -84,10 +85,18 @@
     [_resetButton setTitle:NSLocalizedString(@"button_Reset", nil) forState:UIControlStateNormal];
     [_showGestureHelpButton setTitle:NSLocalizedString(@"button_show_gesture_help", nil) forState:UIControlStateNormal];
     
-    [self.controlPannelSwitchStackView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft).offset(24);
-        make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(12);
-    }];
+    
+    NSNumber *lastX = [[NSUserDefaults standardUserDefaults] valueForKey:XDUserDefineKeySwitchPannelLastPointX];
+    NSNumber *lastY = [[NSUserDefaults standardUserDefaults] valueForKey:XDUserDefineKeySwitchPannelLastPointY];
+    if (lastX == nil ||
+        lastY == nil) {
+        [self.controlPannelSwitchStackView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft).offset(24);
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(12);
+        }];
+    } else {
+        [self layoutControlPannelSwitchStackViewWithPoint:CGPointMake(lastX.floatValue, lastY.floatValue)];
+    }
 }
 
 - (void)bindData {
@@ -227,6 +236,8 @@
 }
 
 - (void)layoutControlPannelSwitchStackViewWithPoint:(CGPoint)point {
+    [[NSUserDefaults standardUserDefaults] setValue:@(point.x) forKey:XDUserDefineKeySwitchPannelLastPointX];
+    [[NSUserDefaults standardUserDefaults] setValue:@(point.y) forKey:XDUserDefineKeySwitchPannelLastPointY];
     CGPoint centerPoint = self.view.center;
     CGFloat centerXOffset = point.x - centerPoint.x;
     CGFloat centerYOffset = point.y - centerPoint.y;
