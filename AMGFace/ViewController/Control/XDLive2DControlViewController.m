@@ -285,7 +285,14 @@
     } while (0);
 }
 - (IBAction)handleShowGestureHelpButtonDown:(id)sender {
-
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"alert_gesture_help_title", nil)
+                                                                   message:NSLocalizedString(@"alert_gesture_help_content", nil)
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:NSLocalizedString(@"alert_gesture_ok", nil)
+                                                     style:UIAlertActionStyleCancel
+                                                   handler:nil];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)handleCaptureSwitchChange:(id)sender {
