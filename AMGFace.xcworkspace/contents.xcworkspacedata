@@ -2,10 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Vendor/KVOController/FBKVOController.xcodeproj">
+      location = "group:AMGFace.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/macbookpro/Documents/GitHub/FaceXD/AMGFace.xcodeproj">
+      location = "group:Vendor/KVOController/FBKVOController.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
