@@ -14,7 +14,8 @@
 #import "XDLive2DCaptureARKitViewModel.h"
 #import "XDQRScanViewController.h"
 #import <GCDAsyncSocket.h>
-
+#import <Masonry/Masonry.h>
+#import "XDUserDefineKeys.h"
 @interface XDLive2DControlViewController () <GCDAsyncSocketDelegate>
 @property (nonatomic, strong) XDLive2DControlViewModel *viewModel;
 
@@ -26,6 +27,9 @@
 @property (nonatomic, weak) IBOutlet UITextField *socketPortField;
 @property (nonatomic, weak) IBOutlet UILabel *captureStateLabel;
 @property (nonatomic, weak) IBOutlet UILabel *submitStateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *gestureLabel;
+@property (weak, nonatomic) IBOutlet UIButton *showGestureHelpButton;
+@property (weak, nonatomic) IBOutlet UIStackView *controlPannelSwitchStackView;
 
 @property (nonatomic, weak) IBOutlet UILabel *versionLabel;
 @property (nonatomic, weak) IBOutlet UILabel *appVersionLabel;
@@ -76,8 +80,23 @@
     self.relativeLabel.text = NSLocalizedString(@"label_Relative", nil);
     self.addressLabel.text = NSLocalizedString(@"label_PCAddress", nil);
     self.socketPortLabel.text = NSLocalizedString(@"label_SocketPort", nil);
+    self.gestureLabel.text = NSLocalizedString(@"label_gesture", nil);
     [_scanButton  setTitle:NSLocalizedString(@"button_Qr_scan", nil) forState:UIControlStateNormal];
     [_resetButton setTitle:NSLocalizedString(@"button_Reset", nil) forState:UIControlStateNormal];
+    [_showGestureHelpButton setTitle:NSLocalizedString(@"button_show_gesture_help", nil) forState:UIControlStateNormal];
+    
+    
+    NSNumber *lastX = [[NSUserDefaults standardUserDefaults] valueForKey:XDUserDefineKeySwitchPannelLastPointX];
+    NSNumber *lastY = [[NSUserDefaults standardUserDefaults] valueForKey:XDUserDefineKeySwitchPannelLastPointY];
+    if (lastX == nil ||
+        lastY == nil) {
+        [self.controlPannelSwitchStackView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft).offset(24);
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(12);
+        }];
+    } else {
+        [self layoutControlPannelSwitchStackViewWithPoint:CGPointMake(lastX.floatValue, lastY.floatValue)];
+    }
 }
 
 - (void)bindData {
@@ -216,6 +235,18 @@
 
 }
 
+- (void)layoutControlPannelSwitchStackViewWithPoint:(CGPoint)point {
+    [[NSUserDefaults standardUserDefaults] setValue:@(point.x) forKey:XDUserDefineKeySwitchPannelLastPointX];
+    [[NSUserDefaults standardUserDefaults] setValue:@(point.y) forKey:XDUserDefineKeySwitchPannelLastPointY];
+    CGPoint centerPoint = self.view.center;
+    CGFloat centerXOffset = point.x - centerPoint.x;
+    CGFloat centerYOffset = point.y - centerPoint.y;
+    [self.controlPannelSwitchStackView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view.mas_centerX).offset(centerXOffset);
+        make.centerY.equalTo(self.view.mas_centerY).offset(centerYOffset);
+    }];
+}
+
 #pragma mark - Handler
 
 - (void)handleQRCodeInput:(NSString *)qrInput {
@@ -263,6 +294,16 @@
         }];
         
     } while (0);
+}
+- (IBAction)handleShowGestureHelpButtonDown:(id)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"alert_gesture_help_title", nil)
+                                                                   message:NSLocalizedString(@"alert_gesture_help_content", nil)
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:NSLocalizedString(@"alert_gesture_ok", nil)
+                                                     style:UIAlertActionStyleCancel
+                                                   handler:nil];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)handleCaptureSwitchChange:(id)sender {

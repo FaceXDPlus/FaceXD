@@ -31,3 +31,9 @@
 "xd_high_accuracy" = "高精度";
 "xd_qr_scan_tips" = "扫描连接二维码";
 "xd_qr_scan_exit_tips" = "下滑可返回";
+"label_gesture" = "手势";
+"button_show_gesture_help" = "显示帮助";
+"alert_gesture_help_title" = "手势帮助";
+"alert_gesture_help_content" = "你可以使用双指双击移动开关视图，使用三指双击移动相机预览视图";
+
+"alert_gesture_ok" = "好的";

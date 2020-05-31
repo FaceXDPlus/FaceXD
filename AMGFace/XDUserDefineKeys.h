@@ -16,5 +16,12 @@ static NSString * const XDUserDefineKeySubmitSocketPort = @"submitSocketPort";
 static NSString * const XDUserDefineKeySubmitJSONSwitch = @"jsonSwitch";
 static NSString * const XDUserDefineKeySubmitAdvancedSwitch = @"advancedSwitch";
 static NSString * const XDUserDefineKeySubmitCameraAlignment = @"cameraAlignment";
+
+static NSString * const XDUserDefineKeySwitchPannelLastPointX = @"XDUserDefineKeySwitchPannelLastPointX";
+static NSString * const XDUserDefineKeySwitchPannelLastPointY = @"XDUserDefineKeySwitchPannelLastPointY";
+
+static NSString * const XDUserDefineKeyCameraPreviewLastPointX = @"XDUserDefineKeyCameraPreviewLastPointX";
+static NSString * const XDUserDefineKeyCameraPreviewLastPointY = @"XDUserDefineKeyCameraPreviewLastPointY";
+
 #endif /* XDUserDefineKeys_h */
 

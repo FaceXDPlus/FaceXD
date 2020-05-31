@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.captureViewController = [[XDLive2DCaptureViewController alloc] initWithModelName:@"baixiao"];
+    self.captureViewController = [[XDLive2DCaptureViewController alloc] initWithModelName:@"Hiyori"];
     [self.view addSubview:self.captureViewController.view];
     [self addChildViewController:self.captureViewController];
     [self.captureViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -40,6 +40,7 @@
     [self.controlViewController attachCaptureViewModel:self.captureViewController.viewModel];
     
     [self bindData];
+    [self setupGesture];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -65,6 +66,18 @@
     }];
 }
 
+- (void)setupGesture {
+    UITapGestureRecognizer *moveControlPannelGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleMoveControlPannelGesture:)];
+    moveControlPannelGesture.numberOfTouchesRequired = 2;
+    moveControlPannelGesture.numberOfTapsRequired = 2;
+    [self.view addGestureRecognizer:moveControlPannelGesture];
+    
+    UITapGestureRecognizer *moveCameraPreviewGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleMoveCameraPreviewGesture:)];
+    moveCameraPreviewGesture.numberOfTapsRequired = 2;
+    moveCameraPreviewGesture.numberOfTouchesRequired = 3;
+    [self.view addGestureRecognizer:moveCameraPreviewGesture];
+}
+
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     /*if (self.expressionCount == 0) return;
     static NSInteger index = 0;
@@ -76,7 +89,15 @@
 }
 
 #pragma mark - Action
+- (void)handleMoveControlPannelGesture:(UIGestureRecognizer *)gesture {
+    CGPoint p = [gesture locationInView:self.view];
+    [self.controlViewController layoutControlPannelSwitchStackViewWithPoint:p];
+}
 
+- (void)handleMoveCameraPreviewGesture:(UIGestureRecognizer *)gesture {
+    CGPoint p = [gesture locationInView:self.view];
+    [self.captureViewController layoutCameraPreviewViewWithPoint:p];
+}
 
 //- (IBAction)handleJsonSwitch:(id)sender {
 //    NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];

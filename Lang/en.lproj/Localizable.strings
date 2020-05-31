@@ -31,3 +31,9 @@
 "xd_high_accuracy" = "high accuracy";
 "xd_qr_scan_tips" = "Scan Connection QR Code";
 "xd_qr_scan_exit_tips" = "Swipe down to cancel";
+"label_gesture" = "Gesture";
+"button_show_gesture_help" = "Show Help";
+"alert_gesture_help_title" = "Gesture Help";
+"alert_gesture_help_content" = "You can use two finger to double tap the screen to move switch control pannel, and use three finger double tap to move camera preview view.";
+
+"alert_gesture_ok" = "OK";
