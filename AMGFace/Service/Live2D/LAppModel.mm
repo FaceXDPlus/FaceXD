@@ -231,6 +231,10 @@ public:
 }
 
 - (void)releaseTexture {
+    if (self.modelSetting == NULL)
+    {
+        return;
+    }
     Csm::csmInt32 textureCount = self.modelSetting->GetTextureCount();
     auto map = self.model->GetRenderer<Csm::Rendering::CubismRenderer_OpenGLES2>()->GetBindedTextures();
     for (Csm::csmInt32 i = 0; i < textureCount; ++i) {

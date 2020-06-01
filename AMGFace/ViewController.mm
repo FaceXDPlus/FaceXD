@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.captureViewController = [[XDLive2DCaptureViewController alloc] initWithModelName:@"Hiyori"];
+    self.captureViewController = [[XDLive2DCaptureViewController alloc] initWithModelName:@"baixiao"];
     [self.view addSubview:self.captureViewController.view];
     [self addChildViewController:self.captureViewController];
     [self.captureViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
