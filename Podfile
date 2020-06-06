@@ -5,6 +5,7 @@ target 'AMGFace' do
 pod 'CocoaAsyncSocket'
 pod 'Masonry'
 pod 'SocketRocket'
+pod 'PocketSocket'
 
 end
 

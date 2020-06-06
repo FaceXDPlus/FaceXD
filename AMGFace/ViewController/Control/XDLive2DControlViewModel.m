@@ -13,8 +13,11 @@
 
 #import "XDLive2DCaptureViewModel.h"
 
+#define kXDWebSocketServerListenPort (22546)
+
 @interface XDLive2DControlViewModel ()
 @property (nonatomic, strong) XDWebSocketService *webSocketService;
+@property (nonatomic, strong) XDWebSocketServerService *webSocketServerService;
 @property (nonatomic, assign) BOOL isSubmiting;
 
 @property (nonatomic, strong) XDLive2DCaptureViewModel *captureViewModel;
@@ -25,7 +28,9 @@
     self = [super init];
     if (self) {
         _webSocketService = [[XDWebSocketService alloc] init];
+        _webSocketServerService = [[XDWebSocketServerService alloc] init];
         [[XDPackManager sharedInstance] registerService:_webSocketService];
+        [[XDPackManager sharedInstance] registerService:_webSocketServerService];
         
         NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
         NSString *build = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
@@ -78,6 +83,13 @@
 
 - (void)disconnect {
     [self.webSocketService disconnect];
+}
+
+- (NSError *)startLocalServer {
+    NSError *err = nil;
+    [self.webSocketServerService setupServiceWithLocalPort:kXDWebSocketServerListenPort
+                                                     error:&err];
+    return err;
 }
 
 #pragma mark - Capture

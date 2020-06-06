@@ -34,6 +34,7 @@
 		4F9176B823E299A40065D31D /* LAppModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F9176B723E299A40065D31D /* LAppModel.mm */; };
 		4F91788723E2C2880065D31D /* LAppOpenGLContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91788623E2C2880065D31D /* LAppOpenGLContext.mm */; };
 		4FC532522453EE7600B03C9D /* XDWebSocketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC532512453EE7600B03C9D /* XDWebSocketService.m */; };
+		4FCD288A248B91CE000E4533 /* XDWebSocketServerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD2889248B91CE000E4533 /* XDWebSocketServerService.m */; };
 		4FCDCD09242F2BA40069364B /* XDFaceAnchor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD08242F2BA40069364B /* XDFaceAnchor.mm */; };
 		4FCDCD0C242F3C6B0069364B /* XDDlibModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD0B242F3C6B0069364B /* XDDlibModelParameterConfiguration.m */; };
 		4FCDCD0E2430C6490069364B /* CameraKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FCDCD0D2430C6490069364B /* CameraKit.framework */; };
@@ -177,6 +178,8 @@
 		4F91788623E2C2880065D31D /* LAppOpenGLContext.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LAppOpenGLContext.mm; sourceTree = "<group>"; };
 		4FC532502453EE7600B03C9D /* XDWebSocketService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDWebSocketService.h; sourceTree = "<group>"; };
 		4FC532512453EE7600B03C9D /* XDWebSocketService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDWebSocketService.m; sourceTree = "<group>"; };
+		4FCD2888248B91CE000E4533 /* XDWebSocketServerService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDWebSocketServerService.h; sourceTree = "<group>"; };
+		4FCD2889248B91CE000E4533 /* XDWebSocketServerService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDWebSocketServerService.m; sourceTree = "<group>"; };
 		4FCDCD07242F2BA40069364B /* XDFaceAnchor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDFaceAnchor.h; sourceTree = "<group>"; };
 		4FCDCD08242F2BA40069364B /* XDFaceAnchor.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = XDFaceAnchor.mm; sourceTree = "<group>"; };
 		4FCDCD0A242F3C6B0069364B /* XDDlibModelParameterConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDlibModelParameterConfiguration.h; sourceTree = "<group>"; };
@@ -616,6 +619,8 @@
 				4FE0D2DA2438DB64008F838E /* XDRawJSONSocketService.m */,
 				4FC532502453EE7600B03C9D /* XDWebSocketService.h */,
 				4FC532512453EE7600B03C9D /* XDWebSocketService.m */,
+				4FCD2888248B91CE000E4533 /* XDWebSocketServerService.h */,
+				4FCD2889248B91CE000E4533 /* XDWebSocketServerService.m */,
 				4FE0D2DC2438DBA3008F838E /* XDBaseService.h */,
 				4FE0D2DD2438DBA3008F838E /* XDBaseService.m */,
 			);
@@ -1103,6 +1108,7 @@
 				4FDBA29523E9AEF8003F40F1 /* XDControlValueLinear.m in Sources */,
 				520D0ED8240D0F66002453EF /* CubismPhysics.cpp in Sources */,
 				4FE0D2F024390D6D008F838E /* XDLive2DControlViewModel.m in Sources */,
+				4FCD288A248B91CE000E4533 /* XDWebSocketServerService.m in Sources */,
 				520D0ECB240D0F66002453EF /* CubismUserModel.cpp in Sources */,
 				4FE0D2C92438D32A008F838E /* XDLive2DCaptureARKitViewModel.m in Sources */,
 				520D0E96240D0F66002453EF /* CubismMatrix44.cpp in Sources */,
