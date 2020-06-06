@@ -133,6 +133,13 @@
     self.parameter.eyeLOpen = @(eyeRight);
     self.parameter.mouthOpenY = @(mouthOpenY);
     self.parameter.mouthForm = @(mouthForm);
+    self.parameter.isTracked = @(anchor.isTracked);
+    
+    [self afterUpdateParameter:self.parameter];
+}
+
+- (void)afterUpdateParameter:(XDModelParameter *)parameter {
+    self.sendParameter = self.parameter;
 }
 
 - (void)commit {

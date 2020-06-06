@@ -113,7 +113,7 @@
     self.faceNode.simdTransform = anchor.transform;
     self.leftEyeNode.simdTransform = anchor.transform;
     self.rightEyeNode.simdTransform = anchor.transform;
-    
+    self.parameter.isTracked = @(anchor.isTracked);
     if (self.worldAlignment == ARWorldAlignmentCamera) {
         self.parameter.headPitch = @(-(180 / M_PI) * self.faceNode.eulerAngles.x * 1.3);
         self.parameter.headYaw = @((180 / M_PI) * self.faceNode.eulerAngles.y);
