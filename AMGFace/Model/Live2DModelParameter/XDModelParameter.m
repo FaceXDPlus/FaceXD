@@ -31,6 +31,7 @@
     copyParameter.mouthOpenY = [self.mouthOpenY copy];
     copyParameter.mouthForm = [self.mouthForm copy];
     copyParameter.blendShapes = [self.blendShapes copy];
+    copyParameter.isTracked = [self.isTracked copy];
     return copyParameter;
 }
 
@@ -55,6 +56,7 @@
         @"mouthOpenY"      : [NSString stringWithFormat: @"%.5lf", self.mouthOpenY.floatValue],
         @"mouthForm"       : [NSString stringWithFormat: @"%.5lf", self.mouthForm.floatValue],
         @"blendShapes"     : self.blendShapes == nil ? @{} : self.blendShapes,
+        @"isTracked"       : self.isTracked == nil ? @(YES) : self.isTracked,
     };
 }
 

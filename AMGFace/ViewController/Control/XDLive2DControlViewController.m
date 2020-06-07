@@ -70,6 +70,20 @@
     [self syncData];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    NSError *err = [self.viewModel startLocalServer];
+    if (err) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                       message:NSLocalizedString(@"xd_local_websocket_server_startup_error_message", nil)
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"xd_ok", nil)
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
 - (void)setupView {
     self.captureLabel.text = NSLocalizedString(@"label_Capture", nil);
     self.submitLabel.text = NSLocalizedString(@"label_Submit", nil);

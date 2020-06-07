@@ -37,3 +37,4 @@
 "alert_gesture_help_content" = "你可以使用双指双击移动开关视图，使用三指双击移动相机预览视图";
 
 "alert_gesture_ok" = "好的";
+"xd_local_websocket_server_startup_error_message" = "监听服务启动失败，部分服务不可用";

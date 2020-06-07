@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) NSNumber *mouthOpenY;
 @property (nonatomic, copy, nullable) NSNumber *mouthForm;
 @property (nonatomic, copy, nullable) NSDictionary<NSString *, NSNumber *> *blendShapes;
+@property (nonatomic, copy, nullable) NSNumber *isTracked;
 
 - (NSDictionary *)parameterValueDictionary;
 @end

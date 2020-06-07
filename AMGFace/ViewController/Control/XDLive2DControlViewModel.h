@@ -8,15 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "XDWebSocketService.h"
+#import "XDWebSocketServerService.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @class XDLive2DCaptureViewModel;
 @interface XDLive2DControlViewModel : NSObject
 @property (nonatomic, readonly) XDWebSocketService *webSocketService;
+@property (nonatomic, readonly) XDWebSocketServerService *webSocketServerService;
 @property (nonatomic, copy) NSString *host;
 @property (nonatomic, copy) NSString *port;
 - (NSError *)connect;
 - (void)disconnect;
+- (NSError *)startLocalServer;
 
 @property (nonatomic, readonly) NSString *appVersion;
 

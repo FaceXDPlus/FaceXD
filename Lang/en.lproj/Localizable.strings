@@ -37,3 +37,4 @@
 "alert_gesture_help_content" = "You can use two finger to double tap the screen to move switch control pannel, and use three finger double tap to move camera preview view.";
 
 "alert_gesture_ok" = "OK";
+"xd_local_websocket_server_startup_error_message" = "Client listening service startup failed, some service not enable";
