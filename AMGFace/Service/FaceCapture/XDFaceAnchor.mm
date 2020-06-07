@@ -41,9 +41,9 @@
     return anchor;
 }
 
-+ (instancetype)faceAnchorWith68Points:(NSArray<NSValue *> *)points imageSize:(CGSize)imageSize {
++ (instancetype)faceAnchorWith68Points:(NSArray<NSValue *> *)points imageSize:(CGSize)imageSize isTracked:(BOOL)isTracked {
     XDFaceAnchor *anchor = [[XDFaceAnchor alloc] init];
-    
+    anchor.isTracked = isTracked;
     std::vector<cv::Point2d> imagePoints;
     imagePoints.push_back(cv::Point2d(points[30].CGPointValue.x, points[30].CGPointValue.y));
     imagePoints.push_back(cv::Point2d(points[8].CGPointValue.x, points[8].CGPointValue.y));
@@ -76,7 +76,6 @@
     SCNMatrix4 rotationMatrix = SCNMatrix4MakeRotation(rotation.at<double>(0, 0), 1, 0, 0);
     rotationMatrix = SCNMatrix4Rotate(rotationMatrix, rotation.at<double>(1, 0), 0, 1, 0);
     rotationMatrix = SCNMatrix4Rotate(rotationMatrix, rotation.at<double>(2, 0), 0, 0, 1);
-    anchor.isTracked = YES;
     anchor.transform = SCNMatrix4ToMat4(rotationMatrix);
     anchor.blendShapes = @{
         ARBlendShapeLocationEyeBlinkLeft: @(feature.at<double>(0, 0)),

@@ -106,14 +106,15 @@
 
 - (void)updateParameterWithFaceAnchor:(XDFaceAnchor *)anchor {
     [self beforeUpdateParameter:self.parameter];
+    self.parameter.isTracked = @(anchor.isTracked);
     if (!anchor.isTracked) {
+        [self afterUpdateParameter:self.parameter];
         return;
     }
 
     self.faceNode.simdTransform = anchor.transform;
     self.leftEyeNode.simdTransform = anchor.transform;
     self.rightEyeNode.simdTransform = anchor.transform;
-    self.parameter.isTracked = @(anchor.isTracked);
     if (self.worldAlignment == ARWorldAlignmentCamera) {
         self.parameter.headPitch = @(-(180 / M_PI) * self.faceNode.eulerAngles.x * 1.3);
         self.parameter.headYaw = @((180 / M_PI) * self.faceNode.eulerAngles.y);

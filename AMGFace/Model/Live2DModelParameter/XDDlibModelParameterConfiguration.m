@@ -82,7 +82,9 @@
 }
 
 - (void)updateParameterWithFaceAnchor:(XDFaceAnchor *)anchor {
+    self.parameter.isTracked = @(anchor.isTracked);
     if (!anchor.isTracked) {
+        [self afterUpdateParameter:self.parameter];
         return;
     }
     self.faceNode.simdTransform = anchor.transform;
@@ -133,7 +135,6 @@
     self.parameter.eyeLOpen = @(eyeRight);
     self.parameter.mouthOpenY = @(mouthOpenY);
     self.parameter.mouthForm = @(mouthForm);
-    self.parameter.isTracked = @(anchor.isTracked);
     
     [self afterUpdateParameter:self.parameter];
 }

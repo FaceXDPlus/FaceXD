@@ -179,7 +179,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
     NSArray<NSValue *> *points = [self.shapePredictor predictorWithCVPixelBuffer:pixelBuffer rect:faceBoundsInImage];
     XDFaceAnchor *anchor = [XDFaceAnchor faceAnchorWith68Points:points
-                                                      imageSize:CGSizeMake(CVPixelBufferGetWidth(pixelBuffer), CVPixelBufferGetHeight(pixelBuffer))];
+                                                      imageSize:CGSizeMake(CVPixelBufferGetWidth(pixelBuffer), CVPixelBufferGetHeight(pixelBuffer))
+                                                      isTracked:YES];
     
     if (self.delegate &&
         [self.delegate respondsToSelector:@selector(viewModel:didOutputCameraPreview:)]) {
@@ -188,8 +189,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         CFRelease(sampleBuffer);
     }
     
-    if (self.faceCheckCount > 0 &&
-        self.delegate &&
+    if (self.delegate &&
         [self.delegate respondsToSelector:@selector(viewModel:didOutputFaceAnchor:)]) {
         [self.delegate viewModel:self didOutputFaceAnchor:anchor];
     }
