@@ -1,6 +1,7 @@
 #import "Live2DCubismCore.hpp"
 #import "LAppAllocator.h"
 #import "AppDelegate.h"
+#import "UIDevice+UUID.h"
 
 class LAppLogger {
 public:
@@ -18,6 +19,8 @@ public:
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NSString *currentDeviceUUID = [UIDevice UUID];
+    NSLog(@"current device uuid: {%@}", currentDeviceUUID);
     [self setupLive2DSDK];
     return YES;
 }

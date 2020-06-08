@@ -35,6 +35,8 @@
 		4F91788723E2C2880065D31D /* LAppOpenGLContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91788623E2C2880065D31D /* LAppOpenGLContext.mm */; };
 		4FC532522453EE7600B03C9D /* XDWebSocketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC532512453EE7600B03C9D /* XDWebSocketService.m */; };
 		4FCD288A248B91CE000E4533 /* XDWebSocketServerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD2889248B91CE000E4533 /* XDWebSocketServerService.m */; };
+		4FCD288E248E8380000E4533 /* UIDevice+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD288D248E8380000E4533 /* UIDevice+UUID.m */; };
+		4FCD2891248E8407000E4533 /* AMGKeychainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD2890248E8407000E4533 /* AMGKeychainHelper.m */; };
 		4FCDCD09242F2BA40069364B /* XDFaceAnchor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD08242F2BA40069364B /* XDFaceAnchor.mm */; };
 		4FCDCD0C242F3C6B0069364B /* XDDlibModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD0B242F3C6B0069364B /* XDDlibModelParameterConfiguration.m */; };
 		4FCDCD0E2430C6490069364B /* CameraKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FCDCD0D2430C6490069364B /* CameraKit.framework */; };
@@ -180,6 +182,11 @@
 		4FC532512453EE7600B03C9D /* XDWebSocketService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDWebSocketService.m; sourceTree = "<group>"; };
 		4FCD2888248B91CE000E4533 /* XDWebSocketServerService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDWebSocketServerService.h; sourceTree = "<group>"; };
 		4FCD2889248B91CE000E4533 /* XDWebSocketServerService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDWebSocketServerService.m; sourceTree = "<group>"; };
+		4FCD288C248E8380000E4533 /* UIDevice+UUID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+UUID.h"; sourceTree = "<group>"; };
+		4FCD288D248E8380000E4533 /* UIDevice+UUID.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+UUID.m"; sourceTree = "<group>"; };
+		4FCD288F248E8407000E4533 /* AMGKeychainHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMGKeychainHelper.h; sourceTree = "<group>"; };
+		4FCD2890248E8407000E4533 /* AMGKeychainHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMGKeychainHelper.m; sourceTree = "<group>"; };
+		4FCD2892248E8663000E4533 /* AMGFace.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AMGFace.entitlements; sourceTree = "<group>"; };
 		4FCDCD07242F2BA40069364B /* XDFaceAnchor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDFaceAnchor.h; sourceTree = "<group>"; };
 		4FCDCD08242F2BA40069364B /* XDFaceAnchor.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = XDFaceAnchor.mm; sourceTree = "<group>"; };
 		4FCDCD0A242F3C6B0069364B /* XDDlibModelParameterConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDlibModelParameterConfiguration.h; sourceTree = "<group>"; };
@@ -491,6 +498,7 @@
 		4F91746F23E1EFA60065D31D /* AMGFace */ = {
 			isa = PBXGroup;
 			children = (
+				4FCD2892248E8663000E4533 /* AMGFace.entitlements */,
 				4F6F95A9241FD23A008D6BE7 /* Service */,
 				4F6F95A8241FD232008D6BE7 /* Model */,
 				4FDBA28223E95E06003F40F1 /* Utils */,
@@ -575,6 +583,8 @@
 				4F2FB0202448BF8F00F52F82 /* XDSmoothDamp.m */,
 				4F2FB01C2448AEB800F52F82 /* XDMathf.h */,
 				4F2FB01D2448AEB800F52F82 /* XDMathf.m */,
+				4FCD288F248E8407000E4533 /* AMGKeychainHelper.h */,
+				4FCD2890248E8407000E4533 /* AMGKeychainHelper.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -596,6 +606,8 @@
 				4FE0D2D22438D6D1008F838E /* NSString+XDIPValiual.m */,
 				4FE0D2F52439B8DD008F838E /* UIStoryboard+XDStoryboard.h */,
 				4FE0D2F62439B8DD008F838E /* UIStoryboard+XDStoryboard.m */,
+				4FCD288C248E8380000E4533 /* UIDevice+UUID.h */,
+				4FCD288D248E8380000E4533 /* UIDevice+UUID.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1083,6 +1095,7 @@
 				4F9176B823E299A40065D31D /* LAppModel.mm in Sources */,
 				520D0ED2240D0F66002453EF /* CubismString.cpp in Sources */,
 				520D0E93240D0F66002453EF /* CubismVector2.cpp in Sources */,
+				4FCD2891248E8407000E4533 /* AMGKeychainHelper.m in Sources */,
 				520D0E9F240D0F66002453EF /* CubismId.cpp in Sources */,
 				4F2FB01E2448AEB800F52F82 /* XDMathf.m in Sources */,
 				4FE0D2D82438DB3F008F838E /* XDPackManager.m in Sources */,
@@ -1128,6 +1141,7 @@
 				4F91748323E1EFA70065D31D /* main.m in Sources */,
 				520D0EC7240D0F66002453EF /* CubismOffscreenSurface_OpenGLES2.cpp in Sources */,
 				4F6F95B3241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m in Sources */,
+				4FCD288E248E8380000E4533 /* UIDevice+UUID.m in Sources */,
 				520D0ECC240D0F66002453EF /* CubismBreath.cpp in Sources */,
 				4F6F95AD241FD362008D6BE7 /* XDModelParameter.m in Sources */,
 				520D0E94240D0F66002453EF /* CubismTargetPoint.cpp in Sources */,
@@ -1311,6 +1325,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AMGFace/AMGFace.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = Z85Y5UDZCQ;
@@ -1358,6 +1373,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AMGFace/AMGFace.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = dwarf;

@@ -7,6 +7,7 @@
 //
 
 #import "XDModelParameter.h"
+#import "UIDevice+UUID.h"
 
 @implementation XDModelParameter
 
@@ -57,6 +58,7 @@
         @"mouthForm"       : [NSString stringWithFormat: @"%.5lf", self.mouthForm.floatValue],
         @"blendShapes"     : self.blendShapes == nil ? @{} : self.blendShapes,
         @"isTracked"       : self.isTracked == nil ? @(YES) : self.isTracked,
+        @"uuid"            : [UIDevice UUID]
     };
 }
 
