@@ -1,24 +1,36 @@
 PODS:
   - CocoaAsyncSocket (7.6.4)
   - Masonry (1.1.0)
+  - PocketSocket (1.0.1):
+    - PocketSocket/Client (= 1.0.1)
+    - PocketSocket/Core (= 1.0.1)
+    - PocketSocket/Server (= 1.0.1)
+  - PocketSocket/Client (1.0.1):
+    - PocketSocket/Core
+  - PocketSocket/Core (1.0.1)
+  - PocketSocket/Server (1.0.1):
+    - PocketSocket/Client
   - SocketRocket (0.5.1)
 
 DEPENDENCIES:
   - CocoaAsyncSocket
   - Masonry
+  - PocketSocket
   - SocketRocket
 
 SPEC REPOS:
   trunk:
     - CocoaAsyncSocket
     - Masonry
+    - PocketSocket
     - SocketRocket
 
 SPEC CHECKSUMS:
   CocoaAsyncSocket: 694058e7c0ed05a9e217d1b3c7ded962f4180845
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  PocketSocket: 9c6867d66fb4f962af96b9b07f4b45bb561b2c2a
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
 
-PODFILE CHECKSUM: d13040b9075993ceac33161eb8a6cf2596a48fc1
+PODFILE CHECKSUM: 4d1cb775d59e71582c9633c00d0685d0e2410a0c
 
 COCOAPODS: 1.9.0
