@@ -164,6 +164,8 @@
 - (void)syncCaptureState {
     BOOL state = self.viewModel.captureViewModel.isCapturing;
     if (state) {
+        [UIApplication sharedApplication].idleTimerDisabled = YES;
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         NSString *str = NSLocalizedString(@"capturing", nil);
         if (![self.viewModel.captureViewModel isKindOfClass:NSClassFromString(@"XDLive2DCaptureARKitViewModel")]) {
             str = [str stringByAppendingFormat:@"(%@)", NSLocalizedString(@"xd_low_accuracy", nil)];
@@ -172,6 +174,8 @@
         }
         self.captureStateLabel.text = str;
     } else {
+        [UIApplication sharedApplication].idleTimerDisabled = NO;
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         self.captureStateLabel.text = NSLocalizedString(@"waiting", nil);
     }
 }
@@ -180,13 +184,9 @@
     BOOL state  = self.viewModel.webSocketService.isConnected;
     self.submitSwitch.on = state;
     if (state) {
-        [UIApplication sharedApplication].idleTimerDisabled = YES;
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         self.submitStateLabel.text = NSLocalizedString(@"started", nil);
         self.submitSwitch.enabled = YES;
     } else {
-        [UIApplication sharedApplication].idleTimerDisabled = NO;
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         self.submitStateLabel.text = NSLocalizedString(@"stopped", nil);
         NSError *lastError = self.viewModel.webSocketService.lastError;
         if(lastError){
