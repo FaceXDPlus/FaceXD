@@ -254,12 +254,13 @@ public:
     self.modelBreath = Csm::CubismBreath::Create();
     Csm::csmVector<Csm::CubismBreath::BreathParameterData> breathParameters;
 
-    breathParameters.PushBack(Csm::CubismBreath::BreathParameterData(LAppModelParameterID(ParamAngleX), 0.0f, 15.0f, 6.5345f, 0.5f));
+    /*breathParameters.PushBack(Csm::CubismBreath::BreathParameterData(LAppModelParameterID(ParamAngleX), 0.0f, 15.0f, 6.5345f, 0.5f));
     breathParameters.PushBack(Csm::CubismBreath::BreathParameterData(LAppModelParameterID(ParamAngleY), 0.0f, 8.0f, 3.5345f, 0.5f));
     breathParameters.PushBack(Csm::CubismBreath::BreathParameterData(LAppModelParameterID(ParamAngleZ), 0.0f, 10.0f, 5.5345f, 0.5f));
     breathParameters.PushBack(Csm::CubismBreath::BreathParameterData(LAppModelParameterID(ParamBodyAngleX), 0.0f, 4.0f, 15.5345f, 0.5f));
-    breathParameters.PushBack(Csm::CubismBreath::BreathParameterData(LAppModelParameterID(ParamBreath), 0.5f, 0.5f, 3.2345f, 0.5f));
-
+    breathParameters.PushBack(Csm::CubismBreath::BreathParameterData(LAppModelParameterID(ParamBreath), 0.5f, 0.5f, 3.2345f, 0.5f));*/
+    breathParameters.PushBack(Csm::CubismBreath::BreathParameterData(LAppModelParameterID(ParamBreath), 0.0f, 0.1f, 3.2345f * 2, 0.1f));
+    
     self.modelBreath->SetParameters(breathParameters);
 }
 
@@ -325,12 +326,12 @@ public:
 #pragma mark - On Update
 - (void)onUpdateWithParameterUpdate:(dispatch_block_t)block {
     NSTimeInterval deltaTime = self.glContext.deltaTime;
+    
     /// 设置模型参数
     self.model->GetModel()->LoadParameters();
     if (block) {
         block();
     }
-    self.model->GetModel()->SaveParameters();
     
     /// 更新并绘制
     if (self.model->GetExpressionManager()) {
@@ -345,6 +346,10 @@ public:
     if (self.modelPose) {
         self.modelPose->UpdateParameters(self.model->GetModel(), deltaTime);
     }
+    
+    /// 保存模型参数
+    self.model->GetModel()->SaveParameters();
+    
     self.model->GetModel()->Update();
     self.model->GetRenderer<Csm::Rendering::CubismRenderer_OpenGLES2>()->DrawModel();
 }
