@@ -66,6 +66,8 @@
             LAppParamMouthForm: @"mouthForm",
             LAppParamEyeLOpen: @"eyeLOpen",
             LAppParamEyeROpen: @"eyeROpen",
+            LAppParamEyeLSmile: @"eyeLSmile",
+            LAppParamEyeRSmile: @"eyeRSmile",
             LAppParamEyeBrowLY: @"eyeBrowYL",
             LAppParamEyeBrowRY: @"eyeBrowYR",
             LAppParamEyeBrowLForm: @"eyeBrowLForm",

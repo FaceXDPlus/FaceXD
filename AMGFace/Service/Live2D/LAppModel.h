@@ -13,6 +13,8 @@ extern LAppParam const LAppParamMouthOpenY;
 extern LAppParam const LAppParamMouthForm;
 extern LAppParam const LAppParamEyeLOpen;
 extern LAppParam const LAppParamEyeROpen;
+extern LAppParam const LAppParamEyeLSmile;
+extern LAppParam const LAppParamEyeRSmile;
 extern LAppParam const LAppParamEyeBallX;
 extern LAppParam const LAppParamEyeBallY;
 extern LAppParam const LAppParamBaseX;

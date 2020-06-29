@@ -21,6 +21,8 @@
     copyParameter.bodyAngleZ = [self.bodyAngleZ copy];
     copyParameter.eyeLOpen = [self.eyeLOpen copy];
     copyParameter.eyeROpen = [self.eyeROpen copy];
+    copyParameter.eyeLSmile = [self.eyeLSmile copy];
+    copyParameter.eyeRSmile = [self.eyeRSmile copy];
     copyParameter.eyeBrowYL = [self.eyeBrowYL copy];
     copyParameter.eyeBrowYR = [self.eyeBrowYR copy];
     copyParameter.eyeBrowLForm = [self.eyeBrowLForm copy];
@@ -46,6 +48,8 @@
         @"bodyAngleZ"      : [NSString stringWithFormat: @"%.3lf", self.bodyAngleZ.floatValue],
         @"eyeLOpen"        : [NSString stringWithFormat: @"%.3lf", self.eyeLOpen.floatValue],
         @"eyeROpen"        : [NSString stringWithFormat: @"%.3lf", self.eyeROpen.floatValue],
+        @"eyeLSmile"        : [NSString stringWithFormat: @"%.3lf", self.eyeLSmile.floatValue],
+        @"eyeRSmile"        : [NSString stringWithFormat: @"%.3lf", self.eyeRSmile.floatValue],
         @"eyeBrowYL"       : [NSString stringWithFormat: @"%.3lf", self.eyeBrowYL.floatValue],
         @"eyeBrowYR"       : [NSString stringWithFormat: @"%.3lf", self.eyeBrowYR.floatValue],
         @"eyeBrowLForm"    : [NSString stringWithFormat: @"%.3lf", self.eyeBrowLForm.floatValue],

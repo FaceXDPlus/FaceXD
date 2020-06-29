@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) NSNumber *bodyAngleZ;
 @property (nonatomic, copy, nullable) NSNumber *eyeLOpen;
 @property (nonatomic, copy, nullable) NSNumber *eyeROpen;
+@property (nonatomic, copy, nullable) NSNumber *eyeLSmile;
+@property (nonatomic, copy, nullable) NSNumber *eyeRSmile;
 @property (nonatomic, copy, nullable) NSNumber *eyeBrowYL;
 @property (nonatomic, copy, nullable) NSNumber *eyeBrowYR;
 @property (nonatomic, copy, nullable) NSNumber *eyeBrowLForm;

@@ -75,6 +75,8 @@
             LAppParamBodyAngleZ: [XDSmoothDamp smoothDampWithSmoothTime:0.07],
             LAppParamEyeLOpen: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
             LAppParamEyeROpen: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+            LAppParamEyeLSmile: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+            LAppParamEyeRSmile: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
             LAppParamEyeBallX: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
             LAppParamEyeBallY: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
             LAppParamMouthOpenY: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
@@ -148,7 +150,7 @@
 
     self.parameter.eyeLOpen = @(1 - anchor.blendShapes[ARBlendShapeLocationEyeBlinkLeft].floatValue * 1.3);
     self.parameter.eyeROpen = @(1 - anchor.blendShapes[ARBlendShapeLocationEyeBlinkRight].floatValue * 1.3);
-
+    
     CGFloat lookUpL = anchor.blendShapes[ARBlendShapeLocationEyeLookUpLeft].floatValue;
     CGFloat lookDownL = anchor.blendShapes[ARBlendShapeLocationEyeLookDownLeft].floatValue;
     CGFloat lookInL = anchor.blendShapes[ARBlendShapeLocationEyeLookInLeft].floatValue;
@@ -193,6 +195,10 @@
     CGFloat mouthSmileRight = anchor.blendShapes[ARBlendShapeLocationMouthSmileRight].floatValue;
     CGFloat mouthForm = ((0 - (mouthLeft - mouthSmileLeft + mouthRight - mouthSmileRight) / 2)  + 0.5);
     mouthForm = mouthForm - mouthFunnel * 2;
+    
+    
+    self.parameter.eyeLSmile = @(mouthSmileLeft * 2);
+    self.parameter.eyeRSmile = @(mouthSmileRight * 2);
     
     self.parameter.mouthForm = @(mouthForm);
     self.parameter.mouthOpenY = @(anchor.blendShapes[ARBlendShapeLocationJawOpen].floatValue * 1.3);
