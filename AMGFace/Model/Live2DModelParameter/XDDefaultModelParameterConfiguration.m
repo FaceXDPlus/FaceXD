@@ -11,6 +11,7 @@
 #import "XDControlValueLinear.h"
 #import "XDSimpleKalman.h"
 #import "XDSmoothDamp.h"
+#import "NSArray+SIMD.h"
 
 @interface XDDefaultModelParameterConfiguration () {
     CFTimeInterval _lastCommitTimeInterval;
@@ -115,8 +116,14 @@
     }
 
     self.faceNode.simdTransform = anchor.transform;
-    self.leftEyeNode.simdTransform = anchor.transform;
-    self.rightEyeNode.simdTransform = anchor.transform;
+    self.leftEyeNode.simdTransform = anchor.leftEyeTransform;
+    self.rightEyeNode.simdTransform = anchor.rightEyeTransform;
+    self.parameter.transforms = @{
+        @"face": [NSArray arrayWithSIMDFloat4x4:anchor.transform],
+        @"leftEye": [NSArray arrayWithSIMDFloat4x4:anchor.leftEyeTransform],
+        @"rightEye": [NSArray arrayWithSIMDFloat4x4:anchor.rightEyeTransform],
+        @"lookAtPoint": [NSArray arrayWithFloat3:anchor.lookAtPoint]
+    };
     if (self.worldAlignment == ARWorldAlignmentCamera) {
         self.parameter.headPitch = @(-(180 / M_PI) * self.faceNode.eulerAngles.x * 1.3);
         self.parameter.headYaw = @((180 / M_PI) * self.faceNode.eulerAngles.y);

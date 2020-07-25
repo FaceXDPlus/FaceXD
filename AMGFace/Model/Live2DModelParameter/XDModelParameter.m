@@ -35,6 +35,7 @@
     copyParameter.mouthForm = [self.mouthForm copy];
     copyParameter.blendShapes = [self.blendShapes copy];
     copyParameter.isTracked = [self.isTracked copy];
+    copyParameter.transforms = [self.transforms copy];
     return copyParameter;
 }
 
@@ -62,7 +63,8 @@
         @"mouthForm"       : [NSString stringWithFormat: @"%.3lf", self.mouthForm.floatValue],
         @"blendShapes"     : self.blendShapes == nil ? @{} : self.blendShapes,
         @"isTracked"       : self.isTracked == nil ? @(YES) : self.isTracked,
-        @"uuid"            : [UIDevice UUID]
+        @"uuid"            : [UIDevice UUID],
+        @"transforms"      : self.transforms ? @{} : self.transforms,
     };
 }
 
