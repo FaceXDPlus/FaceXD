@@ -40,7 +40,6 @@
 }
 
 - (NSDictionary *)parameterValueDictionary {
-    //NSLog(@"transform: %@", self.transforms);
     return @{
         @"headPitch"       : [NSString stringWithFormat: @"%.3lf", self.headPitch.floatValue],
         @"headYaw"         : [NSString stringWithFormat: @"%.3lf", self.headYaw.floatValue],

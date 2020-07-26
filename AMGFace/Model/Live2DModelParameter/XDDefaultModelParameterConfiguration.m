@@ -138,9 +138,9 @@
         @"rightEye.eulerAngles": [NSArray arrayWithFloat3:simd_make_float3(self.rightEyeNode.eulerAngles.x,
                                                                            self.rightEyeNode.eulerAngles.y,
                                                                            self.rightEyeNode.eulerAngles.z)],
+        @"worldAlignment": self.worldAlignment == ARWorldAlignmentCamera ? @"camera" : @"world",
     };
     
-    //NSLog(@"parm: %@", self.parameter.transforms);
     if (self.worldAlignment == ARWorldAlignmentCamera) {
         self.parameter.headPitch = @(-(180 / M_PI) * self.faceNode.eulerAngles.x * 1.3);
         self.parameter.headYaw = @((180 / M_PI) * self.faceNode.eulerAngles.y);
