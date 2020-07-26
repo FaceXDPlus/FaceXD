@@ -40,6 +40,7 @@
 }
 
 - (NSDictionary *)parameterValueDictionary {
+    //NSLog(@"transform: %@", self.transforms);
     return @{
         @"headPitch"       : [NSString stringWithFormat: @"%.3lf", self.headPitch.floatValue],
         @"headYaw"         : [NSString stringWithFormat: @"%.3lf", self.headYaw.floatValue],
@@ -64,7 +65,7 @@
         @"blendShapes"     : self.blendShapes == nil ? @{} : self.blendShapes,
         @"isTracked"       : self.isTracked == nil ? @(YES) : self.isTracked,
         @"uuid"            : [UIDevice UUID],
-        @"transforms"      : self.transforms ? @{} : self.transforms,
+        @"transforms"      : self.transforms == nil ? @{} : self.transforms,
     };
 }
 

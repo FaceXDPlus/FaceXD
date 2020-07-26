@@ -140,7 +140,7 @@
                                                                            self.rightEyeNode.eulerAngles.z)],
     };
     
-    NSLog(@"parm: %@", self.parameter.transforms);
+    //NSLog(@"parm: %@", self.parameter.transforms);
     if (self.worldAlignment == ARWorldAlignmentCamera) {
         self.parameter.headPitch = @(-(180 / M_PI) * self.faceNode.eulerAngles.x * 1.3);
         self.parameter.headYaw = @((180 / M_PI) * self.faceNode.eulerAngles.y);
