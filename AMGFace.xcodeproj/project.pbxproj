@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,9 +25,9 @@
 		4F91747D23E1EFA70065D31D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F91747C23E1EFA70065D31D /* Assets.xcassets */; };
 		4F91748023E1EFA70065D31D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F91747E23E1EFA70065D31D /* LaunchScreen.storyboard */; };
 		4F91748323E1EFA70065D31D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91748223E1EFA70065D31D /* main.m */; };
-		4F9175A923E1F25E0065D31D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9175A823E1F25E0065D31D /* OpenGLES.framework */; };
+		4F9175A923E1F25E0065D31D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9175A823E1F25E0065D31D /* OpenGLES.framework */; platformFilter = ios; };
 		4F9175AB23E1F26E0065D31D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9175AA23E1F26E0065D31D /* CoreGraphics.framework */; };
-		4F9175AD23E1F2770065D31D /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9175AC23E1F2770065D31D /* GLKit.framework */; };
+		4F9175AD23E1F2770065D31D /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9175AC23E1F2770065D31D /* GLKit.framework */; platformFilter = ios; };
 		4F9175AE23E1F32B0065D31D /* libLive2DCubismCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9175A723E1F0E50065D31D /* libLive2DCubismCore.a */; };
 		4F9175CF23E1FA1B0065D31D /* LAppAllocator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F9175CD23E1FA1B0065D31D /* LAppAllocator.mm */; };
 		4F9176B423E2981E0065D31D /* LAppBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9176B323E2981E0065D31D /* LAppBundle.m */; };
@@ -1368,6 +1368,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.AMG.AMGFaces;
 				PRODUCT_NAME = AMGFace;
+				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e";
 			};
@@ -1417,6 +1418,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.AMG.AMGFaces;
 				PRODUCT_NAME = AMGFace;
+				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e";
 			};
