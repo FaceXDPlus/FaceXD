@@ -11,6 +11,7 @@
 #import "XDControlValueLinear.h"
 #import "XDSimpleKalman.h"
 #import "XDSmoothDamp.h"
+#import "NSArray+SIMD.h"
 
 @interface XDDefaultModelParameterConfiguration () {
     CFTimeInterval _lastCommitTimeInterval;
@@ -115,8 +116,31 @@
     }
 
     self.faceNode.simdTransform = anchor.transform;
-    self.leftEyeNode.simdTransform = anchor.transform;
-    self.rightEyeNode.simdTransform = anchor.transform;
+    self.leftEyeNode.simdTransform = anchor.leftEyeTransform;
+    self.rightEyeNode.simdTransform = anchor.rightEyeTransform;
+    
+    /*
+    SceneKit applies these rotations in the reverse order of the components:
+       1. first roll
+       2. then yaw
+       3. then pitch
+    */
+    self.parameter.transforms = @{
+        @"face.eulerAngles": [NSArray arrayWithFloat3:simd_make_float3(self.faceNode.eulerAngles.x,
+                                                                       self.faceNode.eulerAngles.y,
+                                                                       self.faceNode.eulerAngles.z)],
+        @"face.position": [NSArray arrayWithFloat3:simd_make_float3(self.faceNode.position.x,
+                                                                    self.faceNode.position.y,
+                                                                    self.faceNode.position.z)],
+        @"leftEye.eulerAngles": [NSArray arrayWithFloat3:simd_make_float3(self.leftEyeNode.eulerAngles.x,
+                                                                          self.leftEyeNode.eulerAngles.y,
+                                                                          self.leftEyeNode.eulerAngles.z)],
+        @"rightEye.eulerAngles": [NSArray arrayWithFloat3:simd_make_float3(self.rightEyeNode.eulerAngles.x,
+                                                                           self.rightEyeNode.eulerAngles.y,
+                                                                           self.rightEyeNode.eulerAngles.z)],
+        @"worldAlignment": self.worldAlignment == ARWorldAlignmentCamera ? @"camera" : @"world",
+    };
+    
     if (self.worldAlignment == ARWorldAlignmentCamera) {
         self.parameter.headPitch = @(-(180 / M_PI) * self.faceNode.eulerAngles.x * 1.3);
         self.parameter.headYaw = @((180 / M_PI) * self.faceNode.eulerAngles.y);

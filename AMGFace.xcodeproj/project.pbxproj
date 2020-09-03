@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,9 +25,9 @@
 		4F91747D23E1EFA70065D31D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F91747C23E1EFA70065D31D /* Assets.xcassets */; };
 		4F91748023E1EFA70065D31D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F91747E23E1EFA70065D31D /* LaunchScreen.storyboard */; };
 		4F91748323E1EFA70065D31D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91748223E1EFA70065D31D /* main.m */; };
-		4F9175A923E1F25E0065D31D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9175A823E1F25E0065D31D /* OpenGLES.framework */; };
+		4F9175A923E1F25E0065D31D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9175A823E1F25E0065D31D /* OpenGLES.framework */; platformFilter = ios; };
 		4F9175AB23E1F26E0065D31D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9175AA23E1F26E0065D31D /* CoreGraphics.framework */; };
-		4F9175AD23E1F2770065D31D /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9175AC23E1F2770065D31D /* GLKit.framework */; };
+		4F9175AD23E1F2770065D31D /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9175AC23E1F2770065D31D /* GLKit.framework */; platformFilter = ios; };
 		4F9175AE23E1F32B0065D31D /* libLive2DCubismCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9175A723E1F0E50065D31D /* libLive2DCubismCore.a */; };
 		4F9175CF23E1FA1B0065D31D /* LAppAllocator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F9175CD23E1FA1B0065D31D /* LAppAllocator.mm */; };
 		4F9176B423E2981E0065D31D /* LAppBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9176B323E2981E0065D31D /* LAppBundle.m */; };
@@ -106,6 +106,7 @@
 		520D1007240D16FA002453EF /* Live2DResource in Resources */ = {isa = PBXBuildFile; fileRef = 520D1006240D16FA002453EF /* Live2DResource */; };
 		52CCBA512420B993006E87EC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52FB14C3242095FF0069C308 /* InfoPlist.strings */; };
 		52FB14A0241FE1A20069C308 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52FB14A2241FE1A20069C308 /* Localizable.strings */; };
+		659CCF2C24CC7D480086E599 /* NSArray+SIMD.m in Sources */ = {isa = PBXBuildFile; fileRef = 659CCF2B24CC7D480086E599 /* NSArray+SIMD.m */; };
 		FE27F429575AA21F4BBDD765 /* Pods_AMGFace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CA110C3A62F3AD49063405 /* Pods_AMGFace.framework */; };
 /* End PBXBuildFile section */
 
@@ -367,6 +368,8 @@
 		52FB14C2242095FF0069C308 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		52FB14C4242096030069C308 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		60E2D4B40E14AD36F50A176F /* Pods-FaceXD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FaceXD.debug.xcconfig"; path = "Target Support Files/Pods-FaceXD/Pods-FaceXD.debug.xcconfig"; sourceTree = "<group>"; };
+		659CCF2A24CC7D480086E599 /* NSArray+SIMD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+SIMD.h"; sourceTree = "<group>"; };
+		659CCF2B24CC7D480086E599 /* NSArray+SIMD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SIMD.m"; sourceTree = "<group>"; };
 		99CA110C3A62F3AD49063405 /* Pods_AMGFace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AMGFace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DCD7D2EC06B11002A198364 /* Pods-AMGFace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AMGFace.release.xcconfig"; path = "Target Support Files/Pods-AMGFace/Pods-AMGFace.release.xcconfig"; sourceTree = "<group>"; };
 		E0933283FFA85BA645C67A58 /* Pods-FaceXD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FaceXD.release.xcconfig"; path = "Target Support Files/Pods-FaceXD/Pods-FaceXD.release.xcconfig"; sourceTree = "<group>"; };
@@ -608,6 +611,8 @@
 				4FE0D2F62439B8DD008F838E /* UIStoryboard+XDStoryboard.m */,
 				4FCD288C248E8380000E4533 /* UIDevice+UUID.h */,
 				4FCD288D248E8380000E4533 /* UIDevice+UUID.m */,
+				659CCF2A24CC7D480086E599 /* NSArray+SIMD.h */,
+				659CCF2B24CC7D480086E599 /* NSArray+SIMD.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1118,6 +1123,7 @@
 				4FE0D2E32438DE26008F838E /* XDBaseNetworkPack.m in Sources */,
 				520D0EB6240D0F66002453EF /* CubismMotionJson.cpp in Sources */,
 				520D0ED1240D0F66002453EF /* CubismJson.cpp in Sources */,
+				659CCF2C24CC7D480086E599 /* NSArray+SIMD.m in Sources */,
 				4FDBA29523E9AEF8003F40F1 /* XDControlValueLinear.m in Sources */,
 				520D0ED8240D0F66002453EF /* CubismPhysics.cpp in Sources */,
 				4FE0D2F024390D6D008F838E /* XDLive2DControlViewModel.m in Sources */,
@@ -1327,7 +1333,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AMGFace/AMGFace.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = Z85Y5UDZCQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1362,6 +1368,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.AMG.AMGFaces;
 				PRODUCT_NAME = AMGFace;
+				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e";
 			};
@@ -1375,7 +1382,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AMGFace/AMGFace.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Z85Y5UDZCQ;
 				ENABLE_BITCODE = NO;
@@ -1411,6 +1418,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.AMG.AMGFaces;
 				PRODUCT_NAME = AMGFace;
+				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 arm64e";
 			};
