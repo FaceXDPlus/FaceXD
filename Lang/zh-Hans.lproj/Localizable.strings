@@ -2,6 +2,7 @@
 "jsonData"            = "Json化提交数据";
 "waiting"             = "等待中";
 "capturing"           = "捕捉中";
+"unsupport"           = "不支持";
 "stopped"             = "已停止";
 "started"             = "已开始";
 "illegalAddress"      = "提交地址错误！请使用正确的格式提交！\n示范推流地址：127.0.0.1\n示范推流端口：8040";

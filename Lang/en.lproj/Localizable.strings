@@ -2,6 +2,7 @@
 "jsonData"            = "Json data";
 "waiting"             = "Waiting";
 "capturing"           = "Capturing";
+"unsupport"           = "Unsupport";
 "stopped"             = "Stopped";
 "started"             = "Started";
 "illegalAddress"      = "Illegal address!\nSample:\nAddress: 127.0.0.1\nPort: 8040";

@@ -327,6 +327,8 @@
         } else {
             [self.viewModel stopCapture];
         }
+    }else{
+        self.captureStateLabel.text = NSLocalizedString(@"unsupport", nil);
     }
 }
 
