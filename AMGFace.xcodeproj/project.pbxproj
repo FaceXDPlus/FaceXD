@@ -19,8 +19,6 @@
 		4F6F95CD2425D9D9008D6BE7 /* KVOController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95CC2425D9D9008D6BE7 /* KVOController.framework */; };
 		4F6F95CE2425D9D9008D6BE7 /* KVOController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6F95CC2425D9D9008D6BE7 /* KVOController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4F90BD6824263DE80065A06C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F90BD6724263DE70065A06C /* Accelerate.framework */; };
-		4F90BD7624275C270065A06C /* XDOpenCVWarpper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95D4242627BA008D6BE7 /* XDOpenCVWarpper.mm */; };
-		4F90BD7724275C2B0065A06C /* XDDlibWarpper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F95D1242627AC008D6BE7 /* XDDlibWarpper.mm */; };
 		4F91747223E1EFA60065D31D /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747123E1EFA60065D31D /* AppDelegate.mm */; };
 		4F91747D23E1EFA70065D31D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F91747C23E1EFA70065D31D /* Assets.xcassets */; };
 		4F91748023E1EFA70065D31D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F91747E23E1EFA70065D31D /* LaunchScreen.storyboard */; };
@@ -38,12 +36,9 @@
 		4FCD288E248E8380000E4533 /* UIDevice+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD288D248E8380000E4533 /* UIDevice+UUID.m */; };
 		4FCD2891248E8407000E4533 /* AMGKeychainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD2890248E8407000E4533 /* AMGKeychainHelper.m */; };
 		4FCDCD09242F2BA40069364B /* XDFaceAnchor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD08242F2BA40069364B /* XDFaceAnchor.mm */; };
-		4FCDCD0C242F3C6B0069364B /* XDDlibModelParameterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD0B242F3C6B0069364B /* XDDlibModelParameterConfiguration.m */; };
 		4FCDCD0E2430C6490069364B /* CameraKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FCDCD0D2430C6490069364B /* CameraKit.framework */; };
 		4FCDCD0F2430C64A0069364B /* CameraKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4FCDCD0D2430C6490069364B /* CameraKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4FCDCD1F2430DCF50069364B /* XDFilePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD1E2430DCF50069364B /* XDFilePath.m */; };
 		4FCDCD272430DFC60069364B /* FaceXDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD262430DFC60069364B /* FaceXDTests.m */; };
-		4FCDCD2E2430E0A60069364B /* XDFilePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDCD1E2430DCF50069364B /* XDFilePath.m */; };
 		4FDBA28923E97222003F40F1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28823E97222003F40F1 /* AVFoundation.framework */; };
 		4FDBA28D23E9895A003F40F1 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28C23E9895A003F40F1 /* CoreMedia.framework */; };
 		4FDBA28F23E9920C003F40F1 /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDBA28E23E9920C003F40F1 /* ARKit.framework */; };
@@ -51,7 +46,6 @@
 		4FDBA29523E9AEF8003F40F1 /* XDControlValueLinear.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDBA29323E9AEF8003F40F1 /* XDControlValueLinear.m */; };
 		4FE0D2C62438D2FA008F838E /* XDLive2DCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2C52438D2FA008F838E /* XDLive2DCaptureViewController.m */; };
 		4FE0D2C92438D32A008F838E /* XDLive2DCaptureARKitViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2C82438D32A008F838E /* XDLive2DCaptureARKitViewModel.m */; };
-		4FE0D2CC2438D33C008F838E /* XDLive2DCaptureDlibViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2CB2438D33C008F838E /* XDLive2DCaptureDlibViewModel.m */; };
 		4FE0D2CF2438D40E008F838E /* XDLive2DCaptureViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2CE2438D40E008F838E /* XDLive2DCaptureViewModel.m */; };
 		4FE0D2D32438D6D1008F838E /* NSString+XDIPValiual.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2D22438D6D1008F838E /* NSString+XDIPValiual.m */; };
 		4FE0D2D82438DB3F008F838E /* XDPackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2D72438DB3F008F838E /* XDPackManager.m */; };
@@ -63,7 +57,6 @@
 		4FE0D2F324390DE9008F838E /* XDLive2DControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2F224390DE9008F838E /* XDLive2DControlViewController.m */; };
 		4FE0D2F72439B8DD008F838E /* UIStoryboard+XDStoryboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2F62439B8DD008F838E /* UIStoryboard+XDStoryboard.m */; };
 		4FE0D2F8243A5889008F838E /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F91747723E1EFA60065D31D /* ViewController.mm */; };
-		4FE0D2FA243B1202008F838E /* shape_predictor_68_face_landmarks.dat in Resources */ = {isa = PBXBuildFile; fileRef = 4FE0D2F9243B1202008F838E /* shape_predictor_68_face_landmarks.dat */; };
 		4FE0D2FD243B150F008F838E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FE0D2FC243B150F008F838E /* Main.storyboard */; };
 		4FE0D30024421740008F838E /* XDSimpleKalman.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0D2FF24421740008F838E /* XDSimpleKalman.m */; };
 		520D0E8D240D0F66002453EF /* ACubismMotion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 520D0DE6240D0F64002453EF /* ACubismMotion.cpp */; };
@@ -153,13 +146,7 @@
 		4F6F95B724253D92008D6BE7 /* EKMetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EKMetalKit.framework; path = Vendor/EKMetalKit.framework; sourceTree = "<group>"; };
 		4F6F95BB24254029008D6BE7 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		4F6F95CC2425D9D9008D6BE7 /* KVOController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KVOController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F6F95D0242627AC008D6BE7 /* XDDlibWarpper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDlibWarpper.h; sourceTree = "<group>"; };
-		4F6F95D1242627AC008D6BE7 /* XDDlibWarpper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = XDDlibWarpper.mm; sourceTree = "<group>"; };
-		4F6F95D3242627BA008D6BE7 /* XDOpenCVWarpper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDOpenCVWarpper.h; sourceTree = "<group>"; };
-		4F6F95D4242627BA008D6BE7 /* XDOpenCVWarpper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = XDOpenCVWarpper.mm; sourceTree = "<group>"; };
 		4F90BD6724263DE70065A06C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		4F90BD69242668C40065A06C /* XDDlibCaptureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDlibCaptureViewController.h; sourceTree = "<group>"; };
-		4F90BD6A242668C40065A06C /* XDDlibCaptureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDDlibCaptureViewController.m; sourceTree = "<group>"; };
 		4F91746D23E1EFA60065D31D /* AMGFace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AMGFace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F91747023E1EFA60065D31D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F91747123E1EFA60065D31D /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -190,14 +177,7 @@
 		4FCD2892248E8663000E4533 /* AMGFace.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AMGFace.entitlements; sourceTree = "<group>"; };
 		4FCDCD07242F2BA40069364B /* XDFaceAnchor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDFaceAnchor.h; sourceTree = "<group>"; };
 		4FCDCD08242F2BA40069364B /* XDFaceAnchor.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = XDFaceAnchor.mm; sourceTree = "<group>"; };
-		4FCDCD0A242F3C6B0069364B /* XDDlibModelParameterConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDDlibModelParameterConfiguration.h; sourceTree = "<group>"; };
-		4FCDCD0B242F3C6B0069364B /* XDDlibModelParameterConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDDlibModelParameterConfiguration.m; sourceTree = "<group>"; };
 		4FCDCD0D2430C6490069364B /* CameraKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CameraKit.framework; path = Vendor/CameraKit.framework; sourceTree = "<group>"; };
-		4FCDCD182430D8CD0069364B /* XDResourceDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDResourceDownloader.h; sourceTree = "<group>"; };
-		4FCDCD192430D8CD0069364B /* XDResourceDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDResourceDownloader.m; sourceTree = "<group>"; };
-		4FCDCD1B2430D9B20069364B /* request_key.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = request_key.h; path = ../request_key.h; sourceTree = "<group>"; };
-		4FCDCD1D2430DCF50069364B /* XDFilePath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDFilePath.h; sourceTree = "<group>"; };
-		4FCDCD1E2430DCF50069364B /* XDFilePath.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDFilePath.m; sourceTree = "<group>"; };
 		4FCDCD242430DFC60069364B /* AMGFaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AMGFaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FCDCD262430DFC60069364B /* FaceXDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaceXDTests.m; sourceTree = "<group>"; };
 		4FCDCD282430DFC60069364B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -214,8 +194,6 @@
 		4FE0D2C52438D2FA008F838E /* XDLive2DCaptureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDLive2DCaptureViewController.m; sourceTree = "<group>"; };
 		4FE0D2C72438D32A008F838E /* XDLive2DCaptureARKitViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDLive2DCaptureARKitViewModel.h; sourceTree = "<group>"; };
 		4FE0D2C82438D32A008F838E /* XDLive2DCaptureARKitViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDLive2DCaptureARKitViewModel.m; sourceTree = "<group>"; };
-		4FE0D2CA2438D33C008F838E /* XDLive2DCaptureDlibViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDLive2DCaptureDlibViewModel.h; sourceTree = "<group>"; };
-		4FE0D2CB2438D33C008F838E /* XDLive2DCaptureDlibViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDLive2DCaptureDlibViewModel.m; sourceTree = "<group>"; };
 		4FE0D2CD2438D40E008F838E /* XDLive2DCaptureViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDLive2DCaptureViewModel.h; sourceTree = "<group>"; };
 		4FE0D2CE2438D40E008F838E /* XDLive2DCaptureViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDLive2DCaptureViewModel.m; sourceTree = "<group>"; };
 		4FE0D2D12438D6D1008F838E /* NSString+XDIPValiual.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+XDIPValiual.h"; sourceTree = "<group>"; };
@@ -237,7 +215,6 @@
 		4FE0D2F4243920D1008F838E /* XDUserDefineKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDUserDefineKeys.h; sourceTree = "<group>"; };
 		4FE0D2F52439B8DD008F838E /* UIStoryboard+XDStoryboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+XDStoryboard.h"; sourceTree = "<group>"; };
 		4FE0D2F62439B8DD008F838E /* UIStoryboard+XDStoryboard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIStoryboard+XDStoryboard.m"; sourceTree = "<group>"; };
-		4FE0D2F9243B1202008F838E /* shape_predictor_68_face_landmarks.dat */ = {isa = PBXFileReference; lastKnownFileType = file; name = shape_predictor_68_face_landmarks.dat; path = Vendor/shape_predictor_68_face_landmarks.dat; sourceTree = SOURCE_ROOT; };
 		4FE0D2FC243B150F008F838E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4FE0D2FE24421740008F838E /* XDSimpleKalman.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDSimpleKalman.h; sourceTree = "<group>"; };
 		4FE0D2FF24421740008F838E /* XDSimpleKalman.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDSimpleKalman.m; sourceTree = "<group>"; };
@@ -439,7 +416,6 @@
 		4F6F95A9241FD23A008D6BE7 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				4FCDCD1C2430DCE10069364B /* Storage */,
 				4FCDCD172430D8720069364B /* Network */,
 				4F6F95CF24262762008D6BE7 /* FaceCapture */,
 				4F6F95AA241FD251008D6BE7 /* Live2D */,
@@ -465,10 +441,6 @@
 		4F6F95CF24262762008D6BE7 /* FaceCapture */ = {
 			isa = PBXGroup;
 			children = (
-				4F6F95D0242627AC008D6BE7 /* XDDlibWarpper.h */,
-				4F6F95D1242627AC008D6BE7 /* XDDlibWarpper.mm */,
-				4F6F95D3242627BA008D6BE7 /* XDOpenCVWarpper.h */,
-				4F6F95D4242627BA008D6BE7 /* XDOpenCVWarpper.mm */,
 				4FCDCD07242F2BA40069364B /* XDFaceAnchor.h */,
 				4FCDCD08242F2BA40069364B /* XDFaceAnchor.mm */,
 			);
@@ -510,11 +482,8 @@
 				4F91747123E1EFA60065D31D /* AppDelegate.mm */,
 				4F91747623E1EFA60065D31D /* ViewController.h */,
 				4F91747723E1EFA60065D31D /* ViewController.mm */,
-				4F90BD69242668C40065A06C /* XDDlibCaptureViewController.h */,
-				4F90BD6A242668C40065A06C /* XDDlibCaptureViewController.m */,
 				4FE0D2F4243920D1008F838E /* XDUserDefineKeys.h */,
 				4F91747C23E1EFA70065D31D /* Assets.xcassets */,
-				4FE0D2F9243B1202008F838E /* shape_predictor_68_face_landmarks.dat */,
 				4FE0D2FC243B150F008F838E /* Main.storyboard */,
 				4F91747E23E1EFA70065D31D /* LaunchScreen.storyboard */,
 				52FB14BF242095630069C308 /* Info.plist */,
@@ -549,18 +518,8 @@
 			isa = PBXGroup;
 			children = (
 				4FE0D2D52438DA76008F838E /* PackManager */,
-				4FE0D2D42438DA6B008F838E /* ResourceDownloader */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		4FCDCD1C2430DCE10069364B /* Storage */ = {
-			isa = PBXGroup;
-			children = (
-				4FCDCD1D2430DCF50069364B /* XDFilePath.h */,
-				4FCDCD1E2430DCF50069364B /* XDFilePath.m */,
-			);
-			path = Storage;
 			sourceTree = "<group>";
 		};
 		4FCDCD252430DFC60069364B /* AMGFaceTests */ = {
@@ -617,16 +576,6 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		4FE0D2D42438DA6B008F838E /* ResourceDownloader */ = {
-			isa = PBXGroup;
-			children = (
-				4FCDCD182430D8CD0069364B /* XDResourceDownloader.h */,
-				4FCDCD192430D8CD0069364B /* XDResourceDownloader.m */,
-				4FCDCD1B2430D9B20069364B /* request_key.h */,
-			);
-			path = ResourceDownloader;
-			sourceTree = "<group>";
-		};
 		4FE0D2D52438DA76008F838E /* PackManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -653,8 +602,6 @@
 				4F6F95AF241FD85F008D6BE7 /* XDModelParameterConfiguration.m */,
 				4F6F95B1241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.h */,
 				4F6F95B2241FD97D008D6BE7 /* XDDefaultModelParameterConfiguration.m */,
-				4FCDCD0A242F3C6B0069364B /* XDDlibModelParameterConfiguration.h */,
-				4FCDCD0B242F3C6B0069364B /* XDDlibModelParameterConfiguration.m */,
 			);
 			path = Live2DModelParameter;
 			sourceTree = "<group>";
@@ -683,8 +630,6 @@
 			children = (
 				4FE0D2C72438D32A008F838E /* XDLive2DCaptureARKitViewModel.h */,
 				4FE0D2C82438D32A008F838E /* XDLive2DCaptureARKitViewModel.m */,
-				4FE0D2CA2438D33C008F838E /* XDLive2DCaptureDlibViewModel.h */,
-				4FE0D2CB2438D33C008F838E /* XDLive2DCaptureDlibViewModel.m */,
 				4FE0D2CD2438D40E008F838E /* XDLive2DCaptureViewModel.h */,
 				4FE0D2CE2438D40E008F838E /* XDLive2DCaptureViewModel.m */,
 				4FE0D2C42438D2FA008F838E /* XDLive2DCaptureViewController.h */,
@@ -1011,7 +956,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FE0D2FA243B1202008F838E /* shape_predictor_68_face_landmarks.dat in Resources */,
 				52FB14A0241FE1A20069C308 /* Localizable.strings in Resources */,
 				52CCBA512420B993006E87EC /* InfoPlist.strings in Resources */,
 				4FE0D2FD243B150F008F838E /* Main.storyboard in Resources */,
@@ -1094,7 +1038,6 @@
 				520D0ED7240D0F66002453EF /* CubismPhysicsJson.cpp in Sources */,
 				520D0EB4240D0F66002453EF /* CubismMotionQueueManager.cpp in Sources */,
 				520D0EA4240D0F66002453EF /* CubismMoc.cpp in Sources */,
-				4FE0D2CC2438D33C008F838E /* XDLive2DCaptureDlibViewModel.m in Sources */,
 				4FCDCD09242F2BA40069364B /* XDFaceAnchor.mm in Sources */,
 				4FE0D2DE2438DBA3008F838E /* XDBaseService.m in Sources */,
 				4F9176B823E299A40065D31D /* LAppModel.mm in Sources */,
@@ -1117,7 +1060,6 @@
 				4F9175CF23E1FA1B0065D31D /* LAppAllocator.mm in Sources */,
 				520D0EDB240D0F66002453EF /* CubismModelUserDataJson.cpp in Sources */,
 				4F4A49D8244A0686003BBA56 /* XDQRScanViewController.m in Sources */,
-				4F90BD7624275C270065A06C /* XDOpenCVWarpper.mm in Sources */,
 				4FE0D30024421740008F838E /* XDSimpleKalman.m in Sources */,
 				520D0E9E240D0F66002453EF /* CubismExpressionMotion.cpp in Sources */,
 				4FE0D2E32438DE26008F838E /* XDBaseNetworkPack.m in Sources */,
@@ -1132,11 +1074,9 @@
 				4FE0D2C92438D32A008F838E /* XDLive2DCaptureARKitViewModel.m in Sources */,
 				520D0E96240D0F66002453EF /* CubismMatrix44.cpp in Sources */,
 				4FE0D2DB2438DB64008F838E /* XDRawJSONSocketService.m in Sources */,
-				4FCDCD1F2430DCF50069364B /* XDFilePath.m in Sources */,
 				520D0EB2240D0F66002453EF /* CubismMotion.cpp in Sources */,
 				520D0E8F240D0F66002453EF /* CubismDefaultParameterId.cpp in Sources */,
 				4FE0D2E72438DE64008F838E /* XDRawJSONNetworkPack.m in Sources */,
-				4F90BD7724275C2B0065A06C /* XDDlibWarpper.mm in Sources */,
 				4F91747223E1EFA60065D31D /* AppDelegate.mm in Sources */,
 				520D0EB7240D0F66002453EF /* CubismMotionQueueEntry.cpp in Sources */,
 				4FE0D2F8243A5889008F838E /* ViewController.mm in Sources */,
@@ -1151,7 +1091,6 @@
 				520D0ECC240D0F66002453EF /* CubismBreath.cpp in Sources */,
 				4F6F95AD241FD362008D6BE7 /* XDModelParameter.m in Sources */,
 				520D0E94240D0F66002453EF /* CubismTargetPoint.cpp in Sources */,
-				4FCDCD0C242F3C6B0069364B /* XDDlibModelParameterConfiguration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1159,7 +1098,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FCDCD2E2430E0A60069364B /* XDFilePath.m in Sources */,
 				4FCDCD272430DFC60069364B /* FaceXDTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1333,7 +1271,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AMGFace/AMGFace.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z85Y5UDZCQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1356,13 +1294,12 @@
 					"\"$(SRCROOT)/SDK/Core/lib/ios/$(CONFIGURATION)-$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)/Vendor/lib\"",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				OTHER_CFLAGS = "-DCSM_TARGET_IPHONE_ES2";
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
 					"-lLive2DCubismCore",
 					"$(inherited)",
-					"-ldlib",
 					"-framework",
 					"\"opencv2\"",
 				);
@@ -1382,7 +1319,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AMGFace/AMGFace.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Z85Y5UDZCQ;
 				ENABLE_BITCODE = NO;
@@ -1406,13 +1343,12 @@
 					"\"$(SRCROOT)/SDK/Core/lib/ios/$(CONFIGURATION)-$(PLATFORM_NAME)\"",
 					"\"$(SRCROOT)/Vendor/lib\"",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				OTHER_CFLAGS = "-DCSM_TARGET_IPHONE_ES2";
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
 					"-lLive2DCubismCore",
 					"$(inherited)",
-					"-ldlib",
 					"-framework",
 					"\"opencv2\"",
 				);

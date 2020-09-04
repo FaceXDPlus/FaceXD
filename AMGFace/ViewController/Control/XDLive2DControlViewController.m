@@ -166,11 +166,11 @@
     if (state) {
         [UIApplication sharedApplication].idleTimerDisabled = YES;
         NSString *str = NSLocalizedString(@"capturing", nil);
-        if (![self.viewModel.captureViewModel isKindOfClass:NSClassFromString(@"XDLive2DCaptureARKitViewModel")]) {
+        /*if (![self.viewModel.captureViewModel isKindOfClass:NSClassFromString(@"XDLive2DCaptureARKitViewModel")]) {
             str = [str stringByAppendingFormat:@"(%@)", NSLocalizedString(@"xd_low_accuracy", nil)];
         } else {
             str = [str stringByAppendingFormat:@"(%@)", NSLocalizedString(@"xd_high_accuracy", nil)];
-        }
+        }*/
         self.captureStateLabel.text = str;
     } else {
         [UIApplication sharedApplication].idleTimerDisabled = NO;
@@ -321,12 +321,13 @@
 }
 
 - (IBAction)handleCaptureSwitchChange:(id)sender {
-    if (self.captureSwitch.on) {
-        [self.viewModel startCapture];
-    } else {
-        [self.viewModel stopCapture];
+    if ([ARFaceTrackingConfiguration isSupported]) {
+        if (self.captureSwitch.on) {
+            [self.viewModel startCapture];
+        } else {
+            [self.viewModel stopCapture];
+        }
     }
-    
 }
 
 - (IBAction)handleSubmitSwitchChange:(id)sender {

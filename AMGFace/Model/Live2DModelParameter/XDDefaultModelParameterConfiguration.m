@@ -168,9 +168,9 @@
         self.parameter.headRoll = @(-(180 / M_PI) * self.faceNode.eulerAngles.z);
     }
     
-    self.parameter.bodyAngleX = @(self.parameter.headYaw.floatValue / 4);
-    self.parameter.bodyAngleY = @(self.parameter.headPitch.floatValue / 2);
-    self.parameter.bodyAngleZ = @(self.parameter.headRoll.floatValue / 2);
+    //self.parameter.bodyAngleX = @(self.parameter.headYaw.floatValue / 4);
+    //self.parameter.bodyAngleY = @(self.parameter.headPitch.floatValue / 2);
+    //self.parameter.bodyAngleZ = @(self.parameter.headRoll.floatValue / 2);
 
     self.parameter.eyeLOpen = @(1 - anchor.blendShapes[ARBlendShapeLocationEyeBlinkLeft].floatValue * 1.3);
     self.parameter.eyeROpen = @(1 - anchor.blendShapes[ARBlendShapeLocationEyeBlinkRight].floatValue * 1.3);

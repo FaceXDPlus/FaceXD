@@ -18,11 +18,9 @@
 #import "XDLive2DCaptureViewController.h"
 #import "XDLive2DCaptureViewModel.h"
 #import "XDLive2DCaptureARKitViewModel.h"
-#import "XDLive2DCaptureDlibViewModel.h"
 
 #import "LAppModel.h"
 
-#import "XDDlibModelParameterConfiguration.h"
 #import "XDDefaultModelParameterConfiguration.h"
 #import "XDRawJSONNetworkPack.h"
 #import "XDUserDefineKeys.h"
@@ -42,7 +40,6 @@
 @property (nonatomic, assign) CGSize modelSize;
 
 @property (nonatomic, strong) XDDefaultModelParameterConfiguration *defaultModelParameterConfiguration;
-@property (nonatomic, strong) XDDlibModelParameterConfiguration *dlibModelParameterConfiguration;
 @end
 
 @implementation XDLive2DCaptureViewController
@@ -103,7 +100,6 @@
     [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
     
     self.defaultModelParameterConfiguration = [[XDDefaultModelParameterConfiguration alloc] initWithModel:self.live2DModel];
-    self.dlibModelParameterConfiguration = [[XDDlibModelParameterConfiguration alloc] initWithModel:self.live2DModel];
     
     self.modelSize = self.view.bounds.size;
     [self bindData];
@@ -140,7 +136,6 @@
 
 - (void)resetModel {
     [self.defaultModelParameterConfiguration reset];
-    [self.dlibModelParameterConfiguration reset];
 }
 
 - (void)layoutCameraPreviewViewWithPoint:(CGPoint)point {
@@ -171,7 +166,7 @@
     if ([ARFaceTrackingConfiguration isSupported]) {
         return [XDLive2DCaptureARKitViewModel class];
     }
-    return [XDLive2DCaptureDlibViewModel class];
+    return NULL;
 }
 
 #pragma mark - Delegate
@@ -180,11 +175,7 @@
     glClear(GL_COLOR_BUFFER_BIT);
     [self.live2DModel setMVPMatrixWithSize:self.modelSize];
     [self.live2DModel onUpdateWithParameterUpdate:^{
-        if ([self viewModelClass] == [XDLive2DCaptureDlibViewModel class]) {
-            [self.dlibModelParameterConfiguration commit];
-        } else {
-            [self.defaultModelParameterConfiguration commit];
-        }
+        [self.defaultModelParameterConfiguration commit];
     }];
     glClearColor(0, 0, 0, 0);
 }
@@ -199,15 +190,10 @@
         UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
         NSMutableDictionary *parm = [[NSMutableDictionary alloc] init];
         
-        if ([self viewModelClass] == [XDLive2DCaptureDlibViewModel class]) {
-            [self.dlibModelParameterConfiguration updateParameterWithFaceAnchor:faceAnchor];
-            parm = [self.dlibModelParameterConfiguration.sendParameter parameterValueDictionary].mutableCopy;
-        } else {
-            self.defaultModelParameterConfiguration.orientation = orientation;
-            [self.defaultModelParameterConfiguration updateParameterWithFaceAnchor:faceAnchor];
+        self.defaultModelParameterConfiguration.orientation = orientation;
+        [self.defaultModelParameterConfiguration updateParameterWithFaceAnchor:faceAnchor];
 
-            parm = [self.defaultModelParameterConfiguration.sendParameter parameterValueDictionary].mutableCopy;
-        }
+        parm = [self.defaultModelParameterConfiguration.sendParameter parameterValueDictionary].mutableCopy;
         
         [self.viewModel.filterSendKeys enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString *removeKey = [[XDModelParameterConfiguration parameterKeyMap] objectForKey:obj];
@@ -229,19 +215,16 @@
         UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
         EKMetalRenderLiveviewRotation rotation = EKMetalRenderLiveviewRotationRight;
         
-        if ([self viewModelClass] == [XDLive2DCaptureDlibViewModel class]) {
+        if (orientation == UIInterfaceOrientationPortrait) {
+            rotation = EKMetalRenderLiveviewRotationRight;
+        } else if (orientation == UIInterfaceOrientationLandscapeRight) {
             rotation = EKMetalRenderLiveviewRotationNormal;
-        } else {
-            if (orientation == UIInterfaceOrientationPortrait) {
-                rotation = EKMetalRenderLiveviewRotationRight;
-            } else if (orientation == UIInterfaceOrientationLandscapeRight) {
-                rotation = EKMetalRenderLiveviewRotationNormal;
-            } else if (orientation == UIInterfaceOrientationLandscapeLeft) {
-                rotation = EKMetalRenderLiveviewRotationUpsideDown;
-            } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
-                rotation = EKMetalRenderLiveviewRotationLeft;
-            }
+        } else if (orientation == UIInterfaceOrientationLandscapeLeft) {
+            rotation = EKMetalRenderLiveviewRotationUpsideDown;
+        } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+            rotation = EKMetalRenderLiveviewRotationLeft;
         }
+        
         
         EKSampleBuffer *buffer = [[EKSampleBuffer alloc] initWithSampleBuffer:sampleBuffer freeWhenDone:YES];
         self.liveviewRender.orientation = rotation;
