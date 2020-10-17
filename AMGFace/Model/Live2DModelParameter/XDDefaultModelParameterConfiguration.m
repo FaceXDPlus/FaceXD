@@ -172,6 +172,11 @@
     //self.parameter.bodyAngleY = @(self.parameter.headPitch.floatValue / 2);
     //self.parameter.bodyAngleZ = @(self.parameter.headRoll.floatValue / 2);
 
+    SCNVector3 position = self.faceNode.position;
+    float distance = sqrt((position.x * position.x)+(position.y * position.y)+(position.z * position.z));
+
+    self.parameter.bodyAngleY = @((distance - 0.5) * 30);
+    
     self.parameter.eyeLOpen = @(1 - anchor.blendShapes[ARBlendShapeLocationEyeBlinkLeft].floatValue * 1.3);
     self.parameter.eyeROpen = @(1 - anchor.blendShapes[ARBlendShapeLocationEyeBlinkRight].floatValue * 1.3);
     
@@ -202,8 +207,8 @@
     CGFloat downL = anchor.blendShapes[ARBlendShapeLocationBrowDownLeft].floatValue;
     CGFloat downR = anchor.blendShapes[ARBlendShapeLocationBrowDownRight].floatValue;
     
-    self.parameter.eyeBrowYL = @((innerUp + outerUpL) / 2);
-    self.parameter.eyeBrowYR = @((innerUp + outerUpR) / 2);
+    self.parameter.eyeBrowYL = @(outerUpL);
+    self.parameter.eyeBrowYR = @(outerUpR);
     
     self.parameter.eyeBrowAngleL = @( 0 - (downL - 1/2) + 1/6);
     self.parameter.eyeBrowAngleR = @( 0 - (downR - 1/2) + 1/6);
@@ -232,6 +237,7 @@
     } else {
         self.parameter.blendShapes = nil;        
     }
+    
     [self afterUpdateParameter:self.parameter];
 }
 
