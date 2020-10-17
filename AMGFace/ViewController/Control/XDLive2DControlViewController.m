@@ -166,11 +166,6 @@
     if (state) {
         [UIApplication sharedApplication].idleTimerDisabled = YES;
         NSString *str = NSLocalizedString(@"capturing", nil);
-        /*if (![self.viewModel.captureViewModel isKindOfClass:NSClassFromString(@"XDLive2DCaptureARKitViewModel")]) {
-            str = [str stringByAppendingFormat:@"(%@)", NSLocalizedString(@"xd_low_accuracy", nil)];
-        } else {
-            str = [str stringByAppendingFormat:@"(%@)", NSLocalizedString(@"xd_high_accuracy", nil)];
-        }*/
         self.captureStateLabel.text = str;
     } else {
         [UIApplication sharedApplication].idleTimerDisabled = NO;
