@@ -14,7 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) ARWorldAlignment worldAlignment;
 @property (nonatomic, assign) UIInterfaceOrientation orientation;
+@property (nonatomic, assign) BOOL needResetBody;
 @property (nonatomic, assign) BOOL appendBlendShapes;
+@property (nonatomic, assign) float distanceY;
+@property (nonatomic, assign) SCNVector3 distanceZ;
 
 @end
 

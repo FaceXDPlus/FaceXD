@@ -18,6 +18,7 @@
 "xd_ok"               = "Ok";
 "label_Version"       = "Version";
 "label_Reset"         = "Reset";
+"label_Reset_Body"    = "Reset Body";
 "label_Relative"      = "Relative";
 "label_Advanced"      = "Advanced";
 "label_Camera"        = "Camera";

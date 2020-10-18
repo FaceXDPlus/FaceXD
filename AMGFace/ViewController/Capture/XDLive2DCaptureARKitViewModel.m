@@ -28,6 +28,7 @@
         }
         BOOL relative = alignmentNumber.boolValue;
         _worldAlignment = relative ? ARWorldAlignmentCamera : ARWorldAlignmentGravity;
+        _needResetBody  = YES;
         _arSessionDelegateQueue = dispatch_queue_create("XDLive2DCaptureARKitViewModel::SessionDelegateQueue", DISPATCH_QUEUE_SERIAL);
     }
     return self;
@@ -54,6 +55,14 @@
     }
     [[NSUserDefaults standardUserDefaults] setObject:@(worldAlignment) forKey:XDUserDefineKeySubmitCameraAlignment];
 }
+
+- (void)setNeedResetBody:(BOOL)needResetBody {
+    if (self.needResetBody == needResetBody) {
+        return;
+    }
+    _needResetBody = needResetBody;
+}
+
 
 #pragma mark - Private
 - (void)setupARSession {

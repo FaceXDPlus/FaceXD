@@ -68,6 +68,12 @@
             weakSelf.defaultModelParameterConfiguration.worldAlignment = [newValue integerValue];
         }];
         self.defaultModelParameterConfiguration.worldAlignment = arViewModel.worldAlignment;
+        
+        [arViewModel addKVOObserver:self
+                            forKeyPath:@"needResetBody" block:^(id  _Nullable oldValue, id  _Nullable newValue) {
+            weakSelf.defaultModelParameterConfiguration.needResetBody = [newValue integerValue];
+        }];
+        self.defaultModelParameterConfiguration.needResetBody = arViewModel.needResetBody;
     }
     
     [self.viewModel addKVOObserver:self

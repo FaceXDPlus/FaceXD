@@ -98,17 +98,4 @@
     CGPoint p = [gesture locationInView:self.view];
     [self.captureViewController layoutCameraPreviewViewWithPoint:p];
 }
-
-//- (IBAction)handleJsonSwitch:(id)sender {
-//    NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
-//    if(self.jsonSwitch.on == 0){
-//        self.labelJson.hidden = 1;
-//        [accountDefaults setBool:NO forKey:@"jsonSwitch"];
-//    }else{
-//        self.labelJson.hidden = 0;
-//        [accountDefaults setBool:YES forKey:@"jsonSwitch"];
-//    }
-//    [accountDefaults synchronize];
-//}
-//
 @end

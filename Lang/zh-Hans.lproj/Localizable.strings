@@ -18,6 +18,7 @@
 "xd_ok"               = "好的";
 "label_Version"       = "运行版本";
 "label_Reset"         = "重置模型";
+"label_Reset_Body"    = "重置身体数据";
 "label_Relative"      = "相机坐标系";
 "label_Advanced"      = "原始数据";
 "label_Camera"        = "显示相机";

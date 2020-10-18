@@ -35,6 +35,8 @@
 @property (nonatomic, weak) IBOutlet UILabel *appVersionLabel;
 @property (nonatomic, weak) IBOutlet UILabel *resetLabel;
 @property (nonatomic, weak) IBOutlet UIButton *resetButton;
+@property (nonatomic, weak) IBOutlet UILabel *resetBodyLabel;
+@property (nonatomic, weak) IBOutlet UIButton *resetBodyButton;
 @property (nonatomic, weak) IBOutlet UILabel *relativeLabel;
 @property (nonatomic, weak) IBOutlet UISwitch *relativeSwitch;
 @property (nonatomic, weak) IBOutlet UILabel *advancedLabel;
@@ -89,6 +91,7 @@
     self.submitLabel.text = NSLocalizedString(@"label_Submit", nil);
     self.showCameraLabel.text = NSLocalizedString(@"label_Camera", nil);
     self.resetLabel.text = NSLocalizedString(@"label_Reset", nil);
+    self.resetBodyLabel.text = NSLocalizedString(@"label_Reset_Body", nil);
     self.versionLabel.text = NSLocalizedString(@"label_Version", nil);
     self.advancedLabel.text = NSLocalizedString(@"label_Advanced", nil);
     self.relativeLabel.text = NSLocalizedString(@"label_Relative", nil);
@@ -97,6 +100,7 @@
     self.gestureLabel.text = NSLocalizedString(@"label_gesture", nil);
     [_scanButton  setTitle:NSLocalizedString(@"button_Qr_scan", nil) forState:UIControlStateNormal];
     [_resetButton setTitle:NSLocalizedString(@"button_Reset", nil) forState:UIControlStateNormal];
+    [_resetBodyButton setTitle:NSLocalizedString(@"button_Reset", nil) forState:UIControlStateNormal];
     [_showGestureHelpButton setTitle:NSLocalizedString(@"button_show_gesture_help", nil) forState:UIControlStateNormal];
     
     
@@ -370,6 +374,10 @@
 - (IBAction)handleResetButtonDown:(id)sender {
     [self.viewModel disconnect];
     [self.viewModel stopCapture];
+}
+
+- (IBAction)handleResetBodyButtonDown:(id)sender {
+    [self.viewModel.captureViewModel setValue:@(YES) forKey:@"needResetBody"];
 }
 
 - (IBAction)handleAddressFieldEnd:(id)sender {
