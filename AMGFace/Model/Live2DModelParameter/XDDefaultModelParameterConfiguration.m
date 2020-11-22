@@ -82,6 +82,7 @@
             LAppParamEyeBallY: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
             LAppParamMouthOpenY: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
             LAppParamMouthForm: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+            LAppParamMouthU: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
         };
     }
     return self;
@@ -187,8 +188,8 @@
         self.distanceZ = position;
     }
     
-    self.parameter.bodyAngleY = @((distance - self.distanceY) * 30);
-    self.parameter.bodyAngleZ = @(- atan((self.distanceZ.y-position.y)/0.25) * 30);
+    self.parameter.bodyAngleY = @(atan((distance - self.distanceY)/0.5) * 30);
+    self.parameter.bodyAngleZ = @(- atan((self.distanceZ.y-position.y)/0.5) * 30);
     
     self.parameter.eyeLOpen = @(1 - anchor.blendShapes[ARBlendShapeLocationEyeBlinkLeft].floatValue * 1.3);
     self.parameter.eyeROpen = @(1 - anchor.blendShapes[ARBlendShapeLocationEyeBlinkRight].floatValue * 1.3);
@@ -229,20 +230,22 @@
     self.parameter.eyeBrowLForm = @(17 * (innerUp - outerUpL) - downL - 2);
     self.parameter.eyeBrowRForm = @(17 * (innerUp - outerUpR) - downR - 2);
     
+    CGFloat MouthPucker = anchor.blendShapes[ARBlendShapeLocationMouthPucker].floatValue;
     
-    CGFloat mouthFunnel = anchor.blendShapes[ARBlendShapeLocationMouthPucker].floatValue;
     CGFloat mouthLeft = anchor.blendShapes[ARBlendShapeLocationMouthFrownLeft].floatValue;
     CGFloat mouthRight = anchor.blendShapes[ARBlendShapeLocationMouthFrownRight].floatValue;
     CGFloat mouthSmileLeft = anchor.blendShapes[ARBlendShapeLocationMouthSmileLeft].floatValue;
     CGFloat mouthSmileRight = anchor.blendShapes[ARBlendShapeLocationMouthSmileRight].floatValue;
     CGFloat mouthForm = ((0 - (mouthLeft - mouthSmileLeft + mouthRight - mouthSmileRight) / 2)  + 0.5);
-    mouthForm = mouthForm - mouthFunnel * 2;
+    mouthForm = mouthForm - MouthPucker * 2;
     
+    CGFloat mouthFunnel = anchor.blendShapes[ARBlendShapeLocationMouthFunnel].floatValue;
     
     self.parameter.eyeLSmile = @(mouthSmileLeft * 2);
     self.parameter.eyeRSmile = @(mouthSmileRight * 2);
     
     self.parameter.mouthForm = @(mouthForm);
+    self.parameter.mouthU = @(mouthFunnel);
     self.parameter.mouthOpenY = @(anchor.blendShapes[ARBlendShapeLocationJawOpen].floatValue * 1.3);
     
     if (self.appendBlendShapes) {

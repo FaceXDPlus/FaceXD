@@ -22,6 +22,7 @@ LAppParam const LAppParamAngleY = LAppParamMake(ParamAngleY);
 LAppParam const LAppParamAngleZ = LAppParamMake(ParamAngleZ);
 LAppParam const LAppParamMouthOpenY = LAppParamMake(ParamMouthOpenY);
 LAppParam const LAppParamMouthForm = LAppParamMake(ParamMouthForm);
+LAppParam const LAppParamMouthU = LAppParamMake(ParamMouthU);
 LAppParam const LAppParamEyeLOpen = LAppParamMake(ParamEyeLOpen);
 LAppParam const LAppParamEyeROpen = LAppParamMake(ParamEyeROpen);
 LAppParam const LAppParamEyeLSmile = LAppParamMake(ParamEyeLSmile);

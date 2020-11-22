@@ -33,6 +33,7 @@
     copyParameter.eyeY = [self.eyeY copy];
     copyParameter.mouthOpenY = [self.mouthOpenY copy];
     copyParameter.mouthForm = [self.mouthForm copy];
+    copyParameter.mouthU = [self.mouthU copy];
     copyParameter.blendShapes = [self.blendShapes copy];
     copyParameter.isTracked = [self.isTracked copy];
     copyParameter.transforms = [self.transforms copy];
@@ -61,6 +62,7 @@
         @"eyeY"            : [NSString stringWithFormat: @"%.3lf", self.eyeY.floatValue],
         @"mouthOpenY"      : [NSString stringWithFormat: @"%.3lf", self.mouthOpenY.floatValue],
         @"mouthForm"       : [NSString stringWithFormat: @"%.3lf", self.mouthForm.floatValue],
+        @"mouthU"          : [NSString stringWithFormat: @"%.3lf", self.mouthU.floatValue],
         @"blendShapes"     : self.blendShapes == nil ? @{} : self.blendShapes,
         @"isTracked"       : self.isTracked == nil ? @(YES) : self.isTracked,
         @"uuid"            : [UIDevice UUID],
