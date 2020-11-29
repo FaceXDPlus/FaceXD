@@ -175,9 +175,6 @@
         self.parameter.headYaw = @((180 / M_PI) * self.faceNode.eulerAngles.y);
         self.parameter.headRoll = @(-(180 / M_PI) * self.faceNode.eulerAngles.z);
     }
-    //self.parameter.bodyAngleX = @(self.parameter.headYaw.floatValue / 4);
-    //self.parameter.bodyAngleY = @(self.parameter.headPitch.floatValue / 2);
-    //self.parameter.bodyAngleZ = @(self.parameter.headRoll.floatValue / 2);
 
     SCNVector3 position = self.faceNode.position;
     float distance = sqrt((position.x * position.x)+(position.y * position.y)+(position.z * position.z));
@@ -188,6 +185,8 @@
         self.distanceZ = position;
     }
     
+    
+    self.parameter.bodyAngleX = @(self.parameter.headYaw.floatValue / 4);
     self.parameter.bodyAngleY = @(atan((distance - self.distanceY)/0.5) * 30);
     self.parameter.bodyAngleZ = @(- atan((self.distanceZ.y-position.y)/0.5) * 30);
     
