@@ -41,9 +41,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         array = @[
-            LAppParamBodyAngleX,
-            LAppParamBodyAngleY,
-            LAppParamBodyAngleZ,
+            //LAppParamBodyAngleX,
+            //LAppParamBodyAngleY,
+            //LAppParamBodyAngleZ,
         ];
     });
     return array;

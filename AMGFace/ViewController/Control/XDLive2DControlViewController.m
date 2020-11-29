@@ -35,6 +35,8 @@
 @property (nonatomic, weak) IBOutlet UILabel *appVersionLabel;
 @property (nonatomic, weak) IBOutlet UILabel *resetLabel;
 @property (nonatomic, weak) IBOutlet UIButton *resetButton;
+@property (nonatomic, weak) IBOutlet UILabel *resetBodyLabel;
+@property (nonatomic, weak) IBOutlet UIButton *resetBodyButton;
 @property (nonatomic, weak) IBOutlet UILabel *relativeLabel;
 @property (nonatomic, weak) IBOutlet UISwitch *relativeSwitch;
 @property (nonatomic, weak) IBOutlet UILabel *advancedLabel;
@@ -89,6 +91,7 @@
     self.submitLabel.text = NSLocalizedString(@"label_Submit", nil);
     self.showCameraLabel.text = NSLocalizedString(@"label_Camera", nil);
     self.resetLabel.text = NSLocalizedString(@"label_Reset", nil);
+    self.resetBodyLabel.text = NSLocalizedString(@"label_Reset_Body", nil);
     self.versionLabel.text = NSLocalizedString(@"label_Version", nil);
     self.advancedLabel.text = NSLocalizedString(@"label_Advanced", nil);
     self.relativeLabel.text = NSLocalizedString(@"label_Relative", nil);
@@ -97,6 +100,7 @@
     self.gestureLabel.text = NSLocalizedString(@"label_gesture", nil);
     [_scanButton  setTitle:NSLocalizedString(@"button_Qr_scan", nil) forState:UIControlStateNormal];
     [_resetButton setTitle:NSLocalizedString(@"button_Reset", nil) forState:UIControlStateNormal];
+    [_resetBodyButton setTitle:NSLocalizedString(@"button_Reset", nil) forState:UIControlStateNormal];
     [_showGestureHelpButton setTitle:NSLocalizedString(@"button_show_gesture_help", nil) forState:UIControlStateNormal];
     
     
@@ -166,11 +170,6 @@
     if (state) {
         [UIApplication sharedApplication].idleTimerDisabled = YES;
         NSString *str = NSLocalizedString(@"capturing", nil);
-        if (![self.viewModel.captureViewModel isKindOfClass:NSClassFromString(@"XDLive2DCaptureARKitViewModel")]) {
-            str = [str stringByAppendingFormat:@"(%@)", NSLocalizedString(@"xd_low_accuracy", nil)];
-        } else {
-            str = [str stringByAppendingFormat:@"(%@)", NSLocalizedString(@"xd_high_accuracy", nil)];
-        }
         self.captureStateLabel.text = str;
     } else {
         [UIApplication sharedApplication].idleTimerDisabled = NO;
@@ -321,12 +320,15 @@
 }
 
 - (IBAction)handleCaptureSwitchChange:(id)sender {
-    if (self.captureSwitch.on) {
-        [self.viewModel startCapture];
-    } else {
-        [self.viewModel stopCapture];
+    if ([ARFaceTrackingConfiguration isSupported]) {
+        if (self.captureSwitch.on) {
+            [self.viewModel startCapture];
+        } else {
+            [self.viewModel stopCapture];
+        }
+    }else{
+        self.captureStateLabel.text = NSLocalizedString(@"unsupport", nil);
     }
-    
 }
 
 - (IBAction)handleSubmitSwitchChange:(id)sender {
@@ -372,6 +374,10 @@
 - (IBAction)handleResetButtonDown:(id)sender {
     [self.viewModel disconnect];
     [self.viewModel stopCapture];
+}
+
+- (IBAction)handleResetBodyButtonDown:(id)sender {
+    [self.viewModel.captureViewModel setValue:@(YES) forKey:@"needResetBody"];
 }
 
 - (IBAction)handleAddressFieldEnd:(id)sender {

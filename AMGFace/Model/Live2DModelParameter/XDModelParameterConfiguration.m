@@ -64,6 +64,7 @@
             LAppParamAngleZ: @"headRoll",
             LAppParamMouthOpenY: @"mouthOpenY",
             LAppParamMouthForm: @"mouthForm",
+            LAppParamMouthU: @"mouthU",
             LAppParamEyeLOpen: @"eyeLOpen",
             LAppParamEyeROpen: @"eyeROpen",
             LAppParamEyeLSmile: @"eyeLSmile",

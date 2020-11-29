@@ -11,6 +11,7 @@
 #import "XDControlValueLinear.h"
 #import "XDSimpleKalman.h"
 #import "XDSmoothDamp.h"
+#import "NSArray+SIMD.h"
 
 @interface XDDefaultModelParameterConfiguration () {
     CFTimeInterval _lastCommitTimeInterval;
@@ -81,6 +82,7 @@
             LAppParamEyeBallY: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
             LAppParamMouthOpenY: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
             LAppParamMouthForm: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
+            LAppParamMouthU: [XDSmoothDamp smoothDampWithSmoothTime:0.03],
         };
     }
     return self;
@@ -101,6 +103,13 @@
     _orientation = orientation;
 }
 
+- (void)setNeedResetBody:(BOOL)needResetBody {
+    if (_needResetBody == needResetBody) {
+        return;
+    }
+    _needResetBody = needResetBody;
+}
+
 #pragma mark - Public
 - (void)beforeUpdateParameter:(XDModelParameter *)parameter {
     
@@ -115,8 +124,31 @@
     }
 
     self.faceNode.simdTransform = anchor.transform;
-    self.leftEyeNode.simdTransform = anchor.transform;
-    self.rightEyeNode.simdTransform = anchor.transform;
+    self.leftEyeNode.simdTransform = anchor.leftEyeTransform;
+    self.rightEyeNode.simdTransform = anchor.rightEyeTransform;
+    
+    /*
+    SceneKit applies these rotations in the reverse order of the components:
+       1. first roll
+       2. then yaw
+       3. then pitch
+    */
+    self.parameter.transforms = @{
+        @"face.eulerAngles": [NSArray arrayWithFloat3:simd_make_float3(self.faceNode.eulerAngles.x,
+                                                                       self.faceNode.eulerAngles.y,
+                                                                       self.faceNode.eulerAngles.z)],
+        @"face.position": [NSArray arrayWithFloat3:simd_make_float3(self.faceNode.position.x,
+                                                                    self.faceNode.position.y,
+                                                                    self.faceNode.position.z)],
+        @"leftEye.eulerAngles": [NSArray arrayWithFloat3:simd_make_float3(self.leftEyeNode.eulerAngles.x,
+                                                                          self.leftEyeNode.eulerAngles.y,
+                                                                          self.leftEyeNode.eulerAngles.z)],
+        @"rightEye.eulerAngles": [NSArray arrayWithFloat3:simd_make_float3(self.rightEyeNode.eulerAngles.x,
+                                                                           self.rightEyeNode.eulerAngles.y,
+                                                                           self.rightEyeNode.eulerAngles.z)],
+        @"worldAlignment": self.worldAlignment == ARWorldAlignmentCamera ? @"camera" : @"world",
+    };
+    
     if (self.worldAlignment == ARWorldAlignmentCamera) {
         self.parameter.headPitch = @(-(180 / M_PI) * self.faceNode.eulerAngles.x * 1.3);
         self.parameter.headYaw = @((180 / M_PI) * self.faceNode.eulerAngles.y);
@@ -143,11 +175,21 @@
         self.parameter.headYaw = @((180 / M_PI) * self.faceNode.eulerAngles.y);
         self.parameter.headRoll = @(-(180 / M_PI) * self.faceNode.eulerAngles.z);
     }
+
+    SCNVector3 position = self.faceNode.position;
+    float distance = sqrt((position.x * position.x)+(position.y * position.y)+(position.z * position.z));
+    
+    if(self.needResetBody == YES){
+        self.needResetBody = NO;
+        self.distanceY = distance;
+        self.distanceZ = position;
+    }
+    
     
     self.parameter.bodyAngleX = @(self.parameter.headYaw.floatValue / 4);
-    self.parameter.bodyAngleY = @(self.parameter.headPitch.floatValue / 2);
-    self.parameter.bodyAngleZ = @(self.parameter.headRoll.floatValue / 2);
-
+    self.parameter.bodyAngleY = @(atan((distance - self.distanceY)/0.5) * 30);
+    self.parameter.bodyAngleZ = @(- atan((self.distanceZ.y-position.y)/0.5) * 30);
+    
     self.parameter.eyeLOpen = @(1 - anchor.blendShapes[ARBlendShapeLocationEyeBlinkLeft].floatValue * 1.3);
     self.parameter.eyeROpen = @(1 - anchor.blendShapes[ARBlendShapeLocationEyeBlinkRight].floatValue * 1.3);
     
@@ -178,8 +220,8 @@
     CGFloat downL = anchor.blendShapes[ARBlendShapeLocationBrowDownLeft].floatValue;
     CGFloat downR = anchor.blendShapes[ARBlendShapeLocationBrowDownRight].floatValue;
     
-    self.parameter.eyeBrowYL = @((innerUp + outerUpL) / 2);
-    self.parameter.eyeBrowYR = @((innerUp + outerUpR) / 2);
+    self.parameter.eyeBrowYL = @(outerUpL);
+    self.parameter.eyeBrowYR = @(outerUpR);
     
     self.parameter.eyeBrowAngleL = @( 0 - (downL - 1/2) + 1/6);
     self.parameter.eyeBrowAngleR = @( 0 - (downR - 1/2) + 1/6);
@@ -187,20 +229,22 @@
     self.parameter.eyeBrowLForm = @(17 * (innerUp - outerUpL) - downL - 2);
     self.parameter.eyeBrowRForm = @(17 * (innerUp - outerUpR) - downR - 2);
     
+    CGFloat MouthPucker = anchor.blendShapes[ARBlendShapeLocationMouthPucker].floatValue;
     
-    CGFloat mouthFunnel = anchor.blendShapes[ARBlendShapeLocationMouthPucker].floatValue;
     CGFloat mouthLeft = anchor.blendShapes[ARBlendShapeLocationMouthFrownLeft].floatValue;
     CGFloat mouthRight = anchor.blendShapes[ARBlendShapeLocationMouthFrownRight].floatValue;
     CGFloat mouthSmileLeft = anchor.blendShapes[ARBlendShapeLocationMouthSmileLeft].floatValue;
     CGFloat mouthSmileRight = anchor.blendShapes[ARBlendShapeLocationMouthSmileRight].floatValue;
     CGFloat mouthForm = ((0 - (mouthLeft - mouthSmileLeft + mouthRight - mouthSmileRight) / 2)  + 0.5);
-    mouthForm = mouthForm - mouthFunnel * 2;
+    mouthForm = mouthForm - MouthPucker * 2;
     
+    CGFloat mouthFunnel = anchor.blendShapes[ARBlendShapeLocationMouthFunnel].floatValue;
     
     self.parameter.eyeLSmile = @(mouthSmileLeft * 2);
     self.parameter.eyeRSmile = @(mouthSmileRight * 2);
     
     self.parameter.mouthForm = @(mouthForm);
+    self.parameter.mouthU = @(mouthFunnel);
     self.parameter.mouthOpenY = @(anchor.blendShapes[ARBlendShapeLocationJawOpen].floatValue * 1.3);
     
     if (self.appendBlendShapes) {
@@ -208,6 +252,7 @@
     } else {
         self.parameter.blendShapes = nil;        
     }
+    
     [self afterUpdateParameter:self.parameter];
 }
 

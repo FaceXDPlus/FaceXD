@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XDLive2DCaptureARKitViewModel : XDLive2DCaptureViewModel
 @property (nonatomic, assign) ARWorldAlignment worldAlignment;
+@property (nonatomic, assign) BOOL needResetBody;
+
 @end
 
 NS_ASSUME_NONNULL_END
