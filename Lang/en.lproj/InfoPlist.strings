@@ -1,1 +1,2 @@
 "NSCameraUsageDescription" = "We need your Camera Access to track your face.";
+"NSLocalNetworkUsageDescription" = "We need your Local Network Access to send your face data.";
