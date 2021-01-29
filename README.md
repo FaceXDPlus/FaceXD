@@ -1,13 +1,11 @@
-# AMGFace(FaceXD)
+# Shiori(FaceXD)
 
 ## 下载/Download
-Appstore: AMGFace
+Appstore: Shiori
 
 ## 关于/About
 这是基于Live2D SDK和ARKit的面部追踪APP。  
 This is a face-tracking APP based on Live2d SDK and ARKit.  
-由于FaceXD开发者账号被封，目前项目更新全部提交到AMGFace分支。请前往该分支下载最新源码。  
-Due to some reason, this project has been renamed to AMGFace. All the codes will now upload to branch AMGFace  
 
 ## SDK
 https://github.com/FaceXDPlus/FaceXD_SDK

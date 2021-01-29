@@ -1,6 +1,0 @@
-framework module EKMetalKit {
-  umbrella header "EKMetalKit.h"
-
-  export *
-  module * { export * }
-}
